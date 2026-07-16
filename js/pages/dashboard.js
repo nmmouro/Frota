@@ -1,172 +1,152 @@
-import { get }
-from "../services/api.js";
+const URL =
+    "https://script.google.com/macros/s/AKfycbw2rV5GaICVNmFn0i0P4RRwiCzzYbvRgpnwPjI7AIcS-uqhJg62bk3B0pKITChqZw-R0w/exec";
 
+async function carregarOcorrencias() {
 
-console.log("Dashboard iniciado");
+    try {
 
-const cards =
-  document.querySelector("#cards");
+        const resposta =
+            await fetch(
+                `${URL}?acao=listarOcorrencias`
+            );
 
-async function carregar() {
+        const dados =
+            await resposta.json();
 
+            console.log(dados);
 
-  const resultado =
-  await listarLancamentos();
+        const tbody =
+            document.querySelector(
+                "#tabelaOcorrencias tbody"
+            );
 
-console.log(resultado);
+        tbody.innerHTML = "";
 
-  import {
-  listarLancamentos
-}
-from "../services/api.js";
+        const registros =
+            dados.filter(item =>
+                item.status?.toUpperCase() ===
+                "EM ANDAMENTO"
+            );
 
-const resultado =
-  await listarLancamentos();
+        document.getElementById(
+            "totalRegistros"
+        ).textContent = registros.length;
 
-  if (!resultado.sucesso) {
+        registros.forEach(item => {
 
-    cards.innerHTML = `
-      <p>
-        ${resultado.erro}
-      </p>
-    `;
+            
+        
+        const data = new Date(item.data);
 
-    return;
+        const dataFormatada =
+        data.toLocaleDateString(
+            "pt-BR",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            }
+        );
 
-  }
+         const hora = new Date(item.hora);
 
-  renderizar(
-    resultado.dados
-  );
+         const horaFormatada =
+          hora.toLocaleTimeString(
+            "pt-BR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
 
-}
+            const horarioInicial = item.horarioInicial
+            ? new Date(item.horarioInicial)
+            .toLocaleTimeString(
+            "pt-BR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+            )
+            : "";
 
-function renderizar(
-  registros
-) {
+            const horarioFinal = item.horarioFinal
+            ? new Date(item.horarioFinal)
+            .toLocaleTimeString(
+            "pt-BR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+            )
+            : "";
+        
+        
+            tbody.innerHTML += `
+                <tr>
+                    
+                    <td>${dataFormatada}</td>
+                    <td>${horaFormatada}</td>
+                    <td>${item.nome}</td>
+                    <td>${item.veiculo}</td>
+                    <td>${item.motivo}</td>
+                    <td>${item.itinerario}</td>
+                    <td>${item.horarioInicial || ""}</td>
+                    <td>${item.kmInicial || ""}</td>
+                    <td>${item.horarioFinal || ""}</td>
+                    <td>${item.kmFinal || ""}</td>                    
+                    <td>${item.distanciaPercorrida || ""}</td>
+                    <td>${item.status}</td>
 
-  cards.innerHTML = "";
+                    <td>
+                       <button
+                           class="btn-editar"
+                           
+                        onclick="editarRegistro('${item.id}')">
+                        ✏️ Editar
+                       </button>
+                    </td>
 
-  if (
-    registros.length === 0
-  ) {
+                </tr>
+            `;
 
-    cards.innerHTML =
-      "<p>Nenhuma ocorrência em andamento.</p>";
+        });
 
-    return;
+    } catch (erro) {
 
-  }
+        console.error(
+            "Erro ao carregar dados:",
+            erro
+        );
 
-  registros.forEach(
-    registro => {
-
-      cards.innerHTML += `
-
-      <div class="card">
-
-        <h3>
-          ${registro.veiculo}
-        </h3>
-
-        <p>
-
-          <strong>
-            Motorista:
-          </strong>
-
-          ${registro.nome}
-
-        </p>
-
-        <p>
-
-          <strong>
-            Motivo:
-          </strong>
-
-          ${registro.motivo}
-
-        </p>
-
-        <p>
-
-          <strong>
-            KM Inicial:
-          </strong>
-
-          ${registro.kmInicial}
-
-        </p>
-
-        <p>
-
-          <strong>
-            Status:
-          </strong>
-
-          ${registro.status}
-
-        </p>
-
-        <div class="acoes">
-
-          <button
-            class="btn-editar"
-            onclick="
-              editar('${registro.id}')
-            ">
-            Editar
-          </button>
-
-          <button
-            class="btn-excluir"
-            onclick="
-              excluirRegistro('${registro.id}')
-            ">
-            Excluir
-          </button>
-
-        </div>
-
-      </div>
-
-      `;
-
-    });
+    }
 
 }
 
-window.editar = function(id) {
+function editarRegistro(id) {
 
-  location.href =
-    `cadastro.html?id=${id}`;
+    console.log("Editando:", id);
 
-};
+    window.location.href =
+        `cadastro.html?id=${id}`;
 
-window.excluirRegistro =
-async function(id) {
+}
 
-  const confirmar =
-    confirm(
-      "Excluir registro?"
-    );
+function atualizarRelogio() {
 
-  if (!confirmar)
-    return;
+    const agora = new Date();
 
-  const resultado =
-    await get(
-      "excluirLancamento",
-      { id }
-    );
+    document.getElementById(
+        "dataHora"
+    ).textContent =
+        agora.toLocaleString("pt-BR");
 
-  alert(
-    resultado.mensagem
-  );
+}
 
-  carregar();
 
-};
 
-carregar();
+carregarOcorrencias();
+atualizarRelogio();
+
+setInterval(carregarOcorrencias, 10000);
+setInterval(atualizarRelogio, 1000);
