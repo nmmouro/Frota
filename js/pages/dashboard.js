@@ -1,5 +1,5 @@
 const URL =
-    "https://script.google.com/macros/s/AKfycbw2rV5GaICVNmFn0i0P4RRwiCzzYbvRgpnwPjI7AIcS-uqhJg62bk3B0pKITChqZw-R0w/exec";
+    "https://script.google.com/macros/s/AKfycbwhTKSkVD9GEJc-2irlmzomBkKd8nVrzM4h18WdiZ3fNdfSoUADtO9VwmJ4_BtXAukNHA/exec";
 
 async function carregarOcorrencias() {
 
