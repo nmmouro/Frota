@@ -1,0 +1,125 @@
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:#020617;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.page-header h1{
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+main{
+
+    padding:20px;
+
+}
+
+.card{
+
+    padding:20px;
+
+}
+
+#tabela{
+
+    width:100%;
+
+}
+
+#tabela th:nth-child(1){
+
+    width:8%;
+
+}
+
+#tabela th:nth-child(2){
+
+    width:8%;
+
+}
+
+#tabela th:nth-child(3){
+
+    width:18%;
+
+}
+
+#tabela th:nth-child(4){
+
+    width:12%;
+
+}
+
+#tabela th:nth-child(5){
+
+    width:25%;
+
+}
+
+#tabela th:nth-child(6){
+
+    width:19%;
+
+}
+
+#tabela th:nth-child(7){
+
+    width:10%;
+
+}
+
+.status{
+
+    font-weight:700;
+
+}
+
+.status.agendado{
+
+    color:#ffcc00;
+
+}
+
+.status.andamento{
+
+    color:#4da6ff;
+
+}
+
+.status.concluido{
+
+    color:#00ff9c;
+
+}
+
+.status.cancelado{
+
+    color:#ff4d4d;
+
+}
+
+.status.viagem{
+
+    color:#d58cff;
+
+}
+
+.status.manutencao{
+
+    color:#7ec8ff;
+
+}
