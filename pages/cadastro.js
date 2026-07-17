@@ -1,4 +1,8 @@
 import {
+    preencherSelect
+} from "../utils/formulario.js";
+
+import {
     salvarLancamento
 } from "../services/lancamentos.js";
 
@@ -22,67 +26,89 @@ const cmbVeiculo =
     document.getElementById("veiculo");
 
 
-init();
+
+const txtData =
+    document.getElementById("data");
+
+const txtHora =
+    document.getElementById("hora");
+
+const txtMotivo =
+    document.getElementById("motivo");
+
+const txtItinerario =
+    document.getElementById("itinerario");
+
+const cmbStatus =
+    document.getElementById("status");
+
+
+
+let motoristas = [];
+let veiculos = [];
+
+document.addEventListener(
+    "DOMContentLoaded", init);
+
+form.addEventListener(
+    "submit",
+    salvar
+);
+
 
 async function init(){
 
-    await carregarMotoristas();
+try{
+
+     await carregarMotoristas();
 
     await carregarVeiculos();
 
+
+}
+    catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro ao carregar os dados do formulário.");
+
+}
 }
 
+// ================= MOTORISTAS =================
 
-async function carregarMotoristas(){
+async function carregarMotoristas() {
 
-    const lista =
+    motoristas =
         await obterMotoristas();
 
-    cmbMotorista.innerHTML = `
-        <option value="">
-            Selecione...
-        </option>
-    `;
-
-    lista.forEach(item=>{
-
-        cmbMotorista.innerHTML += `
-            <option value="${item.Nome}">
-                ${item.Nome}
-            </option>
-        `;
-
-    });
+    preencherSelect(
+        cmbMotorista,
+        motoristas,
+        "Nome",
+        "ID"
+    );
 
 }
 
+// ================= VEÍCULOS =================
 
-let veiculos = [];
-
-async function carregarVeiculos(){
+async function carregarVeiculos() {
 
     veiculos =
         await obterVeiculos();
 
-    cmbVeiculo.innerHTML = `
-        <option value="">
-            Selecione...
-        </option>
-    `;
-
-    veiculos.forEach(item=>{
-
-        cmbVeiculo.innerHTML += `
-            <option value="${item.Placa}">
-                ${item.Placa}
-            </option>
-        `;
-
-    });
+    preencherSelect(
+        cmbVeiculo,
+        veiculos,
+        "Placa",
+        "ID"
+    );
 
 }
 
-form.addEventListener("submit", salvar);
+
+// ================= SALVAR =================
 
 async function salvar(event) {
 
@@ -93,26 +119,28 @@ async function salvar(event) {
 
     botao.disabled = true;
 
+    botao.textContent =
+        "Salvando...";
+
     try {
 
         const dados = {
 
-            Data: document.getElementById("data").value,
+    Data: txtData.value,
 
-            Hora: document.getElementById("hora").value,
+    Hora: txtHora.value,
 
-            Empregado: cmbMotorista.value,
+    Empregado: cmbMotorista.value,
 
-           Veiculo: cmbVeiculo.value,
+    Veiculo: cmbVeiculo.value,
 
+    Motivo: txtMotivo.value,
 
-            Motivo: document.getElementById("motivo").value,
+    Itinerario: txtItinerario.value,
 
-            Itinerario: document.getElementById("itinerario").value,
+    Status: cmbStatus.value
 
-            Status: document.getElementById("status").value
-
-        };
+};
 
         validar(dados);
 
@@ -144,9 +172,15 @@ async function salvar(event) {
 
         botao.disabled = false;
 
+        botao.textContent =
+            "💾 Salvar";
+
+
     }
 
 }
+
+// ================= VALIDAÇÃO =================
 
 function validar(dados) {
 
@@ -162,4 +196,5 @@ function validar(dados) {
     if (!dados.Veiculo)
         throw new Error("Selecione o veículo.");
 
+}
 }
