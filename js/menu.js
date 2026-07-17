@@ -6,7 +6,7 @@ async function iniciar() {
     try {
 
         const tabela =
-            document.getElementById("tabela");
+            document.getElementById("lancamentos");
 
         tabela.innerHTML =
             "<p>Carregando...</p>";
