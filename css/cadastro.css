@@ -1,0 +1,67 @@
+main{
+
+    max-width:1000px;
+
+    margin:30px auto;
+
+}
+
+form{
+
+    background:#0b1a3a;
+
+    padding:25px;
+
+    border-radius:10px;
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.col-2{
+
+    grid-column:span 2;
+
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:10px;
+
+    border-radius:6px;
+
+}
+
+footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
