@@ -1,55 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="pt-BR">
 
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Frota - Lançamentos</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Painel Frota | Lançamentos</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/lancamentos.css">
 
 </head>
 
 <body>
 
-    <header class="page-header">
+<header class="page-header">
+
+    <div class="header-left">
 
         <h1>Lançamentos</h1>
 
-        <nav>
+    </div>
 
-            <button
-                type="button"
-                onclick="location.href='index.html'">
+    <div class="header-right">
 
-                ← Voltar
+        <button
+            type="button"
+            onclick="location.href='cadastro.html'">
 
-            </button>
+            ➕ Novo Lançamento
 
-        </nav>
+        </button>
 
-    </header>
+        <button
+            type="button"
+            onclick="location.href='index.html'">
 
-    <main>
+            ← Dashboard
 
-        <div class="card">
+        </button>
 
-            <table id="tabela">
+    </div>
 
-                <thead></thead>
+</header>
 
-                <tbody></tbody>
+<main>
 
-            </table>
+    <div class="card">
 
-        </div>
+        <!-- A tabela será criada pelo JavaScript -->
+        <div id="tabela"></div>
 
-    </main>
+    </div>
 
-    <script type="module" src="js/app.js"></script>
+</main>
+
+<script
+    type="module"
+    src="./js/app.js">
+</script>
 
 </body>
 
