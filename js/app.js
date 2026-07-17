@@ -1,7 +1,7 @@
 import {
     obterLancamentos
 }
-from ".js/services/lancamentos.js";
+from "./services/lancamentos.js";
 
 import {
     renderTabela
