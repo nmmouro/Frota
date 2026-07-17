@@ -17,7 +17,7 @@ async function iniciar() {
 
     } catch (erro) {
 
-        console.error(erro);
+        console.error("Erro ao carregar lançamentos:", erro);
 
     }
 
