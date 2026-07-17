@@ -86,3 +86,34 @@ export function formatarTexto(valor) {
     return valor ?? "";
 
 }
+
+
+export function preencherSelect(
+    select,
+    lista,
+    campoTexto,
+    campoValor,
+    placeholder = "Selecione..."
+) {
+
+    select.innerHTML = "";
+
+    const option = document.createElement("option");
+
+    option.value = "";
+    option.textContent = placeholder;
+
+    select.appendChild(option);
+
+    lista.forEach(item => {
+
+        const opt = document.createElement("option");
+
+        opt.value = item[campoValor];
+        opt.textContent = item[campoTexto];
+
+        select.appendChild(opt);
+
+    });
+
+}
