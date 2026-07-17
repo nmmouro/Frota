@@ -17,3 +17,34 @@ export async function listar(aba){
     return json.dados;
 
 }
+
+export async function salvar(
+    aba,
+    dados
+){
+
+    const resposta =
+        await fetch(API,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":
+                "application/json"
+            },
+
+            body:JSON.stringify({
+
+                acao:"salvar",
+
+                aba,
+
+                dados
+
+            })
+
+        });
+
+    return await resposta.json();
+
+}
