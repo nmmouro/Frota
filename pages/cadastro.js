@@ -1,57 +1,86 @@
 import {
-
     salvarLancamento
+} from "../services/lancamentos.js";
 
-}
-from "../services/lancamentos.js";
+const form = document.getElementById("form");
 
-const form =
-    document.getElementById("form");
+form.addEventListener("submit", salvar);
 
-form.addEventListener(
+async function salvar(event) {
 
-    "submit",
+    event.preventDefault();
 
-    async e=>{
+    const botao =
+        form.querySelector('button[type="submit"]');
 
-        e.preventDefault();
+    botao.disabled = true;
 
-        const dados={
+    try {
 
-            Data:
-                data.value,
+        const dados = {
 
-            Hora:
-                hora.value,
+            Data: document.getElementById("data").value,
 
-            Empregado:
-                empregado.value,
+            Hora: document.getElementById("hora").value,
 
-            Veiculo:
-                veiculo.value,
+            Empregado: document.getElementById("empregado").value,
 
-            Motivo:
-                motivo.value,
+            Veiculo: document.getElementById("veiculo").value,
 
-            Itinerario:
-                itinerario.value,
+            Motivo: document.getElementById("motivo").value,
 
-            Status:
-                status.value
+            Itinerario: document.getElementById("itinerario").value,
+
+            Status: document.getElementById("status").value
 
         };
 
-        await salvarLancamento(
-            dados
-        );
+        validar(dados);
 
-        alert(
-            "Registro salvo!"
-        );
+        const resposta =
+            await salvarLancamento(dados);
 
-        location.href=
-            "lancamentos.html";
+        if (!resposta.sucesso) {
+
+            throw new Error(
+                resposta.mensagem ||
+                "Erro ao salvar."
+            );
+
+        }
+
+        alert("Lançamento salvo com sucesso!");
+
+        location.href = "lancamentos.html";
+
+    }
+    catch (erro) {
+
+        console.error(erro);
+
+        alert(erro.message);
+
+    }
+    finally {
+
+        botao.disabled = false;
 
     }
 
-);
+}
+
+function validar(dados) {
+
+    if (!dados.Data)
+        throw new Error("Informe a data.");
+
+    if (!dados.Hora)
+        throw new Error("Informe a hora.");
+
+    if (!dados.Empregado)
+        throw new Error("Selecione o empregado.");
+
+    if (!dados.Veiculo)
+        throw new Error("Selecione o veículo.");
+
+}
