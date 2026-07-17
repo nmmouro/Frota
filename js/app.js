@@ -1,8 +1,8 @@
 import { obterLancamentos }
-    from "./services/lancamentos.js";
+    from "../services/lancamentos.js";
 
 import { renderTabela }
-    from "./ui/table.js";
+    from "../ui/table.js";
 
 async function iniciar() {
 
