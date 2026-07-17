@@ -1,9 +1,5 @@
 import { listar } from "../api/api.js";
 
-export async function obterLancamentos(){
-
-    return await listar(
-        "LANCAMENTOS"
-    );
-
+export async function obterLancamentos() {
+    return listar("LANCAMENTOS");
 }
