@@ -6,14 +6,13 @@ export function formatarData(valor) {
 
     const data = new Date(valor);
 
-    if (isNaN(data)) return valor;
+    if (isNaN(data.getTime())) {
+        return valor;
+    }
 
-    return data.toLocaleDateString(
-        "pt-BR",
-        {
-            timeZone: "America/Sao_Paulo"
-        }
-    );
+    return data.toLocaleDateString("pt-BR", {
+        timeZone: "America/Sao_Paulo"
+    });
 
 }
 
@@ -25,16 +24,15 @@ export function formatarHora(valor) {
 
     const data = new Date(valor);
 
-    if (isNaN(data)) return valor;
+    if (isNaN(data.getTime())) {
+        return valor;
+    }
 
-    return data.toLocaleTimeString(
-        "pt-BR",
-        {
-            hour: "2-digit",
-            minute: "2-digit",
-            timeZone: "UTC"
-        }
-    );
+    return data.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "UTC"
+    });
 
 }
 
@@ -58,20 +56,33 @@ export function formatarKm(valor) {
         return "";
     }
 
-    return Number(valor).toLocaleString(
-        "pt-BR"
-    );
+    return Number(valor).toLocaleString("pt-BR");
 
 }
 
+// ================= NÚMERO =================
 
-export function formatarKm(
-  valor
-) {
+export function formatarNumero(valor, casas = 0) {
 
-  return Number(valor)
-    .toLocaleString(
-      "pt-BR"
-    );
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
+        return "";
+    }
+
+    return Number(valor).toLocaleString("pt-BR", {
+        minimumFractionDigits: casas,
+        maximumFractionDigits: casas
+    });
+
+}
+
+// ================= TEXTO =================
+
+export function formatarTexto(valor) {
+
+    return valor ?? "";
 
 }
