@@ -1,4 +1,4 @@
-import { obterLancamentos } from "./services/lancamentos.js";
+import { obterLancamentos } from "../services/lancamentos.js";
 import { renderTabela } from "./ui/table.js";
 
 async function iniciar() {
