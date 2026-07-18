@@ -1,50 +1,107 @@
-import {
-    obterVeiculos
-} from "./veiculos.js";
+// ============================================================================
+// DASHBOARD
+// Arquivo: js/services/dashboard.js
+// ============================================================================
+
+// ================= IMPORTS =================
 
 import {
-    obterMotoristas
-} from "./motoristas.js";
+
+    listar
+
+} from "../api/api.js";
 
 import {
-    obterLancamentos
-} from "./lancamentos.js";
 
-import {
-    obterAgenda
-} from "./agenda.js";
+    ABAS
 
-import {
-    obterAgendaSocial
-} from "./social.js";
+} from "../config/config.js";
 
-export async function obterDashboard() {
+// ================= DASHBOARD =================
+
+export async function obterPainel() {
+
+    return await listar(
+
+        ABAS.LANCAMENTOS
+
+    );
+
+}
+
+export async function obterVeiculos() {
+
+    return await listar(
+
+        ABAS.VEICULOS
+
+    );
+
+}
+
+export async function obterMotoristas() {
+
+    return await listar(
+
+        ABAS.MOTORISTAS
+
+    );
+
+}
+
+export async function obterAgenda() {
+
+    return await listar(
+
+        ABAS.AGENDA
+
+    );
+
+}
+
+export async function obterAgendaSocial() {
+
+    return await listar(
+
+        ABAS.SOCIAL
+
+    );
+
+}
+
+// ================= CARREGAMENTO =================
+
+export async function carregarDashboard() {
 
     const [
 
+        painel,
         veiculos,
         motoristas,
-        painel,
         agenda,
         social
 
     ] = await Promise.all([
 
+        obterPainel(),
+
         obterVeiculos(),
+
         obterMotoristas(),
-        obterLancamentos(),
+
         obterAgenda(),
+
         obterAgendaSocial()
 
     ]);
 
     return {
 
+        painel,
+
         veiculos,
 
         motoristas,
-
-        painel,
 
         agenda,
 
