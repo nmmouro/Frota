@@ -43,6 +43,8 @@ export const ABAS = {
     LANCAMENTOS: "LANÇAMENTOS",
 
     VEICULOS: "VEÍCULOS",
+    
+    EMPREGADOS: "EMPREGADOS",
 
     MOTORISTAS: "MOTORISTAS",
 
