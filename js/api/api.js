@@ -1,41 +1,46 @@
-const API =
-    "https://script.google.com/macros/s/AKfycbxDxS7bONLdSSnEA9SSq87jBm4uzyGntV6aqegxgI_8tyhdX3ep5Wd-TYErVNpCdD25/exec";
+// ================= IMPORTS =================
 
-export async function listar(aba){
+import { API } from "../config/config.js";
 
-    const resposta =
-        await fetch(
+// ================= LISTAR =================
 
-            `${API}?acao=listar&aba=${aba}`
+export async function listar(aba) {
 
-        );
+    const resposta = await fetch(
 
-        
-    const json =
-        await resposta.json();
+        `${API.URL}?acao=listar&aba=${encodeURIComponent(aba)}`
+
+    );
+
+    if (!resposta.ok) {
+
+        throw new Error("Erro ao consultar a API.");
+
+    }
+
+    const json = await resposta.json();
 
     return json.dados;
 
 }
 
-export async function salvar(
-    aba,
-    dados
-){
+// ================= SALVAR =================
 
-    const resposta =
-        await fetch(API,{
+export async function salvar(aba, dados) {
 
-            method:"POST",
+    const resposta = await fetch(
 
-            headers:{
-                "Content-Type":
-                "application/json"
-            },
+        API.URL,
 
-            body:JSON.stringify({
+        {
 
-                acao:"salvar",
+            method: "POST",
+
+            headers: API.HEADERS,
+
+            body: JSON.stringify({
+
+                acao: "salvar",
 
                 aba,
 
@@ -43,7 +48,15 @@ export async function salvar(
 
             })
 
-        });
+        }
+
+    );
+
+    if (!resposta.ok) {
+
+        throw new Error("Erro ao salvar registro.");
+
+    }
 
     return await resposta.json();
 
