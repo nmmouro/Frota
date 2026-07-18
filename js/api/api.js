@@ -1,63 +1,114 @@
-// ================= IMPORTS =================
+// ============================================================================
+// API
+// ============================================================================
 
-import { API } from "../config/config.js";
 
-// ================= LISTAR =================
+import {
 
-export async function listar(aba) {
+    CONFIG
 
-    const resposta = await fetch(
+} from "../config/config.js";
 
-        `${API.URL}?acao=listar&aba=${encodeURIComponent(aba)}`
 
-    );
 
-    if (!resposta.ok) {
 
-        throw new Error("Erro ao consultar a API.");
+// ================= GET =================
+
+
+export async function apiGet(aba){
+
+
+    const url =
+
+        `${CONFIG.API_URL}?acao=listar&aba=${encodeURIComponent(aba)}`;
+
+
+
+    const resposta =
+
+        await fetch(url);
+
+
+
+    if(!resposta.ok){
+
+
+        throw new Error(
+
+            "Erro ao consultar a API."
+
+        );
+
 
     }
 
-    const json = await resposta.json();
 
-    return json.dados;
+
+    return await resposta.json();
+
+
 
 }
 
-// ================= SALVAR =================
 
-export async function salvar(aba, dados) {
 
-    const resposta = await fetch(
+// ================= POST =================
 
-        API.URL,
 
-        {
+export async function apiPost(
 
-            method: "POST",
+    aba,
 
-            headers: API.HEADERS,
+    dados
 
-            body: JSON.stringify({
+){
 
-                acao: "salvar",
 
-                aba,
+    const resposta =
 
-                dados
+        await fetch(
 
-            })
+            CONFIG.API_URL,
 
-        }
+            {
 
-    );
 
-    if (!resposta.ok) {
+                method:"POST",
 
-        throw new Error("Erro ao salvar registro.");
 
-    }
+                headers:{
+
+
+                    "Content-Type":
+
+                    "application/json"
+
+
+                },
+
+
+                body:JSON.stringify({
+
+
+                    acao:"salvar",
+
+
+                    aba,
+
+
+                    dados
+
+
+                })
+
+
+            }
+
+        );
+
+
 
     return await resposta.json();
+
 
 }
