@@ -8,7 +8,10 @@
 import {
 
     obterVeiculos,
-    salvarVeiculo
+    obterVeiculo,
+    salvarVeiculo,
+    atualizarVeiculo,
+    excluirVeiculo
 
 } from "../services/veiculos.js";
 
@@ -36,6 +39,8 @@ const tabela =
 // ================= VARIÁVEIS =================
 
 let veiculos = [];
+
+let linhaEdicao = null;
 
 // ================= EVENTOS =================
 
