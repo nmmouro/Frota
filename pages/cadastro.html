@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<title>Novo Lançamento</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/cadastro.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Novo Lançamento</h1>
+
+    <nav>
+
+        <button onclick="location.href='index.html'">
+            Dashboard
+        </button>
+
+        <button onclick="location.href='lancamentos.html'">
+            Lançamentos
+        </button>
+
+    </nav>
+
+</header>
+
+<main>
+
+<form id="form">
+
+<input type="hidden" id="id">
+
+<div class="grid">
+
+<div>
+
+<label>Data</label>
+
+<input
+type="date"
+id="data"
+required>
+
+</div>
+
+<div>
+
+<label>Hora</label>
+
+<input
+type="time"
+id="hora"
+required>
+
+</div>
+
+<div>
+
+<label>Empregado</label>
+
+<select id="empregado"></select>
+
+</div>
+
+<div>
+
+<label>Veículo</label>
+
+<select id="veiculo"></select>
+
+</div>
+
+<div class="col-2">
+
+<label>Passageiro / Setor / Motivo</label>
+
+<input
+type="text"
+id="motivo">
+
+</div>
+
+<div class="col-2">
+
+<label>Itinerário</label>
+
+<input
+type="text"
+id="itinerario">
+
+</div>
+
+<div>
+
+<label>Status</label>
+
+<select id="status">
+
+<option>AGENDADO</option>
+
+<option>EM ANDAMENTO</option>
+
+<option>VIAGEM</option>
+
+<option>MANUTENÇÃO</option>
+
+<option>CONCLUÍDO</option>
+
+<option>CANCELADO</option>
+
+</select>
+
+</div>
+
+</div>
+
+<footer>
+
+<button type="submit">
+
+💾 Salvar
+
+</button>
+
+<button
+type="reset">
+
+Limpar
+
+</button>
+
+</footer>
+
+</form>
+
+</main>
+
+<script type="module"
+src="js/pages/cadastro.js">
+
+</script>
+
+</body>
+</html>
