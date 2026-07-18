@@ -4,39 +4,16 @@
 // Arquivo: js/config/config.js
 // ============================================================================
 
-// ================= APP =================
+export const CONFIG = {
 
-export const APP = {
 
-    NOME: "Painel Frota",
+    API_URL:
 
-    VERSAO: "1.0.0",
-
-    AUTOR: "Neidival Mouro",
-
-    AMBIENTE: "PRODUCAO"
-
-};
-
-// ================= API =================
-
-export const API = {
-
-    BASE_URL: "https://script.google.com/macros/s/AKfycbxDxS7bONLdSSnEA9SSq87jBm4uzyGntV6aqegxgI_8tyhdX3ep5Wd-TYErVNpCdD25/exec",
-
-    TIMEOUT: 10000,
-
-    HEADERS: {
-
-        "Content-Type": "application/json"
-
-    }
-
-};
+    "https://script.google.com/macros/s/AKfycbxDxS7bONLdSSnEA9SSq87jBm4uzyGntV6aqegxgI_8tyhdX3ep5Wd-TYErVNpCdD25/exec",
 
 // ================= ABAS =================
 
-export const ABAS = {
+ABAS = {
 
     DASHBOARD: "PAINEL",
 
@@ -60,7 +37,7 @@ export const ABAS = {
 
 // ================= STATUS =================
 
-export const STATUS = {
+STATUS = {
 
     AGENDADO: "AGENDADO",
 
@@ -82,7 +59,7 @@ export const STATUS = {
 
 // ================= ÍCONES =================
 
-export const ICONES = {
+ICONES = {
 
     LIVRE: "🟢",
 
@@ -102,7 +79,7 @@ export const ICONES = {
 
 // ================= CORES =================
 
-export const CORES = {
+CORES = {
 
     VERDE: "#16A34A",
 
@@ -118,7 +95,7 @@ export const CORES = {
 
 // ================= MENSAGENS =================
 
-export const MENSAGENS = {
+MENSAGENS = {
 
     SALVO: "Registro salvo com sucesso.",
 
@@ -134,7 +111,7 @@ export const MENSAGENS = {
 
 // ================= TABELAS =================
 
-export const TABELAS = {
+TABELAS = {
 
     VEICULOS: {
 
