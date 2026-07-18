@@ -1,10 +1,10 @@
 // ================= IMPORTS =================
 
 import {
-
-    listar,
-    salvar
-
+    apiGet,
+    apiPost,
+    apiPut,
+    apiDelete
 } from "../api/api.js";
 
 import {
