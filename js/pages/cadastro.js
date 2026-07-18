@@ -1,200 +1,228 @@
-import {
-    preencherSelect
-} from "../utils/formulario.js";
+// ============================================================================
+// CADASTRO
+// Arquivo: js/pages/cadastro.js
+// ============================================================================
+
+// ================= IMPORTS =================
 
 import {
+
     salvarLancamento
+
 } from "../services/lancamentos.js";
 
 import {
+
     obterMotoristas
+
 } from "../services/motoristas.js";
 
 import {
+
     obterVeiculos
+
 } from "../services/veiculos.js";
 
+import {
 
+    preencherSelect
 
-const form =
-    document.getElementById("form");
+} from "../utils/formulario.js";
 
-const cmbMotorista =
-    document.getElementById("empregado");
+// ================= ELEMENTOS =================
 
-const cmbVeiculo =
-    document.getElementById("veiculo");
+const formulario =
+    document.querySelector("#formCadastro");
 
+const motorista =
+    document.querySelector("#motorista");
 
+const veiculo =
+    document.querySelector("#veiculo");
 
-const txtData =
-    document.getElementById("data");
+const btnSalvar =
+    document.querySelector("#btnSalvar");
 
-const txtHora =
-    document.getElementById("hora");
+// ================= VARIÁVEIS =================
 
-const txtMotivo =
-    document.getElementById("motivo");
+let listaMotoristas = [];
 
-const txtItinerario =
-    document.getElementById("itinerario");
+let listaVeiculos = [];
 
-const cmbStatus =
-    document.getElementById("status");
-
-
-
-let motoristas = [];
-let veiculos = [];
+// ================= EVENTOS =================
 
 document.addEventListener(
-    "DOMContentLoaded", init);
 
-form.addEventListener(
-    "submit",
-    salvar
+    "DOMContentLoaded",
+
+    init
+
 );
 
+// ================= INIT =================
 
-async function init(){
-
-try{
-
-     await carregarMotoristas();
-
-    await carregarVeiculos();
-
-
-}
-    catch (erro) {
-
-        console.error(erro);
-
-        alert("Erro ao carregar os dados do formulário.");
-
-}
-}
-
-// ================= MOTORISTAS =================
-
-async function carregarMotoristas() {
-
-    motoristas =
-        await obterMotoristas();
-
-    preencherSelect(
-        cmbMotorista,
-        motoristas,
-        "Nome",
-        "ID"
-    );
-
-}
-
-// ================= VEÍCULOS =================
-
-async function carregarVeiculos() {
-
-    veiculos =
-        await obterVeiculos();
-
-    preencherSelect(
-        cmbVeiculo,
-        veiculos,
-        "Placa",
-        "ID"
-    );
-
-}
-
-
-// ================= SALVAR =================
-
-async function salvar(event) {
-
-    event.preventDefault();
-
-    const botao =
-        form.querySelector('button[type="submit"]');
-
-    botao.disabled = true;
-
-    botao.textContent =
-        "Salvando...";
+async function init() {
 
     try {
 
-        const dados = {
+        await carregarDados();
 
-    Data: txtData.value,
-
-    Hora: txtHora.value,
-
-    Empregado: cmbMotorista.value,
-
-    Veiculo: cmbVeiculo.value,
-
-    Motivo: txtMotivo.value,
-
-    Itinerario: txtItinerario.value,
-
-    Status: cmbStatus.value
-
-};
-
-        validar(dados);
-
-        const resposta =
-            await salvarLancamento(dados);
-
-        if (!resposta.sucesso) {
-
-            throw new Error(
-                resposta.mensagem ||
-                "Erro ao salvar."
-            );
-
-        }
-
-        alert("Lançamento salvo com sucesso!");
-
-        location.href = "lancamentos.html";
+        registrarEventos();
 
     }
+
     catch (erro) {
 
-        console.error(erro);
-
-        alert(erro.message);
-
-    }
-    finally {
-
-        botao.disabled = false;
-
-        botao.textContent =
-            "💾 Salvar";
-
+        tratarErro(erro);
 
     }
 
 }
 
-// ================= VALIDAÇÃO =================
+// ================= DADOS =================
 
-function validar(dados) {
+async function carregarDados() {
 
-    if (!dados.Data)
-        throw new Error("Informe a data.");
+    [
 
-    if (!dados.Hora)
-        throw new Error("Informe a hora.");
+        listaMotoristas,
 
-    if (!dados.Empregado)
-        throw new Error("Selecione o empregado.");
+        listaVeiculos
 
-    if (!dados.Veiculo)
-        throw new Error("Selecione o veículo.");
+    ] = await Promise.all([
+
+        obterMotoristas(),
+
+        obterVeiculos()
+
+    ]);
+
+    preencherCampos();
 
 }
+
+// ================= FORMULÁRIO =================
+
+function preencherCampos() {
+
+    preencherSelect(
+
+        motorista,
+
+        listaMotoristas,
+
+        "nome",
+
+        "nome"
+
+    );
+
+    preencherSelect(
+
+        veiculo,
+
+        listaVeiculos,
+
+        "placa",
+
+        "placa"
+
+    );
+
+}
+
+// ================= EVENTOS =================
+
+function registrarEventos() {
+
+    formulario.addEventListener(
+
+        "submit",
+
+        salvar
+
+    );
+
+}
+
+// ================= AÇÕES =================
+
+async function salvar(evento) {
+
+    evento.preventDefault();
+
+    try {
+
+        const dados = obterDadosFormulario();
+
+        await salvarLancamento(dados);
+
+        formulario.reset();
+
+        alert("Cadastro realizado com sucesso.");
+
+    }
+
+    catch (erro) {
+
+        tratarErro(erro);
+
+    }
+
+}
+
+// ================= HELPERS =================
+
+function obterDadosFormulario() {
+
+    return {
+
+        data:
+
+            formulario.data.value,
+
+        hora:
+
+            formulario.hora.value,
+
+        motorista:
+
+            formulario.motorista.value,
+
+        veiculo:
+
+            formulario.veiculo.value,
+
+        passageiro:
+
+            formulario.passageiro.value,
+
+        setor:
+
+            formulario.setor.value,
+
+        motivo:
+
+            formulario.motivo.value,
+
+        itinerario:
+
+            formulario.itinerario.value,
+
+        status:
+
+            formulario.status.value
+
+    };
+
+}
+
+// ================= ERROS =================
+
+function tratarErro(erro) {
+
+    console.error(erro);
+
+    alert("Erro ao processar a solicitação.");
+
 }
