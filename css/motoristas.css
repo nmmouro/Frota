@@ -1,0 +1,986 @@
+/* ==========================================================================
+   PAINEL FROTA
+   MOTORISTAS
+   Arquivo: css/motoristas.css
+========================================================================== */
+
+
+/* ==========================================================================
+   CONTAINER DA PÁGINA
+========================================================================== */
+
+
+.motoristas-page {
+
+
+    width:
+
+        100%;
+
+
+    min-height:
+
+        calc(100vh - var(--header-height));
+
+
+    padding:
+
+        20px;
+
+
+    display:
+
+        flex;
+
+
+    flex-direction:
+
+        column;
+
+
+    gap:
+
+        20px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   CABEÇALHO
+========================================================================== */
+
+
+.motoristas-header {
+
+
+    display:
+
+        flex;
+
+
+    justify-content:
+
+        space-between;
+
+
+    align-items:
+
+        center;
+
+
+}
+
+
+
+
+.motoristas-header h1 {
+
+
+    color:
+
+        white;
+
+
+    font-size:
+
+        1.5rem;
+
+
+}
+
+
+
+
+
+
+/* ==========================================================================
+   ÁREA SUPERIOR - RESUMO
+========================================================================== */
+
+
+.motoristas-resumo {
+
+
+    display:
+
+        grid;
+
+
+    grid-template-columns:
+
+        repeat(3,1fr);
+
+
+    gap:
+
+        15px;
+
+
+}
+
+
+
+
+
+.motorista-card {
+
+
+    background:
+
+        var(--bg-card);
+
+
+    border:
+
+        1px solid var(--border);
+
+
+    border-radius:
+
+        var(--radius);
+
+
+    padding:
+
+        18px;
+
+
+    display:
+
+        flex;
+
+
+    flex-direction:
+
+        column;
+
+
+    gap:
+
+        8px;
+
+
+}
+
+
+
+
+
+.motorista-card .titulo {
+
+
+    color:
+
+        var(--text-muted);
+
+
+    font-size:
+
+        .85rem;
+
+
+}
+
+
+
+
+
+.motorista-card .valor {
+
+
+    font-size:
+
+        1.8rem;
+
+
+    font-weight:
+
+        700;
+
+
+    color:
+
+        var(--primary);
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   FORMULÁRIO MOTORISTA
+========================================================================== */
+
+
+.motorista-form {
+
+
+    background:
+
+        var(--bg-card);
+
+
+    border:
+
+        1px solid var(--border);
+
+
+    border-radius:
+
+        var(--radius);
+
+
+    padding:
+
+        20px;
+
+
+    display:
+
+        grid;
+
+
+    grid-template-columns:
+
+        repeat(4,1fr);
+
+
+    gap:
+
+        15px;
+
+
+}
+
+
+
+
+
+.motorista-form .campo {
+
+
+    display:
+
+        flex;
+
+
+    flex-direction:
+
+        column;
+
+
+    gap:
+
+        6px;
+
+
+}
+
+
+
+
+
+.motorista-form label {
+
+
+    color:
+
+        var(--text-muted);
+
+
+    font-size:
+
+        .85rem;
+
+
+}
+
+
+
+
+
+
+.motorista-form input,
+.motorista-form select {
+
+
+    background:
+
+        #020617;
+
+
+    color:
+
+        white;
+
+
+    border:
+
+        1px solid var(--border);
+
+
+    border-radius:
+
+        8px;
+
+
+    padding:
+
+        10px;
+
+
+}
+
+
+
+
+
+/* campos maiores */
+
+
+.motorista-form .campo-full {
+
+
+    grid-column:
+
+        1 / -1;
+
+
+}
+
+
+
+
+
+.motorista-form .campo-duplo {
+
+
+    grid-column:
+
+        span 2;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   BOTÕES
+========================================================================== */
+
+
+.motorista-actions {
+
+
+    grid-column:
+
+        1 / -1;
+
+
+    display:
+
+        flex;
+
+
+    justify-content:
+
+        flex-end;
+
+
+    gap:
+
+        10px;
+
+
+}
+
+
+
+
+
+.btn-motorista-salvar {
+
+
+    background:
+
+        var(--primary);
+
+
+    color:
+
+        #052e16;
+
+
+    padding:
+
+        12px 25px;
+
+
+    border-radius:
+
+        8px;
+
+
+    font-weight:
+
+        700;
+
+
+}
+
+
+
+
+
+
+.btn-motorista-salvar:hover {
+
+
+    background:
+
+        var(--primary-dark);
+
+
+    color:
+
+        white;
+
+
+}
+
+
+
+
+
+
+.btn-motorista-cancelar {
+
+
+    background:
+
+        #334155;
+
+
+    color:
+
+        white;
+
+
+    padding:
+
+        12px 25px;
+
+
+    border-radius:
+
+        8px;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   TABELA MOTORISTAS
+========================================================================== */
+
+
+.motoristas-table {
+
+
+    flex:
+
+        1;
+
+
+    background:
+
+        var(--bg-card);
+
+
+    border:
+
+        1px solid var(--border);
+
+
+    border-radius:
+
+        var(--radius);
+
+
+    padding:
+
+        15px;
+
+
+    overflow:
+
+        hidden;
+
+
+}
+
+
+
+
+
+
+.motoristas-table .table-container {
+
+
+    height:
+
+        100%;
+
+
+    overflow:
+
+        auto;
+
+
+}
+
+
+
+
+
+.motoristas-table table {
+
+
+    table-layout:
+
+        fixed;
+
+
+}
+
+
+
+
+
+
+
+/* Colunas */
+
+
+.motoristas-table th:nth-child(1),
+.motoristas-table td:nth-child(1){
+
+
+    width:
+
+        40%;
+
+
+}
+
+
+
+
+
+.motoristas-table th:nth-child(2),
+.motoristas-table td:nth-child(2){
+
+
+    width:
+
+        25%;
+
+
+}
+
+
+
+
+
+.motoristas-table th:nth-child(3),
+.motoristas-table td:nth-child(3){
+
+
+    width:
+
+        20%;
+
+
+}
+
+
+
+
+
+.motoristas-table th:nth-child(4),
+.motoristas-table td:nth-child(4){
+
+
+    width:
+
+        15%;
+
+
+}
+
+
+
+
+
+
+
+
+/* Linhas */
+
+
+.motoristas-table tbody tr {
+
+
+    height:
+
+        42px;
+
+
+}
+
+
+
+
+
+.motoristas-table td {
+
+
+    font-size:
+
+        .9rem;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   STATUS MOTORISTA
+========================================================================== */
+
+
+.motorista-status {
+
+
+    display:
+
+        inline-flex;
+
+
+    align-items:
+
+        center;
+
+
+    justify-content:
+
+        center;
+
+
+    padding:
+
+        5px 12px;
+
+
+    border-radius:
+
+        20px;
+
+
+    font-size:
+
+        .75rem;
+
+
+    font-weight:
+
+        700;
+
+
+}
+
+
+
+
+
+.motorista-livre {
+
+
+    background:
+
+        rgba(34,197,94,.15);
+
+
+    color:
+
+        #22c55e;
+
+
+}
+
+
+
+
+
+.motorista-ocupado {
+
+
+    background:
+
+        rgba(239,68,68,.15);
+
+
+    color:
+
+        #ef4444;
+
+
+}
+
+
+
+
+
+.motorista-ferias {
+
+
+    background:
+
+        rgba(245,158,11,.15);
+
+
+    color:
+
+        #f59e0b;
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   AÇÕES
+========================================================================== */
+
+
+.motorista-acoes {
+
+
+    display:
+
+        flex;
+
+
+    justify-content:
+
+        center;
+
+
+    gap:
+
+        8px;
+
+
+}
+
+
+
+
+
+.motorista-acoes button {
+
+
+    width:
+
+        32px;
+
+
+    height:
+
+        32px;
+
+
+    border-radius:
+
+        6px;
+
+
+}
+
+
+
+
+
+
+.btn-editar-motorista {
+
+
+    background:
+
+        rgba(56,189,248,.15);
+
+
+    color:
+
+        #38bdf8;
+
+
+}
+
+
+
+
+
+.btn-excluir-motorista {
+
+
+    background:
+
+        rgba(239,68,68,.15);
+
+
+    color:
+
+        #ef4444;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   MODO TV
+========================================================================== */
+
+
+@media(min-width:1600px){
+
+
+    .motoristas-table tbody tr {
+
+
+        height:
+
+            48px;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   RESPONSIVO
+========================================================================== */
+
+
+@media(max-width:1100px){
+
+
+    .motoristas-resumo {
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+    }
+
+
+
+    .motorista-form {
+
+
+        grid-template-columns:
+
+            repeat(2,1fr);
+
+
+    }
+
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+    .motorista-form {
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+    }
+
+
+
+    .motoristas-header {
+
+
+        flex-direction:
+
+            column;
+
+
+        align-items:
+
+            flex-start;
+
+
+        gap:
+
+            10px;
+
+
+    }
+
+
+}
