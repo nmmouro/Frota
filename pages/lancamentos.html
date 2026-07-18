@@ -5,278 +5,472 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Frota | Lançamentos</title>
 
-    <link
-        rel="stylesheet"
-        href="../css/reset.css"
-    >
+    <title>
+        Painel Frota - Lançamentos
+    </title>
 
-    <link
-        rel="stylesheet"
-        href="../css/variables.css"
-    >
 
-    <link
-        rel="stylesheet"
-        href="../css/layout.css"
-    >
+    <!-- ================= CSS ================= -->
 
-    <link
-        rel="stylesheet"
-        href="../css/components.css"
-    >
+    <link rel="stylesheet" href="css/style.css">
 
-    <link
-        rel="stylesheet"
-        href="../css/lancamentos.css"
-    >
+    <link rel="stylesheet" href="css/lancamentos.css">
+
+    <link rel="stylesheet" href="css/components.css">
+
 
 </head>
 
+
 <body>
 
-    <!-- ================= HEADER ================= -->
 
-    <header class="header">
+<!-- ======================================================================
+     HEADER
+====================================================================== -->
 
-        <div class="logo">
+<header class="header">
 
-            <img
-                src="../assets/logo.png"
-                alt="Logo"
+
+    <div class="header-logo">
+
+        <img 
+            src="assets/img/logo.png"
+            alt="Logo Frota"
+        >
+
+    </div>
+
+
+    <div class="header-title">
+
+        <h1>
+
+            LANÇAMENTOS
+
+        </h1>
+
+    </div>
+
+
+
+    <div class="header-info">
+
+
+        <div 
+            id="clock"
+            class="clock"
+        >
+
+        </div>
+
+
+        <button 
+            id="btnFullscreen"
+            class="btn-icon"
+        >
+
+            ⛶
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ======================================================================
+     MAIN
+====================================================================== -->
+
+
+<main class="page-container">
+
+
+
+<!-- ======================================================================
+     FORMULÁRIO
+====================================================================== -->
+
+
+<section class="card">
+
+
+    <h2>
+
+        NOVO LANÇAMENTO
+
+    </h2>
+
+
+
+    <form 
+        id="formLancamento"
+        class="form-grid"
+    >
+
+
+        <div class="form-group">
+
+            <label>
+                Data
+            </label>
+
+            <input
+                type="date"
+                name="data"
+                required
             >
 
         </div>
 
-        <h1>Lançamentos</h1>
 
-        <nav>
 
-            <a href="dashboard.html">Dashboard</a>
+        <div class="form-group">
 
-            <a href="veiculo.html">Veículos</a>
+            <label>
+                Hora
+            </label>
 
-            <a href="motoristas.html">Motoristas</a>
+            <input
+                type="time"
+                name="hora"
+                required
+            >
 
-        </nav>
+        </div>
 
-    </header>
 
-    <!-- ================= MAIN ================= -->
 
-    <main class="container">
+        <div class="form-group">
 
-        <!-- ================= FORMULÁRIO ================= -->
+            <label>
+                Motorista
+            </label>
 
-        <section class="card">
 
-            <h2>Novo Lançamento</h2>
+            <select
+                id="motorista"
+                name="motorista"
+                required
+            >
 
-            <form id="formLancamento">
+                <option>
+                    Selecione
+                </option>
 
-                <div class="grid">
+            </select>
 
-                    <div class="campo">
 
-                        <label>Data</label>
+        </div>
 
-                        <input
-                            type="date"
-                            name="data"
-                            required
-                        >
 
-                    </div>
 
-                    <div class="campo">
 
-                        <label>Hora</label>
+        <div class="form-group">
 
-                        <input
-                            type="time"
-                            name="hora"
-                            required
-                        >
 
-                    </div>
+            <label>
+                Veículo
+            </label>
 
-                    <div class="campo">
 
-                        <label>Motorista</label>
+            <select
+                id="veiculo"
+                name="veiculo"
+                required
+            >
 
-                        <select
-                            id="motorista"
-                            name="motorista"
-                            required
-                        ></select>
+                <option>
+                    Selecione
+                </option>
 
-                    </div>
+            </select>
 
-                    <div class="campo">
 
-                        <label>Veículo</label>
+        </div>
 
-                        <select
-                            id="veiculo"
-                            name="veiculo"
-                            required
-                        ></select>
 
-                    </div>
 
-                    <div class="campo">
 
-                        <label>Passageiro</label>
+        <div class="form-group">
 
-                        <input
-                            type="text"
-                            name="passageiro"
-                        >
 
-                    </div>
+            <label>
+                Passageiro
+            </label>
 
-                    <div class="campo">
 
-                        <label>Setor</label>
+            <input
+                type="text"
+                name="passageiro"
+            >
 
-                        <input
-                            type="text"
-                            name="setor"
-                        >
 
-                    </div>
+        </div>
 
-                    <div class="campo campo-full">
 
-                        <label>Motivo</label>
 
-                        <input
-                            type="text"
-                            name="motivo"
-                        >
 
-                    </div>
+        <div class="form-group">
 
-                    <div class="campo campo-full">
 
-                        <label>Itinerário</label>
+            <label>
+                Setor
+            </label>
 
-                        <input
-                            type="text"
-                            name="itinerario"
-                        >
 
-                    </div>
+            <input
+                type="text"
+                name="setor"
+            >
 
-                    <div class="campo">
 
-                        <label>Status</label>
+        </div>
 
-                        <select
-                            name="status"
-                        >
 
-                            <option value="AGENDADO">Agendado</option>
 
-                            <option value="EM ANDAMENTO">Em andamento</option>
 
-                            <option value="CONCLUÍDO">Concluído</option>
+        <div class="form-group">
 
-                            <option value="CANCELADO">Cancelado</option>
 
-                            <option value="MANUTENÇÃO">Manutenção</option>
+            <label>
+                Motivo
+            </label>
 
-                        </select>
 
-                    </div>
+            <input
+                type="text"
+                name="motivo"
+            >
 
-                </div>
 
-                <div class="acoes">
+        </div>
 
-                    <button
-                        type="submit"
-                        id="btnSalvar"
-                        class="btn btn-primary"
-                    >
 
-                        Salvar
 
-                    </button>
 
-                    <button
-                        type="reset"
-                        class="btn"
-                    >
 
-                        Limpar
+        <div class="form-group">
 
-                    </button>
 
-                </div>
+            <label>
+                Status
+            </label>
 
-            </form>
 
-        </section>
+            <select
+                name="status"
+            >
 
-        <!-- ================= TABELA ================= -->
+                <option>
+                    AGENDADO
+                </option>
 
-        <section class="card">
+                <option>
+                    EM ANDAMENTO
+                </option>
 
-            <h2>Movimentações</h2>
+                <option>
+                    VIAGEM
+                </option>
 
-            <div class="table-responsive">
+                <option>
+                    MANUTENÇÃO
+                </option>
 
-                <table>
 
-                    <thead>
+            </select>
 
-                        <tr>
 
-                            <th>Data</th>
+        </div>
 
-                            <th>Hora</th>
 
-                            <th>Motorista</th>
 
-                            <th>Veículo</th>
 
-                            <th>Passageiro</th>
+        <div class="form-group full">
 
-                            <th>Itinerário</th>
 
-                            <th>Status</th>
+            <label>
+                Itinerário
+            </label>
 
-                            <th>Ações</th>
 
-                        </tr>
+            <input
+                type="text"
+                name="itinerario"
+            >
 
-                    </thead>
 
-                    <tbody id="tabelaLancamentos">
+        </div>
 
-                    </tbody>
 
-                </table>
 
-            </div>
 
-        </section>
+        <div class="form-actions">
 
-    </main>
 
-    <!-- ================= SCRIPTS ================= -->
+            <button
+                type="submit"
+                id="btnSalvar"
+                class="btn-primary"
+            >
 
-    <script
-        type="module"
-        src="../js/pages/lancamentos.js"
-    ></script>
+                SALVAR
+
+            </button>
+
+
+
+            <button
+                type="reset"
+                class="btn-secondary"
+            >
+
+                LIMPAR
+
+            </button>
+
+
+        </div>
+
+
+
+    </form>
+
+
+
+</section>
+
+
+
+
+
+<!-- ======================================================================
+     TABELA DE LANÇAMENTOS
+====================================================================== -->
+
+
+<section class="card">
+
+
+    <h2>
+
+        LANÇAMENTOS REALIZADOS
+
+    </h2>
+
+
+
+    <div class="table-container">
+
+
+        <table>
+
+
+            <thead>
+
+
+                <tr>
+
+                    <th>
+                        Data
+                    </th>
+
+                    <th>
+                        Hora
+                    </th>
+
+                    <th>
+                        Motorista
+                    </th>
+
+                    <th>
+                        Veículo
+                    </th>
+
+                    <th>
+                        Passageiro
+                    </th>
+
+                    <th>
+                        Setor
+                    </th>
+
+                    <th>
+                        Motivo
+                    </th>
+
+                    <th>
+                        Itinerário
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+
+                </tr>
+
+
+            </thead>
+
+
+
+            <tbody 
+                id="tabelaLancamentos"
+            >
+
+
+            </tbody>
+
+
+
+        </table>
+
+
+    </div>
+
+
+</section>
+
+
+
+</main>
+
+
+
+
+<!-- ======================================================================
+     LOADING
+====================================================================== -->
+
+<div 
+    id="loading"
+    class="loading-overlay"
+>
+
+</div>
+
+
+
+
+<!-- ======================================================================
+     JAVASCRIPT
+====================================================================== -->
+
+<script 
+    type="module"
+    src="js/pages/lancamentos.js"
+></script>
+
+
 
 </body>
 
