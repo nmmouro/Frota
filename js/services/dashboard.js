@@ -1,7 +1,8 @@
 // ============================================================================
-// DASHBOARD
+// SERVICES / DASHBOARD
 // Arquivo: js/services/dashboard.js
 // ============================================================================
+
 
 // ================= IMPORTS =================
 
@@ -17,7 +18,8 @@ import {
 
 } from "../config/config.js";
 
-// ================= DASHBOARD =================
+
+// ================= CONSULTAS =================
 
 export async function obterPainel() {
 
@@ -29,6 +31,7 @@ export async function obterPainel() {
 
 }
 
+
 export async function obterVeiculos() {
 
     return await listar(
@@ -38,6 +41,7 @@ export async function obterVeiculos() {
     );
 
 }
+
 
 export async function obterMotoristas() {
 
@@ -49,6 +53,7 @@ export async function obterMotoristas() {
 
 }
 
+
 export async function obterAgenda() {
 
     return await listar(
@@ -58,6 +63,7 @@ export async function obterAgenda() {
     );
 
 }
+
 
 export async function obterAgendaSocial() {
 
@@ -69,7 +75,8 @@ export async function obterAgendaSocial() {
 
 }
 
-// ================= CARREGAMENTO =================
+
+// ================= DASHBOARD =================
 
 export async function carregarDashboard() {
 
@@ -84,13 +91,9 @@ export async function carregarDashboard() {
     ] = await Promise.all([
 
         obterPainel(),
-
         obterVeiculos(),
-
         obterMotoristas(),
-
         obterAgenda(),
-
         obterAgendaSocial()
 
     ]);
@@ -98,13 +101,9 @@ export async function carregarDashboard() {
     return {
 
         painel,
-
         veiculos,
-
         motoristas,
-
         agenda,
-
         social
 
     };
