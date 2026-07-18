@@ -1,0 +1,266 @@
+/* =====================================================
+   VEÍCULOS
+===================================================== */
+
+main {
+
+    padding: 20px;
+
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    min-height: 600px;
+
+}
+
+/* =====================================================
+   CABEÇALHO DA TABELA
+===================================================== */
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+.card-header h2 {
+
+    margin: 0;
+
+}
+
+/* =====================================================
+   BARRA DE FERRAMENTAS
+===================================================== */
+
+.toolbar {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+.toolbar input {
+
+    flex: 1;
+
+    min-width: 250px;
+
+}
+
+.toolbar select {
+
+    min-width: 180px;
+
+}
+
+/* =====================================================
+   TABELA
+===================================================== */
+
+#tabela {
+
+    overflow: auto;
+
+}
+
+#tabela table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+#tabela thead th {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
+}
+
+#tabela tbody tr:hover {
+
+    background: rgba(255,255,255,.05);
+
+}
+
+/* =====================================================
+   COLUNAS
+===================================================== */
+
+#tabela th:nth-child(1),
+#tabela td:nth-child(1){
+
+    width: 10%;
+
+    text-align: center;
+
+}
+
+#tabela th:nth-child(2),
+#tabela td:nth-child(2){
+
+    width: 20%;
+
+}
+
+#tabela th:nth-child(3),
+#tabela td:nth-child(3){
+
+    width: 15%;
+
+    text-align: right;
+
+}
+
+#tabela th:nth-child(4),
+#tabela td:nth-child(4){
+
+    width: 15%;
+
+    text-align: center;
+
+}
+
+#tabela th:nth-child(5),
+#tabela td:nth-child(5){
+
+    width: 15%;
+
+    text-align: center;
+
+}
+
+#tabela th:last-child,
+#tabela td:last-child{
+
+    width: 25%;
+
+    text-align: center;
+
+}
+
+/* =====================================================
+   BOTÕES DE AÇÃO
+===================================================== */
+
+.acoes {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+.btn-editar {
+
+    background: #2563eb;
+
+}
+
+.btn-editar:hover {
+
+    background: #1d4ed8;
+
+}
+
+.btn-excluir {
+
+    background: #dc2626;
+
+}
+
+.btn-excluir:hover {
+
+    background: #b91c1c;
+
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-livre {
+
+    color: #00d26a;
+
+    font-weight: 700;
+
+}
+
+.status-ocupado {
+
+    color: #ef4444;
+
+    font-weight: 700;
+
+}
+
+.status-manutencao {
+
+    color: #3b82f6;
+
+    font-weight: 700;
+
+}
+
+.status-viagem {
+
+    color: #a855f7;
+
+    font-weight: 700;
+
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width:900px){
+
+    .toolbar{
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .toolbar input,
+    .toolbar select{
+
+        width:100%;
+
+    }
+
+}
