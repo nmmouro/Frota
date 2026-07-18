@@ -5,7 +5,7 @@ import {
     apiPost,
     apiPut,
     apiDelete
-} from "../api/api.js";
+} from "../app/api.js";
 
 // ================= ENDPOINT =================
 
