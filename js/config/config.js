@@ -27,9 +27,9 @@ ABAS = {
 
     SOCIAL: "AGENDA SERVIÇO SOCIAL"    
 
-    
+}  
 
-};
+
 
 // ================= STATUS =================
 
@@ -138,3 +138,4 @@ export const REFRESH = {
     RELATORIOS: 60000
 
 };
+}
