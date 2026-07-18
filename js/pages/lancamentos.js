@@ -1,10 +1,14 @@
+// ============================================================================
+// LANÇAMENTOS
+// Arquivo: js/pages/lancamentos.js
+// ============================================================================
+
 // ================= IMPORTS =================
 
 import {
 
     obterLancamentos,
-    salvarLancamento,
-    excluirLancamento
+    salvarLancamento
 
 } from "../services/lancamentos.js";
 
@@ -26,17 +30,32 @@ import {
 
 } from "../utils/formulario.js";
 
+import {
+
+    renderTable
+
+} from "../ui/table.js";
+
+import {
+
+    mostrarLoading,
+    esconderLoading
+
+} from "../ui/loading.js";
+
 // ================= ELEMENTOS =================
 
-const formulario = document.querySelector("#formLancamento");
+const formulario =
+    document.querySelector("#formLancamento");
 
-const tabela = document.querySelector("#tabelaLancamentos");
+const tabela =
+    document.querySelector("#tabelaLancamentos");
 
-const btnSalvar = document.querySelector("#btnSalvar");
+const motorista =
+    document.querySelector("#motorista");
 
-const motoristaSelect = document.querySelector("#motorista");
-
-const veiculoSelect = document.querySelector("#veiculo");
+const veiculo =
+    document.querySelector("#veiculo");
 
 // ================= VARIÁVEIS =================
 
@@ -62,6 +81,8 @@ async function init() {
 
     try {
 
+        mostrarLoading();
+
         await carregarDados();
 
         registrarEventos();
@@ -74,33 +95,37 @@ async function init() {
 
     }
 
+    finally {
+
+        esconderLoading();
+
+    }
+
 }
 
 // ================= DADOS =================
 
 async function carregarDados() {
 
-    const [
+    [
 
-        listaLancamentos,
-        listaMotoristas,
-        listaVeiculos
+        lancamentos,
+
+        motoristas,
+
+        veiculos
 
     ] = await Promise.all([
 
         obterLancamentos(),
+
         obterMotoristas(),
+
         obterVeiculos()
 
     ]);
 
-    lancamentos = listaLancamentos;
-
-    motoristas = listaMotoristas;
-
-    veiculos = listaVeiculos;
-
-    preencherCombos();
+    preencherCampos();
 
     renderizarTabela();
 
@@ -110,58 +135,23 @@ async function carregarDados() {
 
 function renderizarTabela() {
 
-    tabela.innerHTML = "";
+    renderTable(
 
-    lancamentos.forEach(renderizarLinha);
+        tabela,
 
-}
+        lancamentos
 
-function renderizarLinha(item) {
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-
-        <td>${item.data}</td>
-
-        <td>${item.hora}</td>
-
-        <td>${item.motorista}</td>
-
-        <td>${item.veiculo}</td>
-
-        <td>${item.passageiro}</td>
-
-        <td>${item.itinerario}</td>
-
-        <td>${item.status}</td>
-
-        <td>
-
-            <button
-                class="btn-excluir"
-                data-id="${item.id}"
-            >
-
-                Excluir
-
-            </button>
-
-        </td>
-
-    `;
-
-    tabela.appendChild(tr);
+    );
 
 }
 
-// ================= COMBOS =================
+// ================= FORMULÁRIO =================
 
-function preencherCombos() {
+function preencherCampos() {
 
     preencherSelect(
 
-        motoristaSelect,
+        motorista,
 
         motoristas,
 
@@ -173,7 +163,7 @@ function preencherCombos() {
 
     preencherSelect(
 
-        veiculoSelect,
+        veiculo,
 
         veiculos,
 
@@ -189,23 +179,17 @@ function preencherCombos() {
 
 function registrarEventos() {
 
-    btnSalvar.addEventListener(
+    formulario.addEventListener(
 
-        "click",
+        "submit",
 
         salvar
 
     );
 
-    tabela.addEventListener(
-
-        "click",
-
-        cliqueTabela
-
-    );
-
 }
+
+// ================= AÇÕES =================
 
 async function salvar(evento) {
 
@@ -231,65 +215,47 @@ async function salvar(evento) {
 
 }
 
-async function cliqueTabela(evento) {
-
-    const botao = evento.target;
-
-    if (!botao.dataset.id) return;
-
-    if (botao.classList.contains("btn-excluir")) {
-
-        await remover(botao.dataset.id);
-
-    }
-
-}
-
-// ================= AÇÕES =================
-
-async function remover(id) {
-
-    if (!confirm("Deseja excluir este lançamento?")) return;
-
-    try {
-
-        await excluirLancamento(id);
-
-        await carregarDados();
-
-    }
-
-    catch (erro) {
-
-        tratarErro(erro);
-
-    }
-
-}
-
 // ================= HELPERS =================
 
 function obterDadosFormulario() {
 
     return {
 
-        data: formulario.data.value,
+        data:
 
-        hora: formulario.hora.value,
+            formulario.data.value,
 
-        motorista: formulario.motorista.value,
+        hora:
 
-        veiculo: formulario.veiculo.value,
+            formulario.hora.value,
 
-        passageiro: formulario.passageiro.value,
+        motorista:
 
-        setor: formulario.setor.value,
+            formulario.motorista.value,
 
-        motivo: formulario.motivo.value,
+        veiculo:
 
-        itinerario: formulario.itinerario.value,
+            formulario.veiculo.value,
 
-        status: formulario.status.value
+        passageiro:
+
+            formulario.passageiro.value,
+
+        setor:
+
+            formulario.setor.value,
+
+        motivo:
+
+            formulario.motivo.value,
+
+        itinerario:
+
+            formulario.itinerario.value,
+
+        status:
+
+            formulario.status.value
 
     };
 
@@ -301,67 +267,10 @@ function tratarErro(erro) {
 
     console.error(erro);
 
-    alert("Erro ao processar a operação.");
+    alert(
 
-}
+        "Erro ao processar a solicitação."
 
-
-
-/*
-import {
-    obterLancamentos
-} from "../services/lancamentos.js";
-
-import {
-    renderTabela
-} from "../ui/table.js";
-
-// ================= ELEMENTOS =================
-
-const tabela =
-    document.getElementById("tabela");
-
-// ================= INICIALIZAÇÃO =================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    init
-);
-
-// ================= INIT =================
-
-async function init() {
-
-    try {
-
-        await carregarLancamentos();
-
-    }
-    catch (erro) {
-
-        console.error(erro);
-
-        tabela.innerHTML = `
-            <div class="erro">
-                Erro ao carregar os lançamentos.
-            </div>
-        `;
-
-    }
-
-}
-
-// ================= CARREGAR =================
-
-async function carregarLancamentos() {
-
-    const dados =
-        await obterLancamentos();
-
-    renderTabela(
-        tabela,
-        dados
     );
 
 }
-*/
