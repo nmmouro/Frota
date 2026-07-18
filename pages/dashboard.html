@@ -1,193 +1,369 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Frota</title>
+    <title>Painel Frota - Dashboard</title>
 
-    <!-- CSS Global -->
-    <link
-        rel="stylesheet"
-        href="./css/style.css">
 
-    <!-- CSS Dashboard -->
-    <link
-        rel="stylesheet"
-        href="./css/dashboard.css">
+    <!-- ================= CSS ================= -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet" href="css/components.css">
+
 
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
 
-<header class="page-header">
+<!-- ======================================================================
+     HEADER
+====================================================================== -->
 
-    <div class="header-left">
+<header class="header">
 
-        <img
-            src="./assets/img/logo.png"
-            alt="Logo"
-            class="logo">
+
+    <div class="header-logo">
+
+        <img 
+            src="assets/img/logo.png"
+            alt="Logo Frota"
+        >
+
+    </div>
+
+
+    <div class="header-title">
 
         <h1>
 
-            Painel Frota
+            MOVIMENTAÇÃO DIÁRIA
 
         </h1>
 
     </div>
 
-    <div class="header-center">
 
-        <span id="clock"></span>
+    <div class="header-info">
+
+
+        <div 
+            id="clock"
+            class="clock"
+        >
+
+        </div>
+
+
+        <button 
+            id="btnAudio"
+            class="btn-icon"
+        >
+
+            🔊
+
+        </button>
+
+
+        <button 
+            id="btnFullscreen"
+            class="btn-icon"
+        >
+
+            ⛶
+
+        </button>
+
 
     </div>
 
-    <div class="header-right">
-
-        <button
-            id="btnSom">
-
-            🔊 Som
-
-        </button>
-
-        <button
-            id="btnFullscreen">
-
-            ⛶ Tela Cheia
-
-        </button>
-
-        <button
-            onclick="location.href='lancamentos.html'">
-
-            📋 Lançamentos
-
-        </button>
-
-        <button
-            onclick="location.href='cadastro.html'">
-
-            ➕ Novo
-
-        </button>
-
-    </div>
 
 </header>
 
-<!-- ================= MAIN ================= -->
 
-<main
-    id="dashboard">
 
-    <!-- ================= RESUMO ================= -->
+<!-- ======================================================================
+     MAIN
+====================================================================== -->
 
-    <section
-        class="resumo-grid">
 
-        <div
-            class="card">
+<main class="dashboard">
 
-            <h2>
 
-                Veículos
+<!-- ================= RESUMO ================= -->
 
-            </h2>
 
-            <div id="veiculos"></div>
+<section class="resumo-grid">
+
+
+    <div class="card">
+
+        <h2>
+
+            VEÍCULOS
+
+        </h2>
+
+
+        <div 
+            id="veiculosData"
+            class="cards-container"
+        >
 
         </div>
 
-        <div
-            class="card">
 
-            <h2>
+    </div>
 
-                Motoristas
 
-            </h2>
 
-            <div id="motoristas"></div>
+    <div class="card">
+
+        <h2>
+
+            MOTORISTAS
+
+        </h2>
+
+
+        <div 
+            id="motoristasData"
+            class="cards-container"
+        >
 
         </div>
 
-    </section>
 
-    <!-- ================= PAINEL ================= -->
+    </div>
 
-    <section
-        class="card">
+
+</section>
+
+
+
+<!-- ================= PAINEL ================= -->
+
+
+<section class="card painel-card">
+
+
+    <h2>
+
+        PAINEL
+
+    </h2>
+
+
+    <div class="table-container">
+
+
+        <table>
+
+
+            <thead>
+
+
+                <tr>
+
+                    <th>Data</th>
+
+                    <th>Hora</th>
+
+                    <th>Motorista</th>
+
+                    <th>Veículo</th>
+
+                    <th>Passageiro / Setor</th>
+
+                    <th>Itinerário</th>
+
+                    <th>Status</th>
+
+
+                </tr>
+
+
+            </thead>
+
+
+            <tbody 
+                id="painelData"
+            >
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= AGENDA ================= -->
+
+
+<section class="grid-agendas">
+
+
+    <div class="card">
+
 
         <h2>
 
-            Painel
+            AGENDA DO DIA
 
         </h2>
 
-        <div id="painel"></div>
 
-    </section>
+        <div class="table-container">
 
-    <!-- ================= AGENDA ================= -->
 
-    <section
-        class="card">
+            <table>
+
+
+                <thead>
+
+
+                    <tr>
+
+                        <th>Hora</th>
+
+                        <th>Passageiro</th>
+
+                        <th>Setor</th>
+
+                        <th>Motivo</th>
+
+                        <th>Itinerário</th>
+
+                        <th>Status</th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+                <tbody 
+                    id="agendaData"
+                >
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="card">
+
 
         <h2>
 
-            Agenda do Dia
+            AGENDA SERVIÇO SOCIAL
 
         </h2>
 
-        <div id="agenda"></div>
 
-    </section>
+        <div class="table-container">
 
-    <!-- ================= SOCIAL ================= -->
 
-    <section
-        class="card">
+            <table>
 
-        <h2>
 
-            Agenda Serviço Social
+                <thead>
 
-        </h2>
 
-        <div id="social"></div>
+                    <tr>
 
-    </section>
+
+                        <th>Período</th>
+
+                        <th>Passageiro</th>
+
+                        <th>Motivo</th>
+
+                        <th>Itinerário</th>
+
+                        <th>Status</th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+                <tbody 
+                    id="socialData"
+                >
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
 
 </main>
 
-<!-- ================= AUDIO ================= -->
 
-<audio
-    id="beep"
-    preload="auto">
 
-    <source
-        src="./assets/audio/alerta.mp3"
-        type="audio/mpeg">
+<!-- ======================================================================
+     LOADING
+====================================================================== -->
 
-</audio>
 
-<!-- ================= JAVASCRIPT ================= -->
+<div 
+    id="loading"
+    class="loading-overlay"
+>
 
-<script
+</div>
+
+
+
+<!-- ======================================================================
+     JAVASCRIPT
+====================================================================== -->
+
+
+<script 
     type="module"
-    src="./js/pages/dashboard.js">
-</script>
+    src="js/pages/dashboard.js"
+></script>
+
+
 
 </body>
 
