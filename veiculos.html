@@ -1,1 +1,97 @@
+<!doctype html>
 
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Cadastro de Veículos</title>
+
+    <!-- CSS Global -->
+    <link
+        rel="stylesheet"
+        href="./css/style.css">
+
+    <!-- CSS da página -->
+    <link
+        rel="stylesheet"
+        href="./css/veiculos.css">
+
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <div class="header-left">
+
+        <h1>
+
+            Veículos
+
+        </h1>
+
+    </div>
+
+    <nav class="header-right">
+
+        <button
+            type="button"
+            onclick="location.href='dashboard.html'">
+
+            🏠 Dashboard
+
+        </button>
+
+        <button
+            type="button"
+            onclick="location.href='cadastroVeiculo.html'">
+
+            ➕ Novo Veículo
+
+        </button>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <h2>
+
+                Lista de Veículos
+
+            </h2>
+
+            <button
+                id="btnAtualizar">
+
+                🔄 Atualizar
+
+            </button>
+
+        </div>
+
+        <div id="tabela"></div>
+
+    </section>
+
+</main>
+
+<script
+    type="module"
+    src="./js/pages/veiculos.js">
+</script>
+
+</body>
+
+</html>
