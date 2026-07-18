@@ -52,10 +52,10 @@ const tabela =
     document.querySelector("#tabelaLancamentos");
 
 const motorista =
-    document.querySelector("#motorista");
+    document.querySelector("#motoristas");
 
 const veiculo =
-    document.querySelector("#veiculo");
+    document.querySelector("#veiculos");
 
 // ================= VARIÁVEIS =================
 
