@@ -1,14 +1,17 @@
 // ============================================================================
-// LANÇAMENTOS
+// SERVICES / LANÇAMENTOS
 // Arquivo: js/services/lancamentos.js
 // ============================================================================
+
 
 // ================= IMPORTS =================
 
 import {
 
     listar,
-    salvar
+    salvar,
+    editar,
+    excluir
 
 } from "../api/api.js";
 
@@ -17,6 +20,7 @@ import {
     ABAS
 
 } from "../config/config.js";
+
 
 // ================= CONSULTAS =================
 
@@ -29,6 +33,26 @@ export async function obterLancamentos() {
     );
 
 }
+
+
+// ================= BUSCAR POR ID =================
+
+export async function obterLancamento(id) {
+
+    const dados = await listar(
+
+        ABAS.LANCAMENTOS
+
+    );
+
+    return dados.find(
+
+        item => item.id === id
+
+    );
+
+}
+
 
 // ================= GRAVAÇÃO =================
 
@@ -44,9 +68,13 @@ export async function salvarLancamento(dados) {
 
 }
 
+
 // ================= ATUALIZAÇÃO =================
 
-export async function atualizarLancamento(linha, dados) {
+export async function atualizarLancamento(
+    linha,
+    dados
+) {
 
     return await editar(
 
@@ -59,6 +87,7 @@ export async function atualizarLancamento(linha, dados) {
     );
 
 }
+
 
 // ================= EXCLUSÃO =================
 
