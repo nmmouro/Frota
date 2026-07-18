@@ -1,96 +1,621 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro de Veículos</title>
 
-    <!-- CSS Global -->
-    <link
-        rel="stylesheet"
-        href="./css/style.css">
+    <title>
+        Painel Frota - Veículos
+    </title>
 
-    <!-- CSS da página -->
-    <link
-        rel="stylesheet"
-        href="./css/veiculos.css">
+
+    <!-- ================= CSS ================= -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/veiculos.css">
+
+    <link rel="stylesheet" href="css/components.css">
+
 
 </head>
 
+
 <body>
 
-<header class="page-header">
 
-    <div class="header-left">
+<!-- ======================================================================
+     HEADER
+====================================================================== -->
 
-        <h1>
 
-            Veículos
+<header class="header">
 
-        </h1>
+
+    <div class="header-logo">
+
+
+        <img
+
+            src="assets/img/logo.png"
+
+            alt="Logo Frota"
+
+        >
+
 
     </div>
 
-    <nav class="header-right">
 
-        <button
-            type="button"
-            onclick="location.href='dashboard.html'">
 
-            🏠 Dashboard
+    <div class="header-title">
 
-        </button>
 
-        <button
-            type="button"
-            onclick="location.href='cadastroVeiculo.html'">
+        <h1>
 
-            ➕ Novo Veículo
+            VEÍCULOS
 
-        </button>
+        </h1>
 
-    </nav>
 
-</header>
+    </div>
 
-<main>
 
-    <section class="card">
 
-        <div class="card-header">
 
-            <h2>
+    <div class="header-info">
 
-                Lista de Veículos
 
-            </h2>
+        <div
 
-            <button
-                id="btnAtualizar">
+            id="clock"
 
-                🔄 Atualizar
+            class="clock"
 
-            </button>
+        >
 
         </div>
 
-        <div id="tabela"></div>
 
-    </section>
+
+
+        <button
+
+            id="btnFullscreen"
+
+            class="btn-icon"
+
+        >
+
+            ⛶
+
+        </button>
+
+
+    </div>
+
+
+
+</header>
+
+
+
+
+
+<!-- ======================================================================
+     CONTEÚDO
+====================================================================== -->
+
+
+<main class="page-container">
+
+
+
+
+
+<!-- ======================================================================
+     FORMULÁRIO
+====================================================================== -->
+
+
+<section class="card">
+
+
+    <h2>
+
+        CADASTRO DE VEÍCULO
+
+    </h2>
+
+
+
+
+    <form
+
+        id="formVeiculo"
+
+        class="form-grid"
+
+    >
+
+
+
+
+        <!-- PLACA -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Placa
+
+            </label>
+
+
+            <input
+
+                type="text"
+
+                name="placa"
+
+                placeholder="Ex: ABC1D23"
+
+                required
+
+            >
+
+
+        </div>
+
+
+
+
+
+        <!-- MODELO -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Modelo
+
+            </label>
+
+
+            <input
+
+                type="text"
+
+                name="modelo"
+
+                required
+
+            >
+
+
+        </div>
+
+
+
+
+
+        <!-- MARCA -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Marca
+
+            </label>
+
+
+            <input
+
+                type="text"
+
+                name="marca"
+
+            >
+
+
+        </div>
+
+
+
+
+
+        <!-- ANO -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Ano
+
+            </label>
+
+
+            <input
+
+                type="number"
+
+                name="ano"
+
+                min="1900"
+
+            >
+
+
+        </div>
+
+
+
+
+
+        <!-- COR -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Cor
+
+            </label>
+
+
+            <input
+
+                type="text"
+
+                name="cor"
+
+            >
+
+
+        </div>
+
+
+
+
+
+        <!-- COMBUSTÍVEL -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Combustível
+
+            </label>
+
+
+            <select
+
+                name="combustivel"
+
+            >
+
+
+                <option>
+
+                    GASOLINA
+
+                </option>
+
+
+                <option>
+
+                    ETANOL
+
+                </option>
+
+
+                <option>
+
+                    DIESEL
+
+                </option>
+
+
+                <option>
+
+                    FLEX
+
+                </option>
+
+
+                <option>
+
+                    ELÉTRICO
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- STATUS -->
+
+
+        <div class="form-group">
+
+
+            <label>
+
+                Status
+
+            </label>
+
+
+            <select
+
+                name="status"
+
+            >
+
+
+                <option>
+
+                    LIVRE
+
+                </option>
+
+
+                <option>
+
+                    OCUPADO
+
+                </option>
+
+
+                <option>
+
+                    MANUTENÇÃO
+
+                </option>
+
+
+                <option>
+
+                    INATIVO
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- BOTÕES -->
+
+
+        <div class="form-actions">
+
+
+            <button
+
+                type="submit"
+
+                id="btnSalvar"
+
+                class="btn-primary"
+
+            >
+
+                SALVAR
+
+            </button>
+
+
+
+
+            <button
+
+                type="reset"
+
+                class="btn-secondary"
+
+            >
+
+                LIMPAR
+
+            </button>
+
+
+
+        </div>
+
+
+
+    </form>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ======================================================================
+     LISTAGEM
+====================================================================== -->
+
+
+<section class="card">
+
+
+    <h2>
+
+        VEÍCULOS CADASTRADOS
+
+    </h2>
+
+
+
+
+
+    <div class="table-container">
+
+
+        <table>
+
+
+            <thead>
+
+
+                <tr>
+
+
+                    <th>
+
+                        Placa
+
+                    </th>
+
+
+                    <th>
+
+                        Modelo
+
+                    </th>
+
+
+                    <th>
+
+                        Marca
+
+                    </th>
+
+
+                    <th>
+
+                        Ano
+
+                    </th>
+
+
+                    <th>
+
+                        Combustível
+
+                    </th>
+
+
+                    <th>
+
+                        Status
+
+                    </th>
+
+
+
+                </tr>
+
+
+            </thead>
+
+
+
+
+
+            <tbody
+
+                id="tabelaVeiculos"
+
+            >
+
+
+            </tbody>
+
+
+
+        </table>
+
+
+    </div>
+
+
+</section>
+
+
+
+
 
 </main>
 
+
+
+
+
+
+<!-- ======================================================================
+     LOADING
+====================================================================== -->
+
+
+<div
+
+    id="loading"
+
+    class="loading-overlay"
+
+>
+
+</div>
+
+
+
+
+
+
+<!-- ======================================================================
+     JAVASCRIPT
+====================================================================== -->
+
+
 <script
+
     type="module"
-    src="./js/pages/veiculos.js">
-</script>
+
+    src="js/pages/veiculos.js"
+
+></script>
+
+
+
+
 
 </body>
 
