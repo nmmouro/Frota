@@ -1,22 +1,37 @@
+// ============================================================================
+// VEÍCULOS
+// Arquivo: js/pages/veiculos.js
+// ============================================================================
+
 // ================= IMPORTS =================
 
 import {
+
     obterVeiculos,
-    salvarVeiculo,
-    excluirVeiculo
+    salvarVeiculo
+
 } from "../services/veiculos.js";
 
 import {
-    preencherSelect
-} from "../utils/formulario.js";
+
+    renderTable
+
+} from "../ui/table.js";
+
+import {
+
+    mostrarLoading,
+    esconderLoading
+
+} from "../ui/loading.js";
 
 // ================= ELEMENTOS =================
 
-const tabela = document.querySelector("#tabelaVeiculos");
+const formulario =
+    document.querySelector("#formVeiculo");
 
-const formulario = document.querySelector("#formVeiculo");
-
-const btnSalvar = document.querySelector("#btnSalvar");
+const tabela =
+    document.querySelector("#tabelaVeiculos");
 
 // ================= VARIÁVEIS =================
 
@@ -25,8 +40,11 @@ let veiculos = [];
 // ================= EVENTOS =================
 
 document.addEventListener(
+
     "DOMContentLoaded",
+
     init
+
 );
 
 // ================= INIT =================
@@ -34,6 +52,8 @@ document.addEventListener(
 async function init() {
 
     try {
+
+        mostrarLoading();
 
         await carregarDados();
 
@@ -44,6 +64,12 @@ async function init() {
     catch (erro) {
 
         tratarErro(erro);
+
+    }
+
+    finally {
+
+        esconderLoading();
 
     }
 
@@ -63,43 +89,13 @@ async function carregarDados() {
 
 function renderizarTabela() {
 
-    tabela.innerHTML = "";
+    renderTable(
 
-    veiculos.forEach(renderizarLinha);
+        tabela,
 
-}
+        veiculos
 
-function renderizarLinha(veiculo) {
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-
-        <td>${veiculo.placa}</td>
-        <td>${veiculo.modelo}</td>
-        <td>${veiculo.status}</td>
-
-        <td>
-
-            <button
-                class="btn-editar"
-                data-id="${veiculo.id}"
-            >
-                Editar
-            </button>
-
-            <button
-                class="btn-excluir"
-                data-id="${veiculo.id}"
-            >
-                Excluir
-            </button>
-
-        </td>
-
-    `;
-
-    tabela.appendChild(tr);
+    );
 
 }
 
@@ -107,17 +103,17 @@ function renderizarLinha(veiculo) {
 
 function registrarEventos() {
 
-    btnSalvar.addEventListener(
-        "click",
-        salvar
-    );
+    formulario.addEventListener(
 
-    tabela.addEventListener(
-        "click",
-        cliqueTabela
+        "submit",
+
+        salvar
+
     );
 
 }
+
+// ================= AÇÕES =================
 
 async function salvar(evento) {
 
@@ -129,45 +125,7 @@ async function salvar(evento) {
 
         await salvarVeiculo(dados);
 
-        await carregarDados();
-
         formulario.reset();
-
-    }
-
-    catch (erro) {
-
-        tratarErro(erro);
-
-    }
-
-}
-
-async function cliqueTabela(evento) {
-
-    const botao = evento.target;
-
-    if (!botao.dataset.id) return;
-
-    const id = botao.dataset.id;
-
-    if (botao.classList.contains("btn-excluir")) {
-
-        await remover(id);
-
-    }
-
-}
-
-// ================= AÇÕES =================
-
-async function remover(id) {
-
-    if (!confirm("Excluir veículo?")) return;
-
-    try {
-
-        await excluirVeiculo(id);
 
         await carregarDados();
 
@@ -187,11 +145,33 @@ function obterDadosFormulario() {
 
     return {
 
-        placa: formulario.placa.value.trim(),
+        placa:
 
-        modelo: formulario.modelo.value.trim(),
+            formulario.placa.value.trim(),
 
-        status: formulario.status.value
+        modelo:
+
+            formulario.modelo.value.trim(),
+
+        marca:
+
+            formulario.marca.value.trim(),
+
+        ano:
+
+            formulario.ano.value,
+
+        cor:
+
+            formulario.cor.value.trim(),
+
+        combustivel:
+
+            formulario.combustivel.value,
+
+        status:
+
+            formulario.status.value
 
     };
 
@@ -203,6 +183,10 @@ function tratarErro(erro) {
 
     console.error(erro);
 
-    alert("Ocorreu um erro ao processar a operação.");
+    alert(
+
+        "Erro ao processar a solicitação."
+
+    );
 
 }
