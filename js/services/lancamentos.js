@@ -1,27 +1,32 @@
+// ============================================================================
+// LANÇAMENTOS
+// Arquivo: js/services/lancamentos.js
+// ============================================================================
+
 // ================= IMPORTS =================
 
 import {
-    apiGet,
-    apiPost,
-    apiPut,
-    apiDelete
-} from "../app/api.js";
 
-// ================= ENDPOINT =================
+    listar,
+    salvar
 
-const ENDPOINT = "lancamentos";
+} from "../api/api.js";
+
+import {
+
+    ABAS
+
+} from "../config/config.js";
 
 // ================= CONSULTAS =================
 
 export async function obterLancamentos() {
 
-    return await apiGet(ENDPOINT);
+    return await listar(
 
-}
+        ABAS.LANCAMENTOS
 
-export async function obterLancamento(id) {
-
-    return await apiGet(`${ENDPOINT}/${id}`);
+    );
 
 }
 
@@ -29,38 +34,42 @@ export async function obterLancamento(id) {
 
 export async function salvarLancamento(dados) {
 
-    return await apiPost(ENDPOINT, dados);
+    return await salvar(
+
+        ABAS.LANCAMENTOS,
+
+        dados
+
+    );
 
 }
 
-export async function atualizarLancamento(id, dados) {
+// ================= ATUALIZAÇÃO =================
 
-    return await apiPut(`${ENDPOINT}/${id}`, dados);
+export async function atualizarLancamento(linha, dados) {
+
+    return await editar(
+
+        ABAS.LANCAMENTOS,
+
+        linha,
+
+        dados
+
+    );
 
 }
 
 // ================= EXCLUSÃO =================
 
-export async function excluirLancamento(id) {
+export async function excluirLancamento(linha) {
 
-    return await apiDelete(`${ENDPOINT}/${id}`);
+    return await excluir(
+
+        ABAS.LANCAMENTOS,
+
+        linha
+
+    );
 
 }
-
-
-
-/*
-import { listar } from "../api/api.js";
-
-export async function obterLancamentos() {
-    return listar("LANCAMENTOS");
-}
-
-export async function salvarLancamento(){...}
-
-export async function excluirLancamento(){...}
-
-export async function atualizarLancamento(){...}
-
-export async function obterLancamento(id){...}
-*/
