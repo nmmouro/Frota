@@ -5,52 +5,69 @@
 
 // ================= ELEMENTO =================
 
-const ID = "loading";
+const ID_LOADING = "loading";
+
+
+function elementoLoading(){
+
+    return document.getElementById(
+        ID_LOADING
+    );
+
+}
 
 // ================= MOSTRAR =================
 
-export function mostrarLoading(texto = "Carregando...") {
+export function mostrarLoading(
+    mensagem = "Carregando..."
+){
 
-    let loading = document.getElementById(ID);
 
-    if (!loading) {
+    const elemento = elementoLoading();
 
-        loading = document.createElement("div");
 
-        loading.id = ID;
+    if(!elemento){
 
-        loading.className = "loading-overlay";
+        console.warn(
+            "Elemento #loading não encontrado"
+        );
 
-        loading.innerHTML = `
-
-            <div class="loading-box">
-
-                <div class="loading-spinner"></div>
-
-                <p id="loading-text"></p>
-
-            </div>
-
-        `;
-
-        document.body.appendChild(loading);
+        return;
 
     }
 
-    loading.querySelector("#loading-text").textContent = texto;
 
-    loading.style.display = "flex";
+    elemento.textContent = mensagem;
+
+
+    elemento.classList.add(
+        "ativo"
+    );
+
 
 }
 
 // ================= ESCONDER =================
 
-export function esconderLoading() {
+export function esconderLoading(){
 
-    const loading = document.getElementById(ID);
 
-    if (!loading) return;
+    const elemento = elementoLoading();
 
-    loading.style.display = "none";
+
+    if(!elemento){
+
+        return;
+
+    }
+
+
+    elemento.textContent = "";
+
+
+    elemento.classList.remove(
+        "ativo"
+    );
+
 
 }
