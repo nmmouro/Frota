@@ -1,27 +1,32 @@
+// ============================================================================
+// MOTORISTAS
+// Arquivo: js/services/motoristas.js
+// ============================================================================
+
 // ================= IMPORTS =================
 
 import {
-    apiGet,
-    apiPost,
-    apiPut,
-    apiDelete
-} from "../app/api.js";
 
-// ================= ENDPOINT =================
+    listar,
+    salvar
 
-const ENDPOINT = "motoristas";
+} from "../api/api.js";
+
+import {
+
+    ABAS
+
+} from "../config/config.js";
 
 // ================= CONSULTAS =================
 
 export async function obterMotoristas() {
 
-    return await apiGet(ENDPOINT);
+    return await listar(
 
-}
+        ABAS.MOTORISTAS
 
-export async function obterMotorista(id) {
-
-    return await apiGet(`${ENDPOINT}/${id}`);
+    );
 
 }
 
@@ -29,32 +34,42 @@ export async function obterMotorista(id) {
 
 export async function salvarMotorista(dados) {
 
-    return await apiPost(ENDPOINT, dados);
+    return await salvar(
+
+        ABAS.MOTORISTAS,
+
+        dados
+
+    );
 
 }
 
-export async function atualizarMotorista(id, dados) {
+// ================= ATUALIZAÇÃO =================
 
-    return await apiPut(`${ENDPOINT}/${id}`, dados);
+export async function atualizarMotorista(linha, dados) {
+
+    return await editar(
+
+        ABAS.MOTORISTAS,
+
+        linha,
+
+        dados
+
+    );
 
 }
 
 // ================= EXCLUSÃO =================
 
-export async function excluirMotorista(id) {
+export async function excluirMotorista(linha) {
 
-    return await apiDelete(`${ENDPOINT}/${id}`);
+    return await excluir(
 
-}
+        ABAS.MOTORISTAS,
 
+        linha
 
-
-/*
-import { listar } from "../api/api.js";
-
-export async function obterMotoristas() {
-
-    return await listar("MOTORISTAS");
+    );
 
 }
-*/
