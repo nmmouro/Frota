@@ -1,119 +1,132 @@
-// ================= DATA =================
+// ============================================================================
+// FORMATADORES
+// Arquivo: js/utils/formatadores.js
+// ============================================================================
 
-export function formatarData(valor) {
+// ================= TEXTO =================
 
-    if (!valor) return "";
+export function texto(valor = "") {
 
-    const data = new Date(valor);
-
-    if (isNaN(data.getTime())) {
-        return valor;
-    }
-
-    return data.toLocaleDateString("pt-BR", {
-        timeZone: "America/Sao_Paulo"
-    });
+    return String(valor).trim();
 
 }
 
-// ================= HORA =================
+// ================= MAIÚSCULAS =================
 
-export function formatarHora(valor) {
+export function maiusculas(valor = "") {
 
-    if (!valor) return "";
-
-    const data = new Date(valor);
-
-    if (isNaN(data.getTime())) {
-        return valor;
-    }
-
-    return data.toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "UTC"
-    });
+    return texto(valor).toUpperCase();
 
 }
 
-// ================= DATA + HORA =================
+// ================= TÍTULO =================
 
-export function formatarDataHora(data, hora) {
+export function titulo(valor = "") {
 
-    return `${formatarData(data)} ${formatarHora(hora)}`;
+    return texto(valor)
+
+        .toLowerCase()
+
+        .replace(/\b\w/g, letra => letra.toUpperCase());
 
 }
 
-// ================= KM =================
+// ================= CPF =================
 
-export function formatarKm(valor) {
+export function cpf(valor = "") {
 
-    if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-    ) {
-        return "";
+    const numero = valor.replace(/\D/g, "");
+
+    if (numero.length !== 11) return valor;
+
+    return numero.replace(
+
+        /(\d{3})(\d{3})(\d{3})(\d{2})/,
+
+        "$1.$2.$3-$4"
+
+    );
+
+}
+
+// ================= TELEFONE =================
+
+export function telefone(valor = "") {
+
+    const numero = valor.replace(/\D/g, "");
+
+    if (numero.length === 11) {
+
+        return numero.replace(
+
+            /(\d{2})(\d{5})(\d{4})/,
+
+            "($1) $2-$3"
+
+        );
+
     }
 
-    return Number(valor).toLocaleString("pt-BR");
+    if (numero.length === 10) {
+
+        return numero.replace(
+
+            /(\d{2})(\d{4})(\d{4})/,
+
+            "($1) $2-$3"
+
+        );
+
+    }
+
+    return valor;
+
+}
+
+// ================= PLACA =================
+
+export function placa(valor = "") {
+
+    return texto(valor).toUpperCase();
+
+}
+
+// ================= MOEDA =================
+
+export function moeda(valor = 0) {
+
+    return Number(valor).toLocaleString(
+
+        "pt-BR",
+
+        {
+
+            style: "currency",
+
+            currency: "BRL"
+
+        }
+
+    );
 
 }
 
 // ================= NÚMERO =================
 
-export function formatarNumero(valor, casas = 0) {
+export function numero(valor = 0, casas = 0) {
 
-    if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-    ) {
-        return "";
-    }
+    return Number(valor).toLocaleString(
 
-    return Number(valor).toLocaleString("pt-BR", {
-        minimumFractionDigits: casas,
-        maximumFractionDigits: casas
-    });
+        "pt-BR",
 
-}
+        {
 
-// ================= TEXTO =================
+            minimumFractionDigits: casas,
 
-export function formatarTexto(valor) {
+            maximumFractionDigits: casas
 
-    return valor ?? "";
+        }
 
-}
-
-
-export function preencherSelect(
-    select,
-    lista,
-    campoTexto,
-    campoValor,
-    placeholder = "Selecione..."
-) {
-
-    select.innerHTML = "";
-
-    const option = document.createElement("option");
-
-    option.value = "";
-    option.textContent = placeholder;
-
-    select.appendChild(option);
-
-    lista.forEach(item => {
-
-        const opt = document.createElement("option");
-
-        opt.value = item[campoValor];
-        opt.textContent = item[campoTexto];
-
-        select.appendChild(opt);
-
-    });
+    );
 
 }
