@@ -1,20 +1,37 @@
+// ============================================================================
+// MOTORISTAS
+// Arquivo: js/pages/motoristas.js
+// ============================================================================
+
 // ================= IMPORTS =================
 
 import {
 
     obterMotoristas,
-    salvarMotorista,
-    excluirMotorista
+    salvarMotorista
 
 } from "../services/motoristas.js";
 
+import {
+
+    renderTable
+
+} from "../ui/table.js";
+
+import {
+
+    mostrarLoading,
+    esconderLoading
+
+} from "../ui/loading.js";
+
 // ================= ELEMENTOS =================
 
-const formulario = document.querySelector("#formMotorista");
+const formulario =
+    document.querySelector("#formMotorista");
 
-const tabela = document.querySelector("#tabelaMotoristas");
-
-const btnSalvar = document.querySelector("#btnSalvar");
+const tabela =
+    document.querySelector("#tabelaMotoristas");
 
 // ================= VARIÁVEIS =================
 
@@ -36,6 +53,8 @@ async function init() {
 
     try {
 
+        mostrarLoading();
+
         await carregarDados();
 
         registrarEventos();
@@ -45,6 +64,12 @@ async function init() {
     catch (erro) {
 
         tratarErro(erro);
+
+    }
+
+    finally {
+
+        esconderLoading();
 
     }
 
@@ -64,46 +89,13 @@ async function carregarDados() {
 
 function renderizarTabela() {
 
-    tabela.innerHTML = "";
+    renderTable(
 
-    motoristas.forEach(renderizarLinha);
+        tabela,
 
-}
+        motoristas
 
-function renderizarLinha(item) {
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-
-        <td>${item.nome}</td>
-
-        <td>${item.matricula}</td>
-
-        <td>${item.telefone}</td>
-
-        <td>${item.categoria}</td>
-
-        <td>${item.validade}</td>
-
-        <td>${item.status}</td>
-
-        <td>
-
-            <button
-                class="btn-excluir"
-                data-id="${item.id}"
-            >
-
-                Excluir
-
-            </button>
-
-        </td>
-
-    `;
-
-    tabela.appendChild(tr);
+    );
 
 }
 
@@ -111,23 +103,17 @@ function renderizarLinha(item) {
 
 function registrarEventos() {
 
-    btnSalvar.addEventListener(
+    formulario.addEventListener(
 
-        "click",
+        "submit",
 
         salvar
 
     );
 
-    tabela.addEventListener(
-
-        "click",
-
-        cliqueTabela
-
-    );
-
 }
+
+// ================= AÇÕES =================
 
 async function salvar(evento) {
 
@@ -153,59 +139,35 @@ async function salvar(evento) {
 
 }
 
-async function cliqueTabela(evento) {
-
-    const botao = evento.target;
-
-    if (!botao.dataset.id) return;
-
-    if (botao.classList.contains("btn-excluir")) {
-
-        await remover(botao.dataset.id);
-
-    }
-
-}
-
-// ================= AÇÕES =================
-
-async function remover(id) {
-
-    if (!confirm("Deseja excluir este motorista?")) return;
-
-    try {
-
-        await excluirMotorista(id);
-
-        await carregarDados();
-
-    }
-
-    catch (erro) {
-
-        tratarErro(erro);
-
-    }
-
-}
-
 // ================= HELPERS =================
 
 function obterDadosFormulario() {
 
     return {
 
-        nome: formulario.nome.value.trim(),
+        nome:
 
-        matricula: formulario.matricula.value.trim(),
+            formulario.nome.value.trim(),
 
-        telefone: formulario.telefone.value.trim(),
+        matricula:
 
-        categoria: formulario.categoria.value,
+            formulario.matricula.value.trim(),
 
-        validade: formulario.validade.value,
+        telefone:
 
-        status: formulario.status.value
+            formulario.telefone.value.trim(),
+
+        categoria:
+
+            formulario.categoria.value,
+
+        validade:
+
+            formulario.validade.value,
+
+        status:
+
+            formulario.status.value
 
     };
 
@@ -217,6 +179,10 @@ function tratarErro(erro) {
 
     console.error(erro);
 
-    alert("Erro ao processar a operação.");
+    alert(
+
+        "Erro ao processar a solicitação."
+
+    );
 
 }
