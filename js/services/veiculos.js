@@ -1,27 +1,27 @@
 // ================= IMPORTS =================
 
 import {
-    apiGet,
-    apiPost,
-    apiPut,
-    apiDelete
-} from "../app/api.js";
 
-// ================= ENDPOINT =================
+    listar,
+    salvar
 
-const ENDPOINT = "veiculos";
+} from "../api/api.js";
+
+import {
+
+    ABAS
+
+} from "../config/config.js";
 
 // ================= CONSULTAS =================
 
 export async function obterVeiculos() {
 
-    return await apiGet(ENDPOINT);
+    return await listar(
 
-}
+        ABAS.VEICULOS
 
-export async function obterVeiculo(id) {
-
-    return await apiGet(`${ENDPOINT}/${id}`);
+    );
 
 }
 
@@ -29,36 +29,45 @@ export async function obterVeiculo(id) {
 
 export async function salvarVeiculo(dados) {
 
-    return await apiPost(ENDPOINT, dados);
+    return await salvar(
+
+        ABAS.VEICULOS,
+
+        dados
+
+    );
 
 }
 
-export async function atualizarVeiculo(id, dados) {
+// ================= ATUALIZAR =================
 
-    return await apiPut(`${ENDPOINT}/${id}`, dados);
+export async function atualizarVeiculo(
+    linha,
+    dados
+){
 
-}
+    return await editar(
 
-// ================= EXCLUSÃO =================
+        ABAS.VEICULOS,
 
-export async function excluirVeiculo(id) {
+        linha,
 
-    return await apiDelete(`${ENDPOINT}/${id}`);
+        dados
 
-}
-
-
-
-
-
-
-
-/*
-import { listar } from "../api/api.js";
-
-export async function obterVeiculos() {
-
-    return await listar("VEICULOS");
+    );
 
 }
-*/
+
+// ================= EXCLUIR =================
+
+export async function excluirVeiculo(linha){
+
+    return await excluir(
+
+        ABAS.VEICULOS,
+
+        linha
+
+    );
+
+}
