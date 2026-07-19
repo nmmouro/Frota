@@ -117,7 +117,7 @@ function registrarEventos() {
 
 async function carregarTabela() {
 
-    registros =
+  /*  registros = */  const lancamentos =
 
         await obterLancamentos();
 
