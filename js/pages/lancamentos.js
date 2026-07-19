@@ -3,32 +3,14 @@
 // Arquivo: js/pages/lancamentos.js
 // ============================================================================
 
-// ================= IMPORTS =================
-
 import {
 
     obterLancamentos,
-    salvarLancamento
+    salvarLancamento,
+    atualizarLancamento,
+    excluirLancamento
 
 } from "../services/lancamentos.js";
-
-import {
-
-    obterMotoristas
-
-} from "../services/motoristas.js";
-
-import {
-
-    obterVeiculos
-
-} from "../services/veiculos.js";
-
-import {
-
-    preencherSelect
-
-} from "../utils/formulario.js";
 
 import {
 
@@ -43,29 +25,28 @@ import {
 
 } from "../ui/loading.js";
 
-// ================= ELEMENTOS =================
+// ============================================================================
+// ELEMENTOS
+// ============================================================================
 
 const formulario =
     document.querySelector("#formLancamento");
 
-const tabela =
+const tbody =
     document.querySelector("#tabelaLancamentos");
 
-const motorista =
-    document.querySelector("#motoristas");
+const btnNovo =
+    document.querySelector("#btnNovo");
 
-const veiculo =
-    document.querySelector("#veiculos");
+// ============================================================================
+// DADOS
+// ============================================================================
 
-// ================= VARIÁVEIS =================
+let registros = [];
 
-let lancamentos = [];
+let registroEditando = null;
 
-let motoristas = [];
-
-let veiculos = [];
-
-// ================= EVENTOS =================
+// ============================================================================
 
 document.addEventListener(
 
@@ -75,7 +56,9 @@ document.addEventListener(
 
 );
 
-// ================= INIT =================
+// ============================================================================
+// INIT
+// ============================================================================
 
 async function init() {
 
@@ -83,9 +66,9 @@ async function init() {
 
         mostrarLoading();
 
-        await carregarDados();
-
         registrarEventos();
+
+        await carregarTabela();
 
     }
 
@@ -103,83 +86,13 @@ async function init() {
 
 }
 
-// ================= DADOS =================
-
-async function carregarDados() {
-
-    [
-
-        lancamentos,
-
-        motoristas,
-
-        veiculos
-
-    ] = await Promise.all([
-
-        obterLancamentos(),
-
-        obterMotoristas(),
-
-        obterVeiculos()
-
-    ]);
-
-    preencherCampos();
-
-    renderizarTabela();
-
-}
-
-// ================= RENDER =================
-
-function renderizarTabela() {
-
-    renderTable(
-
-        tabela,
-
-        lancamentos
-
-    );
-
-}
-
-// ================= FORMULÁRIO =================
-
-function preencherCampos() {
-
-    preencherSelect(
-
-        motorista,
-
-        motoristas,
-
-        "nome",
-
-        "nome"
-
-    );
-
-    preencherSelect(
-
-        veiculo,
-
-        veiculos,
-
-        "placa",
-
-        "placa"
-
-    );
-
-}
-
-// ================= EVENTOS =================
+// ============================================================================
+// EVENTOS
+// ============================================================================
 
 function registrarEventos() {
 
-    formulario.addEventListener(
+    formulario?.addEventListener(
 
         "submit",
 
@@ -187,9 +100,61 @@ function registrarEventos() {
 
     );
 
+    btnNovo?.addEventListener(
+
+        "click",
+
+        novo
+
+    );
+
 }
 
-// ================= AÇÕES =================
+// ============================================================================
+// CARREGAR
+// ============================================================================
+
+async function carregarTabela() {
+
+    registros =
+
+        await obterLancamentos();
+
+    renderizar();
+
+}
+
+// ============================================================================
+// RENDER
+// ============================================================================
+
+function renderizar() {
+
+    renderTable(
+
+        tbody,
+
+        registros
+
+    );
+
+}
+
+// ============================================================================
+// NOVO
+// ============================================================================
+
+function novo() {
+
+    registroEditando = null;
+
+    formulario.reset();
+
+}
+
+// ============================================================================
+// SALVAR
+// ============================================================================
 
 async function salvar(evento) {
 
@@ -197,13 +162,37 @@ async function salvar(evento) {
 
     try {
 
+        mostrarLoading();
+
         const dados = obterDadosFormulario();
 
-        await salvarLancamento(dados);
+        if (registroEditando) {
+
+            await atualizarLancamento(
+
+                registroEditando,
+
+                dados
+
+            );
+
+        }
+
+        else {
+
+            await salvarLancamento(
+
+                dados
+
+            );
+
+        }
 
         formulario.reset();
 
-        await carregarDados();
+        registroEditando = null;
+
+        await carregarTabela();
 
     }
 
@@ -213,61 +202,183 @@ async function salvar(evento) {
 
     }
 
+    finally {
+
+        esconderLoading();
+
+    }
+
 }
 
-// ================= HELPERS =================
+// ============================================================================
+// EDITAR
+// ============================================================================
+
+window.editarLancamento = function(id) {
+
+    const registro = registros.find(
+
+        r => r.ID === id
+
+    );
+
+    if (!registro) return;
+
+    registroEditando = id;
+
+    preencherFormulario(
+
+        registro
+
+    );
+
+};
+
+// ============================================================================
+// EXCLUIR
+// ============================================================================
+
+window.excluirLancamento = async function(id) {
+
+    if (
+
+        !confirm(
+
+            "Excluir lançamento?"
+
+        )
+
+    ) return;
+
+    try {
+
+        mostrarLoading();
+
+        await excluirLancamento(
+
+            id
+
+        );
+
+        await carregarTabela();
+
+    }
+
+    catch (erro) {
+
+        tratarErro(erro);
+
+    }
+
+    finally {
+
+        esconderLoading();
+
+    }
+
+};
+
+// ============================================================================
+// FORMULÁRIO
+// ============================================================================
 
 function obterDadosFormulario() {
 
     return {
 
-        data:
+        Data:
 
             formulario.data.value,
 
-        hora:
+        Hora:
 
             formulario.hora.value,
 
-        motorista:
+        "Empregado / Matrícula":
 
-            formulario.motorista.value,
+            formulario.empregado.value,
 
-        veiculo:
+        "Veículo":
 
             formulario.veiculo.value,
 
-        passageiro:
+        "Passageiro / Setor / Motivo":
 
             formulario.passageiro.value,
 
-        setor:
-
-            formulario.setor.value,
-
-        motivo:
-
-            formulario.motivo.value,
-
-        itinerario:
+        "Itinerário":
 
             formulario.itinerario.value,
 
-        status:
+        Checklist:
 
-            formulario.status.value
+            formulario.checklist.value,
+
+        Status:
+
+            formulario.status.value,
+
+        Usuário:
+
+            formulario.usuario.value
 
     };
 
 }
 
-// ================= ERROS =================
+// ============================================================================
+
+function preencherFormulario(registro) {
+
+    formulario.data.value =
+
+        registro.Data;
+
+    formulario.hora.value =
+
+        registro.Hora;
+
+    formulario.empregado.value =
+
+        registro["Empregado / Matrícula"];
+
+    formulario.veiculo.value =
+
+        registro["Veículo"];
+
+    formulario.passageiro.value =
+
+        registro["Passageiro / Setor / Motivo"];
+
+    formulario.itinerario.value =
+
+        registro["Itinerário"];
+
+    formulario.checklist.value =
+
+        registro.Checklist;
+
+    formulario.status.value =
+
+        registro.Status;
+
+    formulario.usuario.value =
+
+        registro["Usuário"];
+
+}
+
+// ============================================================================
+// ERRO
+// ============================================================================
 
 function tratarErro(erro) {
 
     console.error(erro);
 
     alert(
+
+        erro.message ||
 
         "Erro ao processar a solicitação."
 
