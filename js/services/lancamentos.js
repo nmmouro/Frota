@@ -1,7 +1,9 @@
 // ============================================================================
 // SERVICES / LANÇAMENTOS
 // Arquivo: js/services/lancamentos.js
-// Responsável pela comunicação CRUD da aba LANÇAMENTOS
+//
+// Responsável exclusivamente pela comunicação CRUD
+// com a aba LANÇAMENTOS do Google Sheets
 // ============================================================================
 
 
@@ -36,14 +38,15 @@ import {
 // ============================================================================
 
 
-const ABA =
-ABAS.LANCAMENTOS;
+const ABA = ABAS.LANCAMENTOS;
+
 
 
 
 
 // ============================================================================
-// READ - LISTAR
+// LISTAR LANÇAMENTOS
+// Retorna todos os registros
 // ============================================================================
 
 
@@ -62,8 +65,9 @@ export async function obterLancamentos(){
 
 
 
+
 // ============================================================================
-// READ - BUSCAR POR ID
+// BUSCAR LANÇAMENTO POR ID
 // ============================================================================
 
 
@@ -84,12 +88,25 @@ export async function obterLancamento(id){
 
 
 
+
 // ============================================================================
-// CREATE - NOVO LANÇAMENTO
+// SALVAR NOVO LANÇAMENTO
 // ============================================================================
 
 
 export async function salvarLancamento(dados){
+
+
+    if(!dados){
+
+        throw new Error(
+
+            "Dados do lançamento não informados."
+
+        );
+
+    }
+
 
 
     return await salvar(
@@ -106,8 +123,9 @@ export async function salvarLancamento(dados){
 
 
 
+
 // ============================================================================
-// UPDATE - ALTERAR LANÇAMENTO
+// EDITAR LANÇAMENTO EXISTENTE
 // ============================================================================
 
 
@@ -118,6 +136,18 @@ export async function atualizarLancamento(
     dados
 
 ){
+
+
+    if(!id){
+
+        throw new Error(
+
+            "ID do lançamento não informado."
+
+        );
+
+    }
+
 
 
     return await editar(
@@ -136,12 +166,25 @@ export async function atualizarLancamento(
 
 
 
+
 // ============================================================================
-// DELETE - EXCLUIR LANÇAMENTO
+// EXCLUIR LANÇAMENTO
 // ============================================================================
 
 
 export async function excluirLancamento(id){
+
+
+    if(!id){
+
+        throw new Error(
+
+            "ID do lançamento não informado."
+
+        );
+
+    }
+
 
 
     return await excluir(
