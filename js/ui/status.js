@@ -1,44 +1,98 @@
 // ============================================================================
 // STATUS
+// Painel Frota
 // Arquivo: js/ui/status.js
 // ============================================================================
 
-// ================= IMPORTS =================
+// ============================================================================
+// STATUS
+// ============================================================================
 
-import {
+const STATUS = {
 
-    STATUS,
-    ICONES
+    AGENDADO: {
 
-} from "../config/config.js";
+        classe: "status-agendado",
 
-// ================= CLASSES =================
+        icone: "📅"
 
-const CLASSES = {
+    },
 
-    [STATUS.LIVRE]: "status-livre",
+    "EM ANDAMENTO": {
 
-    [STATUS.OCUPADO]: "status-ocupado",
+        classe: "status-andamento",
 
-    [STATUS.AGENDADO]: "status-agendado",
+        icone: "🚗"
 
-    [STATUS.EM_ANDAMENTO]: "status-andamento",
+    },
 
-    [STATUS.VIAGEM]: "status-viagem",
+    CONCLUÍDO: {
 
-    [STATUS.MANUTENCAO]: "status-manutencao",
+        classe: "status-concluido",
 
-    [STATUS.CONCLUIDO]: "status-concluido",
+        icone: "✅"
 
-    [STATUS.CANCELADO]: "status-cancelado"
+    },
+
+    CONCLUIDO: {
+
+        classe: "status-concluido",
+
+        icone: "✅"
+
+    },
+
+    CANCELADO: {
+
+        classe: "status-cancelado",
+
+        icone: "❌"
+
+    },
+
+    MANUTENÇÃO: {
+
+        classe: "status-manutencao",
+
+        icone: "🔧"
+
+    },
+
+    MANUTENCAO: {
+
+        classe: "status-manutencao",
+
+        icone: "🔧"
+
+    },
+
+    LIVRE: {
+
+        classe: "status-livre",
+
+        icone: "🟢"
+
+    },
+
+    OCUPADO: {
+
+        classe: "status-ocupado",
+
+        icone: "🔴"
+
+    }
 
 };
 
-// ================= NORMALIZAÇÃO =================
+// ============================================================================
+// NORMALIZA
+// ============================================================================
 
-export function normalizarStatus(status = "") {
+function normalizar(status = "") {
 
     return status
+
+        .toString()
 
         .normalize("NFD")
 
@@ -50,48 +104,66 @@ export function normalizarStatus(status = "") {
 
 }
 
-// ================= CLASSE CSS =================
+// ============================================================================
+// OBTÉM
+// ============================================================================
 
-export function obterClasseStatus(status) {
+export function getStatus(status) {
 
-    const chave = normalizarStatus(status);
+    return (
 
-    return CLASSES[chave] ?? "status-default";
+        STATUS[normalizar(status)] ||
 
-}
+        {
 
-// ================= ÍCONE =================
+            classe: "status-default",
 
-export function obterIconeStatus(status) {
+            icone: "⚪"
 
-    const chave = normalizarStatus(status);
+        }
 
-    return ICONES[chave] ?? "⚪";
-
-}
-
-// ================= TEXTO =================
-
-export function formatarStatus(status) {
-
-    return `${
-
-        obterIconeStatus(status)
-
-    } ${status}`;
+    );
 
 }
 
-// ================= BADGE =================
+// ============================================================================
+// CLASSE
+// ============================================================================
 
-export function criarBadgeStatus(status) {
+export function getStatusClass(status) {
 
-    const span = document.createElement("span");
+    return getStatus(status).classe;
 
-    span.className = `badge ${obterClasseStatus(status)}`;
+}
 
-    span.textContent = formatarStatus(status);
+// ============================================================================
+// ÍCONE
+// ============================================================================
 
-    return span;
+export function getStatusIcon(status) {
+
+    return getStatus(status).icone;
+
+}
+
+// ============================================================================
+// BADGE
+// ============================================================================
+
+export function renderStatus(status) {
+
+    const item = getStatus(status);
+
+    return `
+
+        <span class="status ${item.classe}">
+
+            ${item.icone}
+
+            ${status}
+
+        </span>
+
+    `;
 
 }
