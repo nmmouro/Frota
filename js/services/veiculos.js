@@ -8,6 +8,7 @@
 
 import {
 
+    apiGet
     listar,
     salvar,
     editar,
@@ -26,7 +27,7 @@ import {
 
 export async function obterVeiculos() {
 
-    return await listar(
+    return await apiGet(
 
         ABAS.VEICULOS
 
