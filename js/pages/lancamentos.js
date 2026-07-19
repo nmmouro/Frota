@@ -733,22 +733,37 @@ async function carregarMotoristas(){
 function preencherDataHoraAtual(){
 
 
-    if(campoData)
+    const data =
 
-        campoData.value =
-        dataInput();
-
+        document.querySelector("#data");
 
 
-    if(campoHora)
+    const hora =
 
-        campoHora.value =
-        horaInput();
+        document.querySelector("#hora");
 
+
+
+    if(data){
+
+        data.value =
+
+            dataInput();
+
+    }
+
+
+
+    if(hora){
+
+        hora.value =
+
+            horaInput();
+
+    }
 
 
 }
-
 
 
 
