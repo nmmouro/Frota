@@ -9,8 +9,13 @@
 import {
 
     listar,
+
+    buscar,
+
     salvar,
+
     editar,
+
     excluir
 
 } from "../api/api.js";
@@ -21,84 +26,22 @@ import {
 
 } from "../config/config.js";
 
+export const obterLancamentos = () =>
 
-// ================= CONSULTAS =================
+    listar(ABAS.LANCAMENTOS);
 
-export async function obterLancamentos() {
+export const obterLancamento = id =>
 
-    return await listar(
+    buscar(ABAS.LANCAMENTOS, id);
 
-        ABAS.LANCAMENTOS
+export const salvarLancamento = dados =>
 
-    );
+    salvar(ABAS.LANCAMENTOS, dados);
 
-}
+export const atualizarLancamento = (id, dados) =>
 
+    editar(ABAS.LANCAMENTOS, id, dados);
 
-// ================= BUSCAR POR ID =================
+export const excluirLancamento = id =>
 
-export async function obterLancamento(id) {
-
-    const dados = await listar(
-
-        ABAS.LANCAMENTOS
-
-    );
-
-    return dados.find(
-
-        item => item.id === id
-
-    );
-
-}
-
-
-// ================= GRAVAÇÃO =================
-
-export async function salvarLancamento(dados) {
-
-    return await salvar(
-
-        ABAS.LANCAMENTOS,
-
-        dados
-
-    );
-
-}
-
-
-// ================= ATUALIZAÇÃO =================
-
-export async function atualizarLancamento(
-    linha,
-    dados
-) {
-
-    return await editar(
-
-        ABAS.LANCAMENTOS,
-
-        linha,
-
-        dados
-
-    );
-
-}
-
-
-// ================= EXCLUSÃO =================
-
-export async function excluirLancamento(linha) {
-
-    return await excluir(
-
-        ABAS.LANCAMENTOS,
-
-        linha
-
-    );
-
-}
+    excluir(ABAS.LANCAMENTOS, id);
