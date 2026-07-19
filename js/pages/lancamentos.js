@@ -70,6 +70,8 @@ async function init() {
 
         await carregarTabela();
 
+        const lancamentos = await obterLancamentos();
+
     }
 
     catch (erro) {
