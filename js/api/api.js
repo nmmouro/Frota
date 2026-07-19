@@ -43,6 +43,8 @@ async function get(acao, aba, id = null) {
 
     const json = await resposta.json();
 
+    console.log("Resposta API:", json);
+
     if (!json.success) {
 
         throw new Error(
