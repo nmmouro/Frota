@@ -1,114 +1,181 @@
 // ============================================================================
 // API
+// Painel Frota
+// Arquivo: js/api/api.js
 // ============================================================================
 
+import { CONFIG } from "../config/config.js";
 
-import {
+// ============================================================================
+// REQUISIÇÃO
+// ============================================================================
 
-    CONFIG
+async function request(
+    acao,
+    aba,
+    dados = {},
+    id = null
+) {
 
-} from "../config/config.js";
+    const resposta = await fetch(
 
+        CONFIG.API_URL,
 
+        {
 
+            method: "POST",
 
-// ================= GET =================
+            headers: {
 
+                "Content-Type": "application/json"
 
-export async function apiGet(aba){
+            },
 
+            body: JSON.stringify({
 
-    const url =
+                acao,
 
-        `${CONFIG.API_URL}?acao=listar&aba=${encodeURIComponent(aba)}`;
+                aba,
 
+                id,
 
+                dados
 
-    const resposta =
+            })
 
-        await fetch(url);
+        }
 
+    );
 
-
-    if(!resposta.ok){
-
+    if (!resposta.ok) {
 
         throw new Error(
 
-            "Erro ao consultar a API."
+            "Erro ao conectar com a API."
 
         );
-
 
     }
 
+    const json = await resposta.json();
 
+    if (!json.success) {
 
-    return await resposta.json();
+        throw new Error(
 
-
-
-}
-
-
-
-// ================= POST =================
-
-
-export async function apiPost(
-
-    aba,
-
-    dados
-
-){
-
-
-    const resposta =
-
-        await fetch(
-
-            CONFIG.API_URL,
-
-            {
-
-
-                method:"POST",
-
-
-                headers:{
-
-
-                    "Content-Type":
-
-                    "application/json"
-
-
-                },
-
-
-                body:JSON.stringify({
-
-
-                    acao:"salvar",
-
-
-                    aba,
-
-
-                    dados
-
-
-                })
-
-
-            }
+            json.message
 
         );
 
+    }
 
+    return json.data;
 
-    return await resposta.json();
+}
 
+// ============================================================================
+// LISTAR
+// ============================================================================
+
+export async function listar(aba) {
+
+    return await request(
+
+        "listar",
+
+        aba
+
+    );
+
+}
+
+// ============================================================================
+// BUSCAR
+// ============================================================================
+
+export async function buscar(
+    aba,
+    id
+) {
+
+    return await request(
+
+        "buscar",
+
+        aba,
+
+        {},
+
+        id
+
+    );
+
+}
+
+// ============================================================================
+// SALVAR
+// ============================================================================
+
+export async function salvar(
+    aba,
+    dados
+) {
+
+    return await request(
+
+        "salvar",
+
+        aba,
+
+        dados
+
+    );
+
+}
+
+// ============================================================================
+// EDITAR
+// ============================================================================
+
+export async function editar(
+    aba,
+    id,
+    dados
+) {
+
+    return await request(
+
+        "editar",
+
+        aba,
+
+        dados,
+
+        id
+
+    );
+
+}
+
+// ============================================================================
+// EXCLUIR
+// ============================================================================
+
+export async function excluir(
+    aba,
+    id
+) {
+
+    return await request(
+
+        "excluir",
+
+        aba,
+
+        {},
+
+        id
+
+    );
 
 }
