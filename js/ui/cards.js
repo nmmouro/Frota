@@ -1,54 +1,131 @@
 // ============================================================================
 // CARDS
+// Painel Frota
 // Arquivo: js/ui/cards.js
 // ============================================================================
 
-// ================= RENDER =================
+// ============================================================================
+// RENDER
+// ============================================================================
 
 export function renderCards(
 
     container,
 
-    dados,
-
-    template
+    cards = []
 
 ) {
 
     if (!container) return;
 
-    container.innerHTML = "";
+    limparCards(container);
 
-    if (!dados || dados.length === 0) {
+    cards.forEach(card => {
 
-        container.innerHTML =
+        container.appendChild(
 
-            "<p>Nenhum registro.</p>";
+            criarCard(card)
 
-        return;
-
-    }
-
-    dados.forEach(item => {
-
-        const card = document.createElement("div");
-
-        card.className = "card-item";
-
-        card.innerHTML = template(item);
-
-        container.appendChild(card);
+        );
 
     });
 
 }
 
-// ================= LIMPAR =================
+// ============================================================================
+// CRIAR CARD
+// ============================================================================
+
+function criarCard({
+
+    titulo = "",
+
+    valor = "",
+
+    icone = "",
+
+    classe = "",
+
+    subtitulo = ""
+
+}) {
+
+    const article =
+
+        document.createElement("article");
+
+    article.className =
+
+        `card ${classe}`.trim();
+
+    article.innerHTML = `
+
+        <div class="card-header">
+
+            <span class="card-icon">
+
+                ${icone}
+
+            </span>
+
+            <span class="card-title">
+
+                ${titulo}
+
+            </span>
+
+        </div>
+
+        <div class="card-body">
+
+            <strong class="card-value">
+
+                ${valor}
+
+            </strong>
+
+        </div>
+
+        <div class="card-footer">
+
+            ${subtitulo}
+
+        </div>
+
+    `;
+
+    return article;
+
+}
+
+// ============================================================================
+// LIMPAR
+// ============================================================================
 
 export function limparCards(container) {
 
-    if (!container) return;
-
     container.innerHTML = "";
+
+}
+
+// ============================================================================
+// ATUALIZAR
+// ============================================================================
+
+export function atualizarCards(
+
+    container,
+
+    cards
+
+) {
+
+    renderCards(
+
+        container,
+
+        cards
+
+    );
 
 }
