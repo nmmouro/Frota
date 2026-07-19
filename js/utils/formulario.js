@@ -1,49 +1,104 @@
 // ============================================================================
-// FORMULÁRIOS
+// FORMULÁRIOS UTILS
+// Painel Frota
 // Arquivo: js/utils/formulario.js
+//
+// Funções auxiliares para manipulação de formulários
 // ============================================================================
 
-// ================= SELECT =================
+
+
+// ============================================================================
+// PREENCHER SELECT
+// ============================================================================
+
 
 export function preencherSelect(
 
     select,
 
-    dados,
+    dados = [],
 
     valueField,
 
-    textField
+    textField,
 
-) {
+    textoInicial = "Selecione"
 
-    if (!select) return;
+){
+
+
+    if(!select) return;
+
+
 
     select.innerHTML = "";
 
-    const option = document.createElement("option");
 
-    option.value = "";
 
-    option.textContent = "Selecione";
+    const opcaoInicial =
 
-    select.appendChild(option);
+        document.createElement("option");
+
+
+
+    opcaoInicial.value = "";
+
+    opcaoInicial.textContent = textoInicial;
+
+
+
+    select.appendChild(
+
+        opcaoInicial
+
+    );
+
+
+
 
     dados.forEach(item => {
 
-        const option = document.createElement("option");
 
-        option.value = item[valueField];
 
-        option.textContent = item[textField];
+        const option =
 
-        select.appendChild(option);
+            document.createElement("option");
+
+
+
+        option.value =
+
+            item[valueField] ?? "";
+
+
+
+        option.textContent =
+
+            item[textField] ?? "";
+
+
+
+        select.appendChild(
+
+            option
+
+        );
+
+
 
     });
 
+
 }
 
-// ================= DADOS =================
+
+
+
+// ============================================================================
+// OBTER DADOS DO FORMULÁRIO
+// ============================================================================
+
 
 export function obterDadosFormulario(
 
@@ -51,65 +106,149 @@ export function obterDadosFormulario(
 
     mapa = {}
 
-) {
+){
+
+
+    if(!formulario)
+
+        return {};
+
+
 
     const dados = {};
 
-    Object.entries(mapa).forEach(
 
-        ([campoFormulario, campoApi]) => {
 
-            const elemento = formulario.elements[campoFormulario];
+    Object.entries(mapa)
 
-            if (!elemento) return;
+        .forEach(
 
-            dados[campoApi] = elemento.value.trim();
+            ([campoFormulario, campoApi]) => {
 
-        }
 
-    );
+
+                const elemento =
+
+                    formulario.elements[campoFormulario];
+
+
+
+                if(!elemento)
+
+                    return;
+
+
+
+                dados[campoApi] =
+
+                    elemento.value
+
+                        .trim();
+
+
+
+            }
+
+        );
+
+
 
     return dados;
 
+
 }
 
-// ================= PREENCHER =================
+
+
+
+// ============================================================================
+// PREENCHER FORMULÁRIO
+// ============================================================================
+
 
 export function preencherFormulario(
 
     formulario,
 
-    dados,
+    dados = {},
 
     mapa = {}
 
-) {
+){
 
-    Object.entries(mapa).forEach(
 
-        ([campoFormulario, campoApi]) => {
+    if(!formulario)
 
-            const elemento = formulario.elements[campoFormulario];
+        return;
 
-            if (!elemento) return;
 
-            elemento.value = dados[campoApi] ?? "";
 
-        }
+    Object.entries(mapa)
 
-    );
+        .forEach(
+
+            ([campoFormulario, campoApi]) => {
+
+
+
+                const elemento =
+
+                    formulario.elements[campoFormulario];
+
+
+
+                if(!elemento)
+
+                    return;
+
+
+
+                elemento.value =
+
+                    dados[campoApi] ?? "";
+
+
+
+            }
+
+        );
+
 
 }
 
-// ================= LIMPAR =================
 
-export function limparFormulario(formulario) {
+
+
+// ============================================================================
+// LIMPAR FORMULÁRIO
+// ============================================================================
+
+
+export function limparFormulario(
+
+    formulario
+
+){
+
+
+    if(!formulario)
+
+        return;
+
+
 
     formulario.reset();
 
+
 }
 
-// ================= HABILITAR =================
+
+
+
+// ============================================================================
+// ATIVAR / DESATIVAR FORMULÁRIO
+// ============================================================================
+
 
 export function habilitarFormulario(
 
@@ -117,7 +256,14 @@ export function habilitarFormulario(
 
     habilitado = true
 
-) {
+){
+
+
+    if(!formulario)
+
+        return;
+
+
 
     formulario
 
@@ -127,10 +273,81 @@ export function habilitarFormulario(
 
         )
 
-        .forEach(campo => {
+        .forEach(
 
-            campo.disabled = !habilitado;
+            campo => {
 
-        });
+
+                campo.disabled =
+
+                    !habilitado;
+
+
+            }
+
+        );
+
+
+}
+
+
+
+
+// ============================================================================
+// BLOQUEAR FORMULÁRIO
+// ============================================================================
+
+
+export function bloquearFormulario(
+
+    formulario
+
+){
+
+
+    habilitarFormulario(
+
+        formulario,
+
+        false
+
+    );
+
+
+}
+
+
+
+
+// ============================================================================
+// FOCAR PRIMEIRO CAMPO
+// ============================================================================
+
+
+export function focarPrimeiroCampo(
+
+    formulario
+
+){
+
+
+    if(!formulario)
+
+        return;
+
+
+
+    const campo =
+
+        formulario.querySelector(
+
+            "input:not([type=hidden]), select, textarea"
+
+        );
+
+
+
+    campo?.focus();
+
 
 }
