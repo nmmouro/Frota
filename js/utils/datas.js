@@ -167,3 +167,29 @@ export function horaParaInput(hora) {
     return hora || "";
 
 }
+
+export function dataParaInput(data) {
+
+    if (!data) return "";
+
+    const [dia, mes, ano] = data.split("/");
+
+    return `${ano}-${mes.padStart(2,"0")}-${dia.padStart(2,"0")}`;
+
+}
+
+export function inputParaData(data) {
+
+    if (!data) return "";
+
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
+
+}
+
+export function horaParaInput(hora) {
+
+    return (hora || "").substring(0,5);
+
+}
