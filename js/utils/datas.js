@@ -132,3 +132,38 @@ export function ordenarPorData(
     );
 
 }
+
+// ================= BR -> INPUT =================
+
+export function dataParaInput(data) {
+
+    if (!data) return "";
+
+    // já está no formato yyyy-MM-dd
+    if (data.includes("-")) return data;
+
+    const [dia, mes, ano] = data.split("/");
+
+    return `${ano}-${mes.padStart(2,"0")}-${dia.padStart(2,"0")}`;
+
+}
+
+// ================= INPUT -> BR =================
+
+export function inputParaData(data) {
+
+    if (!data) return "";
+
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
+
+}
+
+// ================= HORA INPUT =================
+
+export function horaParaInput(hora) {
+
+    return hora || "";
+
+}
