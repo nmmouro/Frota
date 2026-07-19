@@ -2,7 +2,18 @@
 // TABLE UI
 // Painel Frota
 // Arquivo: js/ui/table.js
+//
+// Camada de interface para tabelas
+// Responsável por controlar renderização,
+// atualização e limpeza de tabelas.
 // ============================================================================
+
+
+
+// ============================================================================
+// IMPORTS
+// ============================================================================
+
 
 import {
 
@@ -10,21 +21,43 @@ import {
 
 } from "../components/table.js";
 
+
+
+
 // ============================================================================
-// RENDER
+// RENDERIZAR TABELA
 // ============================================================================
+
 
 export function renderTable(
 
     container,
 
-    columns,
+    columns = [],
 
-    data,
+    data = [],
 
     actions = []
 
-) {
+){
+
+
+    if(!container) {
+
+
+        console.warn(
+
+            "Container da tabela não encontrado."
+
+        );
+
+
+        return;
+
+
+    }
+
+
 
     renderComponentTable(
 
@@ -42,39 +75,55 @@ export function renderTable(
 
     );
 
+
 }
 
+
+
+
 // ============================================================================
-// LIMPAR
+// LIMPAR TABELA
 // ============================================================================
 
-export function limparTabela(
 
-    container
+export function limparTabela(container){
 
-) {
 
-    if (!container) return;
+    if(!container) return;
+
 
     container.innerHTML = "";
 
+
 }
 
+
+
+
 // ============================================================================
-// ATUALIZAR
+// ATUALIZAR TABELA
 // ============================================================================
+
 
 export function atualizarTabela(
 
     container,
 
-    columns,
+    columns = [],
 
-    data,
+    data = [],
 
     actions = []
 
-) {
+){
+
+
+    limparTabela(
+
+        container
+
+    );
+
 
     renderTable(
 
@@ -87,5 +136,6 @@ export function atualizarTabela(
         actions
 
     );
+
 
 }
