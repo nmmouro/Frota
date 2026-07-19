@@ -1,8 +1,14 @@
 // ============================================================================
-// TABLE
+// TABLE UI
 // Painel Frota
 // Arquivo: js/ui/table.js
 // ============================================================================
+
+import {
+
+    renderTable as renderComponentTable
+
+} from "../components/table.js";
 
 // ============================================================================
 // RENDER
@@ -10,129 +16,31 @@
 
 export function renderTable(
 
-    tbody,
+    container,
 
-    dados = [],
+    columns,
 
-    {
+    data,
 
-        colunas = [],
+    actions = []
 
-        acoes = []
+) {
 
-    } = {}
+    renderComponentTable(
 
-){
+        container,
 
-    if(!tbody) return;
+        {
 
-    limparTabela(tbody);
+            columns,
 
-    if(dados.length === 0){
+            data,
 
-        return renderEmpty(
-
-            tbody,
-
-            colunas.length +
-
-            (acoes.length ? 1 : 0)
-
-        );
-
-    }
-
-    dados.forEach(registro=>{
-
-        const tr = document.createElement("tr");
-
-        //------------------------------------------------------
-        // Colunas
-        //------------------------------------------------------
-
-        colunas.forEach(coluna=>{
-
-            const td = document.createElement("td");
-
-            td.textContent =
-
-                registro[coluna] ?? "";
-
-            tr.appendChild(td);
-
-        });
-
-        //------------------------------------------------------
-        // Botões
-        //------------------------------------------------------
-
-        if(acoes.length){
-
-            tr.appendChild(
-
-                criarColunaAcoes(
-
-                    registro,
-
-                    acoes
-
-                )
-
-            );
+            actions
 
         }
 
-        tbody.appendChild(tr);
-
-    });
-
-}
-
-// ============================================================================
-// COLUNA AÇÕES
-// ============================================================================
-
-function criarColunaAcoes(
-
-    registro,
-
-    acoes
-
-){
-
-    const td = document.createElement("td");
-
-    td.className = "acoes";
-
-    acoes.forEach(acao=>{
-
-        const botao =
-
-            document.createElement("button");
-
-        botao.type = "button";
-
-        botao.className =
-
-            acao.className || "";
-
-        botao.textContent =
-
-            acao.label;
-
-        botao.addEventListener(
-
-            "click",
-
-            ()=>acao.onClick(registro)
-
-        );
-
-        td.appendChild(botao);
-
-    });
-
-    return td;
+    );
 
 }
 
@@ -140,67 +48,43 @@ function criarColunaAcoes(
 // LIMPAR
 // ============================================================================
 
-export function limparTabela(tbody){
+export function limparTabela(
 
-    tbody.innerHTML = "";
+    container
 
-}
+) {
 
-// ============================================================================
-// SEM DADOS
-// ============================================================================
+    if (!container) return;
 
-export function renderEmpty(
-
-    tbody,
-
-    colunas = 1
-
-){
-
-    const tr =
-
-        document.createElement("tr");
-
-    const td =
-
-        document.createElement("td");
-
-    td.colSpan = colunas;
-
-    td.className = "empty";
-
-    td.textContent =
-
-        "Nenhum registro encontrado.";
-
-    tr.appendChild(td);
-
-    tbody.appendChild(tr);
+    container.innerHTML = "";
 
 }
 
 // ============================================================================
-// RECARREGAR
+// ATUALIZAR
 // ============================================================================
 
 export function atualizarTabela(
 
-    tbody,
+    container,
 
-    dados,
+    columns,
 
-    options
+    data,
 
-){
+    actions = []
+
+) {
 
     renderTable(
 
-        tbody,
+        container,
 
-        dados,
+        columns,
 
-        options
+        data,
+
+        actions
 
     );
 
