@@ -122,10 +122,6 @@ async function carregarTabela() {
         await obterLancamentos();
 
 
-    console.log("Quantidade:", registros.length);
-
-    console.log(registros);
-
     renderizar();
 
 }
