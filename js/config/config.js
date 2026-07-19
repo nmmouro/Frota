@@ -9,7 +9,7 @@ export const CONFIG = {
 
     API_URL:
 
-    "https://script.google.com/macros/s/AKfycbxDxS7bONLdSSnEA9SSq87jBm4uzyGntV6aqegxgI_8tyhdX3ep5Wd-TYErVNpCdD25/exec",
+    "https://script.google.com/macros/s/AKfycbyJQC-gvJdH8V84J1ADvgYG7SyZti0YueRHw6gVa6WrQPdYtnhuYqez0x-8iwoO_Gr6mw/exec",
 
 // ================= ABAS =================
 
