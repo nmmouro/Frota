@@ -448,61 +448,164 @@ function tratarErro(erro) {
 
 }
 
+// ============================================================================
+// CARREGAR VEÍCULOS
+// ============================================================================
+
+
 async function carregarVeiculos(){
 
 
-const resposta =
-await obterVeiculos();
+    if(!selectVeiculo) return;
 
 
 
-const veiculos =
-resposta.dados || resposta;
+    try{
+
+
+        const resposta =
+        await obterVeiculos();
 
 
 
-selectVeiculo.innerHTML =
-`
-<option value="">
-Selecione o veículo
-</option>
-`;
+        const veiculos =
+        resposta.dados || resposta;
 
 
 
-veiculos.forEach(
-(veiculo)=>{
+        selectVeiculo.innerHTML = `
 
+        <option value="">
+            Selecione o veículo
+        </option>
 
-const option =
-document.createElement("option");
-
-
-
-/*
-Ajustar conforme
-as colunas da aba VEÍCULOS
-*/
-
-
-option.value =
-veiculo.Placa;
+        `;
 
 
 
-option.textContent =
-`${veiculo.Placa} - ${veiculo.Modelo}`;
+        veiculos.forEach(
+        (veiculo)=>{
+
+
+            const option =
+            document.createElement("option");
 
 
 
-selectVeiculo.appendChild(option);
+            /*
+              Ajustar conforme
+              colunas da aba VEÍCULOS
+            */
 
 
-});
+            option.value =
+            veiculo.PLACA;
+
+
+
+            option.textContent =
+            `${veiculo.PLACA} - ${veiculo.MODELO}`;
+
+
+
+            selectVeiculo.appendChild(option);
+
+
+
+        });
+
+
+
+    }
+    catch(erro){
+
+
+        console.error(
+            "Erro ao carregar veículos",
+            erro
+        );
+
+
+    }
 
 
 }
 
 
 
-carregarVeiculos();
+
+// ============================================================================
+// CARREGAR MOTORISTAS
+// ============================================================================
+
+
+async function carregarMotoristas(){
+
+
+    if(!selectMotorista) return;
+
+
+
+    try{
+
+
+        const resposta =
+        await obterMotoristas();
+
+
+
+        const motoristas =
+        resposta.dados || resposta;
+
+
+
+        selectMotorista.innerHTML = `
+
+        <option value="">
+            Selecione o motorista
+        </option>
+
+        `;
+
+
+
+        motoristas.forEach(
+        (motorista)=>{
+
+
+            const option =
+            document.createElement("option");
+
+
+
+            option.value =
+            motorista.MOTORISTA;
+
+
+
+            option.textContent =
+            motorista.MOTORISTA;
+
+
+
+            selectMotorista.appendChild(option);
+
+
+        });
+
+
+
+    }
+    catch(erro){
+
+
+        console.error(
+            "Erro ao carregar motoristas",
+            erro
+        );
+
+
+    }
+
+
+}
