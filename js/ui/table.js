@@ -1,47 +1,86 @@
 // ============================================================================
-// TABELAS
+// TABLE
+// Painel Frota
 // Arquivo: js/ui/table.js
 // ============================================================================
 
-// ================= RENDER =================
+// ============================================================================
+// RENDER
+// ============================================================================
 
 export function renderTable(
 
     tbody,
 
-    dados,
+    dados = [],
 
-    colunas = null
+    {
 
-) {
+        colunas = [],
 
-    if (!tbody) return;
+        acoes = []
 
-    tbody.innerHTML = "";
+    } = {}
 
-    if (!dados || dados.length === 0) {
+){
 
-        renderEmpty(tbody);
+    if(!tbody) return;
 
-        return;
+    limparTabela(tbody);
+
+    if(dados.length === 0){
+
+        return renderEmpty(
+
+            tbody,
+
+            colunas.length +
+
+            (acoes.length ? 1 : 0)
+
+        );
 
     }
 
-    const campos = colunas ?? Object.keys(dados[0]);
-
-    dados.forEach(item => {
+    dados.forEach(registro=>{
 
         const tr = document.createElement("tr");
 
-        campos.forEach(campo => {
+        //------------------------------------------------------
+        // Colunas
+        //------------------------------------------------------
+
+        colunas.forEach(coluna=>{
 
             const td = document.createElement("td");
 
-            td.textContent = item[campo] ?? "";
+            td.textContent =
+
+                registro[coluna] ?? "";
 
             tr.appendChild(td);
 
         });
+
+        //------------------------------------------------------
+        // Botões
+        //------------------------------------------------------
+
+        if(acoes.length){
+
+            tr.appendChild(
+
+                criarColunaAcoes(
+
+                    registro,
+
+                    acoes
+
+                )
+
+            );
+
+        }
 
         tbody.appendChild(tr);
 
@@ -49,32 +88,120 @@ export function renderTable(
 
 }
 
-// ================= LIMPAR =================
+// ============================================================================
+// COLUNA AÇÕES
+// ============================================================================
 
-export function limparTabela(tbody) {
+function criarColunaAcoes(
 
-    if (!tbody) return;
+    registro,
+
+    acoes
+
+){
+
+    const td = document.createElement("td");
+
+    td.className = "acoes";
+
+    acoes.forEach(acao=>{
+
+        const botao =
+
+            document.createElement("button");
+
+        botao.type = "button";
+
+        botao.className =
+
+            acao.className || "";
+
+        botao.textContent =
+
+            acao.label;
+
+        botao.addEventListener(
+
+            "click",
+
+            ()=>acao.onClick(registro)
+
+        );
+
+        td.appendChild(botao);
+
+    });
+
+    return td;
+
+}
+
+// ============================================================================
+// LIMPAR
+// ============================================================================
+
+export function limparTabela(tbody){
 
     tbody.innerHTML = "";
 
 }
 
-// ================= SEM DADOS =================
+// ============================================================================
+// SEM DADOS
+// ============================================================================
 
-function renderEmpty(tbody) {
+export function renderEmpty(
 
-    const tr = document.createElement("tr");
+    tbody,
 
-    const td = document.createElement("td");
+    colunas = 1
 
-    td.colSpan = 20;
+){
+
+    const tr =
+
+        document.createElement("tr");
+
+    const td =
+
+        document.createElement("td");
+
+    td.colSpan = colunas;
 
     td.className = "empty";
 
-    td.textContent = "Nenhum registro encontrado.";
+    td.textContent =
+
+        "Nenhum registro encontrado.";
 
     tr.appendChild(td);
 
     tbody.appendChild(tr);
+
+}
+
+// ============================================================================
+// RECARREGAR
+// ============================================================================
+
+export function atualizarTabela(
+
+    tbody,
+
+    dados,
+
+    options
+
+){
+
+    renderTable(
+
+        tbody,
+
+        dados,
+
+        options
+
+    );
 
 }
