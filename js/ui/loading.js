@@ -1,73 +1,73 @@
 // ============================================================================
 // LOADING
+// Painel Frota
 // Arquivo: js/ui/loading.js
 // ============================================================================
 
-// ================= ELEMENTO =================
+// ============================================================================
+// ELEMENTO
+// ============================================================================
 
-const ID_LOADING = "loading";
+const loading =
 
+    document.querySelector("#loading");
 
-function elementoLoading(){
+// ============================================================================
+// MOSTRAR
+// ============================================================================
 
-    return document.getElementById(
-        ID_LOADING
-    );
+export function mostrarLoading() {
 
-}
+    if (!loading) return;
 
-// ================= MOSTRAR =================
-
-export function mostrarLoading(
-    mensagem = "Carregando..."
-){
-
-
-    const elemento = elementoLoading();
-
-
-    if(!elemento){
-
-        console.warn(
-            "Elemento #loading não encontrado"
-        );
-
-        return;
-
-    }
-
-
-    elemento.textContent = mensagem;
-
-
-    elemento.classList.add(
-        "ativo"
-    );
-
+    loading.hidden = false;
 
 }
 
-// ================= ESCONDER =================
+// ============================================================================
+// ESCONDER
+// ============================================================================
 
-export function esconderLoading(){
+export function esconderLoading() {
 
+    if (!loading) return;
 
-    const elemento = elementoLoading();
+    loading.hidden = true;
 
+}
 
-    if(!elemento){
+// ============================================================================
+// TOGGLE
+// ============================================================================
 
-        return;
+export function toggleLoading(ativo) {
+
+    ativo
+
+        ? mostrarLoading()
+
+        : esconderLoading();
+
+}
+
+// ============================================================================
+// EXECUTAR COM LOADING
+// ============================================================================
+
+export async function executarComLoading(callback) {
+
+    try {
+
+        mostrarLoading();
+
+        return await callback();
 
     }
 
+    finally {
 
-    elemento.textContent = "";
+        esconderLoading();
 
-
-    elemento.classList.remove(
-        "ativo"
-    );
-
+    }
 
 }
