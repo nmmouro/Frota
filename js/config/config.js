@@ -24,6 +24,52 @@ export const CONFIG = {
 
 };
 
+
+export async function apiGet(rota){
+
+
+const resposta =
+await fetch(
+`${API_URL}?rota=${rota}`
+);
+
+
+return await resposta.json();
+
+
+}
+
+
+
+export async function apiPost(
+rota,
+dados
+){
+
+
+const resposta =
+await fetch(
+API_URL,
+{
+
+method:"POST",
+
+body:JSON.stringify({
+
+rota,
+
+dados
+
+})
+
+});
+
+
+return await resposta.json();
+
+
+}
+
 // ============================================================================
 // ABAS
 // ============================================================================
