@@ -39,6 +39,12 @@ obterVeiculos
 
 } from "../services/veiculos.js";
 
+import {
+
+    obterMotoristas
+
+} from "../services/motoristas.js";
+
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
@@ -54,6 +60,9 @@ const btnNovo =
 
 const selectVeiculo =
 document.querySelector("#veiculo");
+
+const selectMotorista =
+document.querySelector("#motorista");
 
 const COLUNAS = [
 
@@ -115,7 +124,7 @@ document.addEventListener(
     "DOMContentLoaded",
 
     init
-preencherDataHoraAtual();
+
 );
 
 // ============================================================================
@@ -126,9 +135,13 @@ async function init() {
 
     try {
 
-        mostrarLoading();
+       mostrarLoading();
+
+        preencherDataHoraAtual();
 
         registrarEventos();
+
+        await carregarVeiculos();
 
         await carregarTabela();
 
@@ -236,6 +249,8 @@ function novo() {
     registroEditando = null;
 
     formulario.reset();
+
+    preencherDataHoraAtual();
 
 }
 
