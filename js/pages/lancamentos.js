@@ -70,7 +70,7 @@ async function init() {
 
         await carregarTabela();
 
-        const lancamentos = await obterLancamentos();
+        console.log("Lançamentos:", lancamentos);
 
     }
 
