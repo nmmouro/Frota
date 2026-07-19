@@ -1,43 +1,66 @@
 // ============================================================================
-// CONFIGURAÇÕES GERAIS DA APLICAÇÃO
-// Projeto: Painel Frota
+// CONFIG
+// Painel Frota
 // Arquivo: js/config/config.js
+// ============================================================================
+
+// ============================================================================
+// API
 // ============================================================================
 
 export const CONFIG = {
 
-
     API_URL:
+        "https://script.google.com/macros/s/AKfycbyJQC-gvJdH8V84J1ADvgYG7SyZti0YueRHw6gVa6WrQPdYtnhuYqez0x-8iwoO_Gr6mw/exec",
 
-    "https://script.google.com/macros/s/AKfycbyJQC-gvJdH8V84J1ADvgYG7SyZti0YueRHw6gVa6WrQPdYtnhuYqez0x-8iwoO_Gr6mw/exec",
+    UPDATE_INTERVAL:
+        30000,
 
-// ================= ABAS =================
+    DATE_FORMAT:
+        "pt-BR",
 
-ABAS = {
+    TIME_FORMAT:
+        "pt-BR"
 
-    LANCAMENTOS: "LANÇAMENTOS",
+};
 
-    VEICULOS: "VEÍCULOS",
+// ============================================================================
+// ABAS
+// ============================================================================
+
+export const ABAS = {
+
+    LANCAMENTOS:
+        "LANCAMENTOS",
     
-    EMPREGADOS: "EMPREGADOS",
+    VEICULOS:
+        "VEÍCULOS",
+    
+    EMPREGADOS:
+        "EMPREGADOS",
 
-    MOTORISTAS: "MOTORISTAS",
+    MOTORISTAS:
+        "MOTORISTAS",
 
-    AGENDA: "AGENDA DO DIA",
+    AGENDA:
+        "AGENDA DO DIA",
 
-    SOCIAL: "AGENDA SERVIÇO SOCIAL"    
+    SOCIAL:
+        "AGENDA SERVIÇO SOCIAL"
 
-}  
+};
 
+// ============================================================================
+// STATUS
+// ============================================================================
 
+export const STATUS = {
 
-// ================= STATUS =================
+    AGENDADO:
+        "AGENDADO",
 
-STATUS = {
-
-    AGENDADO: "AGENDADO",
-
-    EM_ANDAMENTO: "EM ANDAMENTO",
+    EM_ANDAMENTO:
+        "EM ANDAMENTO",
 
     VIAGEM: "VIAGEM",
 
@@ -45,7 +68,11 @@ STATUS = {
 
     CONCLUIDO: "CONCLUÍDO",
 
-    CANCELADO: "CANCELADO",
+    FINALIZADO:
+        "FINALIZADO",
+
+    CANCELADO:
+        "CANCELADO",
 
     LIVRE: "LIVRE",
 
@@ -53,9 +80,43 @@ STATUS = {
 
 };
 
-// ================= ÍCONES =================
+// ============================================================================
+// CLASSES CSS
+// ============================================================================
 
-ICONES = {
+export const STATUS_CLASS = {
+
+    AGENDADO:
+        "status-agendado",
+
+    "EM ANDAMENTO":
+        "status-andamento",
+
+    FINALIZADO:
+        "status-finalizado",
+
+    CANCELADO:
+        "status-cancelado"
+
+};
+
+// ============================================================================
+// ÍCONES
+// ============================================================================
+
+export const STATUS_ICON = {
+
+    AGENDADO:
+        "🟡",
+
+    "EM ANDAMENTO":
+        "🟢",
+
+    FINALIZADO:
+        "✅",
+
+    CANCELADO:
+        "🔴",
 
     LIVRE: "🟢",
 
@@ -65,17 +126,41 @@ ICONES = {
 
     MANUTENCAO: "🔵",
 
-    AGENDADO: "🟡",
-
     CONCLUIDO: "✅",
 
     CANCELADO: "❌"
 
 };
 
-// ================= CORES =================
+// ============================================================================
+// CAMPOS
+// ============================================================================
 
-CORES = {
+export const CAMPOS = {
+
+    ID: "ID",
+
+    DATA: "Data",
+
+    HORA: "Hora",
+
+    EMPREGADO: "Empregado / Matrícula",
+
+    VEICULO: "Veículo",
+
+    PASSAGEIRO: "Passageiro / Setor / Motivo",
+
+    ITINERARIO: "Itinerário",
+
+    STATUS: "Status"
+
+};
+
+// ============================================================================
+// CORES
+// ============================================================================
+
+export const CORES = {
 
     VERDE: "#16A34A",
 
@@ -89,9 +174,11 @@ CORES = {
 
 };
 
-// ================= MENSAGENS =================
+// ============================================================================
+// MENSAGENS
+// ============================================================================
 
-MENSAGENS = {
+export const MENSAGENS = {
 
     SALVO: "Registro salvo com sucesso.",
 
@@ -104,38 +191,3 @@ MENSAGENS = {
     CARREGANDO: "Carregando dados..."
 
 };
-
-// ================= TABELAS =================
-
-TABELAS = {
-
-    VEICULOS: {
-
-        LINHAS: 5
-
-    },
-
-    MOTORISTAS: {
-
-        LINHAS: 5
-
-    },
-
-    DASHBOARD: {
-
-        LINHAS: 20
-
-    }
-
-};
-
-// ================= REFRESH =================
-
-export const REFRESH = {
-
-    DASHBOARD: 30000,
-
-    RELATORIOS: 60000
-
-};
-}
