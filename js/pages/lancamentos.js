@@ -70,8 +70,7 @@ async function init() {
 
         await carregarTabela();
 
-        console.log("Lançamentos:", lancamentos);
-
+        
     }
 
     catch (erro) {
