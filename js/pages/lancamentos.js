@@ -33,6 +33,12 @@ import {
 
 } from "../utils/datas.js";
 
+import {
+
+obterVeiculos
+
+} from "../services/veiculos.js";
+
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
@@ -45,6 +51,9 @@ const tbody =
 
 const btnNovo =
     document.querySelector("#btnNovo");
+
+const selectVeiculo =
+document.querySelector("#veiculo");
 
 const COLUNAS = [
 
@@ -438,3 +447,62 @@ function tratarErro(erro) {
     );
 
 }
+
+async function carregarVeiculos(){
+
+
+const resposta =
+await obterVeiculos();
+
+
+
+const veiculos =
+resposta.dados || resposta;
+
+
+
+selectVeiculo.innerHTML =
+`
+<option value="">
+Selecione o veículo
+</option>
+`;
+
+
+
+veiculos.forEach(
+(veiculo)=>{
+
+
+const option =
+document.createElement("option");
+
+
+
+/*
+Ajustar conforme
+as colunas da aba VEÍCULOS
+*/
+
+
+option.value =
+veiculo.Placa;
+
+
+
+option.textContent =
+`${veiculo.Placa} - ${veiculo.Modelo}`;
+
+
+
+selectVeiculo.appendChild(option);
+
+
+});
+
+
+}
+
+
+
+carregarVeiculos();
