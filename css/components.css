@@ -480,9 +480,89 @@ tbody tr:hover {
 
 
 }
+/*
+.status{
 
+    display:inline-flex;
 
+    align-items:center;
 
+    gap:6px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:.82rem;
+
+    font-weight:600;
+
+}
+
+.status-agendado{
+
+    background:#0d6efd22;
+
+    color:#0d6efd;
+
+}
+
+.status-andamento{
+
+    background:#ffc10722;
+
+    color:#ffc107;
+
+}
+
+.status-concluido{
+
+    background:#19875422;
+
+    color:#198754;
+
+}
+
+.status-cancelado{
+
+    background:#dc354522;
+
+    color:#dc3545;
+
+}
+
+.status-manutencao{
+
+    background:#6f42c122;
+
+    color:#6f42c1;
+
+}
+
+.status-livre{
+
+    background:#20c99722;
+
+    color:#20c997;
+
+}
+
+.status-ocupado{
+
+    background:#fd7e1422;
+
+    color:#fd7e14;
+
+}
+
+.status-default{
+
+    background:#6c757d22;
+
+    color:#6c757d;
+
+}
+*/
 
 
 /* ==========================================================================
