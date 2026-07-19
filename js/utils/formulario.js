@@ -45,17 +45,29 @@ export function preencherSelect(
 
 // ================= DADOS =================
 
-export function obterDadosFormulario(formulario) {
+export function obterDadosFormulario(
+
+    formulario,
+
+    mapa = {}
+
+) {
 
     const dados = {};
 
-    const campos = new FormData(formulario);
+    Object.entries(mapa).forEach(
 
-    campos.forEach((valor, chave) => {
+        ([campoFormulario, campoApi]) => {
 
-        dados[chave] = valor.trim();
+            const elemento = formulario.elements[campoFormulario];
 
-    });
+            if (!elemento) return;
+
+            dados[campoApi] = elemento.value.trim();
+
+        }
+
+    );
 
     return dados;
 
@@ -67,25 +79,25 @@ export function preencherFormulario(
 
     formulario,
 
-    dados
+    dados,
+
+    mapa = {}
 
 ) {
 
-    Object.keys(dados).forEach(campo => {
+    Object.entries(mapa).forEach(
 
-        if (
+        ([campoFormulario, campoApi]) => {
 
-            formulario[campo]
+            const elemento = formulario.elements[campoFormulario];
 
-        ) {
+            if (!elemento) return;
 
-            formulario[campo].value =
-
-                dados[campo];
+            elemento.value = dados[campoApi] ?? "";
 
         }
 
-    });
+    );
 
 }
 
