@@ -1,382 +1,391 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 
 <head>
 
-    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>
-        Painel Frota - Cadastro
-    </title>
+<meta charset="UTF-8">
 
 
-    <!-- ================= CSS ================= -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="css/cadastro.css">
 
-    <link rel="stylesheet" href="css/components.css">
+<title>
+
+Painel Frota - Cadastro
+
+</title>
+
+
+
+<!-- =====================================================================
+CSS
+===================================================================== -->
+
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/components.css">
+
+<link rel="stylesheet" href="css/cadastro.css">
+
 
 
 </head>
 
 
+
 <body>
 
 
-<!-- ======================================================================
-     HEADER
-====================================================================== -->
+
+<!-- =====================================================================
+HEADER
+===================================================================== -->
+
 
 <header class="header">
 
 
-    <div class="header-logo">
+<div class="header-logo">
 
 
-        <img
-            src="assets/img/logo.png"
-            alt="Logo Frota"
-        >
+<img
+
+src="assets/img/logo.png"
+
+alt="Logo Frota"
+
+>
 
 
-    </div>
-
-
-
-    <div class="header-title">
-
-
-        <h1>
-
-            CADASTRO
-
-        </h1>
-
-
-    </div>
+</div>
 
 
 
-    <div class="header-info">
 
 
-        <div
-            id="clock"
-            class="clock"
-        >
-
-        </div>
+<div class="header-title">
 
 
+<h1>
 
-        <button
-            id="btnFullscreen"
-            class="btn-icon"
-        >
+CADASTRO
 
-            ⛶
-
-        </button>
+</h1>
 
 
-    </div>
+</div>
+
+
+
+
+
+<div class="header-info">
+
+
+<div
+
+id="clock"
+
+class="clock">
+
+</div>
+
+
+
+
+<button
+
+id="btnFullscreen"
+
+class="btn-icon"
+
+aria-label="Tela cheia">
+
+⛶
+
+</button>
+
+
+
+</div>
 
 
 </header>
 
 
 
-<!-- ======================================================================
-     CONTEÚDO
-====================================================================== -->
+
+
+
+
+
+
+<!-- =====================================================================
+MAIN
+===================================================================== -->
 
 
 <main class="page-container">
 
 
 
+
+
+
+
+<!-- =====================================================================
+FORMULÁRIO
+===================================================================== -->
+
+
 <section class="card">
 
 
-    <h2>
+<h2>
 
-        NOVA MOVIMENTAÇÃO
+NOVA MOVIMENTAÇÃO
 
-    </h2>
+</h2>
 
 
 
-    <form
-        id="formCadastro"
-        class="form-grid"
-    >
 
 
+<form
 
-        <!-- DATA -->
+id="formCadastro"
 
-        <div class="form-group">
+class="form-grid"
 
+>
 
-            <label>
 
-                Data
 
-            </label>
 
 
-            <input
-                type="date"
-                name="data"
-                required
-            >
 
 
-        </div>
+<!-- DATA -->
 
 
+<div class="form-group">
 
 
-        <!-- HORA -->
+<label>
 
-        <div class="form-group">
+Data
 
+</label>
 
-            <label>
 
-                Hora
+<input
 
-            </label>
+type="date"
 
+id="data"
 
-            <input
-                type="time"
-                name="hora"
-                required
-            >
+name="data"
 
+required
 
-        </div>
+>
 
 
+</div>
 
 
 
-        <!-- MOTORISTA -->
 
-        <div class="form-group">
 
 
-            <label>
 
-                Motorista
 
-            </label>
+<!-- HORA -->
 
 
-            <select
-                id="motorista"
-                name="motorista"
-                required
-            >
+<div class="form-group">
 
 
-                <option value="">
+<label>
 
-                    Selecione
+Hora
 
-                </option>
+</label>
 
 
-            </select>
+<input
 
+type="time"
 
-        </div>
+id="hora"
 
+name="hora"
 
+required
 
+>
 
 
-        <!-- VEÍCULO -->
+</div>
 
-        <div class="form-group">
 
 
-            <label>
 
-                Veículo
 
-            </label>
 
 
-            <select
-                id="veiculo"
-                name="veiculo"
-                required
-            >
 
+<!-- MOTORISTA -->
 
-                <option value="">
 
-                    Selecione
+<div class="form-group">
 
-                </option>
 
+<label>
 
-            </select>
+Motorista
 
+</label>
 
-        </div>
 
+<select
 
+id="motorista"
 
+name="motorista"
 
+required
 
+>
 
-        <!-- PASSAGEIRO -->
 
-        <div class="form-group">
+<option value="">
 
+Selecione o motorista
 
-            <label>
+</option>
 
-                Passageiro
 
-            </label>
+</select>
 
 
-            <input
-                type="text"
-                name="passageiro"
-            >
+</div>
 
 
-        </div>
 
 
 
 
 
 
-        <!-- SETOR -->
 
-        <div class="form-group">
+<!-- VEÍCULO -->
 
 
-            <label>
+<div class="form-group">
 
-                Setor
 
-            </label>
+<label>
 
+Veículo
 
-            <input
-                type="text"
-                name="setor"
-            >
+</label>
 
 
-        </div>
+<select
 
+id="veiculo"
 
+name="veiculo"
 
+required
 
+>
 
 
+<option value="">
 
-        <!-- MOTIVO -->
+Selecione o veículo
 
-        <div class="form-group">
+</option>
 
 
-            <label>
+</select>
 
-                Motivo
 
-            </label>
+</div>
 
 
-            <input
-                type="text"
-                name="motivo"
-            >
 
 
-        </div>
 
 
 
 
+<!-- PASSAGEIRO -->
 
 
-        <!-- STATUS -->
+<div class="form-group">
 
-        <div class="form-group">
 
+<label>
 
-            <label>
+Passageiro
 
-                Status
+</label>
 
-            </label>
 
+<input
 
-            <select
-                name="status"
-            >
+type="text"
 
+id="passageiro"
 
-                <option>
+name="passageiro"
 
-                    AGENDADO
+>
 
-                </option>
 
+</div>
 
-                <option>
 
-                    EM ANDAMENTO
 
-                </option>
 
 
-                <option>
 
-                    VIAGEM
 
-                </option>
 
 
-                <option>
+<!-- SETOR -->
 
-                    MANUTENÇÃO
 
-                </option>
+<div class="form-group">
 
 
-                <option>
+<label>
 
-                    CONCLUÍDO
+Setor
 
-                </option>
+</label>
 
 
-                <option>
+<input
 
-                    CANCELADO
+type="text"
 
-                </option>
+id="setor"
 
+name="setor"
 
-            </select>
+>
 
 
-        </div>
+</div>
 
 
 
@@ -384,75 +393,218 @@
 
 
 
-        <!-- ITINERÁRIO -->
 
-        <div class="form-group full">
 
+<!-- MOTIVO -->
 
-            <label>
 
-                Itinerário
+<div class="form-group">
 
-            </label>
 
+<label>
 
-            <textarea
+Motivo
 
-                name="itinerario"
+</label>
 
-                rows="3"
 
-            ></textarea>
+<input
 
+type="text"
 
-        </div>
+id="motivo"
 
+name="motivo"
 
+>
 
 
+</div>
 
 
 
-        <!-- BOTÕES -->
 
-        <div class="form-actions">
 
 
-            <button
 
-                type="submit"
 
-                id="btnSalvar"
+<!-- STATUS -->
 
-                class="btn-primary"
 
-            >
+<div class="form-group">
 
-                SALVAR
 
-            </button>
+<label>
 
+Status
 
+</label>
 
-            <button
 
-                type="reset"
+<select
 
-                class="btn-secondary"
+id="status"
 
-            >
+name="status"
 
-                LIMPAR
+>
 
-            </button>
 
+<option value="AGENDADO">
 
+AGENDADO
 
-        </div>
+</option>
 
 
+<option value="EM ANDAMENTO">
 
-    </form>
+EM ANDAMENTO
+
+</option>
+
+
+<option value="VIAGEM">
+
+VIAGEM
+
+</option>
+
+
+<option value="MANUTENÇÃO">
+
+MANUTENÇÃO
+
+</option>
+
+
+<option value="CONCLUÍDO">
+
+CONCLUÍDO
+
+</option>
+
+
+<option value="CANCELADO">
+
+CANCELADO
+
+</option>
+
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ITINERÁRIO -->
+
+
+<div class="form-group full">
+
+
+<label>
+
+Itinerário
+
+</label>
+
+
+
+<textarea
+
+id="itinerario"
+
+name="itinerario"
+
+rows="3"
+
+></textarea>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- AÇÕES -->
+
+
+<div class="form-actions">
+
+
+<button
+
+type="submit"
+
+id="btnSalvar"
+
+class="btn-primary"
+
+>
+
+SALVAR
+
+</button>
+
+
+
+
+
+<button
+
+type="button"
+
+id="btnNovo"
+
+class="btn-secondary"
+
+>
+
+NOVO
+
+</button>
+
+
+
+
+
+<button
+
+type="reset"
+
+class="btn-secondary"
+
+>
+
+LIMPAR
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</form>
 
 
 
@@ -462,88 +614,48 @@
 
 
 
-<!-- ======================================================================
-     ÚLTIMOS CADASTROS
-====================================================================== -->
+
+
+
+
+<!-- =====================================================================
+TABELA
+===================================================================== -->
 
 
 <section class="card">
 
 
-    <h2>
+<h2>
 
-        ÚLTIMOS LANÇAMENTOS
+ÚLTIMOS LANÇAMENTOS
 
-    </h2>
-
-
-
-
-    <div class="table-container">
-
-
-        <table>
-
-
-            <thead>
-
-
-                <tr>
-
-
-                    <th>
-                        Data
-                    </th>
-
-
-                    <th>
-                        Hora
-                    </th>
-
-
-                    <th>
-                        Motorista
-                    </th>
-
-
-                    <th>
-                        Veículo
-                    </th>
-
-
-                    <th>
-                        Passageiro
-                    </th>
-
-
-                    <th>
-                        Status
-                    </th>
-
-
-                </tr>
-
-
-            </thead>
+</h2>
 
 
 
-            <tbody
-                id="cadastrosData"
-            >
 
 
-            </tbody>
+<div class="table-container">
+
+
+<div
+
+id="tabelaCadastro"
+
+></div>
 
 
 
-        </table>
+</div>
 
-
-    </div>
 
 
 </section>
+
+
+
+
 
 
 
@@ -553,15 +665,22 @@
 
 
 
-<!-- ======================================================================
-     LOADING
-====================================================================== -->
+
+
+
+
+<!-- =====================================================================
+LOADING
+===================================================================== -->
 
 
 <div
-    id="loading"
-    class="loading-overlay"
->
+
+id="loading"
+
+class="loading-overlay"
+
+hidden>
 
 </div>
 
@@ -569,21 +688,28 @@
 
 
 
-<!-- ======================================================================
-     JAVASCRIPT
-====================================================================== -->
+
+
+
+
+<!-- =====================================================================
+SCRIPT
+===================================================================== -->
 
 
 <script
 
-    type="module"
+type="module"
 
-    src="js/pages/cadastro.js"
+src="js/pages/cadastro.js">
 
-></script>
+</script>
+
+
 
 
 
 </body>
+
 
 </html>
