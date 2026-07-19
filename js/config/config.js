@@ -2,238 +2,413 @@
 // CONFIG
 // Painel Frota
 // Arquivo: js/config/config.js
+//
+// Configurações globais da aplicação
 // ============================================================================
 
+
+
 // ============================================================================
-// API
+// APLICAÇÃO
 // ============================================================================
+
 
 export const CONFIG = {
 
+
     API_URL:
-        "https://script.google.com/macros/s/AKfycbxk5OLhLT4dxTVUa-9IpVRAf70MG8F3qNcL597aPq9O47wj9m7mBytdt3dEZE3GMlBHmw/exec",
+
+    "https://script.google.com/macros/s/AKfycbxk5OLhLT4dxTVUa-9IpVRAf70MG8F3qNcL597aPq9O47wj9m7mBytdt3dEZE3GMlBHmw/exec",
+
+
 
     UPDATE_INTERVAL:
-        30000,
+
+    30000,
+
+
 
     DATE_FORMAT:
-        "pt-BR",
+
+    "pt-BR",
+
+
 
     TIME_FORMAT:
-        "pt-BR"
+
+    "pt-BR"
+
 
 };
 
 
-export async function apiGet(rota){
 
-
-const resposta =
-await fetch(
-`${API_URL}?rota=${rota}`
-);
-
-
-return await resposta.json();
-
-
-}
-
-
-
-export async function apiPost(
-rota,
-dados
-){
-
-
-const resposta =
-await fetch(
-API_URL,
-{
-
-method:"POST",
-
-body:JSON.stringify({
-
-rota,
-
-dados
-
-})
-
-});
-
-
-return await resposta.json();
-
-
-}
 
 // ============================================================================
-// ABAS
+// ABAS GOOGLE SHEETS
 // ============================================================================
+
 
 export const ABAS = {
 
+
     LANCAMENTOS:
-        "LANCAMENTOS",
-    
+
+    "LANCAMENTOS",
+
+
+
     VEICULOS:
-        "VEÍCULOS",
-    
-    EMPREGADOS:
-        "EMPREGADOS",
+
+    "VEÍCULOS",
+
+
 
     MOTORISTAS:
-        "MOTORISTAS",
+
+    "MOTORISTAS",
+
+
+
+    EMPREGADOS:
+
+    "EMPREGADOS",
+
+
 
     AGENDA:
-        "AGENDA DO DIA",
+
+    "AGENDA DO DIA",
+
+
 
     SOCIAL:
-        "AGENDA SERVIÇO SOCIAL"
+
+    "AGENDA SERVIÇO SOCIAL"
+
 
 };
 
+
+
+
 // ============================================================================
-// STATUS
+// STATUS DO SISTEMA
 // ============================================================================
+
 
 export const STATUS = {
 
+
     AGENDADO:
-        "AGENDADO",
+
+    "AGENDADO",
+
+
 
     EM_ANDAMENTO:
-        "EM ANDAMENTO",
 
-    VIAGEM: "VIAGEM",
+    "EM ANDAMENTO",
 
-    MANUTENCAO: "MANUTENÇÃO",
 
-    CONCLUIDO: "CONCLUÍDO",
+
+    VIAGEM:
+
+    "VIAGEM",
+
+
+
+    MANUTENCAO:
+
+    "MANUTENÇÃO",
+
+
+
+    CONCLUIDO:
+
+    "CONCLUÍDO",
+
+
 
     FINALIZADO:
-        "FINALIZADO",
+
+    "FINALIZADO",
+
+
 
     CANCELADO:
-        "CANCELADO",
 
-    LIVRE: "LIVRE",
+    "CANCELADO",
 
-    OCUPADO: "OCUPADO"
+
+
+    LIVRE:
+
+    "LIVRE",
+
+
+
+    OCUPADO:
+
+    "OCUPADO"
+
 
 };
 
+
+
+
 // ============================================================================
-// CLASSES CSS
+// CLASSES CSS STATUS
 // ============================================================================
+
 
 export const STATUS_CLASS = {
 
+
     AGENDADO:
-        "status-agendado",
+
+    "status-agendado",
+
+
 
     "EM ANDAMENTO":
-        "status-andamento",
+
+    "status-andamento",
+
+
+
+    VIAGEM:
+
+    "status-viagem",
+
+
+
+    MANUTENCAO:
+
+    "status-manutencao",
+
+
 
     FINALIZADO:
-        "status-finalizado",
+
+    "status-finalizado",
+
+
 
     CANCELADO:
-        "status-cancelado"
+
+    "status-cancelado"
+
 
 };
 
+
+
+
 // ============================================================================
-// ÍCONES
+// ÍCONES STATUS
 // ============================================================================
+
 
 export const STATUS_ICON = {
 
+
     AGENDADO:
-        "🟡",
+
+    "🟡",
+
+
 
     "EM ANDAMENTO":
-        "🟢",
+
+    "🟢",
+
+
+
+    VIAGEM:
+
+    "✈️",
+
+
+
+    MANUTENCAO:
+
+    "🔵",
+
+
 
     FINALIZADO:
-        "✅",
+
+    "✅",
+
+
+
+    CONCLUIDO:
+
+    "✅",
+
+
 
     CANCELADO:
-        "🔴",
 
-    LIVRE: "🟢",
+    "🔴",
 
-    OCUPADO: "🔴",
 
-    VIAGEM: "✈️",
 
-    MANUTENCAO: "🔵",
+    LIVRE:
 
-    CONCLUIDO: "✅",
+    "🟢",
 
-    CANCELADO: "❌"
+
+
+    OCUPADO:
+
+    "🔴"
+
 
 };
 
+
+
+
 // ============================================================================
-// CAMPOS
+// CAMPOS PADRÃO LANÇAMENTOS
 // ============================================================================
+
 
 export const CAMPOS = {
 
-    ID: "ID",
 
-    DATA: "Data",
+    ID:
 
-    HORA: "Hora",
+    "ID",
 
-    EMPREGADO: "Empregado / Matrícula",
 
-    VEICULO: "Veículo",
 
-    PASSAGEIRO: "Passageiro / Setor / Motivo",
+    DATA:
 
-    ITINERARIO: "Itinerário",
+    "Data",
 
-    STATUS: "Status"
+
+
+    HORA:
+
+    "Hora",
+
+
+
+    EMPREGADO:
+
+    "Empregado / Matrícula",
+
+
+
+    VEICULO:
+
+    "Veículo",
+
+
+
+    PASSAGEIRO:
+
+    "Passageiro / Setor / Motivo",
+
+
+
+    ITINERARIO:
+
+    "Itinerário",
+
+
+
+    STATUS:
+
+    "Status"
+
 
 };
 
+
+
+
 // ============================================================================
-// CORES
+// CORES DA INTERFACE
 // ============================================================================
+
 
 export const CORES = {
 
-    VERDE: "#16A34A",
 
-    AZUL: "#2563EB",
+    VERDE:
 
-    VERMELHO: "#DC2626",
+    "#16A34A",
 
-    AMARELO: "#FACC15",
 
-    CINZA: "#6B7280"
+
+    AZUL:
+
+    "#2563EB",
+
+
+
+    VERMELHO:
+
+    "#DC2626",
+
+
+
+    AMARELO:
+
+    "#FACC15",
+
+
+
+    CINZA:
+
+    "#6B7280"
+
 
 };
 
+
+
+
 // ============================================================================
-// MENSAGENS
+// MENSAGENS PADRÃO
 // ============================================================================
+
 
 export const MENSAGENS = {
 
-    SALVO: "Registro salvo com sucesso.",
 
-    EXCLUIDO: "Registro excluído com sucesso.",
+    SALVO:
 
-    ALTERADO: "Registro atualizado com sucesso.",
+    "Registro salvo com sucesso.",
 
-    ERRO: "Ocorreu um erro ao processar a solicitação.",
 
-    CARREGANDO: "Carregando dados..."
+
+    EXCLUIDO:
+
+    "Registro excluído com sucesso.",
+
+
+
+    ALTERADO:
+
+    "Registro atualizado com sucesso.",
+
+
+
+    ERRO:
+
+    "Ocorreu um erro ao processar a solicitação.",
+
+
+
+    CARREGANDO:
+
+    "Carregando dados..."
+
 
 };
