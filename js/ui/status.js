@@ -1,14 +1,20 @@
 // ============================================================================
-// STATUS
+// STATUS UI
 // Painel Frota
 // Arquivo: js/ui/status.js
+//
+// Responsável pela padronização visual dos status
 // ============================================================================
 
+
+
 // ============================================================================
-// STATUS
+// CONFIGURAÇÃO DOS STATUS
 // ============================================================================
+
 
 const STATUS = {
+
 
     AGENDADO: {
 
@@ -18,6 +24,7 @@ const STATUS = {
 
     },
 
+
     "EM ANDAMENTO": {
 
         classe: "status-andamento",
@@ -26,13 +33,6 @@ const STATUS = {
 
     },
 
-    CONCLUÍDO: {
-
-        classe: "status-concluido",
-
-        icone: "✅"
-
-    },
 
     CONCLUIDO: {
 
@@ -42,6 +42,7 @@ const STATUS = {
 
     },
 
+
     CANCELADO: {
 
         classe: "status-cancelado",
@@ -50,13 +51,6 @@ const STATUS = {
 
     },
 
-    MANUTENÇÃO: {
-
-        classe: "status-manutencao",
-
-        icone: "🔧"
-
-    },
 
     MANUTENCAO: {
 
@@ -66,6 +60,7 @@ const STATUS = {
 
     },
 
+
     LIVRE: {
 
         classe: "status-livre",
@@ -74,96 +69,167 @@ const STATUS = {
 
     },
 
+
     OCUPADO: {
 
         classe: "status-ocupado",
 
         icone: "🔴"
 
+    },
+
+
+    VIAGEM: {
+
+        classe: "status-viagem",
+
+        icone: "✈️"
+
+    },
+
+
+    DEFAULT: {
+
+        classe: "status-default",
+
+        icone: "⚪"
+
     }
+
 
 };
 
+
+
+
 // ============================================================================
-// NORMALIZA
+// NORMALIZAÇÃO
 // ============================================================================
+
 
 function normalizar(status = "") {
 
-    return status
 
-        .toString()
+    return String(status)
 
         .normalize("NFD")
 
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(
+
+            /[\u0300-\u036f]/g,
+
+            ""
+
+        )
 
         .trim()
 
         .toUpperCase();
 
-}
-
-// ============================================================================
-// OBTÉM
-// ============================================================================
-
-export function getStatus(status) {
-
-    return (
-
-        STATUS[normalizar(status)] ||
-
-        {
-
-            classe: "status-default",
-
-            icone: "⚪"
-
-        }
-
-    );
 
 }
 
+
+
+
 // ============================================================================
-// CLASSE
+// BUSCAR STATUS
 // ============================================================================
 
-export function getStatusClass(status) {
 
-    return getStatus(status).classe;
+export function getStatus(status){
+
+
+    const chave =
+    normalizar(status);
+
+
+
+    return STATUS[chave]
+
+        ||
+
+    STATUS.DEFAULT;
+
 
 }
+
+
+
+
+// ============================================================================
+// CLASSE CSS
+// ============================================================================
+
+
+export function getStatusClass(status){
+
+
+    return getStatus(status)
+
+        .classe;
+
+
+}
+
+
+
 
 // ============================================================================
 // ÍCONE
 // ============================================================================
 
-export function getStatusIcon(status) {
 
-    return getStatus(status).icone;
+export function getStatusIcon(status){
+
+
+    return getStatus(status)
+
+        .icone;
+
 
 }
 
+
+
+
 // ============================================================================
-// BADGE
+// COMPONENTE BADGE
 // ============================================================================
 
-export function renderStatus(status) {
 
-    const item = getStatus(status);
+export function renderStatus(status){
+
+
+    const item =
+    getStatus(status);
+
+
 
     return `
 
+
         <span class="status ${item.classe}">
 
-            ${item.icone}
 
-            ${status}
+            <span class="status-icon">
+
+                ${item.icone}
+
+            </span>
+
+
+            <span class="status-text">
+
+                ${status}
+
+            </span>
+
 
         </span>
 
+
     `;
+
 
 }
