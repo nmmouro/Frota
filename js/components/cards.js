@@ -1,59 +1,95 @@
-export default class Cadastro {
+// ============================================================================
+// CARD COMPONENT
+// Painel Frota
+// Arquivo: js/components/card.js
+// ============================================================================
 
-    constructor(form) {
+// ============================================================================
+// CRIAR CARD
+// ============================================================================
 
-        this.form = form;
+export function createCard({
 
-        this.botao =
-            form.querySelector(
-                'button[type="submit"]'
-            );
+    titulo = "",
+
+    valor = "",
+
+    subtitulo = "",
+
+    icone = "",
+
+    classe = "",
+
+    footer = "",
+
+    onClick = null
+
+} = {}) {
+
+    const card =
+
+        document.createElement("article");
+
+    card.className =
+
+        `card ${classe}`.trim();
+
+    card.innerHTML = `
+
+        <header class="card-header">
+
+            <span class="card-icon">
+
+                ${icone}
+
+            </span>
+
+            <h3 class="card-title">
+
+                ${titulo}
+
+            </h3>
+
+        </header>
+
+        <section class="card-body">
+
+            <div class="card-value">
+
+                ${valor}
+
+            </div>
+
+            <small class="card-subtitle">
+
+                ${subtitulo}
+
+            </small>
+
+        </section>
+
+        <footer class="card-footer">
+
+            ${footer}
+
+        </footer>
+
+    `;
+
+    if (typeof onClick === "function") {
+
+        card.classList.add("clickable");
+
+        card.addEventListener(
+
+            "click",
+
+            () => onClick(card)
+
+        );
 
     }
 
-    bloquear() {
-
-        this.botao.disabled = true;
-
-        this.textoOriginal =
-            this.botao.textContent;
-
-        this.botao.textContent =
-            "Salvando...";
-
-    }
-
-    liberar() {
-
-        this.botao.disabled = false;
-
-        this.botao.textContent =
-            this.textoOriginal;
-
-    }
-
-    obter(id) {
-
-        return document.getElementById(id);
-
-    }
-
-    valor(id) {
-
-        return this.obter(id).value;
-
-    }
-
-    limpar() {
-
-        this.form.reset();
-
-    }
-
-    mensagem(texto) {
-
-        alert(texto);
-
-    }
+    return card;
 
 }
