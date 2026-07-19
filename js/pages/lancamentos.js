@@ -364,41 +364,21 @@ function obterDadosFormulario() {
 
     return {
 
-        Data:
+        Data: formulario.data.value,
 
-            formulario.data.value,
+        Hora: formulario.hora.value,
 
-        Hora:
+        "Empregado / Matrícula": formulario.motorista.value,
 
-            formulario.hora.value,
-
-        "Empregado / Matrícula":
-
-            formulario.empregado.value,
-
-        "Veículo":
-
-            formulario.veiculo.value,
+        "Veículo": formulario.veiculo.value,
 
         "Passageiro / Setor / Motivo":
 
-            formulario.passageiro.value,
+            `${formulario.passageiro.value} / ${formulario.setor.value} / ${formulario.motivo.value}`,
 
-        "Itinerário":
+        "Itinerário": formulario.itinerario.value,
 
-            formulario.itinerario.value,
-
-        Checklist:
-
-            formulario.checklist.value,
-
-        Status:
-
-            formulario.status.value,
-
-        Usuário:
-
-            formulario.usuario.value
+        Status: formulario.status.value
 
     };
 
@@ -409,40 +389,35 @@ function obterDadosFormulario() {
 function preencherFormulario(registro) {
 
     formulario.data.value =
-
-        registro.Data;
+        dataParaInput(registro.Data);
 
     formulario.hora.value =
+        horaParaInput(registro.Hora);
 
-        registro.Hora;
-
-    formulario.empregado.value =
-
+    formulario.motorista.value =
         registro["Empregado / Matrícula"];
 
     formulario.veiculo.value =
-
         registro["Veículo"];
 
-    formulario.passageiro.value =
+    const partes =
+        (registro["Passageiro / Setor / Motivo"] || "")
+        .split("/");
 
-        registro["Passageiro / Setor / Motivo"];
+    formulario.passageiro.value =
+        partes[0]?.trim() || "";
+
+    formulario.setor.value =
+        partes[1]?.trim() || "";
+
+    formulario.motivo.value =
+        partes.slice(2).join("/").trim();
 
     formulario.itinerario.value =
-
         registro["Itinerário"];
 
-    formulario.checklist.value =
-
-        registro.Checklist;
-
     formulario.status.value =
-
         registro.Status;
-
-    formulario.usuario.value =
-
-        registro["Usuário"];
 
 }
 
