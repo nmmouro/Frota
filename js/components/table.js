@@ -1,49 +1,315 @@
-export function renderTabela(
-    elemento,
-    dados
-){
+// ============================================================================
+// TABLE COMPONENT
+// Painel Frota
+// Arquivo: js/components/table.js
+// ============================================================================
 
-    if(!dados.length){
+import { renderStatus } from "../ui/status.js";
 
-        elemento.innerHTML="Sem registros";
+// ============================================================================
+// COMPONENTE
+// ============================================================================
 
-        return;
+export function createTable({
+
+    columns = [],
+
+    data = [],
+
+    actions = []
+
+} = {}) {
+
+    const table = document.createElement("table");
+
+    table.className = "table";
+
+    table.appendChild(
+
+        createHeader(columns, actions)
+
+    );
+
+    table.appendChild(
+
+        createBody(columns, data, actions)
+
+    );
+
+    return table;
+
+}
+
+// ============================================================================
+// CABEÇALHO
+// ============================================================================
+
+function createHeader(
+
+    columns,
+
+    actions
+
+) {
+
+    const thead = document.createElement("thead");
+
+    const tr = document.createElement("tr");
+
+    columns.forEach(col => {
+
+        const th = document.createElement("th");
+
+        th.textContent =
+
+            col.label || col.field;
+
+        tr.appendChild(th);
+
+    });
+
+    if (actions.length) {
+
+        const th = document.createElement("th");
+
+        th.textContent = "Ações";
+
+        tr.appendChild(th);
 
     }
 
-    const colunas =
-        Object.keys(dados[0]);
+    thead.appendChild(tr);
 
-    elemento.innerHTML=`
+    return thead;
 
-<table>
+}
 
-<thead>
+// ============================================================================
+// CORPO
+// ============================================================================
 
-<tr>
+function createBody(
 
-${colunas.map(c=>`<th>${c}</th>`).join("")}
+    columns,
 
-</tr>
+    data,
 
-</thead>
+    actions
 
-<tbody>
+) {
 
-${dados.map(l=>`
+    const tbody = document.createElement("tbody");
 
-<tr>
+    if (!data.length) {
 
-${colunas.map(c=>`<td>${l[c]}</td>`).join("")}
+        tbody.appendChild(
 
-</tr>
+            createEmptyRow(
 
-`).join("")}
+                columns.length +
 
-</tbody>
+                (actions.length ? 1 : 0)
 
-</table>
+            )
 
-`;
+        );
+
+        return tbody;
+
+    }
+
+    data.forEach(item => {
+
+        tbody.appendChild(
+
+            createRow(
+
+                item,
+
+                columns,
+
+                actions
+
+            )
+
+        );
+
+    });
+
+    return tbody;
+
+}
+
+// ============================================================================
+// LINHA
+// ============================================================================
+
+function createRow(
+
+    item,
+
+    columns,
+
+    actions
+
+) {
+
+    const tr = document.createElement("tr");
+
+    columns.forEach(col => {
+
+        const td = document.createElement("td");
+
+        const value =
+
+            item[col.field];
+
+        if (col.type === "status") {
+
+            td.innerHTML =
+
+                renderStatus(value);
+
+        }
+
+        else if (typeof col.render === "function") {
+
+            td.innerHTML =
+
+                col.render(value, item);
+
+        }
+
+        else {
+
+            td.textContent =
+
+                value ?? "";
+
+        }
+
+        tr.appendChild(td);
+
+    });
+
+    if (actions.length) {
+
+        tr.appendChild(
+
+            createActions(
+
+                item,
+
+                actions
+
+            )
+
+        );
+
+    }
+
+    return tr;
+
+}
+
+// ============================================================================
+// AÇÕES
+// ============================================================================
+
+function createActions(
+
+    item,
+
+    actions
+
+) {
+
+    const td = document.createElement("td");
+
+    td.className = "table-actions";
+
+    actions.forEach(action => {
+
+        const button =
+
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+
+            action.className || "";
+
+        button.textContent =
+
+            action.label;
+
+        button.addEventListener(
+
+            "click",
+
+            () => action.onClick(item)
+
+        );
+
+        td.appendChild(button);
+
+    });
+
+    return td;
+
+}
+
+// ============================================================================
+// SEM DADOS
+// ============================================================================
+
+function createEmptyRow(
+
+    colspan
+
+) {
+
+    const tr =
+
+        document.createElement("tr");
+
+    const td =
+
+        document.createElement("td");
+
+    td.colSpan = colspan;
+
+    td.className = "table-empty";
+
+    td.textContent =
+
+        "Nenhum registro encontrado.";
+
+    tr.appendChild(td);
+
+    return tr;
+
+}
+
+// ============================================================================
+// RENDER
+// ============================================================================
+
+export function renderTable(
+
+    container,
+
+    options
+
+) {
+
+    if (!container) return;
+
+    container.replaceChildren(
+
+        createTable(options)
+
+    );
 
 }
