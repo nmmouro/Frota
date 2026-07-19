@@ -115,7 +115,7 @@ document.addEventListener(
     "DOMContentLoaded",
 
     init
-
+preencherDataHoraAtual();
 );
 
 // ============================================================================
@@ -604,6 +604,38 @@ async function carregarMotoristas(){
             erro
         );
 
+
+    }
+
+
+}
+
+
+function preencherDataHoraAtual(){
+
+
+    const campoData =
+    document.querySelector("#data");
+
+
+    const campoHora =
+    document.querySelector("#hora");
+
+
+
+    if(campoData){
+
+        campoData.value =
+        dataInput();
+
+    }
+
+
+
+    if(campoHora){
+
+        campoHora.value =
+        horaInput();
 
     }
 
