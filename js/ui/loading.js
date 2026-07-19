@@ -1,73 +1,152 @@
 // ============================================================================
-// LOADING
+// LOADING UI
 // Painel Frota
 // Arquivo: js/ui/loading.js
+//
+// Controle global do indicador de carregamento
 // ============================================================================
+
+
 
 // ============================================================================
 // ELEMENTO
 // ============================================================================
 
-const loading =
 
-    document.querySelector("#loading");
+function getLoadingElement(){
+
+
+    return document.querySelector(
+
+        "#loading"
+
+    );
+
+
+}
+
+
+
 
 // ============================================================================
-// MOSTRAR
+// MOSTRAR LOADING
 // ============================================================================
 
-export function mostrarLoading() {
 
-    if (!loading) return;
+export function mostrarLoading(){
+
+
+    const loading =
+    getLoadingElement();
+
+
+
+    if(!loading) return;
+
+
 
     loading.hidden = false;
 
+
+
 }
 
+
+
+
 // ============================================================================
-// ESCONDER
+// ESCONDER LOADING
 // ============================================================================
 
-export function esconderLoading() {
 
-    if (!loading) return;
+export function esconderLoading(){
+
+
+    const loading =
+    getLoadingElement();
+
+
+
+    if(!loading) return;
+
+
 
     loading.hidden = true;
 
-}
 
-// ============================================================================
-// TOGGLE
-// ============================================================================
-
-export function toggleLoading(ativo) {
-
-    ativo
-
-        ? mostrarLoading()
-
-        : esconderLoading();
 
 }
 
+
+
+
 // ============================================================================
-// EXECUTAR COM LOADING
+// ALTERAR ESTADO
 // ============================================================================
 
-export async function executarComLoading(callback) {
 
-    try {
+export function toggleLoading(ativo){
+
+
+    if(ativo){
+
 
         mostrarLoading();
 
-        return await callback();
 
     }
+    else{
 
-    finally {
 
         esconderLoading();
 
+
     }
+
+
+}
+
+
+
+
+// ============================================================================
+// EXECUTAR COM LOADING AUTOMÁTICO
+// ============================================================================
+
+
+export async function executarComLoading(
+
+    callback
+
+){
+
+
+    try{
+
+
+        mostrarLoading();
+
+
+
+        return await callback();
+
+
+
+    }
+    catch(erro){
+
+
+        throw erro;
+
+
+    }
+    finally{
+
+
+        esconderLoading();
+
+
+    }
+
 
 }
