@@ -27,9 +27,9 @@ import {
 
 export async function obterVeiculos() {
 
-    return await apiGet(
+    return await listar(
 
-        ABAS.VEICULOS
+        ABA
 
     );
 
