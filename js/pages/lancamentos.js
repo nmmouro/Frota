@@ -57,6 +57,12 @@ import {
 
 } from "../utils/datas.js";
 
+import {
+
+    preencherSelect
+
+} from "../utils/formulario.js";
+
 
 
 // ============================================================================
@@ -203,6 +209,8 @@ async function init(){
 
 
         await carregarTabela();
+
+        esconderLoading();
 
 
 
@@ -680,43 +688,25 @@ async function carregarVeiculos(){
 async function carregarMotoristas(){
 
 
-    const resposta =
-    await obterMotoristas();
+    const dados =
 
-
-    const lista =
-    resposta.dados ?? resposta;
+        await obterMotoristas();
 
 
 
-    selectMotorista.innerHTML =
-    `
-    <option value="">
-        Selecione o motorista
-    </option>
-    `;
+    preencherSelect(
 
+        selectMotorista,
 
+        dados,
 
-    lista.forEach(item=>{
+        "MOTORISTA",
 
+        "MOTORISTA",
 
-        const option =
-        document.createElement("option");
+        "Selecione o motorista"
 
-
-        option.value =
-        item.Motorista;
-
-
-        option.textContent =
-        item.Motorista;
-
-
-        selectMotorista.appendChild(option);
-
-
-    });
+    );
 
 
 }
