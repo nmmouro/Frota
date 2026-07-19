@@ -3,20 +3,42 @@
 // Arquivo: js/pages/lancamentos.js
 // ============================================================================
 
+
+// ============================================================================
+// IMPORTS
+// ============================================================================
+
+
 import {
 
     obterLancamentos,
     salvarLancamento,
     atualizarLancamento,
-    excluirLancamento
+    excluirLancamento as removerLancamento
 
 } from "../services/lancamentos.js";
+
+
+import {
+
+    obterVeiculos
+
+} from "../services/veiculos.js";
+
+
+import {
+
+    obterMotoristas
+
+} from "../services/motoristas.js";
+
 
 import {
 
     renderTable
 
 } from "../ui/table.js";
+
 
 import {
 
@@ -25,148 +47,194 @@ import {
 
 } from "../ui/loading.js";
 
+
 import {
 
     dataInput,
-    inputParaData,
-    horaInput
+    dataParaInput,
+    horaInput,
+    horaParaInput
 
 } from "../utils/datas.js";
 
-import {
 
-obterVeiculos
-
-} from "../services/veiculos.js";
-
-import {
-
-    obterMotoristas
-
-} from "../services/motoristas.js";
 
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
 
-const formulario =
-    document.querySelector("#formLancamento");
 
-const tbody =
-    document.querySelector("#tabelaLancamentos");
+const formulario =
+document.querySelector("#formLancamento");
+
+
+const tabela =
+document.querySelector("#tabelaLancamentos");
+
 
 const btnNovo =
-    document.querySelector("#btnNovo");
+document.querySelector("#btnNovo");
+
+
+const campoData =
+document.querySelector("#data");
+
+
+const campoHora =
+document.querySelector("#hora");
+
 
 const selectVeiculo =
 document.querySelector("#veiculo");
 
+
 const selectMotorista =
 document.querySelector("#motorista");
+
+
+
+
+// ============================================================================
+// CONFIGURAÇÃO DA TABELA
+// ============================================================================
+
 
 const COLUNAS = [
 
     {
-        field: "ID",
-        label: "ID"
+        field:"ID",
+        label:"ID"
     },
 
-    {
-        field: "Data",
-        label: "Data"
-    },
 
     {
-        field: "Hora",
-        label: "Hora"
+        field:"Data",
+        label:"Data"
     },
 
-    {
-        field: "Empregado / Matrícula",
-        label: "Empregado"
-    },
 
     {
-        field: "Veículo",
-        label: "Veículo"
+        field:"Hora",
+        label:"Hora"
     },
 
-    {
-        field: "Passageiro / Setor / Motivo",
-        label: "Passageiro"
-    },
 
     {
-        field: "Itinerário",
-        label: "Itinerário"
+        field:"Empregado / Matrícula",
+        label:"Empregado"
     },
 
+
     {
-        field: "Status",
-        label: "Status",
-        type: "status"
+        field:"Veículo",
+        label:"Veículo"
+    },
+
+
+    {
+        field:"Passageiro / Setor / Motivo",
+        label:"Passageiro"
+    },
+
+
+    {
+        field:"Itinerário",
+        label:"Itinerário"
+    },
+
+
+    {
+        field:"Status",
+        label:"Status",
+        type:"status"
     }
 
 ];
 
+
+
+
 // ============================================================================
-// DADOS
+// ESTADO
 // ============================================================================
+
 
 let registros = [];
 
 let registroEditando = null;
 
+
+
+
 // ============================================================================
+// INICIALIZAÇÃO
+// ============================================================================
+
 
 document.addEventListener(
 
-    "DOMContentLoaded",
+"DOMContentLoaded",
 
-    init
+init
 
 );
 
-// ============================================================================
-// INIT
-// ============================================================================
 
-async function init() {
 
-    try {
+async function init(){
 
-       mostrarLoading();
+
+    try{
+
+
+        mostrarLoading();
+
 
         preencherDataHoraAtual();
 
+
         registrarEventos();
+
 
         await carregarVeiculos();
 
+
+        await carregarMotoristas();
+
+
         await carregarTabela();
 
-        
-    }
 
-    catch (erro) {
+
+    }
+    catch(erro){
+
 
         tratarErro(erro);
 
-    }
 
-    finally {
+    }
+    finally{
+
 
         esconderLoading();
 
+
     }
 
+
 }
+
+
+
 
 // ============================================================================
 // EVENTOS
 // ============================================================================
 
-function registrarEventos() {
+
+function registrarEventos(){
+
 
     formulario?.addEventListener(
 
@@ -176,6 +244,7 @@ function registrarEventos() {
 
     );
 
+
     btnNovo?.addEventListener(
 
         "click",
@@ -184,31 +253,38 @@ function registrarEventos() {
 
     );
 
-}
-
-// ============================================================================
-// CARREGAR
-// ============================================================================
-
-async function carregarTabela() {
-
-    registros = 
-
-        await obterLancamentos();
-     
-    renderizar();
 
 }
 
+
+
+
 // ============================================================================
-// RENDER
+// LISTAGEM
 // ============================================================================
 
-function renderizar() {
+
+async function carregarTabela(){
+
+
+    registros =
+    await obterLancamentos();
+
+
+    renderizarTabela();
+
+
+}
+
+
+
+
+function renderizarTabela(){
+
 
     renderTable(
 
-        tbody,
+        tabela,
 
         COLUNAS,
 
@@ -217,58 +293,87 @@ function renderizar() {
         [
 
             {
-                label: "Editar",
 
-                className: "btn-edit",
+                label:"Editar",
 
-                onClick: registro => editarLancamento(registro.ID)
+                className:"btn-edit",
+
+                onClick:
+                registro =>
+                editarLancamento(registro.ID)
 
             },
 
+
             {
-                label: "Excluir",
 
-                className: "btn-delete",
+                label:"Excluir",
 
-                onClick: registro => excluirLancamento(registro.ID)
+                className:"btn-delete",
+
+                onClick:
+                registro =>
+                remover(registro.ID)
 
             }
+
 
         ]
 
     );
 
+
 }
+
+
+
 
 // ============================================================================
 // NOVO
 // ============================================================================
 
-function novo() {
+
+function novo(){
+
 
     registroEditando = null;
 
+
     formulario.reset();
+
 
     preencherDataHoraAtual();
 
+
 }
+
+
+
 
 // ============================================================================
 // SALVAR
 // ============================================================================
 
-async function salvar(evento) {
+
+async function salvar(evento){
+
 
     evento.preventDefault();
 
-    try {
+
+    try{
+
 
         mostrarLoading();
 
-        const dados = obterDadosFormulario();
 
-        if (registroEditando) {
+        const dados =
+        obterDadosFormulario();
+
+
+
+        if(registroEditando){
+
 
             await atualizarLancamento(
 
@@ -278,9 +383,10 @@ async function salvar(evento) {
 
             );
 
-        }
 
-        else {
+        }
+        else{
+
 
             await salvarLancamento(
 
@@ -288,260 +394,277 @@ async function salvar(evento) {
 
             );
 
+
         }
+
+
 
         formulario.reset();
 
+
+        preencherDataHoraAtual();
+
+
         registroEditando = null;
+
 
         await carregarTabela();
 
-    }
 
-    catch (erro) {
+
+    }
+    catch(erro){
+
 
         tratarErro(erro);
 
-    }
 
-    finally {
+    }
+    finally{
+
 
         esconderLoading();
 
+
     }
 
+
 }
+
+
+
 
 // ============================================================================
 // EDITAR
 // ============================================================================
 
-window.editarLancamento = function(id) {
 
-    const registro = registros.find(
+function editarLancamento(id){
 
-        r => r.ID === id
+
+    const registro =
+    registros.find(
+
+        item =>
+        item.ID === id
 
     );
 
-    if (!registro) return;
+
+    if(!registro) return;
+
 
     registroEditando = id;
 
-    preencherFormulario(
 
-        registro
+    preencherFormulario(registro);
 
-    );
 
-};
+}
+
+
+
+
+window.editarLancamento =
+editarLancamento;
+
+
+
 
 // ============================================================================
 // EXCLUIR
 // ============================================================================
 
-window.excluirLancamento = async function(id) {
 
-    if (
+async function remover(id){
 
+
+    if(
         !confirm(
-
             "Excluir lançamento?"
-
         )
+    )
+    return;
 
-    ) return;
 
-    try {
+
+    try{
+
 
         mostrarLoading();
 
-        await excluirLancamento(
 
-            id
+        await removerLancamento(id);
 
-        );
 
         await carregarTabela();
 
-    }
 
-    catch (erro) {
+
+    }
+    catch(erro){
+
 
         tratarErro(erro);
 
-    }
 
-    finally {
+    }
+    finally{
+
 
         esconderLoading();
 
+
     }
 
-};
+
+}
+
+
+
 
 // ============================================================================
 // FORMULÁRIO
 // ============================================================================
 
-function obterDadosFormulario() {
+
+function obterDadosFormulario(){
+
 
     return {
 
-        Data: formulario.data.value,
 
-        Hora: formulario.hora.value,
+        Data:
+        campoData.value,
 
-        "Empregado / Matrícula": formulario.motorista.value,
 
-        "Veículo": formulario.veiculo.value,
+        Hora:
+        campoHora.value,
+
+
+        "Empregado / Matrícula":
+        formulario.empregado.value,
+
+
+        Veículo:
+        selectVeiculo.value,
+
 
         "Passageiro / Setor / Motivo":
 
-            `${formulario.passageiro.value} / ${formulario.setor.value} / ${formulario.motivo.value}`,
+        [
 
-        "Itinerário": formulario.itinerario.value,
+            formulario.passageiro.value,
 
-        Status: formulario.status.value
+            formulario.setor.value,
+
+            formulario.motivo.value
+
+        ]
+        .filter(Boolean)
+        .join(" / "),
+
+
+
+        Itinerário:
+        formulario.itinerario.value,
+
+
+
+        Status:
+        formulario.status.value
+
 
     };
 
-}
-
-// ============================================================================
-
-function preencherFormulario(registro) {
-
-    formulario.data.value =
-        dataParaInput(registro.Data);
-
-    formulario.hora.value =
-        horaParaInput(registro.Hora);
-
-    formulario.motorista.value =
-        registro["Empregado / Matrícula"];
-
-    formulario.veiculo.value =
-        registro["Veículo"];
-
-    const partes =
-        (registro["Passageiro / Setor / Motivo"] || "")
-        .split("/");
-
-    formulario.passageiro.value =
-        partes[0]?.trim() || "";
-
-    formulario.setor.value =
-        partes[1]?.trim() || "";
-
-    formulario.motivo.value =
-        partes.slice(2).join("/").trim();
-
-    formulario.itinerario.value =
-        registro["Itinerário"];
-
-    formulario.status.value =
-        registro.Status;
 
 }
 
-// ============================================================================
-// ERRO
-// ============================================================================
 
-function tratarErro(erro) {
 
-    console.error(erro);
 
-    alert(
+function preencherFormulario(registro){
 
-        erro.message ||
 
-        "Erro ao processar a solicitação."
-
+    campoData.value =
+    dataParaInput(
+        registro.Data
     );
 
+
+    campoHora.value =
+    horaParaInput(
+        registro.Hora
+    );
+
+
+    formulario.empregado.value =
+    registro["Empregado / Matrícula"];
+
+
+    selectVeiculo.value =
+    registro.Veículo;
+
+
+
+    formulario.itinerario.value =
+    registro.Itinerário;
+
+
+    formulario.status.value =
+    registro.Status;
+
+
 }
 
+
+
+
 // ============================================================================
-// CARREGAR VEÍCULOS
+// SELECT VEÍCULOS
 // ============================================================================
 
 
 async function carregarVeiculos(){
 
 
-    if(!selectVeiculo) return;
+    const resposta =
+    await obterVeiculos();
+
+
+    const lista =
+    resposta.dados ?? resposta;
 
 
 
-    try{
-
-
-        const resposta =
-        await obterVeiculos();
-
-
-
-        const veiculos =
-        resposta.dados || resposta;
+    selectVeiculo.innerHTML =
+    `
+    <option value="">
+        Selecione o veículo
+    </option>
+    `;
 
 
 
-        selectVeiculo.innerHTML = `
-
-        <option value="">
-            Selecione o veículo
-        </option>
-
-        `;
+    lista.forEach(item=>{
 
 
-
-        veiculos.forEach(
-        (veiculo)=>{
-
-
-            const option =
-            document.createElement("option");
+        const option =
+        document.createElement("option");
 
 
-
-            /*
-              Ajustar conforme
-              colunas da aba VEÍCULOS
-            */
+        option.value =
+        item.Placa;
 
 
-            option.value =
-            veiculo.PLACA;
+        option.textContent =
+        `${item.Placa} - ${item.Modelo}`;
 
 
-
-            option.textContent =
-            `${veiculo.PLACA} - ${veiculo.MODELO}`;
+        selectVeiculo.appendChild(option);
 
 
-
-            selectVeiculo.appendChild(option);
-
-
-
-        });
-
-
-
-    }
-    catch(erro){
-
-
-        console.error(
-            "Erro ao carregar veículos",
-            erro
-        );
-
-
-    }
+    });
 
 
 }
@@ -550,109 +673,103 @@ async function carregarVeiculos(){
 
 
 // ============================================================================
-// CARREGAR MOTORISTAS
+// SELECT MOTORISTAS
 // ============================================================================
 
 
 async function carregarMotoristas(){
 
 
-    if(!selectMotorista) return;
+    const resposta =
+    await obterMotoristas();
+
+
+    const lista =
+    resposta.dados ?? resposta;
 
 
 
-    try{
-
-
-        const resposta =
-        await obterMotoristas();
-
-
-
-        const motoristas =
-        resposta.dados || resposta;
+    selectMotorista.innerHTML =
+    `
+    <option value="">
+        Selecione o motorista
+    </option>
+    `;
 
 
 
-        selectMotorista.innerHTML = `
-
-        <option value="">
-            Selecione o motorista
-        </option>
-
-        `;
+    lista.forEach(item=>{
 
 
-
-        motoristas.forEach(
-        (motorista)=>{
-
-
-            const option =
-            document.createElement("option");
+        const option =
+        document.createElement("option");
 
 
-
-            option.value =
-            motorista.MOTORISTA;
-
+        option.value =
+        item.Motorista;
 
 
-            option.textContent =
-            motorista.MOTORISTA;
+        option.textContent =
+        item.Motorista;
 
 
-
-            selectMotorista.appendChild(option);
-
-
-        });
+        selectMotorista.appendChild(option);
 
 
-
-    }
-    catch(erro){
-
-
-        console.error(
-            "Erro ao carregar motoristas",
-            erro
-        );
-
-
-    }
+    });
 
 
 }
 
 
+
+
+
+// ============================================================================
+// DATA / HORA AUTOMÁTICA
+// ============================================================================
+
+
 function preencherDataHoraAtual(){
 
 
-    const campoData =
-    document.querySelector("#data");
-
-
-    const campoHora =
-    document.querySelector("#hora");
-
-
-
-    if(campoData){
+    if(campoData)
 
         campoData.value =
         dataInput();
 
-    }
 
 
-
-    if(campoHora){
+    if(campoHora)
 
         campoHora.value =
         horaInput();
 
-    }
+
+
+}
+
+
+
+
+// ============================================================================
+// ERROS
+// ============================================================================
+
+
+function tratarErro(erro){
+
+
+    console.error(erro);
+
+
+    alert(
+
+        erro.message ||
+
+        "Erro ao processar lançamento."
+
+    );
 
 
 }
