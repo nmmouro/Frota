@@ -21,6 +21,8 @@ import {
 
 } from "../config/config.js";
 
+const ABA = ABAS.MOTORISTAS;
+
 
 // ================= CONSULTAS =================
 
@@ -28,7 +30,7 @@ export async function obterMotoristas() {
 
     return await listar(
 
-        ABAS.MOTORISTAS
+        ABA
 
     );
 
