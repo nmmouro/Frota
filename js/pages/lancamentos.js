@@ -38,6 +38,51 @@ const tbody =
 const btnNovo =
     document.querySelector("#btnNovo");
 
+const COLUNAS = [
+
+    {
+        field: "ID",
+        label: "ID"
+    },
+
+    {
+        field: "Data",
+        label: "Data"
+    },
+
+    {
+        field: "Hora",
+        label: "Hora"
+    },
+
+    {
+        field: "Empregado / Matrícula",
+        label: "Empregado"
+    },
+
+    {
+        field: "Veículo",
+        label: "Veículo"
+    },
+
+    {
+        field: "Passageiro / Setor / Motivo",
+        label: "Passageiro"
+    },
+
+    {
+        field: "Itinerário",
+        label: "Itinerário"
+    },
+
+    {
+        field: "Status",
+        label: "Status",
+        type: "status"
+    }
+
+];
+
 // ============================================================================
 // DADOS
 // ============================================================================
@@ -142,7 +187,31 @@ function renderizar() {
 
         tbody,
 
-        registros
+        COLUNAS,
+
+        registros,
+
+        [
+
+            {
+                label: "Editar",
+
+                className: "btn-edit",
+
+                onClick: registro => editarLancamento(registro.ID)
+
+            },
+
+            {
+                label: "Excluir",
+
+                className: "btn-delete",
+
+                onClick: registro => excluirLancamento(registro.ID)
+
+            }
+
+        ]
 
     );
 
