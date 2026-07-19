@@ -7,14 +7,70 @@
 import { CONFIG } from "../config/config.js";
 
 // ============================================================================
-// REQUISIÇÃO
+// GET
 // ============================================================================
 
-async function request(
+async function get(acao, aba, id = null) {
+
+    const params = new URLSearchParams({
+
+        acao,
+        aba
+
+    });
+
+    if (id) {
+
+        params.append("id", id);
+
+    }
+
+    const resposta = await fetch(
+
+        `${CONFIG.API_URL}?${params.toString()}`
+
+    );
+
+    if (!resposta.ok) {
+
+        throw new Error(
+
+            `Erro HTTP ${resposta.status}`
+
+        );
+
+    }
+
+    const json = await resposta.json();
+
+    if (!json.success) {
+
+        throw new Error(
+
+            json.message
+
+        );
+
+    }
+
+    return json.data;
+
+}
+
+// ============================================================================
+// POST
+// ============================================================================
+
+async function post(
+
     acao,
+
     aba,
+
     dados = {},
+
     id = null
+
 ) {
 
     const resposta = await fetch(
@@ -27,7 +83,7 @@ async function request(
 
             headers: {
 
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain;charset=utf-8"
 
             },
 
@@ -51,7 +107,7 @@ async function request(
 
         throw new Error(
 
-            "Erro ao conectar com a API."
+            `Erro HTTP ${resposta.status}`
 
         );
 
@@ -74,12 +130,12 @@ async function request(
 }
 
 // ============================================================================
-// LISTAR
+// CRUD
 // ============================================================================
 
-export async function listar(aba) {
+export const listar = aba =>
 
-    return await request(
+    get(
 
         "listar",
 
@@ -87,41 +143,33 @@ export async function listar(aba) {
 
     );
 
-}
+export const buscar = (
 
-// ============================================================================
-// BUSCAR
-// ============================================================================
-
-export async function buscar(
     aba,
-    id
-) {
 
-    return await request(
+    id
+
+) =>
+
+    get(
 
         "buscar",
 
         aba,
 
-        {},
-
         id
 
     );
 
-}
+export const salvar = (
 
-// ============================================================================
-// SALVAR
-// ============================================================================
-
-export async function salvar(
     aba,
-    dados
-) {
 
-    return await request(
+    dados
+
+) =>
+
+    post(
 
         "salvar",
 
@@ -131,19 +179,17 @@ export async function salvar(
 
     );
 
-}
+export const editar = (
 
-// ============================================================================
-// EDITAR
-// ============================================================================
-
-export async function editar(
     aba,
-    id,
-    dados
-) {
 
-    return await request(
+    id,
+
+    dados
+
+) =>
+
+    post(
 
         "editar",
 
@@ -155,18 +201,15 @@ export async function editar(
 
     );
 
-}
+export const excluir = (
 
-// ============================================================================
-// EXCLUIR
-// ============================================================================
-
-export async function excluir(
     aba,
-    id
-) {
 
-    return await request(
+    id
+
+) =>
+
+    post(
 
         "excluir",
 
@@ -177,5 +220,3 @@ export async function excluir(
         id
 
     );
-
-}
