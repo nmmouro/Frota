@@ -165,14 +165,7 @@ async function carregarTabela() {
     registros = 
 
         await obterLancamentos();
-
-     console.log("Registros:", registros);
-
-    console.log("É array?", Array.isArray(registros));
-
-    console.log("Quantidade:", registros.length);
-
-
+     
     renderizar();
 
 }
