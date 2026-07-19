@@ -1,176 +1,497 @@
 // ============================================================================
-// DATAS
+// DATAS UTILS
+// Painel Frota
 // Arquivo: js/utils/datas.js
+//
+// Funções auxiliares para datas e horários
 // ============================================================================
 
 
-// ================= DATA ATUAL =================
 
-export function hoje() {
+// ============================================================================
+// CONFIGURAÇÃO
+// ============================================================================
+
+
+const LOCALE = "pt-BR";
+
+
+
+
+// ============================================================================
+// DATA ATUAL
+// ============================================================================
+
+
+export function hoje(){
+
 
     return new Date();
 
+
 }
 
 
-// ================= DATA BR =================
 
-export function dataBR(data = new Date()) {
 
-    return new Date(data).toLocaleDateString(
-        "pt-BR"
+// ============================================================================
+// FORMATAR DATA BR
+// ============================================================================
+
+
+export function dataBR(
+
+    data = new Date()
+
+){
+
+
+    const valor =
+    new Date(data);
+
+
+
+    if(isNaN(valor)) return "";
+
+
+
+    return valor.toLocaleDateString(
+
+        LOCALE
+
     );
 
+
 }
 
 
-// ================= HORA =================
 
-export function hora(data = new Date()) {
 
-    return new Date(data).toLocaleTimeString(
+// ============================================================================
+// FORMATAR HORA
+// ============================================================================
 
-        "pt-BR",
+
+export function hora(
+
+    data = new Date()
+
+){
+
+
+    const valor =
+    new Date(data);
+
+
+
+    if(isNaN(valor)) return "";
+
+
+
+    return valor.toLocaleTimeString(
+
+        LOCALE,
 
         {
-            hour: "2-digit",
-            minute: "2-digit"
+
+            hour:"2-digit",
+
+            minute:"2-digit"
+
         }
 
     );
 
+
 }
 
 
-// ================= DATA E HORA =================
 
-export function dataHora(data = new Date()) {
 
-    return new Date(data).toLocaleString(
-        "pt-BR"
+// ============================================================================
+// DATA E HORA COMPLETA
+// ============================================================================
+
+
+export function dataHora(
+
+    data = new Date()
+
+){
+
+
+    const valor =
+    new Date(data);
+
+
+
+    if(isNaN(valor)) return "";
+
+
+
+    return valor.toLocaleString(
+
+        LOCALE
+
     );
 
-}
-
-
-// ================= INPUT DATE =================
-
-export function dataInput(data = new Date()) {
-
-    return new Date(data)
-
-        .toISOString()
-
-        .split("T")[0];
 
 }
 
 
-// ================= INPUT TIME =================
 
-export function horaInput(data = new Date()) {
 
-    return new Date(data)
+// ============================================================================
+// DATA PARA INPUT HTML
+// yyyy-MM-dd
+// ============================================================================
 
-        .toTimeString()
 
-        .slice(0,5);
+export function dataInput(
+
+    data = new Date()
+
+){
+
+
+    const valor =
+    new Date(data);
+
+
+
+    if(isNaN(valor)) return "";
+
+
+
+    const ano =
+    valor.getFullYear();
+
+
+
+    const mes =
+    String(
+        valor.getMonth()+1
+    )
+    .padStart(2,"0");
+
+
+
+    const dia =
+    String(
+        valor.getDate()
+    )
+    .padStart(2,"0");
+
+
+
+    return `${ano}-${mes}-${dia}`;
+
 
 }
 
 
-// ================= DIFERENÇA =================
 
-export function diferencaDias(inicio, fim) {
 
-    const ms =
-        new Date(fim) -
-        new Date(inicio);
+// ============================================================================
+// HORA PARA INPUT HTML
+// HH:mm
+// ============================================================================
+
+
+export function horaInput(
+
+    data = new Date()
+
+){
+
+
+    const valor =
+    new Date(data);
+
+
+
+    if(isNaN(valor)) return "";
+
+
+
+    const hora =
+    String(
+        valor.getHours()
+    )
+    .padStart(2,"0");
+
+
+
+    const minuto =
+    String(
+        valor.getMinutes()
+    )
+    .padStart(2,"0");
+
+
+
+    return `${hora}:${minuto}`;
+
+
+}
+
+
+
+
+// ============================================================================
+// DIFERENÇA ENTRE DATAS
+// ============================================================================
+
+
+export function diferencaDias(
+
+    inicio,
+
+    fim
+
+){
+
+
+    const inicioData =
+    new Date(inicio);
+
+
+
+    const fimData =
+    new Date(fim);
+
+
+
+    if(
+
+        isNaN(inicioData) ||
+
+        isNaN(fimData)
+
+    ){
+
+        return 0;
+
+    }
+
+
+
+    const diferenca =
+    fimData - inicioData;
+
 
 
     return Math.floor(
-        ms / 86400000
-    );
 
-}
+        diferenca /
 
-
-// ================= É HOJE =================
-
-export function ehHoje(data) {
-
-    return dataBR(data) === dataBR();
-
-}
-
-
-// ================= ORDENAÇÃO =================
-
-export function ordenarPorData(lista, campo) {
-
-    return [...lista].sort(
-
-        (a,b) =>
-
-        new Date(a[campo]) -
-        new Date(b[campo])
+        (1000 * 60 * 60 * 24)
 
     );
 
+
 }
 
 
-// ================= BR -> INPUT =================
-
-export function dataParaInput(data) {
-
-    if (!data) return "";
 
 
-    // já está yyyy-MM-dd
+// ============================================================================
+// VERIFICA SE É HOJE
+// ============================================================================
 
-    if (data.includes("-")) {
+
+export function ehHoje(data){
+
+
+    return (
+
+        dataBR(data)
+
+        ===
+
+        dataBR()
+
+    );
+
+
+}
+
+
+
+
+// ============================================================================
+// ORDENAR LISTA POR DATA
+// ============================================================================
+
+
+export function ordenarPorData(
+
+    lista = [],
+
+    campo
+
+){
+
+
+    return [
+
+        ...lista
+
+    ]
+
+    .sort(
+
+        (a,b)=>
+
+            new Date(a[campo])
+
+            -
+
+            new Date(b[campo])
+
+    );
+
+
+}
+
+
+
+
+// ============================================================================
+// DATA BR -> INPUT
+// DD/MM/YYYY
+// PARA yyyy-MM-dd
+// ============================================================================
+
+
+export function dataParaInput(data){
+
+
+    if(!data) return "";
+
+
+
+    if(
+
+        data.includes("-")
+
+    ){
 
         return data;
 
     }
 
 
+
+    const partes =
+    data.split("/");
+
+
+
+    if(partes.length !== 3)
+
+        return "";
+
+
+
     const [
+
         dia,
+
         mes,
+
         ano
-    ] = data.split("/");
+
+    ] = partes;
 
 
-    return `${ano}-${mes.padStart(2,"0")}-${dia.padStart(2,"0")}`;
+
+    return (
+
+        `${ano}-${
+
+            mes.padStart(2,"0")
+
+        }-${
+
+            dia.padStart(2,"0")
+
+        }`
+
+    );
+
 
 }
 
 
-// ================= INPUT -> BR =================
 
-export function inputParaData(data) {
 
-    if (!data) return "";
+// ============================================================================
+// INPUT -> DATA BR
+// yyyy-MM-dd
+// PARA DD/MM/YYYY
+// ============================================================================
+
+
+export function inputParaData(data){
+
+
+    if(!data) return "";
+
+
+
+    const partes =
+    data.split("-");
+
+
+
+    if(partes.length !== 3)
+
+        return "";
+
 
 
     const [
+
         ano,
+
         mes,
+
         dia
-    ] = data.split("-");
+
+    ] = partes;
 
 
-    return `${dia}/${mes}/${ano}`;
+
+    return (
+
+        `${dia}/${mes}/${ano}`
+
+    );
+
 
 }
 
 
-// ================= HORA INPUT =================
 
-export function horaParaInput(hora) {
 
-    return (hora || "").substring(0,5);
+// ============================================================================
+// HORA PARA INPUT
+// ============================================================================
+
+
+export function horaParaInput(hora){
+
+
+    if(!hora)
+
+        return "";
+
+
+
+    return String(hora)
+
+        .substring(0,5);
+
 
 }
