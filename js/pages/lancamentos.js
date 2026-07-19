@@ -27,9 +27,9 @@ import {
 
 import {
 
-    dataParaInput,
+    dataInput,
     inputParaData,
-    horaParaInput
+    horaInput
 
 } from "../utils/datas.js";
 
