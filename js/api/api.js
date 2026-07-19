@@ -2,36 +2,50 @@
 // API
 // Painel Frota
 // Arquivo: js/api/api.js
+//
+// Responsável pela comunicação HTTP com Google Apps Script
 // ============================================================================
 
-import { CONFIG } from "../config/config.js";
 
 // ============================================================================
-// GET
+// IMPORTS
 // ============================================================================
 
-async function get(acao, aba, id = null) {
+import {
 
-    const params = new URLSearchParams({
+    CONFIG
 
-        acao,
-        aba
+} from "../config/config.js";
 
-    });
 
-    if (id) {
 
-        params.append("id", id);
 
-    }
+// ============================================================================
+// REQUEST
+// ============================================================================
+
+
+async function request(
+
+    url,
+
+    options = {}
+
+){
+
 
     const resposta = await fetch(
 
-        `${CONFIG.API_URL}?${params.toString()}`
+        url,
+
+        options
 
     );
 
-    if (!resposta.ok) {
+
+
+    if(!resposta.ok){
+
 
         throw new Error(
 
@@ -39,27 +53,115 @@ async function get(acao, aba, id = null) {
 
         );
 
+
     }
 
-    const json = await resposta.json();
 
-        if (!json.success) {
+
+    const json =
+    await resposta.json();
+
+
+
+    if(!json.success){
+
 
         throw new Error(
 
-            json.message
+            json.message ||
+
+            "Erro desconhecido na API."
 
         );
 
+
     }
+
+
 
     return json.data;
 
+
 }
+
+
+
+
+// ============================================================================
+// GET
+// ============================================================================
+
+
+async function get(
+
+    acao,
+
+    aba,
+
+    id = null
+
+){
+
+
+
+    const params =
+    new URLSearchParams();
+
+
+
+    params.append(
+
+        "acao",
+
+        acao
+
+    );
+
+
+
+    params.append(
+
+        "aba",
+
+        aba
+
+    );
+
+
+
+
+    if(id){
+
+
+        params.append(
+
+            "id",
+
+            id
+
+        );
+
+
+    }
+
+
+
+    return await request(
+
+        `${CONFIG.API_URL}?${params.toString()}`
+
+    );
+
+
+}
+
+
+
 
 // ============================================================================
 // POST
 // ============================================================================
+
 
 async function post(
 
@@ -71,23 +173,36 @@ async function post(
 
     id = null
 
-) {
+){
 
-    const resposta = await fetch(
+
+
+    return await request(
 
         CONFIG.API_URL,
 
         {
 
-            method: "POST",
 
-            headers: {
+            method:"POST",
 
-                "Content-Type": "text/plain;charset=utf-8"
+
+
+            headers:{
+
+
+                "Content-Type":
+
+                "text/plain;charset=utf-8"
+
 
             },
 
-            body: JSON.stringify({
+
+
+            body:
+
+            JSON.stringify({
 
                 acao,
 
@@ -99,43 +214,28 @@ async function post(
 
             })
 
+
         }
 
     );
 
-    if (!resposta.ok) {
-
-        throw new Error(
-
-            `Erro HTTP ${resposta.status}`
-
-        );
-
-    }
-
-    const json = await resposta.json();
-
-    if (!json.success) {
-
-        throw new Error(
-
-            json.message
-
-        );
-
-    }
-
-    return json.data;
 
 }
+
+
+
 
 // ============================================================================
 // CRUD
 // ============================================================================
 
-export const listar = aba =>
 
-    get(
+// LISTAR
+
+export function listar(aba){
+
+
+    return get(
 
         "listar",
 
@@ -143,15 +243,23 @@ export const listar = aba =>
 
     );
 
-export const buscar = (
+
+}
+
+
+
+// BUSCAR
+
+export function buscar(
 
     aba,
 
     id
 
-) =>
+){
 
-    get(
+
+    return get(
 
         "buscar",
 
@@ -161,15 +269,23 @@ export const buscar = (
 
     );
 
-export const salvar = (
+
+}
+
+
+
+// SALVAR
+
+export function salvar(
 
     aba,
 
     dados
 
-) =>
+){
 
-    post(
+
+    return post(
 
         "salvar",
 
@@ -179,7 +295,14 @@ export const salvar = (
 
     );
 
-export const editar = (
+
+}
+
+
+
+// EDITAR
+
+export function editar(
 
     aba,
 
@@ -187,9 +310,10 @@ export const editar = (
 
     dados
 
-) =>
+){
 
-    post(
+
+    return post(
 
         "editar",
 
@@ -201,15 +325,23 @@ export const editar = (
 
     );
 
-export const excluir = (
+
+}
+
+
+
+// EXCLUIR
+
+export function excluir(
 
     aba,
 
     id
 
-) =>
+){
 
-    post(
+
+    return post(
 
         "excluir",
 
@@ -220,3 +352,6 @@ export const excluir = (
         id
 
     );
+
+
+}
