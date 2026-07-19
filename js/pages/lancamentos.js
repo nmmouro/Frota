@@ -25,6 +25,14 @@ import {
 
 } from "../ui/loading.js";
 
+import {
+
+    dataParaInput,
+    inputParaData,
+    horaParaInput
+
+} from "../utils/datas.js";
+
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
