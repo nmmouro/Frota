@@ -50,16 +50,16 @@ console.log("ABA utilizada:", ABA);
 // ============================================================================
 
 
-export async function listarLancamentos(){
+export async function obterLancamentos(){
 
     console.log("listarLancamentos()");
-    console.log("ABA:", ABA);
+    console.log("ABAS:", ABA);
 
 
 
     return await listar(
 
-        ABA
+        ABAS
 
     );
 
@@ -78,13 +78,13 @@ export async function listarLancamentos(){
 export async function obterLancamento(id){
 
     console.log("obterLancamento()");
-    console.log("ABA:", ABA);
+    console.log("ABAS:", ABA);
     console.log("ID:", id);
 
 
     return await buscar(
 
-        ABA,
+        ABAS,
 
         id
 
@@ -106,7 +106,7 @@ export async function salvarLancamento(dados){
 
 
     console.log("salvarLancamento()");
-    console.log("ABA:", ABA);
+    console.log("ABAS:", ABA);
     console.log("Dados:", dados);
 
 
@@ -153,7 +153,7 @@ export async function atualizarLancamento(
 
 
     console.log("atualizarLancamento()");
-    console.log("ABA:", ABA);
+    console.log("ABAS:", ABA);
     console.log("ID:", id);
     console.log("Dados:", dados);
 
@@ -197,7 +197,7 @@ export async function excluirLancamento(id){
 
 
     console.log("excluirLancamento()");
-    console.log("ABA:", ABA);
+    console.log("ABAS:", ABA);
     console.log("ID:", id);
 
 
@@ -215,7 +215,7 @@ export async function excluirLancamento(id){
 
     return await excluir(
 
-        ABA,
+        ABAS,
 
         id
 
