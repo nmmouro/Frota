@@ -52,39 +52,17 @@ export const CONFIG = {
 export const ABAS = {
 
 
-    LANCAMENTOS:
+    LANCAMENTOS: "LANCAMENTOS",
 
-    "LANCAMENTOS",
+    VEICULOS: "VEICULOS",
 
+    MOTORISTAS: "MOTORISTAS",
 
+    EMPREGADOS: "EMPREGADOS",
 
-    VEICULOS:
+    AGENDA: "AGENDA DO DIA",
 
-    "VEICULOS",
-
-
-
-    MOTORISTAS:
-
-    "MOTORISTAS",
-
-
-
-    EMPREGADOS:
-
-    "EMPREGADOS",
-
-
-
-    AGENDA:
-
-    "AGENDA DO DIA",
-
-
-
-    SOCIAL:
-
-    "AGENDA SERVIÇO SOCIAL"
+    SOCIAL: "AGENDA SERVIÇO SOCIAL"
 
 
 };
