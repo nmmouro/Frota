@@ -1,75 +1,41 @@
-// ================= IMPORTS =================
-
 import {
+
     listar,
+    buscar,
     salvar,
     editar,
     excluir
+
 } from "../api/api.js";
 
 import {
+
     ABAS
+
 } from "../config/config.js";
 
+const ABA = ABAS.VEICULOS;
 
-// ================= CONSULTAS =================
 
-export async function obterVeiculos() {
+// ============================================================================
 
-    return await listar(
-        ABAS.VEICULOS
-    );
 
+export async function obterLancamentos() {
+    return listar(ABA);
 }
 
-
-// Busca um veículo específico pelo ID
-
-export async function obterVeiculo(id) {
-
-    const dados = await listar(
-        ABAS.VEICULOS
-    );
-
-    return dados.find(
-        item => item.id === id
-    );
-
+export async function obterLancamento(id) {
+    return buscar(ABA, id);
 }
 
-
-// ================= GRAVAÇÃO =================
-
-export async function salvarVeiculo(dados) {
-
-    return await salvar(
-        ABAS.VEICULOS,
-        dados
-    );
-
+export async function salvarLancamento(dados) {
+    return salvar(ABA, dados);
 }
 
-
-// ================= ATUALIZAÇÃO =================
-
-export async function atualizarVeiculo(linha, dados) {
-
-    return await editar(
-        ABAS.VEICULOS,
-        linha,
-        dados
-    );
-
+export async function atualizarLancamento(id, dados) {
+    return editar(ABA, id, dados);
 }
 
-
-// ================= EXCLUSÃO =================
-
-export async function excluirVeiculo(linha) {
-
-    return await excluir(
-        ABAS.VEICULOS,
-        linha
-    );
-
+export async function excluirLancamento(id) {
+    return excluir(ABA, id);
 }
