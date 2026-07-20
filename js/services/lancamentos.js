@@ -38,7 +38,7 @@ import {
 // ============================================================================
 
 
-const ABA = ABAS.LANCAMENTOS;
+const ABA = ABA.LANCAMENTOS;
 
 console.log("ABA utilizada:", ABA);
 
@@ -59,7 +59,7 @@ export async function obterLancamentos(){
 
     return await listar(
 
-        ABAS.LANCAMENTOS
+        ABA.LANCAMENTOS
 
     );
 
@@ -84,7 +84,7 @@ export async function obterLancamento(id){
 
     return await buscar(
 
-        ABAS,
+        ABA,
 
         id
 
