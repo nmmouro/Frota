@@ -50,9 +50,9 @@ console.log("ABA utilizada:", ABA);
 // ============================================================================
 
 
-export async function obterLancamentos(){
+export async function listarLancamentos(){
 
-    console.log("obterLancamentos()");
+    console.log("listarLancamentos()");
     console.log("ABA:", ABA);
 
 
