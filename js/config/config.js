@@ -60,7 +60,7 @@ export const ABAS = {
 
     VEICULOS:
 
-    "VEÍCULOS",
+    "VEICULOS",
 
 
 
