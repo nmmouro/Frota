@@ -59,7 +59,7 @@ export async function obterLancamentos(){
 
     return await listar(
 
-        ABAS
+        ABAS.LANCAMENTOS
 
     );
 
