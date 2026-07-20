@@ -1,25 +1,14 @@
-// ============================================================================
-// SERVICES / VEÍCULOS
-// Arquivo: js/services/veiculos.js
-// ============================================================================
-
-
 // ================= IMPORTS =================
 
 import {
-
-    apiGet
     listar,
     salvar,
     editar,
     excluir
-
 } from "../api/api.js";
 
 import {
-
     ABAS
-
 } from "../config/config.js";
 
 
@@ -28,9 +17,7 @@ import {
 export async function obterVeiculos() {
 
     return await listar(
-
-        ABA
-
+        ABAS.VEICULOS
     );
 
 }
@@ -41,15 +28,11 @@ export async function obterVeiculos() {
 export async function obterVeiculo(id) {
 
     const dados = await listar(
-
         ABAS.VEICULOS
-
     );
 
     return dados.find(
-
         item => item.id === id
-
     );
 
 }
@@ -60,11 +43,8 @@ export async function obterVeiculo(id) {
 export async function salvarVeiculo(dados) {
 
     return await salvar(
-
         ABAS.VEICULOS,
-
         dados
-
     );
 
 }
@@ -72,19 +52,12 @@ export async function salvarVeiculo(dados) {
 
 // ================= ATUALIZAÇÃO =================
 
-export async function atualizarVeiculo(
-    linha,
-    dados
-) {
+export async function atualizarVeiculo(linha, dados) {
 
     return await editar(
-
         ABAS.VEICULOS,
-
         linha,
-
         dados
-
     );
 
 }
@@ -95,11 +68,8 @@ export async function atualizarVeiculo(
 export async function excluirVeiculo(linha) {
 
     return await excluir(
-
         ABAS.VEICULOS,
-
         linha
-
     );
 
 }
