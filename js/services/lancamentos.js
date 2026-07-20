@@ -23,22 +23,13 @@ import {
 
 } from "../api/api.js";
 
-
 import {
 
-    ABA
+    ABAS
 
 } from "../config/config.js";
 
-
-
-
-// ============================================================================
-// CONFIGURAÇÃO
-// ============================================================================
-
-
-const ABA = ABA.LANCAMENTOS;
+const ABA = ABAS.LANCAMENTOS;
 
 
 
@@ -55,7 +46,7 @@ export async function obterLancamentos(){
     
     return await listar(
 
-        ABA.LANCAMENTOS
+        ABA
 
     );
 
