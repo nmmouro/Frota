@@ -26,7 +26,7 @@ import {
 
 import {
 
-    ABAS
+    ABA
 
 } from "../config/config.js";
 
@@ -40,7 +40,7 @@ import {
 
 const ABA = ABA.LANCAMENTOS;
 
-console.log("ABA utilizada:", ABA);
+
 
 
 
@@ -52,11 +52,7 @@ console.log("ABA utilizada:", ABA);
 
 export async function obterLancamentos(){
 
-    console.log("listarLancamentos()");
-    console.log("ABAS:", ABA);
-
-
-
+    
     return await listar(
 
         ABA.LANCAMENTOS
@@ -68,8 +64,6 @@ export async function obterLancamentos(){
 
 
 
-
-
 // ============================================================================
 // BUSCAR LANÇAMENTO POR ID
 // ============================================================================
@@ -77,11 +71,7 @@ export async function obterLancamentos(){
 
 export async function obterLancamento(id){
 
-    console.log("obterLancamento()");
-    console.log("ABAS:", ABA);
-    console.log("ID:", id);
-
-
+    
     return await buscar(
 
         ABA,
@@ -104,10 +94,6 @@ export async function obterLancamento(id){
 
 export async function salvarLancamento(dados){
 
-
-    console.log("salvarLancamento()");
-    console.log("ABAS:", ABA);
-    console.log("Dados:", dados);
 
 
     if(!dados){
@@ -152,12 +138,6 @@ export async function atualizarLancamento(
 
 
 
-    console.log("atualizarLancamento()");
-    console.log("ABAS:", ABA);
-    console.log("ID:", id);
-    console.log("Dados:", dados);
-
-
     if(!id){
 
         throw new Error(
@@ -167,7 +147,6 @@ export async function atualizarLancamento(
         );
 
     }
-
 
 
     return await editar(
@@ -184,22 +163,12 @@ export async function atualizarLancamento(
 }
 
 
-
-
-
 // ============================================================================
 // EXCLUIR LANÇAMENTO
 // ============================================================================
 
 
 export async function excluirLancamento(id){
-
-
-
-    console.log("excluirLancamento()");
-    console.log("ABAS:", ABA);
-    console.log("ID:", id);
-
 
     if(!id){
 
@@ -215,7 +184,7 @@ export async function excluirLancamento(id){
 
     return await excluir(
 
-        ABAS,
+        ABA,
 
         id
 
