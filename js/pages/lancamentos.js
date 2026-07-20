@@ -11,11 +11,13 @@
 
 import {
 
-    listarLancamentos,
     obterLancamentos,
+    obterLancamento,
     salvarLancamento,
     atualizarLancamento,
     excluirLancamento as removerLancamento
+
+} from "../services/lancamentos.js";
 
 } from "../services/lancamentos.js";
 
