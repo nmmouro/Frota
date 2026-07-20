@@ -40,7 +40,7 @@ import {
 
 const ABA = ABAS.LANCAMENTOS;
 
-
+console.log("ABA utilizada:", ABA);
 
 
 
@@ -51,6 +51,10 @@ const ABA = ABAS.LANCAMENTOS;
 
 
 export async function obterLancamentos(){
+
+    console.log("obterLancamentos()");
+    console.log("ABA:", ABA);
+
 
 
     return await listar(
@@ -72,6 +76,10 @@ export async function obterLancamentos(){
 
 
 export async function obterLancamento(id){
+
+    console.log("obterLancamento()");
+    console.log("ABA:", ABA);
+    console.log("ID:", id);
 
 
     return await buscar(
@@ -95,6 +103,11 @@ export async function obterLancamento(id){
 
 
 export async function salvarLancamento(dados){
+
+
+    console.log("salvarLancamento()");
+    console.log("ABA:", ABA);
+    console.log("Dados:", dados);
 
 
     if(!dados){
@@ -138,6 +151,13 @@ export async function atualizarLancamento(
 ){
 
 
+
+    console.log("atualizarLancamento()");
+    console.log("ABA:", ABA);
+    console.log("ID:", id);
+    console.log("Dados:", dados);
+
+
     if(!id){
 
         throw new Error(
@@ -173,6 +193,12 @@ export async function atualizarLancamento(
 
 
 export async function excluirLancamento(id){
+
+
+
+    console.log("excluirLancamento()");
+    console.log("ABA:", ABA);
+    console.log("ID:", id);
 
 
     if(!id){
