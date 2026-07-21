@@ -12,10 +12,10 @@
 import {
 
     obterLancamentos,
-    obterLancamentos,
-    salvarLancamentos,
-    atualizarLancamentos,
-    excluirLancamentos as removerLancamentos
+    obterLancamento,
+    salvarLancamento,
+    atualizarLancamento,
+    excluirLancamento as removerLancamento
 
 } from "../services/lancamentos.js";
 
