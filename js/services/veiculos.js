@@ -24,18 +24,18 @@ export async function obterVeiculos() {
     return listar(ABA);
 }
 
-export async function obterVeiculos(id) {
+export async function obterVeiculo(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarVeiculos(dados) {
+export async function salvarVeiculo(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarLancamentoVeiculos(id, dados) {
+export async function atualizarVeiculo(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirVeiculos(id) {
+export async function excluirVeiculo(id) {
     return excluir(ABA, id);
 }
