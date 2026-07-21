@@ -552,7 +552,7 @@ function obterDadosFormulario(){
 
 
         "Empregado / Matrícula":
-        formulario.empregado.value,
+        formulario.motorista.value,
 
 
         Veículo:
