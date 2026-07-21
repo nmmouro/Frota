@@ -39,18 +39,18 @@ export async function obterLancamentos() {
     return listar(ABA);
 }
 
-export async function obterLancamento(id) {
+export async function obterLancamentos(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarLancamento(dados) {
+export async function salvarLancamentos(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarLancamento(id, dados) {
+export async function atualizarLancamentos(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirLancamento(id) {
+export async function excluirLancamentos(id) {
     return excluir(ABA, id);
 }
