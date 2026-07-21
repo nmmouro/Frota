@@ -56,8 +56,6 @@ export const ABAS = {
 
     VEICULOS: "VEICULOS",
 
-    MOTORISTAS: "MOTORISTAS",
-
     EMPREGADOS: "EMPREGADOS",
 
     AGENDA: "AGENDA DO DIA",
@@ -306,6 +304,128 @@ export const CAMPOS = {
 
 
 };
+
+// ============================================================================
+// CAMPOS PADRÃO EMPREGADOS
+// ============================================================================
+
+
+export const CAMPOS = {
+
+
+    ID:
+
+    "ID",
+
+
+    DATA:
+
+    "Data",
+
+
+    FOTO:
+
+    "Foto",
+
+
+    EMPREGADO:
+
+    "Empregado",
+    
+
+    MATRICULA:
+
+    "Matrícula",
+
+
+    DIRETORIA:
+
+    "Diretoria",
+
+
+    SETOR:
+
+    "Setor",
+
+
+    USUÁRIO:
+
+    "Usuário",
+    
+
+     CONDIÇÃO:
+
+    "Condição",
+
+
+    STATUS:
+
+    "Status"
+
+
+};
+
+
+// ============================================================================
+// CAMPOS PADRÃO VEÍCULOS
+// ============================================================================
+
+
+export const CAMPOS = {
+
+
+    ID:
+
+    "ID",
+
+
+    DATA:
+
+    "Data",
+
+
+    FOTO:
+
+    "Foto",
+
+
+    PLACA:
+
+    "Placa",
+    
+
+    MODELO:
+
+    "Modelo",
+
+
+    MARCA:
+
+    "Marca",
+
+
+    ANO:
+
+    "Ano",
+
+
+    COR:
+
+    "Cor",
+    
+
+    COMMBUSTÍVEL:
+
+    "Combustível",
+
+
+    STATUS:
+
+    "Status"
+
+
+};
+
 
 
 
