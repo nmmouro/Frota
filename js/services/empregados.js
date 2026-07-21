@@ -14,28 +14,28 @@ import {
 
 } from "../config/config.js";
 
-const ABA = ABAS.MOTORISTAS;
+const ABA = ABAS.EMPREADOS;
 
 
 // ============================================================================
 
 
-export async function obterMotoristas() {
+export async function obterEmpregados() {
     return listar(ABA);
 }
 
-export async function obterMotorista(id) {
+export async function obterEmpregados(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarMotorista(dados) {
+export async function salvarEmpregados(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarMotorista(id, dados) {
+export async function atualizarEmprregados(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirMotorista(id) {
+export async function excluirEmpregados(id) {
     return excluir(ABA, id);
 }
