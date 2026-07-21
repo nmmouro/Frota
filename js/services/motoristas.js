@@ -32,7 +32,7 @@ export async function salvarMotoristas(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarLancamentoMotoristas(id, dados) {
+export async function atualizarMotoristas(id, dados) {
     return editar(ABA, id, dados);
 }
 
