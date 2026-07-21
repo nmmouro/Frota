@@ -20,22 +20,22 @@ const ABA = ABAS.VEICULOS;
 // ============================================================================
 
 
-export async function obterLancamentos() {
+export async function obterVeiculos() {
     return listar(ABA);
 }
 
-export async function obterLancamento(id) {
+export async function obterVeiculos(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarLancamento(dados) {
+export async function salvarVeiculos(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarLancamento(id, dados) {
+export async function atualizarLancamentoVeiculos(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirLancamento(id) {
+export async function excluirVeiculos(id) {
     return excluir(ABA, id);
 }
