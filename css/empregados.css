@@ -1,7 +1,7 @@
 /* ==========================================================================
    PAINEL FROTA
    MOTORISTAS
-   Arquivo: css/motoristas.css
+   Arquivo: css/empregados.css
 ========================================================================== */
 
 
@@ -10,7 +10,7 @@
 ========================================================================== */
 
 
-.motoristas-page {
+.empregados-page {
 
 
     width:
@@ -56,7 +56,7 @@
 ========================================================================== */
 
 
-.motoristas-header {
+.empregados-header {
 
 
     display:
@@ -79,7 +79,7 @@
 
 
 
-.motoristas-header h1 {
+.empregados-header h1 {
 
 
     color:
@@ -104,7 +104,7 @@
 ========================================================================== */
 
 
-.motoristas-resumo {
+.empregados-resumo {
 
 
     display:
@@ -128,7 +128,7 @@
 
 
 
-.motorista-card {
+.empregados-card {
 
 
     background:
@@ -172,7 +172,7 @@
 
 
 
-.motorista-card .titulo {
+.empregado-card .titulo {
 
 
     color:
@@ -191,7 +191,7 @@
 
 
 
-.motorista-card .valor {
+.empregado-card .valor {
 
 
     font-size:
@@ -218,11 +218,11 @@
 
 
 /* ==========================================================================
-   FORMULÁRIO MOTORISTA
+   FORMULÁRIO EMPREGADO
 ========================================================================== */
 
 
-.motorista-form {
+.empregado-form {
 
 
     background:
@@ -266,7 +266,7 @@
 
 
 
-.motorista-form .campo {
+.empregado-form .campo {
 
 
     display:
@@ -290,7 +290,7 @@
 
 
 
-.motorista-form label {
+.empregado-form label {
 
 
     color:
@@ -310,8 +310,8 @@
 
 
 
-.motorista-form input,
-.motorista-form select {
+.empregado-form input,
+.empregado-form select {
 
 
     background:
@@ -348,7 +348,7 @@
 /* campos maiores */
 
 
-.motorista-form .campo-full {
+.empregado-form .campo-full {
 
 
     grid-column:
@@ -362,7 +362,7 @@
 
 
 
-.motorista-form .campo-duplo {
+.empregado-form .campo-duplo {
 
 
     grid-column:
@@ -384,7 +384,7 @@
 ========================================================================== */
 
 
-.motorista-actions {
+.empregado-actions {
 
 
     grid-column:
@@ -413,7 +413,7 @@
 
 
 
-.btn-motorista-salvar {
+.btn-empregado-salvar {
 
 
     background:
@@ -448,7 +448,7 @@
 
 
 
-.btn-motorista-salvar:hover {
+.btn-empregado-salvar:hover {
 
 
     background:
@@ -468,7 +468,7 @@
 
 
 
-.btn-motorista-cancelar {
+.btn-empregado-cancelar {
 
 
     background:
@@ -500,11 +500,11 @@
 
 
 /* ==========================================================================
-   TABELA MOTORISTAS
+      TABELA EMPREGADOS
 ========================================================================== */
 
 
-.motoristas-table {
+.empregados-table {
 
 
     flex:
@@ -544,7 +544,7 @@
 
 
 
-.motoristas-table .table-container {
+.empregados-table .table-container {
 
 
     height:
@@ -563,7 +563,7 @@
 
 
 
-.motoristas-table table {
+.empregados-table table {
 
 
     table-layout:
@@ -582,8 +582,8 @@
 /* Colunas */
 
 
-.motoristas-table th:nth-child(1),
-.motoristas-table td:nth-child(1){
+.empregados-table th:nth-child(1),
+.empregados-table td:nth-child(1){
 
 
     width:
@@ -597,8 +597,8 @@
 
 
 
-.motoristas-table th:nth-child(2),
-.motoristas-table td:nth-child(2){
+.empregados-table th:nth-child(2),
+.empregados-table td:nth-child(2){
 
 
     width:
@@ -612,8 +612,8 @@
 
 
 
-.motoristas-table th:nth-child(3),
-.motoristas-table td:nth-child(3){
+.empregados-table th:nth-child(3),
+.empregados-table td:nth-child(3){
 
 
     width:
@@ -627,8 +627,8 @@
 
 
 
-.motoristas-table th:nth-child(4),
-.motoristas-table td:nth-child(4){
+.empregados-table th:nth-child(4),
+.empregados-table td:nth-child(4){
 
 
     width:
@@ -648,7 +648,7 @@
 /* Linhas */
 
 
-.motoristas-table tbody tr {
+.empregados-table tbody tr {
 
 
     height:
@@ -662,7 +662,7 @@
 
 
 
-.motoristas-table td {
+.empregados-table td {
 
 
     font-size:
@@ -680,11 +680,11 @@
 
 
 /* ==========================================================================
-   STATUS MOTORISTA
+   STATUS EMPREGADOS
 ========================================================================== */
 
 
-.motorista-status {
+.empregados-status {
 
 
     display:
@@ -728,7 +728,7 @@
 
 
 
-.motorista-livre {
+.empregado-livre {
 
 
     background:
@@ -747,7 +747,7 @@
 
 
 
-.motorista-ocupado {
+.empregado-ocupado {
 
 
     background:
@@ -766,7 +766,7 @@
 
 
 
-.motorista-ferias {
+.empregado-ferias {
 
 
     background:
@@ -793,7 +793,7 @@
 ========================================================================== */
 
 
-.motorista-acoes {
+.empregado-acoes {
 
 
     display:
@@ -817,7 +817,7 @@
 
 
 
-.motorista-acoes button {
+.empregado-acoes button {
 
 
     width:
@@ -842,7 +842,7 @@
 
 
 
-.btn-editar-motorista {
+.btn-editar-empregado {
 
 
     background:
@@ -861,7 +861,7 @@
 
 
 
-.btn-excluir-motorista {
+.btn-excluir-empregado {
 
 
     background:
@@ -890,7 +890,7 @@
 @media(min-width:1600px){
 
 
-    .motoristas-table tbody tr {
+    .empregados-table tbody tr {
 
 
         height:
@@ -917,7 +917,7 @@
 @media(max-width:1100px){
 
 
-    .motoristas-resumo {
+    .empregados-resumo {
 
 
         grid-template-columns:
@@ -929,7 +929,7 @@
 
 
 
-    .motorista-form {
+    .empregado-form {
 
 
         grid-template-columns:
@@ -950,7 +950,7 @@
 @media(max-width:700px){
 
 
-    .motorista-form {
+    .empregado-form {
 
 
         grid-template-columns:
@@ -962,7 +962,7 @@
 
 
 
-    .motoristas-header {
+    .empregados-header {
 
 
         flex-direction:
