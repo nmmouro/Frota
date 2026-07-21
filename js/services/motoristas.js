@@ -1,14 +1,7 @@
-// ============================================================================
-// SERVICES / MOTORISTAS
-// Arquivo: js/services/motoristas.js
-// ============================================================================
-
-
-// ================= IMPORTS =================
-
 import {
 
     listar,
+    buscar,
     salvar,
     editar,
     excluir
@@ -24,83 +17,25 @@ import {
 const ABA = ABAS.MOTORISTAS;
 
 
-// ================= CONSULTAS =================
+// ============================================================================
+
 
 export async function obterMotoristas() {
-
-    return await listar(
-
-        ABA
-
-    );
-
+    return listar(ABA);
 }
 
-
-// ================= BUSCA POR ID =================
-
-export async function obterMotorista(id) {
-
-    const dados = await listar(
-
-        ABAS.MOTORISTAS
-
-    );
-
-    return dados.find(
-
-        item => item.id === id
-
-    );
-
+export async function obterMotoristas(id) {
+    return buscar(ABA, id);
 }
 
-
-// ================= GRAVAÇÃO =================
-
-export async function salvarMotorista(dados) {
-
-    return await salvar(
-
-        ABAS.MOTORISTAS,
-
-        dados
-
-    );
-
+export async function salvarMotoristas(dados) {
+    return salvar(ABA, dados);
 }
 
-
-// ================= ATUALIZAÇÃO =================
-
-export async function atualizarMotorista(
-    linha,
-    dados
-) {
-
-    return await editar(
-
-        ABAS.MOTORISTAS,
-
-        linha,
-
-        dados
-
-    );
-
+export async function atualizarLancamentoMotoristas(id, dados) {
+    return editar(ABA, id, dados);
 }
 
-
-// ================= EXCLUSÃO =================
-
-export async function excluirMotorista(linha) {
-
-    return await excluir(
-
-        ABAS.MOTORISTAS,
-
-        linha
-
-    );
-
+export async function excluirMotoristas(id) {
+    return excluir(ABA, id);
 }
