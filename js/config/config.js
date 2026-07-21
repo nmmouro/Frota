@@ -18,7 +18,7 @@ export const CONFIG = {
 
     API_URL:
 
-    "https://script.google.com/macros/s/AKfycbx3bkJ_aIlOgbBA6GbvB5KwzB-D1Fe-E32iJpsVuACh0vUH2T1JPJhN9Uewt7mENwWX/exec",
+    "https://script.google.com/macros/s/AKfycbxlmHZYOqdVf4YF6_uEDyjIpX1c8Hln4XtF8FaN1NyaPpwaMtQPBBK09vHzQKRq6Rw3Kw/exec",
 
 
 
