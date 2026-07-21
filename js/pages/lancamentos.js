@@ -27,9 +27,9 @@ import {
 
 import {
 
-    obterMotoristas
+    obterEmpregados
 
-} from "../services/motoristas.js";
+} from "../services/empregados.js";
 
 
 import {
@@ -86,7 +86,7 @@ const selectVeiculo =
 document.querySelector("#veiculo");
 
 const selectMotorista =
-document.querySelector("#motorista");
+document.querySelector("#empregado");
 
 // ============================================================================
 // CONFIGURAÇÃO DA TABELA
@@ -167,7 +167,7 @@ async function init(){
         preencherDataHoraAtual();
         registrarEventos();
         await carregarVeiculos();
-        await carregarMotoristas();
+        await carregarEmpregados();
         await carregarTabela();
         esconderLoading();
 
@@ -500,21 +500,21 @@ function obterDadosFormulario(){
         campoHora.value,
 
         "Empregado / Matrícula":
-        formulario.motorista.value,
+        [
+            formulario.empregado.value,
+            formulario.matricula.value
+        ]
+        .filter(Boolean)
+        .join(" / "),
 
         Veículo:
         selectVeiculo.value,
 
         "Passageiro / Setor / Motivo":
-
         [
-
             formulario.passageiro.value,
-
             formulario.setor.value,
-
             formulario.motivo.value
-
         ]
         .filter(Boolean)
         .join(" / "),
@@ -540,7 +540,7 @@ function preencherFormulario(registro){
         registro.Hora
     );
 
-    formulario.empregado.value =
+    selectEmpregado.value =
     registro["Empregado"];
 
     selectVeiculo.value =
@@ -549,7 +549,7 @@ function preencherFormulario(registro){
     formulario.itinerario.value =
     registro.Itinerário;
 
-    formulario.status.value =
+    selectStatus.value =
     registro.Status;
 
 }
@@ -620,14 +620,14 @@ async function carregarVeiculos() {
 
 
 // ============================================================================
-// CARREGAR MOTORISTAS
+// CARREGAR EMPREGADOS
 // ============================================================================
 
-async function carregarMotoristas() {
+async function carregarEmpregados() {
 
     const resposta =
 
-        await obterMotoristas();
+        await obterEmpregados();
 
     const lista =
 
@@ -638,7 +638,7 @@ async function carregarMotoristas() {
 
         throw new Error(
 
-            "Resposta inválida ao carregar motoristas."
+            "Resposta inválida ao carregar empregados."
 
         );
 
@@ -648,7 +648,7 @@ async function carregarMotoristas() {
 
         <option value="">
 
-            Selecione o motorista
+            Selecione o empregado
 
         </option>
 
@@ -666,14 +666,14 @@ async function carregarMotoristas() {
 
         option.value =
 
-            item.Motorista || "";
+            item.Empregado || "";
 
 
         option.textContent =
 
-            item.Motorista || "";
+            item.Empregado || "";
 
-        selectMotorista.appendChild(
+        selectEmpregado.appendChild(
 
             option
 
