@@ -669,35 +669,103 @@ async function carregarVeiculos(){
 // SELECT MOTORISTAS
 // ============================================================================
 
-async function carregarmotoristas(){
+async function carregarMotoristas() {
 
-    const resposta =
-    await obtermotoristas();
+    try {
 
-    const lista =
-    resposta.dados ?? resposta;
+        const lista = await obterMotoristas();
 
-    selectVeiculo.innerHTML =
-    `
-    <option value="">
-        Selecione o motorista
-    </option>
-    `;
+        if (!Array.isArray(lista)) {
 
-    lista.forEach(item=>{
+            console.error(
+                "Lista de motoristas inválida:",
+                lista
+            );
 
-        const option =
-        document.createElement("option");
+            return;
 
-        option.value =
-        item.Motorista;
+        }
 
-        option.textContent =
-        `${item.Motorista} - ${item.Matrícula}`;
+        const select = document.querySelector(
 
-        selectmotorista.appendChild(option);
+            "#empregadoMatricula"
 
-    });
+        );
+
+        if (!select) {
+
+            console.warn(
+
+                "Select #empregadoMatricula não encontrado."
+
+            );
+
+            return;
+
+        }
+
+        select.innerHTML = `
+
+            <option value="">
+
+                Selecione o motorista
+
+            </option>
+
+        `;
+
+
+        lista.forEach(motorista => {
+
+            const option =
+
+                document.createElement(
+
+                    "option"
+
+                );
+
+
+            const nome =
+
+                motorista.Motorista || "";
+
+
+            const matricula =
+
+                motorista.ID || "";
+
+
+            option.value =
+
+                `${nome} / ${matricula}`;
+
+
+            option.textContent =
+
+                `${nome} / ${matricula}`;
+
+
+            select.appendChild(
+
+                option
+
+            );
+
+        });
+
+    } catch (erro) {
+
+        console.error(
+
+            "Erro ao carregar motoristas:",
+
+            erro
+
+        );
+
+    }
+
 }
 
 //async function carregarMotoristas(){
