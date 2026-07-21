@@ -630,168 +630,143 @@ function preencherFormulario(registro){
 
 
 // ============================================================================
-// SELECT VEÍCULOS
+// CARREGAR VEÍCULOS
 // ============================================================================
 
-
-async function carregarVeiculos(){
+async function carregarVeiculos() {
 
     const resposta =
-    await obterVeiculos();
+
+        await obterVeiculos();
+
 
     const lista =
-    resposta.dados ?? resposta;
 
-    selectVeiculo.innerHTML =
-    `
-    <option value="">
-        Selecione o veículo
-    </option>
-    `;
-
-    lista.forEach(item=>{
-
-        const option =
-        document.createElement("option");
-
-        option.value =
-        item.Placa;
-
-        option.textContent =
-        `${item.Placa} - ${item.Modelo}`;
-
-        selectVeiculo.appendChild(option);
-
-    });
-}
-
-// ============================================================================
-// SELECT MOTORISTAS
-// ============================================================================
-
-async function carregarMotoristas() {
-
-    try {
-
-        const lista = await obterMotoristas();
-
-        if (!Array.isArray(lista)) {
-
-            console.error(
-                "Lista de motoristas inválida:",
-                lista
-            );
-
-            return;
-
-        }
-
-        const select = document.querySelector(
-
-            "#empregadoMatricula"
-
-        );
-
-        if (!select) {
-
-            console.warn(
-
-                "Select #empregadoMatricula não encontrado."
-
-            );
-
-            return;
-
-        }
-
-        select.innerHTML = `
-
-            <option value="">
-
-                Selecione o motorista
-
-            </option>
-
-        `;
+        resposta.dados ?? resposta;
 
 
-        lista.forEach(motorista => {
+    if (!Array.isArray(lista)) {
 
-            const option =
+        throw new Error(
 
-                document.createElement(
-
-                    "option"
-
-                );
-
-
-            const nome =
-
-                motorista.Motorista || "";
-
-
-            const matricula =
-
-                motorista.ID || "";
-
-
-            option.value =
-
-                `${nome} / ${matricula}`;
-
-
-            option.textContent =
-
-                `${nome} / ${matricula}`;
-
-
-            select.appendChild(
-
-                option
-
-            );
-
-        });
-
-    } catch (erro) {
-
-        console.error(
-
-            "Erro ao carregar motoristas:",
-
-            erro
+            "Resposta inválida ao carregar veículos."
 
         );
 
     }
 
+
+    selectVeiculo.innerHTML = `
+
+        <option value="">
+
+            Selecione o veículo
+
+        </option>
+
+    `;
+
+
+    lista.forEach(item => {
+
+        const option =
+
+            document.createElement(
+
+                "option"
+
+            );
+
+
+        option.value =
+
+            item.Placa || "";
+
+
+        option.textContent =
+
+            `${item.Placa || ""} - ${item.Modelo || ""}`;
+
+
+        selectVeiculo.appendChild(
+
+            option
+
+        );
+
+    });
+
 }
 
-//async function carregarMotoristas(){
 
-//   const dados =
+// ============================================================================
+// CARREGAR MOTORISTAS
+// ============================================================================
 
-//       await obterMotoristas();
+async function carregarMotoristas() {
 
-//   preencherSelect(
+    const resposta =
 
-//       selectMotorista,
-
-//        dados,
-
-//        "MOTORISTA",
-
- //       "MOTORISTA",
-
-//        "Selecione o motorista"
-
-//    );
+        await obterMotoristas();
 
 
-//}
+    const lista =
+
+        resposta.dados ?? resposta;
 
 
+    if (!Array.isArray(lista)) {
+
+        throw new Error(
+
+            "Resposta inválida ao carregar motoristas."
+
+        );
+
+    }
+
+
+    selectMotorista.innerHTML = `
+
+        <option value="">
+
+            Selecione o motorista
+
+        </option>
+
+    `;
+
+
+    lista.forEach(item => {
+
+        const option =
+
+            document.createElement(
+
+                "option"
+
+            );
+
+
+        option.value =
+
+            item.Motorista || "";
+
+
+        option.textContent =
+
+            item.Motorista || "";
+
+
+        selectMotorista.appendChild(
+
+            option
+
+        );
+
+    });
+
+}
 
 
 
