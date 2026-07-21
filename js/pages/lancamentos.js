@@ -541,7 +541,7 @@ function preencherFormulario(registro){
     );
 
     formulario.empregado.value =
-    registro["Empregado / Matrícula"];
+    registro["Empregado"];
 
     selectVeiculo.value =
     registro.Veículo;
