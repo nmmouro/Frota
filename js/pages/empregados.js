@@ -1,19 +1,19 @@
 // ============================================================================
-// MOTORISTAS
-// Arquivo: js/pages/motoristas.js
+// EMPREGAADOS
+// Arquivo: js/pages/empregados.js
 // ============================================================================
 
 // ================= IMPORTS =================
 
 import {
 
-    obtermotoristas,
-    obtermotorista,
-    salvarmotorista,
-    atualizarmotorista,
-    excluirmotorista
+    obterempregados,
+    obterempregado,
+    salvarempregado,
+    atualizarempregado,
+    excluirempregado
 
-} from "../services/motoristas.js";
+} from "../services/empregados.js";
 
 import {
 
@@ -31,14 +31,14 @@ import {
 // ================= ELEMENTOS =================
 
 const formulario =
-    document.querySelector("#formMotorista");
+    document.querySelector("#formEmpregados");
 
 const tabela =
-    document.querySelector("#tabelaMotoristas");
+    document.querySelector("#tabelaEmpregados");
 
 // ================= VARIÁVEIS =================
 
-let motoristas = [];
+let empregados = [];
 
 // ================= EVENTOS =================
 
@@ -82,7 +82,7 @@ async function init() {
 
 async function carregarDados() {
 
-    motoristas = await obterMotoristas();
+    motoristas = await obterEmpregados();
 
     renderizarTabela();
 
@@ -96,7 +96,7 @@ function renderizarTabela() {
 
         tabela,
 
-        motoristas
+        empregados
 
     );
 
@@ -126,7 +126,7 @@ async function salvar(evento) {
 
         const dados = obterDadosFormulario();
 
-        await salvarMotorista(dados);
+        await salvarEmpregado(dados);
 
         formulario.reset();
 
@@ -148,25 +148,29 @@ function obterDadosFormulario() {
 
     return {
 
-        nome:
+        empregado:
 
-            formulario.nome.value.trim(),
+            formulario.empregado.value.trim(),
 
         matricula:
 
             formulario.matricula.value.trim(),
 
-        telefone:
+        diretoria:
 
-            formulario.telefone.value.trim(),
+            formulario.diretoria.value.trim(),
 
-        categoria:
+        setor:
 
-            formulario.categoria.value,
+            formulario.setor.value,
 
-        validade:
+        usuario:
 
-            formulario.validade.value,
+            formulario.usuario.value,
+
+        condicao:
+
+            formulario.condicao.value,
 
         status:
 
