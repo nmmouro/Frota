@@ -255,7 +255,8 @@ export const STATUS_ICON = {
 
 export const CAMPOS = {
 
-
+LANCAMENTOS:[
+    
     ID:
 
     "ID",
@@ -301,7 +302,7 @@ export const CAMPOS = {
     STATUS:
 
     "Status"
-
+]
 
 };
 
@@ -310,7 +311,7 @@ export const CAMPOS = {
 // ============================================================================
 
 
-export const CAMPOS = {
+EMPREGADOS:[
 
 
     ID:
@@ -361,7 +362,7 @@ export const CAMPOS = {
     STATUS:
 
     "Status"
-
+]
 
 };
 
@@ -371,7 +372,7 @@ export const CAMPOS = {
 // ============================================================================
 
 
-export const CAMPOS = {
+VEICULOS:[
 
 
     ID:
@@ -422,7 +423,7 @@ export const CAMPOS = {
     STATUS:
 
     "Status"
-
+]
 
 };
 
