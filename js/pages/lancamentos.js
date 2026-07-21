@@ -636,15 +636,11 @@ function preencherFormulario(registro){
 
 async function carregarVeiculos(){
 
-
     const resposta =
     await obterVeiculos();
 
-
     const lista =
     resposta.dados ?? resposta;
-
-
 
     selectVeiculo.innerHTML =
     `
@@ -653,64 +649,78 @@ async function carregarVeiculos(){
     </option>
     `;
 
-
-
     lista.forEach(item=>{
-
 
         const option =
         document.createElement("option");
 
-
         option.value =
         item.Placa;
-
 
         option.textContent =
         `${item.Placa} - ${item.Modelo}`;
 
-
         selectVeiculo.appendChild(option);
 
-
     });
-
-
 }
-
-
-
 
 // ============================================================================
 // SELECT MOTORISTAS
 // ============================================================================
 
+async function carregarmotoristas(){
 
-async function carregarMotoristas(){
+    const resposta =
+    await obtermotoristas();
 
+    const lista =
+    resposta.dados ?? resposta;
 
-    const dados =
+    selectVeiculo.innerHTML =
+    `
+    <option value="">
+        Selecione o motorista
+    </option>
+    `;
 
-        await obterMotoristas();
+    lista.forEach(item=>{
 
+        const option =
+        document.createElement("option");
 
+        option.value =
+        item.Motorista;
 
-    preencherSelect(
+        option.textContMotorissta} - ${item.Modelo}`;
 
-        selectMotorista,
+        selectmotorista.appendChild(option);
 
-        dados,
-
-        "MOTORISTA",
-
-        "MOTORISTA",
-
-        "Selecione o motorista"
-
-    );
-
-
+    });
 }
+
+//async function carregarMotoristas(){
+
+//   const dados =
+
+//       await obterMotoristas();
+
+//   preencherSelect(
+
+//       selectMotorista,
+
+//        dados,
+
+//        "MOTORISTA",
+
+ //       "MOTORISTA",
+
+//        "Selecione o motorista"
+
+//    );
+
+
+//}
 
 
 
