@@ -329,47 +329,117 @@ async function salvar(evento){
 
 
 // ============================================================================
-// EDITAR
+// EDITAR LANÇAMENTO
 // ============================================================================
 
-function editarLancamento(id) {
+async function editarLancamento(id) {
 
-    const registro =
+    try {
 
-        registros.find(
+        // ====================================================================
+        // BUSCAR LANÇAMENTO COMPLETO NA API
+        // ====================================================================
 
-            item =>
+        const resposta =
 
-                String(item.ID) ===
+            await obterLancamento(id);
 
-                String(id)
+
+        // ====================================================================
+        // NORMALIZAR RESPOSTA
+        // ====================================================================
+
+        const registro =
+
+            resposta?.dados ??
+
+            resposta;
+
+
+        // ====================================================================
+        // VALIDAR REGISTRO
+        // ====================================================================
+
+        if (!registro) {
+
+            throw new Error(
+
+                "Lançamento não encontrado."
+
+            );
+
+        }
+
+
+        // ====================================================================
+        // DEFINIR REGISTRO EM EDIÇÃO
+        // ====================================================================
+
+        registroEditando =
+
+            registro.ID;
+
+
+        // ====================================================================
+        // PREENCHER FORMULÁRIO
+        // ====================================================================
+
+        preencherFormulario(
+
+            registro
 
         );
 
 
-    if (!registro) {
+        // ====================================================================
+        // ATUALIZAR INTERFACE
+        // ====================================================================
+
+        const titulo =
+
+            document.querySelector(
+
+                "#tituloFormulario"
+
+            );
+
+
+        if (titulo) {
+
+            titulo.textContent =
+
+                "Editar lançamento";
+
+        }
+
+
+        document.body.classList.add(
+
+            "modo-edicao"
+
+        );
+
+
+    } catch (erro) {
 
         console.error(
 
-            "Lançamento não encontrado:",
+            "Erro ao carregar lançamento para edição:",
 
-            id
+            erro
 
         );
 
-        return;
+
+        alert(
+
+            erro.message ||
+
+            "Não foi possível carregar o lançamento."
+
+        );
 
     }
-
-
-    registroEditando = registro.ID;
-
-
-    preencherFormulario(
-
-        registro
-
-    );
 
 }
 
@@ -377,6 +447,7 @@ function editarLancamento(id) {
 window.editarLancamento =
 
     editarLancamento;
+
 
 // ============================================================================
 // EXCLUIR
