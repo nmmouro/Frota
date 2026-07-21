@@ -24,18 +24,18 @@ export async function obterMotoristas() {
     return listar(ABA);
 }
 
-export async function obterMotoristas(id) {
+export async function obterMotorista(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarMotoristas(dados) {
+export async function salvarMotorista(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarMotoristas(id, dados) {
+export async function atualizarMotorista(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirMotoristas(id) {
+export async function excluirMotorista(id) {
     return excluir(ABA, id);
 }
