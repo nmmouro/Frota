@@ -692,7 +692,7 @@ async function carregarmotoristas(){
         option.value =
         item.Motorista;
 
-        option.textContMotorissta} - ${item.Modelo}`;
+        option.textContMotorista} - ${item.Matícula}`;
 
         selectmotorista.appendChild(option);
 
