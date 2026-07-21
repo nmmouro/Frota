@@ -18,12 +18,9 @@ import {
 } from "../config/config.js";
 
 
-
-
 // ============================================================================
 // REQUEST
 // ============================================================================
-
 
 async function request(
 
@@ -31,8 +28,7 @@ async function request(
 
     options = {}
 
-){
-
+) {
 
     const resposta = await fetch(
 
@@ -43,9 +39,11 @@ async function request(
     );
 
 
+    // ------------------------------------------------------------------------
+    // ERRO HTTP
+    // ------------------------------------------------------------------------
 
-    if(!resposta.ok){
-
+    if (!resposta.ok) {
 
         throw new Error(
 
@@ -53,44 +51,45 @@ async function request(
 
         );
 
-
     }
 
 
+    // ------------------------------------------------------------------------
+    // CONVERTE RESPOSTA PARA JSON
+    // ------------------------------------------------------------------------
 
-    const json =
-    await resposta.json();
+    const json = await resposta.json();
 
 
+    // ------------------------------------------------------------------------
+    // ERRO DA API
+    // ------------------------------------------------------------------------
 
-    if(!json.success){
-
+    if (!json.sucesso) {
 
         throw new Error(
 
-            json.message ||
+            json.erro ||
 
             "Erro desconhecido na API."
 
         );
 
-
     }
 
 
+    // ------------------------------------------------------------------------
+    // RETORNA DADOS
+    // ------------------------------------------------------------------------
 
-    return json.data;
-
+    return json.dados;
 
 }
-
-
 
 
 // ============================================================================
 // GET
 // ============================================================================
-
 
 async function get(
 
@@ -100,13 +99,9 @@ async function get(
 
     id = null
 
-){
+) {
 
-
-
-    const params =
-    new URLSearchParams();
-
+    const params = new URLSearchParams();
 
 
     params.append(
@@ -118,7 +113,6 @@ async function get(
     );
 
 
-
     params.append(
 
         "aba",
@@ -128,10 +122,7 @@ async function get(
     );
 
 
-
-
-    if(id){
-
+    if (id !== null && id !== undefined) {
 
         params.append(
 
@@ -141,9 +132,7 @@ async function get(
 
         );
 
-
     }
-
 
 
     return await request(
@@ -152,16 +141,12 @@ async function get(
 
     );
 
-
 }
-
-
 
 
 // ============================================================================
 // POST
 // ============================================================================
-
 
 async function post(
 
@@ -173,9 +158,7 @@ async function post(
 
     id = null
 
-){
-
-
+) {
 
     return await request(
 
@@ -183,26 +166,17 @@ async function post(
 
         {
 
+            method: "POST",
 
-            method:"POST",
-
-
-
-            headers:{
-
+            headers: {
 
                 "Content-Type":
 
-                "text/plain;charset=utf-8"
-
+                    "text/plain;charset=utf-8"
 
             },
 
-
-
-            body:
-
-            JSON.stringify({
+            body: JSON.stringify({
 
                 acao,
 
@@ -214,15 +188,11 @@ async function post(
 
             })
 
-
         }
 
     );
 
-
 }
-
-
 
 
 // ============================================================================
@@ -230,10 +200,11 @@ async function post(
 // ============================================================================
 
 
+// ============================================================================
 // LISTAR
+// ============================================================================
 
-export function listar(aba){
-
+export function listar(aba) {
 
     return get(
 
@@ -243,12 +214,12 @@ export function listar(aba){
 
     );
 
-
 }
 
 
-
+// ============================================================================
 // BUSCAR
+// ============================================================================
 
 export function buscar(
 
@@ -256,8 +227,7 @@ export function buscar(
 
     id
 
-){
-
+) {
 
     return get(
 
@@ -269,12 +239,12 @@ export function buscar(
 
     );
 
-
 }
 
 
-
+// ============================================================================
 // SALVAR
+// ============================================================================
 
 export function salvar(
 
@@ -282,8 +252,7 @@ export function salvar(
 
     dados
 
-){
-
+) {
 
     return post(
 
@@ -295,12 +264,12 @@ export function salvar(
 
     );
 
-
 }
 
 
-
+// ============================================================================
 // EDITAR
+// ============================================================================
 
 export function editar(
 
@@ -310,8 +279,7 @@ export function editar(
 
     dados
 
-){
-
+) {
 
     return post(
 
@@ -325,12 +293,12 @@ export function editar(
 
     );
 
-
 }
 
 
-
+// ============================================================================
 // EXCLUIR
+// ============================================================================
 
 export function excluir(
 
@@ -338,8 +306,7 @@ export function excluir(
 
     id
 
-){
-
+) {
 
     return post(
 
@@ -352,6 +319,5 @@ export function excluir(
         id
 
     );
-
 
 }
