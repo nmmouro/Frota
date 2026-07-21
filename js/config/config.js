@@ -360,7 +360,7 @@ export const CAMPOS = {
 
     STATUS:
 
-    "Status",
+    "Status"
 
 
 };
