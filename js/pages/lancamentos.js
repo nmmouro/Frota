@@ -3,11 +3,9 @@
 // Arquivo: js/pages/lancamentos.js
 // ============================================================================
 
-
 // ============================================================================
 // IMPORTS
 // ============================================================================
-
 
 import {
 
@@ -65,46 +63,34 @@ import {
 } from "../utils/formulario.js";
 
 
-
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
 
-
 const formulario =
 document.querySelector("#formLancamento");
-
 
 const tabela =
 document.querySelector("#tabelaLancamentos");
 
-
 const btnNovo =
 document.querySelector("#btnNovo");
-
 
 const campoData =
 document.querySelector("#data");
 
-
 const campoHora =
 document.querySelector("#hora");
-
 
 const selectVeiculo =
 document.querySelector("#veiculo");
 
-
 const selectMotorista =
 document.querySelector("#motorista");
-
-
-
 
 // ============================================================================
 // CONFIGURAÇÃO DA TABELA
 // ============================================================================
-
 
 const COLUNAS = [
 
@@ -113,42 +99,35 @@ const COLUNAS = [
         label:"ID"
     },
 
-
     {
         field:"Data",
         label:"Data"
     },
-
 
     {
         field:"Hora",
         label:"Hora"
     },
 
-
     {
         field:"Empregado / Matrícula",
         label:"Empregado"
     },
-
 
     {
         field:"Veículo",
         label:"Veículo"
     },
 
-
     {
         field:"Passageiro / Setor / Motivo",
         label:"Passageiro"
     },
 
-
     {
         field:"Itinerário",
         label:"Itinerário"
     },
-
 
     {
         field:"Status",
@@ -159,24 +138,17 @@ const COLUNAS = [
 ];
 
 
-
-
 // ============================================================================
 // ESTADO
 // ============================================================================
-
 
 let registros = [];
 
 let registroEditando = null;
 
-
-
-
 // ============================================================================
 // INICIALIZAÇÃO
 // ============================================================================
-
 
 document.addEventListener(
 
@@ -187,63 +159,36 @@ init
 );
 
 
-
 async function init(){
-
 
     try{
 
-
         mostrarLoading();
-
-
         preencherDataHoraAtual();
-
-
         registrarEventos();
-
-
         await carregarVeiculos();
-
-
         await carregarMotoristas();
-
-
         await carregarTabela();
-
         esconderLoading();
-
-
 
     }
     catch(erro){
 
-
         tratarErro(erro);
-
-
     }
     finally{
 
-
         esconderLoading();
-
 
     }
 
-
 }
-
-
-
 
 // ============================================================================
 // EVENTOS
 // ============================================================================
 
-
 function registrarEventos(){
-
 
     formulario?.addEventListener(
 
@@ -253,7 +198,6 @@ function registrarEventos(){
 
     );
 
-
     btnNovo?.addEventListener(
 
         "click",
@@ -262,194 +206,133 @@ function registrarEventos(){
 
     );
 
-
 }
-
-
 
 
 // ============================================================================
 // LISTAGEM
 // ============================================================================
 
-
 async function carregarTabela(){
-
 
     registros =
     await obterLancamentos();
-
-
     renderizarTabela();
-
 
 }
 
 
-
-
 function renderizarTabela(){
 
-
     renderTable(
-
+       
         tabela,
-
         COLUNAS,
-
         registros,
-
         [
 
             {
 
                 label:"Editar",
-
                 className:"btn-edit",
-
                 onClick:
                 registro =>
                 editarLancamento(registro.ID)
 
             },
 
-
             {
 
                 label:"Excluir",
-
                 className:"btn-delete",
-
                 onClick:
                 registro =>
                 remover(registro.ID)
 
             }
 
-
         ]
 
     );
 
-
 }
-
-
 
 
 // ============================================================================
 // NOVO
 // ============================================================================
 
-
 function novo(){
-
 
     registroEditando = null;
 
-
     formulario.reset();
-
 
     preencherDataHoraAtual();
 
-
 }
-
-
-
 
 // ============================================================================
 // SALVAR
 // ============================================================================
 
-
 async function salvar(evento){
-
 
     evento.preventDefault();
 
-
     try{
 
-
         mostrarLoading();
-
-
         const dados =
         obterDadosFormulario();
 
-
-
         if(registroEditando){
-
 
             await atualizarLancamento(
 
                 registroEditando,
-
                 dados
-
             );
-
 
         }
         else{
 
-
             await salvarLancamento(
-
                 dados
 
             );
 
-
         }
-
 
 
         formulario.reset();
 
-
         preencherDataHoraAtual();
-
 
         registroEditando = null;
 
-
         await carregarTabela();
-
-
 
     }
     catch(erro){
 
-
         tratarErro(erro);
-
 
     }
     finally{
 
-
         esconderLoading();
-
 
     }
 
-
 }
-
-
 
 
 // ============================================================================
 // EDITAR
 // ============================================================================
 
-
 function editarLancamento(id){
-
 
     const registro =
     registros.find(
@@ -459,34 +342,23 @@ function editarLancamento(id){
 
     );
 
-
     if(!registro) return;
-
 
     registroEditando = id;
 
-
     preencherFormulario(registro);
-
 
 }
 
-
-
-
 window.editarLancamento =
 editarLancamento;
-
-
 
 
 // ============================================================================
 // EXCLUIR
 // ============================================================================
 
-
 async function remover(id){
-
 
     if(
         !confirm(
@@ -495,69 +367,48 @@ async function remover(id){
     )
     return;
 
-
-
     try{
-
 
         mostrarLoading();
 
-
         await removerLancamento(id);
 
-
         await carregarTabela();
-
-
 
     }
     catch(erro){
 
-
         tratarErro(erro);
-
 
     }
     finally{
 
-
         esconderLoading();
-
 
     }
 
-
 }
-
-
 
 
 // ============================================================================
 // FORMULÁRIO
 // ============================================================================
 
-
 function obterDadosFormulario(){
 
-
     return {
-
 
         Data:
         campoData.value,
 
-
         Hora:
         campoHora.value,
-
 
         "Empregado / Matrícula":
         formulario.motorista.value,
 
-
         Veículo:
         selectVeiculo.value,
-
 
         "Passageiro / Setor / Motivo":
 
@@ -573,61 +424,40 @@ function obterDadosFormulario(){
         .filter(Boolean)
         .join(" / "),
 
-
-
         Itinerário:
         formulario.itinerario.value,
 
-
-
         Status:
         formulario.status.value
-
-
     };
-
 
 }
 
 
-
-
 function preencherFormulario(registro){
-
-
     campoData.value =
     dataParaInput(
         registro.Data
     );
-
 
     campoHora.value =
     horaParaInput(
         registro.Hora
     );
 
-
     formulario.empregado.value =
     registro["Empregado / Matrícula"];
-
 
     selectVeiculo.value =
     registro.Veículo;
 
-
-
     formulario.itinerario.value =
     registro.Itinerário;
-
 
     formulario.status.value =
     registro.Status;
 
-
 }
-
-
-
 
 // ============================================================================
 // CARREGAR VEÍCULOS
@@ -639,11 +469,9 @@ async function carregarVeiculos() {
 
         await obterVeiculos();
 
-
     const lista =
 
         resposta.dados ?? resposta;
-
 
     if (!Array.isArray(lista)) {
 
@@ -655,7 +483,6 @@ async function carregarVeiculos() {
 
     }
 
-
     selectVeiculo.innerHTML = `
 
         <option value="">
@@ -666,7 +493,6 @@ async function carregarVeiculos() {
 
     `;
 
-
     lista.forEach(item => {
 
         const option =
@@ -676,7 +502,6 @@ async function carregarVeiculos() {
                 "option"
 
             );
-
 
         option.value =
 
@@ -709,7 +534,6 @@ async function carregarMotoristas() {
 
         await obterMotoristas();
 
-
     const lista =
 
         resposta.dados ?? resposta;
@@ -725,7 +549,6 @@ async function carregarMotoristas() {
 
     }
 
-
     selectMotorista.innerHTML = `
 
         <option value="">
@@ -735,7 +558,6 @@ async function carregarMotoristas() {
         </option>
 
     `;
-
 
     lista.forEach(item => {
 
@@ -747,7 +569,6 @@ async function carregarMotoristas() {
 
             );
 
-
         option.value =
 
             item.Motorista || "";
@@ -756,7 +577,6 @@ async function carregarMotoristas() {
         option.textContent =
 
             item.Motorista || "";
-
 
         selectMotorista.appendChild(
 
@@ -769,24 +589,17 @@ async function carregarMotoristas() {
 }
 
 
-
 // ============================================================================
 // DATA / HORA AUTOMÁTICA
 // ============================================================================
 
-
 function preencherDataHoraAtual(){
 
-
     const data =
-
         document.querySelector("#data");
 
-
     const hora =
-
         document.querySelector("#hora");
-
 
 
     if(data){
@@ -798,30 +611,24 @@ function preencherDataHoraAtual(){
     }
 
 
-
     if(hora){
 
         hora.value =
 
             horaInput();
-
     }
 
-
 }
-
 
 
 // ============================================================================
 // ERROS
 // ============================================================================
 
-
 function tratarErro(erro){
 
 
     console.error(erro);
-
 
     alert(
 
@@ -830,6 +637,5 @@ function tratarErro(erro){
         "Erro ao processar lançamento."
 
     );
-
 
 }
