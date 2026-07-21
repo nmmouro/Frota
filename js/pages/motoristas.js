@@ -7,8 +7,11 @@
 
 import {
 
-    obterMotoristas,
-    salvarMotorista
+    obtermotoristas,
+    obtermotorista,
+    salvarmotorista,
+    atualizarmotorista,
+    excluirmotorista
 
 } from "../services/motoristas.js";
 
