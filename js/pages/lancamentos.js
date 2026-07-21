@@ -332,27 +332,51 @@ async function salvar(evento){
 // EDITAR
 // ============================================================================
 
-function editarLancamento(id){
+function editarLancamento(id) {
 
     const registro =
-    registros.find(
 
-        item =>
-        item.ID === id
+        registros.find(
+
+            item =>
+
+                String(item.ID) ===
+
+                String(id)
+
+        );
+
+
+    if (!registro) {
+
+        console.error(
+
+            "Lançamento não encontrado:",
+
+            id
+
+        );
+
+        return;
+
+    }
+
+
+    registroEditando = registro.ID;
+
+
+    preencherFormulario(
+
+        registro
 
     );
 
-    if(!registro) return;
-
-    registroEditando = id;
-
-    preencherFormulario(registro);
-
 }
 
-window.editarLancamento =
-editarLancamento;
 
+window.editarLancamento =
+
+    editarLancamento;
 
 // ============================================================================
 // EXCLUIR
