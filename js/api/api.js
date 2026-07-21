@@ -22,9 +22,6 @@ import {
 // REQUEST
 // ============================================================================
 
-// ============================================================================
-// REQUEST
-// ============================================================================
 
 async function request(
 
@@ -59,7 +56,7 @@ async function request(
 
 
     // ------------------------------------------------------------------------
-    // LÊ RESPOSTA
+    // CONVERTE RESPOSTA PARA JSON
     // ------------------------------------------------------------------------
 
     const json = await resposta.json();
@@ -82,15 +79,11 @@ async function request(
     // ERRO DA API
     // ------------------------------------------------------------------------
 
-    if (!json.sucesso) {
+    if (!json.success) {
 
         throw new Error(
 
-            json.erro ||
-
             json.message ||
-
-            json.mensagem ||
 
             "Erro desconhecido na API."
 
@@ -103,7 +96,7 @@ async function request(
     // RETORNA DADOS
     // ------------------------------------------------------------------------
 
-    return json.dados;
+    return json.data;
 
 }
 
