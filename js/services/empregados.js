@@ -1,3 +1,16 @@
+// ============================================================================
+// SERVICES / EMPREGADOS
+// Arquivo: js/services/empregados.js
+//
+// Responsável exclusivamente pela comunicação CRUD
+// com a aba EMPREGADOS do Google Sheets
+// ============================================================================
+
+
+// ============================================================================
+// IMPORTS
+// ============================================================================
+
 import {
 
     listar,
@@ -8,34 +21,113 @@ import {
 
 } from "../api/api.js";
 
+
 import {
 
     ABAS
 
 } from "../config/config.js";
 
-const ABA = ABAS.EMPREADOS;
 
 
 // ============================================================================
+// CONFIGURAÇÃO DA ABA
+// ============================================================================
+
+const ABA = ABAS.EMPREGADOS;
 
 
-export async function obterEmpregados() {
-    return listar(ABA);
+
+// ============================================================================
+// LISTAR EMPREGADOS
+// ============================================================================
+
+export function obterEmpregados() {
+
+    return listar(
+
+        ABA
+
+    );
+
 }
 
-export async function obterEmpregado(id) {
-    return buscar(ABA, id);
+
+
+// ============================================================================
+// OBTER EMPREGADO POR ID
+// ============================================================================
+
+export function obterEmpregado(id) {
+
+    return buscar(
+
+        ABA,
+
+        id
+
+    );
+
 }
 
-export async function salvarEmpregado(dados) {
-    return salvar(ABA, dados);
+
+
+// ============================================================================
+// SALVAR EMPREGADO
+// ============================================================================
+
+export function salvarEmpregado(dados) {
+
+    return salvar(
+
+        ABA,
+
+        dados
+
+    );
+
 }
 
-export async function atualizarEmprregado(id, dados) {
-    return editar(ABA, id, dados);
+
+
+// ============================================================================
+// ATUALIZAR EMPREGADO
+// ============================================================================
+
+export function atualizarEmpregado(
+
+    id,
+
+    dados
+
+) {
+
+    return editar(
+
+        ABA,
+
+        id,
+
+        dados
+
+    );
+
 }
 
-export async function excluirEmpregadO(id) {
-    return excluir(ABA, id);
+
+
+// ============================================================================
+// EXCLUIR EMPREGADO
+// ============================================================================
+
+export function excluirEmpregado(id) {
+
+    return excluir(
+
+        ABA,
+
+        id
+
+    );
+
 }
