@@ -629,9 +629,12 @@ async function carregarEmpregados() {
 
         await obterEmpregados();
 
+
     const lista =
 
-        resposta.dados ?? resposta;
+        resposta?.dados ??
+
+        resposta;
 
 
     if (!Array.isArray(lista)) {
@@ -644,6 +647,7 @@ async function carregarEmpregados() {
 
     }
 
+
     selectEmpregado.innerHTML = `
 
         <option value="">
@@ -654,7 +658,33 @@ async function carregarEmpregados() {
 
     `;
 
+
     lista.forEach(item => {
+
+        const empregado =
+
+            item["Empregado"] ?? "";
+
+
+        const matricula =
+
+            item["Matrícula"] ?? "";
+
+
+        const valor =
+
+            [
+
+                empregado,
+
+                matricula
+
+            ]
+
+            .filter(Boolean)
+
+            .join(" / ");
+
 
         const option =
 
@@ -664,14 +694,12 @@ async function carregarEmpregados() {
 
             );
 
-        option.value =
 
-            item.Empregado || "";
+        option.value = valor;
 
 
-        option.textContent =
+        option.textContent = valor;
 
-            item.Empregado || "";
 
         selectEmpregado.appendChild(
 
@@ -682,7 +710,6 @@ async function carregarEmpregados() {
     });
 
 }
-
 
 // ============================================================================
 // DATA / HORA AUTOMÁTICA
