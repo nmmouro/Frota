@@ -7,11 +7,9 @@
 // ============================================================================
 
 
-
 // ============================================================================
 // IMPORTS
 // ============================================================================
-
 
 import {
 
@@ -23,34 +21,113 @@ import {
 
 } from "../api/api.js";
 
+
 import {
 
     ABAS
 
 } from "../config/config.js";
 
-const ABA = ABAS.LANCAMENTOS;
 
 
 // ============================================================================
+// CONFIGURAÇÃO DA ABA
+// ============================================================================
+
+const ABA = ABAS.LANCAMENTOS;
 
 
-export async function obterLancamentos() {
-    return listar(ABA);
+
+// ============================================================================
+// LISTAR LANÇAMENTOS
+// ============================================================================
+
+export function obterLancamentos() {
+
+    return listar(
+
+        ABA
+
+    );
+
 }
 
-export async function obterLancamento(id) {
-    return buscar(ABA, id);
+
+
+// ============================================================================
+// OBTER LANÇAMENTO POR ID
+// ============================================================================
+
+export function obterLancamento(id) {
+
+    return buscar(
+
+        ABA,
+
+        id
+
+    );
+
 }
 
-export async function salvarLancamento(dados) {
-    return salvar(ABA, dados);
+
+
+// ============================================================================
+// SALVAR LANÇAMENTO
+// ============================================================================
+
+export function salvarLancamento(dados) {
+
+    return salvar(
+
+        ABA,
+
+        dados
+
+    );
+
 }
 
-export async function atualizarLancamento(id, dados) {
-    return editar(ABA, id, dados);
+
+
+// ============================================================================
+// ATUALIZAR LANÇAMENTO
+// ============================================================================
+
+export function atualizarLancamento(
+
+    id,
+
+    dados
+
+) {
+
+    return editar(
+
+        ABA,
+
+        id,
+
+        dados
+
+    );
+
 }
 
-export async function excluirLancamento(id) {
-    return excluir(ABA, id);
+
+
+// ============================================================================
+// EXCLUIR LANÇAMENTO
+// ============================================================================
+
+export function excluirLancamento(id) {
+
+    return excluir(
+
+        ABA,
+
+        id
+
+    );
+
 }
