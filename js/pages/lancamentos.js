@@ -527,29 +527,122 @@ function obterDadosFormulario() {
 
 }
 
+// ============================================================
+    // PREENCHER FORMULÁRIO
+    // ============================================================
 
-function preencherFormulario(registro){
-    campoData.value =
-    dataParaInput(
-        registro.Data
+function preencherFormulario(registro) {
+
+    console.log(
+        "Registro recebido para edição:",
+        registro
     );
+
+
+    // ============================================================
+    // DATA
+    // ============================================================
+
+    campoData.value =
+
+        dataParaInput(
+
+            registro["Data"]
+
+        ) || "";
+
+
+    // ============================================================
+    // HORA
+    // ============================================================
 
     campoHora.value =
-    horaParaInput(
-        registro.Hora
-    );
+
+        horaParaInput(
+
+            registro["Hora"]
+
+        ) || "";
+
+
+    // ============================================================
+    // EMPREGADO / MATRÍCULA
+    // ============================================================
 
     selectEmpregado.value =
-    registro["Empregado"];
+
+        registro["Empregado / Matrícula"]
+
+        || "";
+
+
+    // ============================================================
+    // VEÍCULO
+    // ============================================================
 
     selectVeiculo.value =
-    registro.Veículo;
+
+        registro["Veículo"]
+
+        || "";
+
+
+    // ============================================================
+    // PASSAGEIRO / SETOR / MOTIVO
+    // ============================================================
+
+    const partes = String(
+
+        registro["Passageiro / Setor / Motivo"]
+
+        || ""
+
+    )
+
+    .split(" / ");
+
+
+    formulario.passageiro.value =
+
+        partes[0]
+
+        || "";
+
+
+    formulario.setor.value =
+
+        partes[1]
+
+        || "";
+
+
+    formulario.motivo.value =
+
+        partes[2]
+
+        || "";
+
+
+    // ============================================================
+    // ITINERÁRIO
+    // ============================================================
 
     formulario.itinerario.value =
-    registro.Itinerário;
 
-    selectStatus.value =
-    registro.Status;
+        registro["Itinerário"]
+
+        || "";
+
+
+    // ============================================================
+    // STATUS
+    // ============================================================
+
+    formulario.status.value =
+
+        registro["Status"]
+
+        || "";
 
 }
 
