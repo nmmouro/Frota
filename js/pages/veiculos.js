@@ -43,11 +43,7 @@ import {
 
 } from "../utils/formulario.js";
 
-import {
 
-    preencherDataHoraAtual
-
-} from "../utils/datas.js";
 
 // ================= ELEMENTOS =================
 
@@ -62,9 +58,6 @@ document.querySelector("#btnNovo");
 
 const campoData =
 document.querySelector("#data");
-
-const campoHora =
-document.querySelector("#hora");
 
 const selectVeiculo =
 document.querySelector("#veiculo");
@@ -186,39 +179,7 @@ async function init() {
 }
 
 
-function preencherDataHoraAtual() {
 
-    const agora =
-
-        new Date();
-
-
-    if (campoData) {
-
-        campoData.value =
-
-            agora
-
-                .toISOString()
-
-                .split("T")[0];
-
-    }
-
-
-    if (campoHora) {
-
-        campoHora.value =
-
-            agora
-
-                .toTimeString()
-
-                .slice(0, 5);
-
-    }
-
-}
 
 // ================= EVENTOS =================
 
