@@ -489,41 +489,56 @@ async function remover(id){
 // FORMULÁRIO
 // ============================================================================
 
-function obterDadosFormulario(){
+function obterDadosFormulario() {
 
     return {
 
         Data:
-        campoData.value,
+
+            campoData.value,
+
 
         Hora:
-        campoHora.value,
+
+            campoHora.value,
+
 
         "Empregado / Matrícula":
-        [
-            formulario.empregado.value,
-            formulario.matricula.value
-        ]
-        .filter(Boolean)
-        .join(" / "),
+
+            selectEmpregado.value,
+
 
         Veículo:
-        selectVeiculo.value,
+
+            selectVeiculo.value,
+
 
         "Passageiro / Setor / Motivo":
-        [
-            formulario.passageiro.value,
-            formulario.setor.value,
-            formulario.motivo.value
-        ]
-        .filter(Boolean)
-        .join(" / "),
+
+            [
+
+                formulario.passageiro?.value,
+
+                formulario.setor?.value,
+
+                formulario.motivo?.value
+
+            ]
+
+            .filter(Boolean)
+
+            .join(" / "),
+
 
         Itinerário:
-        formulario.itinerario.value,
+
+            formulario.itinerario?.value || "",
+
 
         Status:
-        formulario.status.value
+
+            selectStatus.value
+
     };
 
 }
