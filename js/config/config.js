@@ -6,51 +6,29 @@
 // Configurações globais da aplicação
 // ============================================================================
 
-
-
 // ============================================================================
 // APLICAÇÃO
 // ============================================================================
 
-
 export const CONFIG = {
-
 
     API_URL:
 
     "https://script.google.com/macros/s/AKfycbwvm9JbrssBoi9N08-WWl6cfR3gEe7L05KBajmGc6s1O2k9VLhFuTcDl2ABFnPStYXz-g/exec",
 
+    UPDATE_INTERVAL: 30000,
 
+    DATE_FORMAT: "pt-BR",
 
-    UPDATE_INTERVAL:
-
-    30000,
-
-
-
-    DATE_FORMAT:
-
-    "pt-BR",
-
-
-
-    TIME_FORMAT:
-
-    "pt-BR"
-
+    TIME_FORMAT: "pt-BR"
 
 };
-
-
-
 
 // ============================================================================
 // ABAS GOOGLE SHEETS
 // ============================================================================
 
-
 export const ABAS = {
-
 
     LANCAMENTOS: "LANCAMENTOS",
 
@@ -62,246 +40,103 @@ export const ABAS = {
 
     SOCIAL: "AGENDA SERVIÇO SOCIAL"
 
-
 };
-
-
-
 
 // ============================================================================
 // STATUS DO SISTEMA
 // ============================================================================
 
-
 export const STATUS = {
 
+    AGENDADO: "AGENDADO",
+    
+    EM_ANDAMENTO: "EM ANDAMENTO",
+    
+    VIAGEM: "VIAGEM",
+    
+    MANUTENCAO: "MANUTENÇÃO",
 
-    AGENDADO:
+    CONCLUIDO: "CONCLUÍDO",
 
-    "AGENDADO",
+    FINALIZADO: "FINALIZADO",
 
+    CANCELADO: "CANCELADO",
 
+    LIVRE: "LIVRE",
 
-    EM_ANDAMENTO:
-
-    "EM ANDAMENTO",
-
-
-
-    VIAGEM:
-
-    "VIAGEM",
-
-
-
-    MANUTENCAO:
-
-    "MANUTENÇÃO",
-
-
-
-    CONCLUIDO:
-
-    "CONCLUÍDO",
-
-
-
-    FINALIZADO:
-
-    "FINALIZADO",
-
-
-
-    CANCELADO:
-
-    "CANCELADO",
-
-
-
-    LIVRE:
-
-    "LIVRE",
-
-
-
-    OCUPADO:
-
-    "OCUPADO"
-
+    OCUPADO: "OCUPADO"
 
 };
-
-
-
 
 // ============================================================================
 // CLASSES CSS STATUS
 // ============================================================================
 
-
 export const STATUS_CLASS = {
 
+    AGENDADO: "status-agendado",
 
-    AGENDADO:
+    "EM ANDAMENTO": "status-andamento",
 
-    "status-agendado",
+    VIAGEM: "status-viagem",
 
+    MANUTENCAO: "status-manutencao",
 
+    FINALIZADO: "status-finalizado",
 
-    "EM ANDAMENTO":
-
-    "status-andamento",
-
-
-
-    VIAGEM:
-
-    "status-viagem",
-
-
-
-    MANUTENCAO:
-
-    "status-manutencao",
-
-
-
-    FINALIZADO:
-
-    "status-finalizado",
-
-
-
-    CANCELADO:
-
-    "status-cancelado"
-
+    CANCELADO: "status-cancelado"
 
 };
-
-
-
 
 // ============================================================================
 // ÍCONES STATUS
 // ============================================================================
 
-
 export const STATUS_ICON = {
 
+    AGENDADO: "🟡",
 
-    AGENDADO:
+    "EM ANDAMENTO": "🟢",
 
-    "🟡",
+    VIAGEM: "✈️",
 
+    MANUTENCAO: "🔵",
 
+    FINALIZADO: "✅",
 
-    "EM ANDAMENTO":
+    CONCLUIDO: "✅",
 
-    "🟢",
+    CANCELADO: "🔴",
 
+    LIVRE: "🟢",
 
-
-    VIAGEM:
-
-    "✈️",
-
-
-
-    MANUTENCAO:
-
-    "🔵",
-
-
-
-    FINALIZADO:
-
-    "✅",
-
-
-
-    CONCLUIDO:
-
-    "✅",
-
-
-
-    CANCELADO:
-
-    "🔴",
-
-
-
-    LIVRE:
-
-    "🟢",
-
-
-
-    OCUPADO:
-
-    "🔴"
-
+    OCUPADO: "🔴"
 
 };
-
-
-
 
 // ============================================================================
 // CAMPOS PADRÃO LANÇAMENTOS
 // ============================================================================
 
-
 export const CAMPOS = {
 
 LANCAMENTOS:[
     
-    ID:
+    ID: "ID",
 
-    "ID",
+    DATA: "Data",
 
+    HORA: "Hora",
 
+    EMPREGADO: "Empregado / Matrícula",
 
-    DATA:
+    VEICULO: "Veículo",
 
-    "Data",
+    PASSAGEIRO: "Passageiro / Setor / Motivo",
 
+    ITINERARIO: "Itinerário",
 
-
-    HORA:
-
-    "Hora",
-
-
-
-    EMPREGADO:
-
-    "Empregado / Matrícula",
-
-
-
-    VEICULO:
-
-    "Veículo",
-
-
-
-    PASSAGEIRO:
-
-    "Passageiro / Setor / Motivo",
-
-
-
-    ITINERARIO:
-
-    "Itinerário",
-
-
-
-    STATUS:
-
-    "Status"
+    STATUS: "Status"
 ]
 
 };
@@ -310,204 +145,92 @@ LANCAMENTOS:[
 // CAMPOS PADRÃO EMPREGADOS
 // ============================================================================
 
-
 EMPREGADOS:[
 
+    ID: "ID",
 
-    ID:
+    DATA: "Data",
 
-    "ID",
+    FOTO: "Foto",
 
-
-    DATA:
-
-    "Data",
-
-
-    FOTO:
-
-    "Foto",
-
-
-    EMPREGADO:
-
-    "Empregado",
+    EMPREGADO: "Empregado",
     
+    MATRICULA: "Matrícula",
 
-    MATRICULA:
+    DIRETORIA: "Diretoria",
 
-    "Matrícula",
+    SETOR: "Setor",
 
-
-    DIRETORIA:
-
-    "Diretoria",
-
-
-    SETOR:
-
-    "Setor",
-
-
-    USUÁRIO:
-
-    "Usuário",
+    USUÁRIO: "Usuário",
     
+    CONDIÇÃO: "Condição",
 
-     CONDIÇÃO:
-
-    "Condição",
-
-
-    STATUS:
-
-    "Status"
+    STATUS: "Status"
 ]
 
 };
-
 
 // ============================================================================
 // CAMPOS PADRÃO VEÍCULOS
 // ============================================================================
 
-
 VEICULOS:[
 
+    ID: "ID",
 
-    ID:
+    DATA: "Data",
 
-    "ID",
+    FOTO: "Foto",
 
+    PLACA: "Placa",
+   
+    MODELO: "Modelo",
 
-    DATA:
+    MARCA: "Marca",
 
-    "Data",
+    ANO: "Ano",
 
-
-    FOTO:
-
-    "Foto",
-
-
-    PLACA:
-
-    "Placa",
+    COR: "Cor",
     
+    COMMBUSTÍVEL: "Combustível",
 
-    MODELO:
-
-    "Modelo",
-
-
-    MARCA:
-
-    "Marca",
-
-
-    ANO:
-
-    "Ano",
-
-
-    COR:
-
-    "Cor",
-    
-
-    COMMBUSTÍVEL:
-
-    "Combustível",
-
-
-    STATUS:
-
-    "Status"
+    STATUS: "Status"
 ]
 
 };
-
-
-
-
 
 // ============================================================================
 // CORES DA INTERFACE
 // ============================================================================
 
-
 export const CORES = {
 
+    VERDE: "#16A34A",
 
-    VERDE:
+    AZUL: "#2563EB",
 
-    "#16A34A",
+    VERMELHO: "#DC2626",
 
+    AMARELO: "#FACC15",
 
-
-    AZUL:
-
-    "#2563EB",
-
-
-
-    VERMELHO:
-
-    "#DC2626",
-
-
-
-    AMARELO:
-
-    "#FACC15",
-
-
-
-    CINZA:
-
-    "#6B7280"
-
+    CINZA: "#6B7280"
 
 };
-
-
-
 
 // ============================================================================
 // MENSAGENS PADRÃO
 // ============================================================================
 
-
 export const MENSAGENS = {
 
+    SALVO: "Registro salvo com sucesso.",
 
-    SALVO:
+    EXCLUIDO: "Registro excluído com sucesso.",
 
-    "Registro salvo com sucesso.",
+    ALTERADO: "Registro atualizado com sucesso.",
 
+    ERRO: "Ocorreu um erro ao processar a solicitação.",
 
-
-    EXCLUIDO:
-
-    "Registro excluído com sucesso.",
-
-
-
-    ALTERADO:
-
-    "Registro atualizado com sucesso.",
-
-
-
-    ERRO:
-
-    "Ocorreu um erro ao processar a solicitação.",
-
-
-
-    CARREGANDO:
-
-    "Carregando dados..."
-
+    CARREGANDO: "Carregando dados..."
 
 };
