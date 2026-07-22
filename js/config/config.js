@@ -6,6 +6,7 @@
 // Configurações globais da aplicação
 // ============================================================================
 
+
 // ============================================================================
 // APLICAÇÃO
 // ============================================================================
@@ -14,7 +15,7 @@ export const CONFIG = {
 
     API_URL:
 
-    "https://script.google.com/macros/s/AKfycbwvm9JbrssBoi9N08-WWl6cfR3gEe7L05KBajmGc6s1O2k9VLhFuTcDl2ABFnPStYXz-g/exec",
+        "https://script.google.com/macros/s/AKfycbwvm9JbrssBoi9N08-WWl6cfR3gEe7L05KBajmGc6s1O2k9VLhFuTcDl2ABFnPStYXz-g/exec",
 
     UPDATE_INTERVAL: 30000,
 
@@ -24,23 +25,37 @@ export const CONFIG = {
 
 };
 
+
+
 // ============================================================================
 // ABAS GOOGLE SHEETS
 // ============================================================================
 
 export const ABAS = {
 
-    LANCAMENTOS: "LANCAMENTOS",
+    LANCAMENTOS:
 
-    VEICULOS: "VEICULOS",
+        "LANCAMENTOS",
 
-    EMPREGADOS: "EMPREGADOS",
+    VEICULOS:
 
-    AGENDA: "AGENDA DO DIA",
+        "VEICULOS",
 
-    SOCIAL: "AGENDA SERVIÇO SOCIAL"
+    EMPREGADOS:
+
+        "EMPREGADOS",
+
+    AGENDA:
+
+        "AGENDA DO DIA",
+
+    SOCIAL:
+
+        "AGENDA SERVIÇO SOCIAL"
 
 };
+
+
 
 // ============================================================================
 // STATUS DO SISTEMA
@@ -48,25 +63,45 @@ export const ABAS = {
 
 export const STATUS = {
 
-    AGENDADO: "AGENDADO",
-    
-    EM_ANDAMENTO: "EM ANDAMENTO",
-    
-    VIAGEM: "VIAGEM",
-    
-    MANUTENCAO: "MANUTENÇÃO",
+    AGENDADO:
 
-    CONCLUIDO: "CONCLUÍDO",
+        "AGENDADO",
 
-    FINALIZADO: "FINALIZADO",
+    EM_ANDAMENTO:
 
-    CANCELADO: "CANCELADO",
+        "EM ANDAMENTO",
 
-    LIVRE: "LIVRE",
+    VIAGEM:
 
-    OCUPADO: "OCUPADO"
+        "VIAGEM",
+
+    MANUTENCAO:
+
+        "MANUTENÇÃO",
+
+    CONCLUIDO:
+
+        "CONCLUÍDO",
+
+    FINALIZADO:
+
+        "FINALIZADO",
+
+    CANCELADO:
+
+        "CANCELADO",
+
+    LIVRE:
+
+        "LIVRE",
+
+    OCUPADO:
+
+        "OCUPADO"
 
 };
+
+
 
 // ============================================================================
 // CLASSES CSS STATUS
@@ -74,19 +109,33 @@ export const STATUS = {
 
 export const STATUS_CLASS = {
 
-    AGENDADO: "status-agendado",
+    AGENDADO:
 
-    "EM ANDAMENTO": "status-andamento",
+        "status-agendado",
 
-    VIAGEM: "status-viagem",
+    "EM ANDAMENTO":
 
-    MANUTENCAO: "status-manutencao",
+        "status-andamento",
 
-    FINALIZADO: "status-finalizado",
+    VIAGEM:
 
-    CANCELADO: "status-cancelado"
+        "status-viagem",
+
+    MANUTENCAO:
+
+        "status-manutencao",
+
+    FINALIZADO:
+
+        "status-finalizado",
+
+    CANCELADO:
+
+        "status-cancelado"
 
 };
+
+
 
 // ============================================================================
 // ÍCONES STATUS
@@ -94,108 +143,194 @@ export const STATUS_CLASS = {
 
 export const STATUS_ICON = {
 
-    AGENDADO: "🟡",
+    AGENDADO:
 
-    "EM ANDAMENTO": "🟢",
+        "🟡",
 
-    VIAGEM: "✈️",
+    "EM ANDAMENTO":
 
-    MANUTENCAO: "🔵",
+        "🟢",
 
-    FINALIZADO: "✅",
+    VIAGEM:
 
-    CONCLUIDO: "✅",
+        "✈️",
 
-    CANCELADO: "🔴",
+    MANUTENCAO:
 
-    LIVRE: "🟢",
+        "🔵",
 
-    OCUPADO: "🔴"
+    FINALIZADO:
+
+        "✅",
+
+    CONCLUIDO:
+
+        "✅",
+
+    CANCELADO:
+
+        "🔴",
+
+    LIVRE:
+
+        "🟢",
+
+    OCUPADO:
+
+        "🔴"
 
 };
 
+
+
 // ============================================================================
-// CAMPOS PADRÃO LANÇAMENTOS
+// CAMPOS PADRÃO
 // ============================================================================
 
 export const CAMPOS = {
 
-LANCAMENTOS:{
-    
-    ID: "ID",
 
-    DATA: "Data",
+    // ==========================================================================
+    // LANÇAMENTOS
+    // ==========================================================================
 
-    HORA: "Hora",
+    LANCAMENTOS: {
 
-    EMPREGADO: "Empregado / Matrícula",
+        ID:
 
-    VEICULO: "Veículo",
+            "ID",
 
-    PASSAGEIRO: "Passageiro / Setor / Motivo",
+        DATA:
 
-    ITINERARIO: "Itinerário",
+            "Data",
 
-    STATUS: "Status"
+        HORA:
 
-},
+            "Hora",
 
-// ============================================================================
-// CAMPOS PADRÃO EMPREGADOS
-// ============================================================================
+        EMPREGADO:
 
-EMPREGADOS:{
+            "Empregado / Matrícula",
 
-    ID: "ID",
+        VEICULO:
 
-    DATA: "Data",
+            "Veículo",
 
-    FOTO: "Foto",
+        PASSAGEIRO:
 
-    EMPREGADO: "Empregado",
-    
-    MATRICULA: "Matrícula",
+            "Passageiro / Setor / Motivo",
 
-    DIRETORIA: "Diretoria",
+        ITINERARIO:
 
-    SETOR: "Setor",
+            "Itinerário",
 
-    USUÁRIO: "Usuário",
-    
-    CONDIÇÃO: "Condição",
+        STATUS:
 
-    STATUS: "Status"
+            "Status"
 
-},
+    },
 
-// ============================================================================
-// CAMPOS PADRÃO VEÍCULOS
-// ============================================================================
 
-VEICULOS:{
+    // ==========================================================================
+    // EMPREGADOS
+    // ==========================================================================
 
-    ID: "ID",
+    EMPREGADOS: {
 
-    DATA: "Data",
+        ID:
 
-    FOTO: "Foto",
+            "ID",
 
-    PLACA: "Placa",
-   
-    MODELO: "Modelo",
+        DATA:
 
-    MARCA: "Marca",
+            "Data",
 
-    ANO: "Ano",
+        FOTO:
 
-    COR: "Cor",
-    
-    COMMBUSTÍVEL: "Combustível",
+            "Foto",
 
-    STATUS: "Status"
-}
+        EMPREGADO:
+
+            "Empregado",
+
+        MATRICULA:
+
+            "Matrícula",
+
+        DIRETORIA:
+
+            "Diretoria",
+
+        SETOR:
+
+            "Setor",
+
+        USUARIO:
+
+            "Usuário",
+
+        CONDICAO:
+
+            "Condição",
+
+        STATUS:
+
+            "Status"
+
+    },
+
+
+    // ==========================================================================
+    // VEÍCULOS
+    // ==========================================================================
+
+    VEICULOS: {
+
+        ID:
+
+            "ID",
+
+        DATA:
+
+            "Data",
+
+        FOTO:
+
+            "Foto",
+
+        PLACA:
+
+            "Placa",
+
+        MODELO:
+
+            "Modelo",
+
+        MARCA:
+
+            "Marca",
+
+        ANO:
+
+            "Ano",
+
+        COR:
+
+            "Cor",
+
+        COMBUSTIVEL:
+
+            "Combustível",
+
+        STATUS:
+
+            "Status"
+
+    }
 
 };
+
+
 
 // ============================================================================
 // CORES DA INTERFACE
@@ -203,17 +338,29 @@ VEICULOS:{
 
 export const CORES = {
 
-    VERDE: "#16A34A",
+    VERDE:
 
-    AZUL: "#2563EB",
+        "#16A34A",
 
-    VERMELHO: "#DC2626",
+    AZUL:
 
-    AMARELO: "#FACC15",
+        "#2563EB",
 
-    CINZA: "#6B7280"
+    VERMELHO:
+
+        "#DC2626",
+
+    AMARELO:
+
+        "#FACC15",
+
+    CINZA:
+
+        "#6B7280"
 
 };
+
+
 
 // ============================================================================
 // MENSAGENS PADRÃO
@@ -221,14 +368,24 @@ export const CORES = {
 
 export const MENSAGENS = {
 
-    SALVO: "Registro salvo com sucesso.",
+    SALVO:
 
-    EXCLUIDO: "Registro excluído com sucesso.",
+        "Registro salvo com sucesso.",
 
-    ALTERADO: "Registro atualizado com sucesso.",
+    EXCLUIDO:
 
-    ERRO: "Ocorreu um erro ao processar a solicitação.",
+        "Registro excluído com sucesso.",
 
-    CARREGANDO: "Carregando dados..."
+    ALTERADO:
+
+        "Registro atualizado com sucesso.",
+
+    ERRO:
+
+        "Ocorreu um erro ao processar a solicitação.",
+
+    CARREGANDO:
+
+        "Carregando dados..."
 
 };
