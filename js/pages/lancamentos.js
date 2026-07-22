@@ -521,7 +521,7 @@ function obterDadosFormulario() {
             formulario.itinerario?.value || "",
 
         Status:
-            selectStatus.value
+            formulario.status.value
 
     };
 
