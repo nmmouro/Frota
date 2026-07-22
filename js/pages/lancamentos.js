@@ -88,6 +88,9 @@ document.querySelector("#veiculo");
 const selectEmpregado =
 document.querySelector("#empregado");
 
+const selectStatus =
+document.querySelector("#status");
+
 // ============================================================================
 // CONFIGURAÇÃO DA TABELA
 // ============================================================================
@@ -494,49 +497,30 @@ function obterDadosFormulario() {
     return {
 
         Data:
-
             campoData.value,
 
-
         Hora:
-
             campoHora.value,
 
-
         "Empregado / Matrícula":
-
             selectEmpregado.value,
 
-
         Veículo:
-
             selectVeiculo.value,
 
-
         "Passageiro / Setor / Motivo":
-
             [
-
                 formulario.passageiro?.value,
-
                 formulario.setor?.value,
-
                 formulario.motivo?.value
-
             ]
-
             .filter(Boolean)
-
             .join(" / "),
 
-
         Itinerário:
-
             formulario.itinerario?.value || "",
 
-
         Status:
-
             selectStatus.value
 
     };
