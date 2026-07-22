@@ -1,4 +1,4 @@
-// ============================================================================
+g// ============================================================================
 // LANÇAMENTOS
 // Arquivo: js/pages/lancamentos.js
 // ============================================================================
@@ -85,7 +85,7 @@ document.querySelector("#hora");
 const selectVeiculo =
 document.querySelector("#veiculo");
 
-const selectMotorista =
+const selectEmpregado =
 document.querySelector("#empregado");
 
 // ============================================================================
