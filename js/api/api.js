@@ -18,10 +18,10 @@ import {
 } from "../config/config.js";
 
 
+
 // ============================================================================
 // REQUEST
 // ============================================================================
-
 
 async function request(
 
@@ -30,6 +30,15 @@ async function request(
     options = {}
 
 ) {
+
+    console.log(
+
+        "API Request:",
+
+        url
+
+    );
+
 
     const resposta = await fetch(
 
@@ -56,10 +65,25 @@ async function request(
 
 
     // ------------------------------------------------------------------------
-    // CONVERTE RESPOSTA PARA JSON
+    // CONVERTER RESPOSTA
     // ------------------------------------------------------------------------
 
-    const json = await resposta.json();
+    let json;
+
+
+    try {
+
+        json = await resposta.json();
+
+    } catch (erro) {
+
+        throw new Error(
+
+            "A API retornou uma resposta inválida."
+
+        );
+
+    }
 
 
     // ------------------------------------------------------------------------
@@ -76,10 +100,35 @@ async function request(
 
 
     // ------------------------------------------------------------------------
+    // VALIDAR RESPOSTA
+    // ------------------------------------------------------------------------
+
+    if (
+
+        !json ||
+
+        typeof json !== "object"
+
+    ) {
+
+        throw new Error(
+
+            "Resposta inválida da API."
+
+        );
+
+    }
+
+
+    // ------------------------------------------------------------------------
     // ERRO DA API
     // ------------------------------------------------------------------------
 
-    if (!json.success) {
+    if (
+
+        json.success === false
+
+    ) {
 
         throw new Error(
 
@@ -93,12 +142,13 @@ async function request(
 
 
     // ------------------------------------------------------------------------
-    // RETORNA DADOS
+    // RETORNO
     // ------------------------------------------------------------------------
 
-    return json.data;
+    return json.data ?? [];
 
 }
+
 
 
 // ============================================================================
@@ -115,7 +165,9 @@ async function get(
 
 ) {
 
-    const params = new URLSearchParams();
+    const params =
+
+        new URLSearchParams();
 
 
     params.append(
@@ -136,7 +188,13 @@ async function get(
     );
 
 
-    if (id !== null && id !== undefined) {
+    if (
+
+        id !== null &&
+
+        id !== undefined
+
+    ) {
 
         params.append(
 
@@ -149,13 +207,19 @@ async function get(
     }
 
 
-    return await request(
+    const url =
 
-        `${CONFIG.API_URL}?${params.toString()}`
+        `${CONFIG.API_URL}?${params.toString()}`;
+
+
+    return request(
+
+        url
 
     );
 
 }
+
 
 
 // ============================================================================
@@ -174,13 +238,16 @@ async function post(
 
 ) {
 
-    return await request(
+    return request(
 
         CONFIG.API_URL,
 
         {
 
-            method: "POST",
+            method:
+
+                "POST",
+
 
             headers: {
 
@@ -190,23 +257,27 @@ async function post(
 
             },
 
-            body: JSON.stringify({
 
-                acao,
+            body:
 
-                aba,
+                JSON.stringify({
 
-                id,
+                    acao,
 
-                dados
+                    aba,
 
-            })
+                    id,
+
+                    dados
+
+                })
 
         }
 
     );
 
 }
+
 
 
 // ============================================================================
@@ -218,7 +289,11 @@ async function post(
 // LISTAR
 // ============================================================================
 
-export function listar(aba) {
+export function listar(
+
+    aba
+
+) {
 
     return get(
 
@@ -229,6 +304,7 @@ export function listar(aba) {
     );
 
 }
+
 
 
 // ============================================================================
@@ -256,6 +332,7 @@ export function buscar(
 }
 
 
+
 // ============================================================================
 // SALVAR
 // ============================================================================
@@ -279,6 +356,7 @@ export function salvar(
     );
 
 }
+
 
 
 // ============================================================================
@@ -308,6 +386,7 @@ export function editar(
     );
 
 }
+
 
 
 // ============================================================================
