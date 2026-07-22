@@ -43,6 +43,12 @@ import {
 
 } from "../utils/formulario.js";
 
+import {
+
+    preencherDataHoraAtual
+
+} from "../utils/datas.js";
+
 // ================= ELEMENTOS =================
 
 const formulario =
@@ -174,6 +180,41 @@ async function init() {
     finally {
 
         esconderLoading();
+
+    }
+
+}
+
+
+function preencherDataHoraAtual() {
+
+    const agora =
+
+        new Date();
+
+
+    if (campoData) {
+
+        campoData.value =
+
+            agora
+
+                .toISOString()
+
+                .split("T")[0];
+
+    }
+
+
+    if (campoHora) {
+
+        campoHora.value =
+
+            agora
+
+                .toTimeString()
+
+                .slice(0, 5);
 
     }
 
@@ -423,9 +464,9 @@ async function editarVeiculo(id) {
 }
 
 
-window.editarLancamento =
+window.editarVeiculo =
 
-    editarLancamento;
+    editarVeiculo;
 
 
 // ============================================================================
