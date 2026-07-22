@@ -34,7 +34,8 @@ import {
     dataParaInput,
     horaInput,
     horaParaInput
-
+   
+   
 } from "../utils/datas.js";
 
 import {
@@ -155,7 +156,7 @@ async function init() {
     try {
 
         mostrarLoading();
-        preencherDataHoraAtual();
+        preencherDataAtual(
         registrarEventos();
         await carregarDados();
         await carregarTabela();
@@ -506,6 +507,34 @@ function obterDadosFormulario() {
             formulario.status.value
 
     };
+
+}
+
+function preencherDataAtual() {
+
+    const agora = new Date();
+
+    const ano =
+        agora.getFullYear();
+
+    const mes =
+        String(
+            agora.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+    const dia =
+        String(
+            agora.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+    campoData.value =
+        `${ano}-${mes}-${dia}`;
 
 }
 
