@@ -495,3 +495,111 @@ export function horaParaInput(hora){
 
 
 }
+
+// ============================================================================
+// DATAS
+// Arquivo: js/utils/datas.js
+// ============================================================================
+
+export function preencherDataHoraAtual(
+
+    campoData,
+
+    campoHora
+
+) {
+
+    const agora = new Date();
+
+
+    // ------------------------------------------------------------------------
+    // DATA
+    // ------------------------------------------------------------------------
+
+    if (campoData) {
+
+        const ano =
+
+            agora.getFullYear();
+
+
+        const mes =
+
+            String(
+
+                agora.getMonth() + 1
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            );
+
+
+        const dia =
+
+            String(
+
+                agora.getDate()
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            );
+
+
+        campoData.value =
+
+            `${ano}-${mes}-${dia}`;
+
+    }
+
+
+    // ------------------------------------------------------------------------
+    // HORA
+    // ------------------------------------------------------------------------
+
+    if (campoHora) {
+
+        const hora =
+
+            String(
+
+                agora.getHours()
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            );
+
+
+        const minuto =
+
+            String(
+
+                agora.getMinutes()
+
+            ).padStart(
+
+                2,
+
+                "0"
+
+            );
+
+
+        campoHora.value =
+
+            `${hora}:${minuto}`;
+
+    }
+
+}
