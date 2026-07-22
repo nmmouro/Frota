@@ -120,7 +120,7 @@ export const STATUS_ICON = {
 
 export const CAMPOS = {
 
-LANCAMENTOS:[
+LANCAMENTOS:{
     
     ID: "ID",
 
@@ -137,15 +137,14 @@ LANCAMENTOS:[
     ITINERARIO: "Itinerário",
 
     STATUS: "Status"
-]
 
-};
+},
 
 // ============================================================================
 // CAMPOS PADRÃO EMPREGADOS
 // ============================================================================
 
-EMPREGADOS:[
+EMPREGADOS:{
 
     ID: "ID",
 
@@ -166,15 +165,14 @@ EMPREGADOS:[
     CONDIÇÃO: "Condição",
 
     STATUS: "Status"
-]
 
-};
+},
 
 // ============================================================================
 // CAMPOS PADRÃO VEÍCULOS
 // ============================================================================
 
-VEICULOS:[
+VEICULOS:{
 
     ID: "ID",
 
@@ -195,7 +193,7 @@ VEICULOS:[
     COMMBUSTÍVEL: "Combustível",
 
     STATUS: "Status"
-]
+}
 
 };
 
