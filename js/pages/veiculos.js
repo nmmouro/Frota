@@ -156,7 +156,7 @@ async function init() {
     try {
 
         mostrarLoading();
-        preencherDataAtual(
+        preencherDataAtual();
         registrarEventos();
         await carregarDados();
         await carregarTabela();
@@ -514,27 +514,11 @@ function preencherDataAtual() {
 
     const agora = new Date();
 
-    const ano =
-        agora.getFullYear();
-
-    const mes =
-        String(
-            agora.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
-    const dia =
-        String(
-            agora.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
     campoData.value =
-        `${ano}-${mes}-${dia}`;
+
+        agora.toISOString()
+
+            .split("T")[0];
 
 }
 
