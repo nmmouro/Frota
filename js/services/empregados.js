@@ -24,18 +24,18 @@ export async function obterEmpregados() {
     return listar(ABA);
 }
 
-export async function obterEmpregados(id) {
+export async function obterEmpregado(id) {
     return buscar(ABA, id);
 }
 
-export async function salvarEmpregados(dados) {
+export async function salvarEmpregado(dados) {
     return salvar(ABA, dados);
 }
 
-export async function atualizarEmprregados(id, dados) {
+export async function atualizarEmprregado(id, dados) {
     return editar(ABA, id, dados);
 }
 
-export async function excluirEmpregados(id) {
+export async function excluirEmpregadO(id) {
     return excluir(ABA, id);
 }
