@@ -644,7 +644,7 @@ async function carregarEmpregados() {
 
     }
 
-    selectMotorista.innerHTML = `
+    selectEmpregado.innerHTML = `
 
         <option value="">
 
