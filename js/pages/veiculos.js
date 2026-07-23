@@ -76,24 +76,6 @@ const btnNovo =
     );
 
 
-const campoData =
-
-    document.querySelector(
-
-        "#data"
-
-    );
-
-
-const campoFoto =
-
-    document.querySelector(
-
-        "#foto"
-
-    );
-
-
 const campoPlaca =
 
     document.querySelector(
@@ -171,23 +153,7 @@ const COLUNAS = [
         label: "ID"
 
     },
-
-    {
-
-        field: "Data",
-
-        label: "Data"
-
-    },
-
-    {
-
-        field: "Foto",
-
-        label: "Foto"
-
-    },
-
+        
     {
 
         field: "Placa",
@@ -284,12 +250,7 @@ async function init() {
 
         mostrarLoading();
 
-
-        preencherDataAtual();
-
-
         registrarEventos();
-
 
         await carregarTabela();
 
@@ -725,20 +686,6 @@ function obterDadosFormulario() {
 
     return {
 
-        Data:
-
-            campoData?.value ||
-
-            "",
-
-
-        Foto:
-
-            campoFoto?.value ||
-
-            "",
-
-
         Placa:
 
             campoPlaca?.value ||
@@ -810,32 +757,6 @@ function preencherFormulario(
         registro
 
     );
-
-
-    // ------------------------------------------------------------------------
-    // DATA
-    // ------------------------------------------------------------------------
-
-    campoData.value =
-
-        dataParaInput(
-
-            registro["Data"]
-
-        ) || "";
-
-
-
-    // ------------------------------------------------------------------------
-    // FOTO
-    // ------------------------------------------------------------------------
-
-    campoFoto.value =
-
-        registro["Foto"]
-
-        || "";
-
 
 
     // ------------------------------------------------------------------------
@@ -919,27 +840,6 @@ function preencherFormulario(
         registro["Status"]
 
         || "";
-
-}
-
-
-
-// ============================================================================
-// DATA AUTOMÁTICA
-// ============================================================================
-
-function preencherDataAtual() {
-
-    if (!campoData) {
-
-        return;
-
-    }
-
-
-    campoData.value =
-
-        dataInput();
 
 }
 
