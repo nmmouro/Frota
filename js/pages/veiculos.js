@@ -349,16 +349,9 @@ function registrarEventos() {
 
 async function carregarTabela() {
 
-    const resposta =
-
-        await obterVeiculos();
-
-
     registros =
 
-        resposta?.dados ??
-
-        resposta;
+        await obterVeiculos();
 
 
     if (!Array.isArray(registros)) {
