@@ -527,11 +527,7 @@ async function editarVeiculo(id) {
 
         const resposta =
 
-            await obterVeiculo(
-
-                id
-
-            );
+            await obterVeiculo(id);
 
 
         const registro =
@@ -564,11 +560,21 @@ async function editarVeiculo(id) {
         );
 
 
-        atualizarTitulo(
+       const titulo =
 
-            "Editar veículo"
+            document.querySelector(
 
-        );
+                "#tituloFormulario"
+
+            );
+
+        if (titulo) {
+
+            titulo.textContent =
+
+                "Editar veiculo";
+
+        }
 
 
         document.body.classList.add(
@@ -589,24 +595,17 @@ async function editarVeiculo(id) {
 
         );
 
+alert(
 
-        tratarErro(
+            erro.message ||
 
-            erro
+            "Não foi possível carregar o lançamento."
 
         );
 
     }
 
-    finally {
-
-        esconderLoading();
-
-    }
-
 }
-
-
 
 // ============================================================================
 // DISPONIBILIZAR PARA A INTERFACE
