@@ -903,31 +903,6 @@ function tratarErro(
 
 }
 
-
-async function testarBuscarVeiculo() {
-
-    try {
-
-        const registro =
-
-            await obterVeiculo(
-                "VEI000002"
-            );
-
-
-        console.log(
-            "RESULTADO DO BUSCAR:",
-            registro
-        );
-
-
-    } catch (erro) {
-
-        console.error(
-            "ERRO AO BUSCAR:",
-            erro
-        );
-
     }
 
 }
