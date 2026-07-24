@@ -82,7 +82,7 @@ async function init() {
 
 async function carregarDados() {
 
-    motoristas = await obterEmpregados();
+    empregados = await obterEmpregados();
 
     renderizarTabela();
 
@@ -92,13 +92,12 @@ async function carregarDados() {
 
 function renderizarTabela() {
 
-    renderTable(
-
-        tabela,
-
-        empregados
-
-    );
+   renderTable(
+    tabela,
+    COLUNAS_EMPREGADOS,
+    empregados,
+    acoes
+);
 
 }
 
