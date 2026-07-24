@@ -8,6 +8,10 @@
 // ============================================================================
 
 import {
+    COLUNAS_LANCAMENTOS
+} from "../config/tabelas/lancamentos.js";
+
+import {
 
     obterLancamentos,
     obterLancamento,
@@ -61,10 +65,6 @@ import {
     preencherSelect
 
 } from "../utils/formulario.js";
-
-import {
-    COLUNAS_LANCAMENTOS
-} from "../config/tabelas/lancamentos.js";
 
 
 // ============================================================================
@@ -194,7 +194,6 @@ function renderizarTabela(){
     renderTable(
        
         tabela,
-        COLUNAS,
         COLUNAS_LANCAMENTOS,
         registros,
         [
