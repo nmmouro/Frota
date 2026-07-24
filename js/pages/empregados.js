@@ -275,7 +275,7 @@ async function salvar(evento) {
 
 
 // ============================================================================
-// EDITAR VEÍCULO
+// EDITAR EMPREGADO
 // ============================================================================
 
 async function editarempregado(id) {
@@ -366,10 +366,10 @@ alert(
 
 window.editarEmpregado =
 
-    editarVeiculo;
+    editarempregado;
 
 // ============================================================================
-// EXCLUIR VEÍCULO
+// EXCLUIR EMPREGADO
 // ============================================================================
 
 async function remover(id) {
