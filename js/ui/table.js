@@ -9,11 +9,9 @@
 // ============================================================================
 
 
-
 // ============================================================================
 // IMPORTS
 // ============================================================================
-
 
 import {
 
@@ -21,13 +19,9 @@ import {
 
 } from "../components/table.js";
 
-
-
-
 // ============================================================================
 // RENDERIZAR TABELA
 // ============================================================================
-
 
 export function renderTable(
     tabela,
@@ -36,24 +30,19 @@ export function renderTable(
     acoes
 ) {
 
-    if(!container) {
-
+    if (!tabela) {
         console.warn(
-
             "Container da tabela não encontrado."
-
         );
-
         return;
-
     }
 
-    renderComponentTable(container,
+    renderComponentTable(tabela,
 
         {
-            columns,
-            data,
-            actions
+            columns: colunas, 
+            data: registros,
+            actions: acoes
         }
     );
 
@@ -63,12 +52,16 @@ export function renderTable(
 // LIMPAR TABELA
 // ============================================================================
 
-export function limparTabela(container){
-
-    if(!container) return;
-
-    container.innerHTML = "";
-
+export function limparTabela(tabela) {
+    
+    if (!tabela) {
+        
+        console.warn(
+            "Container da tabela não encontrado."
+        );
+        return;
+    }
+    tabela.innerHTML = "";
 }
 
 // ============================================================================
@@ -83,23 +76,26 @@ export function atualizarTabela(
     acoes
 ) {
 
-    limparTabela(
+   if (!tabela) {
+       console.warn(
+           "Container da tabela não encontrado."
+       );
+       return;
+   }
 
-        container
+    // ------------------------------------------------------------------------
+    // LIMPAR TABELA
+    // ------------------------------------------------------------------------
+    
+    limparTabela( tabela );
 
-    );
-
+// ------------------------------------------------------------------------
+// RENDERIZAR NOVAMENTE
+// ------------------------------------------------------------------------
     renderTable(
-
-        container,
-
-        columns,
-
-        data,
-
-        actions
-
+        tabela,
+        colunas,
+        registros,
+        acoes
     );
-
-
 }
