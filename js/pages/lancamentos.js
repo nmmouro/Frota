@@ -9,11 +9,11 @@
 
 import {
 
-    obterLancamentos,
-    obterLancamento,
-    salvarLancamento,
-    atualizarLancamento,
-    excluirLancamento as removerLancamento
+    obterLancamentos();
+    obterLancamento(id);
+    salvarLancamento(dados);
+    atualizarLancamento(id, dados);
+    excluirLancamento(id);
 
 } from "../services/lancamentos.js";
 
