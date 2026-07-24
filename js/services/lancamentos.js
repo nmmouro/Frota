@@ -29,105 +29,34 @@ import {
 } from "../config/config.js";
 
 
-
 // ============================================================================
 // CONFIGURAÇÃO DA ABA
 // ============================================================================
 
 const ABA = ABAS.LANCAMENTOS;
 
-
-
 // ============================================================================
 // LISTAR LANÇAMENTOS
 // ============================================================================
 
 export function obterLancamentos() {
-
-    return listar(
-
-        ABA
-
-    );
-
+    return listar(ABA);
 }
-
-
-
-// ============================================================================
-// OBTER LANÇAMENTO POR ID
-// ============================================================================
 
 export function obterLancamento(id) {
-
-    return buscar(
-
-        ABA,
-
-        id
-
-    );
-
+    return buscar(ABA, id);
 }
-
-
-
-// ============================================================================
-// SALVAR LANÇAMENTO
-// ============================================================================
 
 export function salvarLancamento(dados) {
-
-    return salvar(
-
-        ABA,
-
-        dados
-
-    );
-
+    return salvar(ABA, dados);
 }
 
+export function atualizarLancamento(id, dados) {
 
-
-// ============================================================================
-// ATUALIZAR LANÇAMENTO
-// ============================================================================
-
-export function atualizarLancamento(
-
-    id,
-
-    dados
-
-) {
-
-    return editar(
-
-        ABA,
-
-        id,
-
-        dados
-
-    );
-
+    return editar(ABA, id, dados);
 }
-
-
-
-// ============================================================================
-// EXCLUIR LANÇAMENTO
-// ============================================================================
 
 export function excluirLancamento(id) {
 
-    return excluir(
-
-        ABA,
-
-        id
-
-    );
-
+    return excluir(ABA, id);
 }
