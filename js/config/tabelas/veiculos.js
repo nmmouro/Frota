@@ -9,6 +9,16 @@ export const COLUNAS_VEICULOS = [
         field: "ID",
         label: "ID"
     },
+
+    {
+        field: "Data",
+        label: "Data"
+    },
+
+    {
+        field: "Foto",
+        label: "Foto"
+    },
         
     {
         field: "Placa",
