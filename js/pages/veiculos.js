@@ -50,95 +50,34 @@ import {
 // ============================================================================
 
 const formulario =
-
-    document.querySelector(
-
-        "#formVeiculo"
-
-    );
-
+document.querySelector("#formVeiculo");
 
 const tabela =
-
-    document.querySelector(
-
-        "#tabelaVeiculos"
-
-    );
-
+document.querySelector("#tabelaVeiculos");
 
 const btnNovo =
-
-    document.querySelector(
-
-        "#btnNovo"
-
-    );
-
+document.querySelector("#btnNovo");
 
 const campoPlaca =
-
-    document.querySelector(
-
-        "#placa"
-
-    );
-
+document.querySelector("#placa");
 
 const campoModelo =
-
-    document.querySelector(
-
-        "#modelo"
-
-    );
-
+document.querySelector("#modelo");
 
 const campoMarca =
-
-    document.querySelector(
-
-        "#marca"
-
-    );
-
+document.querySelector("#marca");
 
 const campoAno =
-
-    document.querySelector(
-
-        "#ano"
-
-    );
-
+document.querySelector("#ano");
 
 const campoCor =
-
-    document.querySelector(
-
-        "#cor"
-
-    );
-
+document.querySelector("#cor");
 
 const campoCombustivel =
-
-    document.querySelector(
-
-        "#combustivel"
-
-    );
-
+document.querySelector("#combustivel");
 
 const campoStatus =
-
-    document.querySelector(
-
-        "#status"
-
-    );
-
-
+document.querySelector("#status");
 
 // ============================================================================
 // CONFIGURAÇÃO DA TABELA
@@ -147,74 +86,47 @@ const campoStatus =
 const COLUNAS = [
 
     {
-
         field: "ID",
-
         label: "ID"
-
     },
         
     {
-
         field: "Placa",
-
         label: "Placa"
-
     },
 
     {
-
         field: "Modelo",
-
         label: "Modelo"
-
     },
 
     {
-
         field: "Marca",
-
         label: "Marca"
-
     },
 
     {
-
         field: "Ano",
-
         label: "Ano"
-
     },
 
     {
-
         field: "Cor",
-
         label: "Cor"
-
     },
 
     {
-
         field: "Combustivel",
-
         label: "Combustível"
-
     },
 
     {
-
         field: "Status",
-
         label: "Status",
-
         type: "status"
-
     }
 
 ];
-
-
 
 // ============================================================================
 // ESTADO
@@ -223,8 +135,6 @@ const COLUNAS = [
 let registros = [];
 
 let registroEditando = null;
-
-
 
 // ============================================================================
 // INICIALIZAÇÃO
@@ -235,47 +145,27 @@ document.addEventListener(
     "DOMContentLoaded",
 
     init
-
 );
-
-
-
-// ============================================================================
-// INIT
-// ============================================================================
 
 async function init() {
 
     try {
 
         mostrarLoading();
-
         registrarEventos();
-
         await carregarTabela();
-
+        esconderLoading();
 
     }
 
     catch (erro) {
 
-        tratarErro(
-
-            erro
-
-        );
-
+        tratarErro(erro);
     }
-
-    finally {
-
+        finally {
         esconderLoading();
-
     }
-
 }
-
-
 
 // ============================================================================
 // EVENTOS
@@ -297,12 +187,8 @@ function registrarEventos() {
         "click",
 
         novo
-
     );
-
 }
-
-
 
 // ============================================================================
 // LISTAGEM
@@ -311,26 +197,19 @@ function registrarEventos() {
 async function carregarTabela() {
 
     registros =
-
-        await obterVeiculos();
-
+    await obterVeiculos();
 
     if (!Array.isArray(registros)) {
 
         throw new Error(
 
             "Resposta inválida ao carregar veículos."
-
         );
-
     }
-
 
     renderizarTabela();
 
 }
-
-
 
 // ============================================================================
 // RENDERIZAR TABELA
@@ -341,47 +220,26 @@ function renderizarTabela() {
     renderTable(
 
         tabela,
-
         COLUNAS,
-
         registros,
 
         [
 
             {
-
                 label: "Editar",
-
                 className: "btn-edit",
-
                 onClick:
-
-                    registro =>
-
-                        editarVeiculo(
-
-                            registro.ID
-
-                        )
-
+                registro =>
+                editarVeiculo(registro.ID)
+           
             },
 
-
             {
-
                 label: "Excluir",
-
                 className: "btn-delete",
-
                 onClick:
-
-                    registro =>
-
-                        removerVeiculo(
-
-                            registro.ID
-
-                        )
+                registro =>
+                removerVeiculo(registro.ID)
 
             }
 
@@ -391,8 +249,6 @@ function renderizarTabela() {
 
 }
 
-
-
 // ============================================================================
 // NOVO VEÍCULO
 // ============================================================================
@@ -401,29 +257,11 @@ function novo() {
 
     registroEditando = null;
 
-
     formulario.reset();
-
 
     preencherDataAtual();
 
-
-    atualizarTitulo(
-
-        "Novo veículo"
-
-    );
-
-
-    document.body.classList.remove(
-
-        "modo-edicao"
-
-    );
-
 }
-
-
 
 // ============================================================================
 // SALVAR / ATUALIZAR VEÍCULO
@@ -433,16 +271,13 @@ async function salvar(evento) {
 
     evento.preventDefault();
 
-
     try {
 
         mostrarLoading();
-
-
+        
         const dados =
 
             obterDadosFormulario();
-
 
         if (registroEditando) {
 
@@ -466,29 +301,11 @@ async function salvar(evento) {
 
         }
 
-
         formulario.reset();
-
 
         preencherDataAtual();
 
-
         registroEditando = null;
-
-
-       atualizarTitulo(
- 
-            "Novo veículo"
-
-        );
-
-
-        document.body.classList.remove(
-
-            "modo-edicao"
-
-        );
-
 
         await carregarTabela();
 
@@ -496,11 +313,7 @@ async function salvar(evento) {
 
     catch (erro) {
 
-        tratarErro(
-
-            erro
-
-        );
+        tratarErro(erro);
 
     }
 
@@ -512,8 +325,6 @@ async function salvar(evento) {
 
 }
 
-
-
 // ============================================================================
 // EDITAR VEÍCULO
 // ============================================================================
@@ -524,18 +335,15 @@ async function editarVeiculo(id) {
 
         mostrarLoading();
 
-
         const resposta =
 
             await obterVeiculo(id);
-
 
         const registro =
 
             resposta?.dados ??
 
             resposta;
-
 
         if (!registro) {
 
@@ -547,18 +355,15 @@ async function editarVeiculo(id) {
 
         }
 
-
         registroEditando =
 
             registro.ID;
-
 
         preencherFormulario(
 
             registro
 
         );
-
 
        const titulo =
 
@@ -575,7 +380,6 @@ async function editarVeiculo(id) {
                 "Editar veiculo";
 
         }
-
 
         document.body.classList.add(
 
@@ -615,19 +419,17 @@ window.editarVeiculo =
 
     editarVeiculo;
 
-
-
 // ============================================================================
 // EXCLUIR VEÍCULO
 // ============================================================================
 
-async function removerVeiculo(id) {
+async function remover(id) {
 
     if (
 
         !confirm(
 
-            "Deseja excluir este veículo?"
+            "Excluir veículo?"
 
         )
 
@@ -637,33 +439,17 @@ async function removerVeiculo(id) {
 
     }
 
-
     try {
 
         mostrarLoading();
-
-
-        await excluirVeiculo(
-
-            id
-
-        );
-
-
-        registroEditando = null;
-
-
+        await removerVeiculo(id);
         await carregarTabela();
 
     }
 
     catch (erro) {
 
-        tratarErro(
-
-            erro
-
-        );
+        tratarErro(erro);
 
     }
 
@@ -675,8 +461,6 @@ async function removerVeiculo(id) {
 
 }
 
-
-
 // ============================================================================
 // OBTER DADOS DO FORMULÁRIO
 // ============================================================================
@@ -686,77 +470,43 @@ function obterDadosFormulario() {
     return {
 
         Placa:
-
-            campoPlaca?.value ||
-
-            "",
-
+            campoPlaca?.value,
 
         Modelo:
-
-            campoModelo?.value ||
-
-            "",
-
+            campoModelo?.value,
 
         Marca:
-
-            campoMarca?.value ||
-
-            "",
-
+            campoMarca?.value,
 
         Ano:
-
-            campoAno?.value ||
-
-            "",
-
+            campoAno?.value,
 
         Cor:
-
-            campoCor?.value ||
-
-            "",
-
+            campoCor?.value,
 
         Combustivel:
-
-            campoCombustivel?.value ||
-
-            "",
-
+            campoCombustivel?.value,
 
         Status:
-
-            campoStatus?.value ||
-
-            ""
+            campoStatus?.value
 
     };
 
 }
 
-
-
 // ============================================================================
 // PREENCHER FORMULÁRIO
 // ============================================================================
 
-function preencherFormulario(
-
-    registro
-
-) {
+function preencherFormulario(registro) {
 
     console.log(
 
-        "Veículo recebido para edição:",
+        "Registro recebido para edição:",
 
         registro
 
     );
-
 
     // ------------------------------------------------------------------------
     // PLACA
@@ -767,9 +517,6 @@ function preencherFormulario(
         registro["Placa"]
 
         || "";
-
-
-
     // ------------------------------------------------------------------------
     // MODELO
     // ------------------------------------------------------------------------
@@ -779,8 +526,6 @@ function preencherFormulario(
         registro["Modelo"]
 
         || "";
-
-
 
     // ------------------------------------------------------------------------
     // MARCA
@@ -792,8 +537,6 @@ function preencherFormulario(
 
         || "";
 
-
-
     // ------------------------------------------------------------------------
     // ANO
     // ------------------------------------------------------------------------
@@ -803,8 +546,6 @@ function preencherFormulario(
         registro["Ano"]
 
         || "";
-
-
 
     // ------------------------------------------------------------------------
     // COR
@@ -816,8 +557,6 @@ function preencherFormulario(
 
         || "";
 
-
-
     // ------------------------------------------------------------------------
     // COMBUSTÍVEL
     // ------------------------------------------------------------------------
@@ -827,8 +566,6 @@ function preencherFormulario(
         registro["Combustivel"]
 
         || "";
-
-
 
     // ------------------------------------------------------------------------
     // STATUS
@@ -841,8 +578,6 @@ function preencherFormulario(
         || "";
 
 }
-
-
 
 // ============================================================================
 // ATUALIZAR TÍTULO
@@ -905,5 +640,3 @@ function tratarErro(
     }
 
 }
-
-testarBuscarVeiculo();
