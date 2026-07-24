@@ -11,6 +11,7 @@ import {
     COLUNAS_LANCAMENTOS
 } from "../config/tabelas/lancamentos.js";
 
+
 import {
 
     obterLancamentos,
@@ -99,12 +100,6 @@ document.querySelector("#status");
 // CONFIGURAÇÃO DA TABELA
 // ============================================================================
 
-
-
-// ============================================================================
-// ESTADO
-// ============================================================================
-
 let registros = [];
 
 let registroEditando = null;
@@ -187,6 +182,10 @@ async function carregarTabela() {
     renderizarTabela();
 
 }
+
+// ============================================================================
+// RENDER
+// ============================================================================
 
 
 function renderizarTabela(){
