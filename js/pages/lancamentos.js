@@ -62,6 +62,10 @@ import {
 
 } from "../utils/formulario.js";
 
+import {
+    COLUNAS_LANCAMENTOS
+} from "../config/tabelas/lancamentos.js";
+
 
 // ============================================================================
 // ELEMENTOS
@@ -95,50 +99,6 @@ document.querySelector("#status");
 // CONFIGURAÇÃO DA TABELA
 // ============================================================================
 
-const COLUNAS = [
-
-    {
-        field:"ID",
-        label:"ID"
-    },
-
-    {
-        field:"Data",
-        label:"Data"
-    },
-
-    {
-        field:"Hora",
-        label:"Hora"
-    },
-
-    {
-        field:"Empregado / Matrícula",
-        label:"Empregado"
-    },
-
-    {
-        field:"Veículo",
-        label:"Veículo"
-    },
-
-    {
-        field:"Passageiro / Setor / Motivo",
-        label:"Passageiro"
-    },
-
-    {
-        field:"Itinerário",
-        label:"Itinerário"
-    },
-
-    {
-        field:"Status",
-        label:"Status",
-        type:"status"
-    }
-
-];
 
 
 // ============================================================================
@@ -235,6 +195,7 @@ function renderizarTabela(){
        
         tabela,
         COLUNAS,
+        COLUNAS_LANCAMENTOS,
         registros,
         [
 
