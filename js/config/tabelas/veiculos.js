@@ -9,35 +9,35 @@ export const COLUNAS_VEICULOS = [
         field: "ID",
         label: "ID"
     },
-
+        
     {
-        field: "Data",
-        label: "Data"
+        field: "Placa",
+        label: "Placa"
     },
 
     {
-        field: "Hora",
-        label: "Hora"
+        field: "Modelo",
+        label: "Modelo"
     },
 
     {
-        field: "Empregado / Matrícula",
-        label: "Empregado"
+        field: "Marca",
+        label: "Marca"
     },
 
     {
-        field: "Veículo",
-        label: "Veículo"
+        field: "Ano",
+        label: "Ano"
     },
 
     {
-        field: "Passageiro / Setor / Motivo",
-        label: "Passageiro"
+        field: "Cor",
+        label: "Cor"
     },
 
     {
-        field: "Itinerário",
-        label: "Itinerário"
+        field: "Combustivel",
+        label: "Combustível"
     },
 
     {
