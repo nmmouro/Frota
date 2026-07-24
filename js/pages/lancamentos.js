@@ -239,99 +239,22 @@ function renderizarTabela(){
         [
 
             {
-
                 label:"Editar",
                 className:"btn-edit",
                 onClick:
                 registro =>
                 editarLancamento(registro.ID)
-
             },
 
             {
-
                 label:"Excluir",
                 className:"btn-delete",
                 onClick:
                 registro =>
                 remover(registro.ID)
-
             }
-
-        ]
-
+       ]
     );
-
-}
-
-
-// ============================================================================
-// NOVO
-// ============================================================================
-
-function novo(){
-
-    registroEditando = null;
-
-    formulario.reset();
-
-    preencherDataHoraAtual();
-
-}
-
-// ============================================================================
-// SALVAR
-// ============================================================================
-
-async function salvar(evento){
-
-    evento.preventDefault();
-
-    try{
-
-        mostrarLoading();
-        const dados =
-        obterDadosFormulario();
-
-        if(registroEditando){
-
-            await atualizarLancamento(
-
-                registroEditando,
-                dados
-            );
-
-        }
-        else{
-
-            await salvarLancamento(
-                dados
-
-            );
-
-        }
-
-
-        formulario.reset();
-
-        preencherDataHoraAtual();
-
-        registroEditando = null;
-
-        await carregarTabela();
-
-    }
-    catch(erro){
-
-        tratarErro(erro);
-
-    }
-    finally{
-
-        esconderLoading();
-
-    }
-
 }
 
 
@@ -457,6 +380,62 @@ window.editarLancamento =
 
 
 // ============================================================================
+// SALVAR
+// ============================================================================
+
+async function salvar(evento){
+
+    evento.preventDefault();
+
+    try{
+
+        mostrarLoading();
+        const dados =
+        obterDadosFormulario();
+
+        if(registroEditando){
+
+            await atualizarLancamento(
+
+                registroEditando,
+                dados
+            );
+
+        }
+        else{
+
+            await salvarLancamento(
+                dados
+
+            );
+
+        }
+
+
+        formulario.reset();
+
+        preencherDataHoraAtual();
+
+        registroEditando = null;
+
+        await carregarTabela();
+
+    }
+    catch(erro){
+
+        tratarErro(erro);
+
+    }
+    finally{
+
+        esconderLoading();
+
+    }
+
+}
+
+
+// ============================================================================
 // EXCLUIR
 // ============================================================================
 
@@ -485,6 +464,21 @@ async function remover(id){
         esconderLoading();
 
     }
+
+}
+
+
+// ============================================================================
+// NOVO
+// ============================================================================
+
+function novo(){
+
+    registroEditando = null;
+
+    formulario.reset();
+
+    preencherDataHoraAtual();
 
 }
 
@@ -529,8 +523,8 @@ function obterDadosFormulario() {
 }
 
 // ============================================================
-    // PREENCHER FORMULÁRIO
-    // ============================================================
+// PREENCHER FORMULÁRIO
+// ============================================================
 
 function preencherFormulario(registro) {
 
