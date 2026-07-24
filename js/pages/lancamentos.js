@@ -458,18 +458,15 @@ window.editarLancamento =
 
 async function remover(id){
 
-    if(
-        !confirm(
-            "Excluir lançamento?"
-        )
-    )
-    return;
+    if(!confirm("Excluir lançamento?")) {
+        return;
+    }
 
     try{
 
         mostrarLoading();
 
-        await removerLancamento(id);
+       await excluirLancamento(id);
 
         await carregarTabela();
 
