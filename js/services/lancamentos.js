@@ -1,61 +1,32 @@
 // ============================================================================
 // SERVICES / LANÇAMENTOS
 // Arquivo: js/services/lancamentos.js
-//
-// Responsável exclusivamente pela comunicação CRUD
-// com a aba LANÇAMENTOS do Google Sheets
 // ============================================================================
 
-// ============================================================================
-// IMPORTS
-// ============================================================================
+import { criarCrud } from "./crudService.js";
 
 import {
-
-    listar,
-    buscar,
-    salvar,
-    editar,
-    excluir
-
-} from "../api/api.js";
-
-
-import {
-
     ABAS
-
 } from "../config/config.js";
 
 
 // ============================================================================
-// CONFIGURAÇÃO DA ABA
+// CRUD DE LANÇAMENTOS
 // ============================================================================
 
-const ABA = ABAS.LANCAMENTOS;
+const lancamentos = criarCrud(ABAS.LANCAMENTOS);
+
 
 // ============================================================================
-// LISTAR LANÇAMENTOS
+// API PÚBLICA
 // ============================================================================
 
-export function obterLancamentos() {
-    return listar(ABA);
-}
+export const obterLancamentos = lancamentos.listar;
 
-export function obterLancamento(id) {
-    return buscar(ABA, id);
-}
+export const obterLancamento = lancamentos.buscar;
 
-export function salvarLancamento(dados) {
-    return salvar(ABA, dados);
-}
+export const salvarLancamento = lancamentos.salvar;
 
-export function atualizarLancamento(id, dados) {
+export const atualizarLancamento = lancamentos.editar;
 
-    return editar(ABA, id, dados);
-}
-
-export function excluirLancamento(id) {
-
-    return excluir(ABA, id);
-}
+export const excluirLancamento = lancamentos.excluir;
