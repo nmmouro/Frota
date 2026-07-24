@@ -6,6 +6,11 @@
 // ================= IMPORTS =================
 
 import {
+    COLUNAS_EMPREGADOS
+} from "../config/tabelas/empregados.js";
+
+
+import {
 
     obterempregados,
     obterempregado,
