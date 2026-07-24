@@ -216,10 +216,14 @@ function registrarEventos(){
 // LISTAGEM
 // ============================================================================
 
-async function carregarTabela(){
+async function carregarTabela() {
+
+    const resposta = await obterLancamentos();
 
     registros =
-    await obterLancamentos();
+        resposta?.dados ??
+        resposta;
+
     renderizarTabela();
 
 }
