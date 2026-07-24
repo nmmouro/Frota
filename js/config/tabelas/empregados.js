@@ -6,6 +6,21 @@
 export const COLUNAS_EMPREGADOS = [
 
     {
+        field: "ID",
+        label: "ID"
+    },
+
+    {
+        field: "Data",
+        label: "Data"
+    },
+
+    {
+        field: "Foto",
+        label: "Foto"
+    },
+    
+    {
         field: "empregado",
         label: "Empregado"
     },
