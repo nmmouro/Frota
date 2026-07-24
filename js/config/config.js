@@ -197,35 +197,27 @@ export const CAMPOS = {
     LANCAMENTOS: {
 
         ID:
-
             "ID",
 
         DATA:
-
             "Data",
 
         HORA:
-
             "Hora",
 
         EMPREGADO:
-
             "Empregado / Matrícula",
 
         VEICULO:
-
             "Veículo",
 
         PASSAGEIRO:
-
             "Passageiro / Setor / Motivo",
 
         ITINERARIO:
-
             "Itinerário",
 
         STATUS:
-
             "Status"
 
     },
@@ -238,43 +230,36 @@ export const CAMPOS = {
     EMPREGADOS: {
 
         ID:
-
             "ID",
 
         DATA:
-
             "Data",
 
-        FOTO:
+        HORA:
+            "Hora",
 
+        FOTO:
             "Foto",
 
         EMPREGADO:
-
             "Empregado",
 
         MATRICULA:
-
             "Matrícula",
 
         DIRETORIA:
-
             "Diretoria",
 
         SETOR:
-
             "Setor",
 
         USUARIO:
-
             "Usuário",
 
         CONDICAO:
-
             "Condição",
 
         STATUS:
-
             "Status"
 
     },
@@ -287,43 +272,36 @@ export const CAMPOS = {
     VEICULOS: {
 
         ID:
-
             "ID",
 
         DATA:
-
             "Data",
 
-        FOTO:
+        HORA:
+            "Hora",
 
+        FOTO:
             "Foto",
 
         PLACA:
-
             "Placa",
 
         MODELO:
-
             "Modelo",
 
         MARCA:
-
             "Marca",
 
         ANO:
-
             "Ano",
 
         COR:
-
             "Cor",
 
         COMBUSTIVEL:
-
             "Combustível",
 
         STATUS:
-
             "Status"
 
     }
@@ -339,23 +317,18 @@ export const CAMPOS = {
 export const CORES = {
 
     VERDE:
-
         "#16A34A",
 
     AZUL:
-
         "#2563EB",
 
     VERMELHO:
-
         "#DC2626",
 
     AMARELO:
-
         "#FACC15",
 
     CINZA:
-
         "#6B7280"
 
 };
@@ -369,23 +342,18 @@ export const CORES = {
 export const MENSAGENS = {
 
     SALVO:
-
         "Registro salvo com sucesso.",
 
     EXCLUIDO:
-
         "Registro excluído com sucesso.",
 
     ALTERADO:
-
         "Registro atualizado com sucesso.",
 
     ERRO:
-
         "Ocorreu um erro ao processar a solicitação.",
 
     CARREGANDO:
-
         "Carregando dados..."
 
 };
