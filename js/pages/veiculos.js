@@ -84,54 +84,6 @@ document.querySelector("#combustivel");
 const campoStatus =
 document.querySelector("#status");
 
-// ============================================================================
-// CONFIGURAÇÃO DA TABELA
-// ============================================================================
-
-const COLUNAS = [
-
-    {
-        field: "ID",
-        label: "ID"
-    },
-        
-    {
-        field: "Placa",
-        label: "Placa"
-    },
-
-    {
-        field: "Modelo",
-        label: "Modelo"
-    },
-
-    {
-        field: "Marca",
-        label: "Marca"
-    },
-
-    {
-        field: "Ano",
-        label: "Ano"
-    },
-
-    {
-        field: "Cor",
-        label: "Cor"
-    },
-
-    {
-        field: "Combustivel",
-        label: "Combustível"
-    },
-
-    {
-        field: "Status",
-        label: "Status",
-        type: "status"
-    }
-
-];
 
 // ============================================================================
 // ESTADO
