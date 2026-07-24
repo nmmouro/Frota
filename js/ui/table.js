@@ -30,20 +30,13 @@ import {
 
 
 export function renderTable(
-
-    container,
-
-    columns = [],
-
-    data = [],
-
-    actions = []
-
-){
-
+    tabela,
+    colunas,
+    registros,
+    acoes
+) {
 
     if(!container) {
-
 
         console.warn(
 
@@ -51,79 +44,50 @@ export function renderTable(
 
         );
 
-
         return;
-
 
     }
 
-
-
-    renderComponentTable(
-
-        container,
+    renderComponentTable(container,
 
         {
-
             columns,
-
             data,
-
             actions
-
         }
-
     );
 
-
 }
-
-
-
 
 // ============================================================================
 // LIMPAR TABELA
 // ============================================================================
 
-
 export function limparTabela(container){
-
 
     if(!container) return;
 
-
     container.innerHTML = "";
 
-
 }
-
-
-
 
 // ============================================================================
 // ATUALIZAR TABELA
 // ============================================================================
 
-
 export function atualizarTabela(
 
-    container,
-
-    columns = [],
-
-    data = [],
-
-    actions = []
-
-){
-
+    tabela,
+    colunas,
+    registros,
+    acoes
+) {
 
     limparTabela(
 
         container
 
     );
-
 
     renderTable(
 
