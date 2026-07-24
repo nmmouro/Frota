@@ -33,6 +33,14 @@ import {
 
 } from "../ui/loading.js";
 
+import {
+
+    dataInput,
+    dataParaInput
+
+} from "../utils/datas.js";
+
+
 // ================= ELEMENTOS =================
 
 const formulario =
@@ -41,9 +49,35 @@ const formulario =
 const tabela =
     document.querySelector("#tabelaEmpregados");
 
+const btnNovo =
+    document.querySelector("#btnNovo");
+
+const campoEmpregado =
+document.querySelector("#empregado");
+
+const campoMatricula =
+    document.querySelector("#matricula");
+
+const campoDiretoria =
+    document.querySelector("#diretoria");
+
+const campoSetor =
+    document.querySelector("#setor");
+
+const campoUsuario =
+    document.querySelector("#usuario");
+
+const campoCondicao =
+    document.querySelector("#condicao");
+
+const campoStatus =
+    document.querySelector("#status");
+
 // ================= VARIÁVEIS =================
 
 let empregados = [];
+
+let registroEditando = null;
 
 // ================= EVENTOS =================
 
@@ -61,11 +95,10 @@ async function init() {
 
     try {
 
-        mostrarLoading();
-
-        await carregarDados();
-
+       mostrarLoading();
         registrarEventos();
+        await carregarTabela();
+        esconderLoading();
 
     }
 
@@ -83,29 +116,6 @@ async function init() {
 
 }
 
-// ================= DADOS =================
-
-async function carregarDados() {
-
-    empregados = await obterEmpregados();
-
-    renderizarTabela();
-
-}
-
-// ================= RENDER =================
-
-function renderizarTabela() {
-
-   renderTable(
-    tabela,
-    COLUNAS_EMPREGADOS,
-    empregados,
-    acoes
-);
-
-}
-
 // ================= EVENTOS =================
 
 function registrarEventos() {
@@ -118,9 +128,92 @@ function registrarEventos() {
 
     );
 
+    btnNovo?.addEventListener(
+
+        "click",
+
+        novo
+    );
+
 }
 
-// ================= AÇÕES =================
+// ============================================================================
+// LISTAGEM
+// ============================================================================
+
+async function carregarTabela() {
+
+    registros =
+    await obterempregados();
+
+    if (!Array.isArray(registros)) {
+
+        throw new Error(
+
+            "Resposta inválida ao carregar empregados."
+        );
+    }
+
+    renderizarTabela();
+
+}
+
+// ============================================================================
+// RENDERIZAR TABELA
+// ============================================================================
+
+function renderizarTabela() {
+
+    renderTable(
+
+        tabela,
+        COLUNAS,
+        registros,
+
+        [
+
+            {
+                label: "Editar",
+                className: "btn-edit",
+                onClick:
+                registro =>
+                editarVeiculo(registro.ID)
+           
+            },
+
+            {
+                label: "Excluir",
+                className: "btn-delete",
+                onClick:
+                registro =>
+                removerVeiculo(registro.ID)
+
+            }
+
+        ]
+
+    );
+
+}
+
+// ============================================================================
+// NOVO EMPREGADO
+// ============================================================================
+
+function novo() {
+
+    registroEditando = null;
+
+    formulario.reset();
+
+    preencherDataAtual();
+
+}
+
+
+// ============================================================================
+// SALVAR / ATUALIZAR EMPREGADOS
+// ============================================================================
 
 async function salvar(evento) {
 
@@ -128,13 +221,41 @@ async function salvar(evento) {
 
     try {
 
-        const dados = obterDadosFormulario();
+        mostrarLoading();
+        
+        const dados =
 
-        await salvarEmpregado(dados);
+            obterDadosFormulario();
+
+        if (registroEditando) {
+
+            await atualizarempregado(
+
+                registroEditando,
+
+                dados
+
+            );
+
+        }
+
+        else {
+
+            await salvarempregado(
+
+                dados
+
+            );
+
+        }
 
         formulario.reset();
 
-        await carregarDados();
+        preencherDataAtual();
+
+        registroEditando = null;
+
+        await carregarTabela();
 
     }
 
@@ -144,7 +265,152 @@ async function salvar(evento) {
 
     }
 
+    finally {
+
+        esconderLoading();
+
+    }
+
 }
+
+
+// ============================================================================
+// EDITAR VEÍCULO
+// ============================================================================
+
+async function editarempregado(id) {
+
+    try {
+
+        mostrarLoading();
+
+        const resposta =
+
+            await obterempregado(id);
+
+        const registro =
+
+            resposta?.dados ??
+
+            resposta;
+
+        if (!registro) {
+
+            throw new Error(
+
+                "empregado não encontrado."
+
+            );
+
+        }
+
+        registroEditando =
+
+            registro.ID;
+
+        preencherFormulario(
+
+            registro
+
+        );
+
+       const titulo =
+
+            document.querySelector(
+
+                "#tituloFormulario"
+
+            );
+
+        if (titulo) {
+
+            titulo.textContent =
+
+                "Editar empregado";
+
+        }
+
+        document.body.classList.add(
+
+            "modo-edicao"
+
+        );
+
+    }
+
+    catch (erro) {
+
+        console.error(
+
+            "Erro ao carregar veículo para edição:",
+
+            erro
+
+        );
+
+alert(
+
+            erro.message ||
+
+            "Não foi possível carregar o empregado."
+
+        );
+
+    }
+
+}
+
+// ============================================================================
+// DISPONIBILIZAR PARA A INTERFACE
+// ============================================================================
+
+window.editarEmpregado =
+
+    editarVeiculo;
+
+// ============================================================================
+// EXCLUIR VEÍCULO
+// ============================================================================
+
+async function remover(id) {
+
+    if (
+
+        !confirm(
+
+            "Excluir empregado?"
+
+        )
+
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        mostrarLoading();
+        await removerempregado(id);
+        await carregarTabela();
+
+    }
+
+    catch (erro) {
+
+        tratarErro(erro);
+
+    }
+
+    finally {
+
+        esconderLoading();
+
+    }
+
+}
+
+
 
 // ================= HELPERS =================
 
@@ -152,48 +418,147 @@ function obterDadosFormulario() {
 
     return {
 
-        empregado:
+        Empregado:
 
-            formulario.empregado.value.trim(),
+            campoEmpregado?.value,
 
-        matricula:
+        Matricula:
 
-            formulario.matricula.value.trim(),
+            campomatricula?.value,
 
-        diretoria:
+        Diretoria:
 
-            formulario.diretoria.value.trim(),
+            campodiretoria?.value,
 
-        setor:
+       Setor:
 
-            formulario.setor.value,
+            camposetor?.value,
 
-        usuario:
+        Usuario:
 
-            formulario.usuario.value,
+            campousuario?.value,
 
-        condicao:
+        Condicao:
 
-            formulario.condicao.value,
+            campocondicao?.value,
 
-        status:
+        Status:
 
-            formulario.status.value
+            campostatus?.value
 
     };
 
 }
 
+// ============================================================================
+// PREENCHER FORMULÁRIO
+// ============================================================================
+
+function preencherFormulario(registro) {
+
+    console.log(
+
+        "Registro recebido para edição:",
+
+        registro
+
+    );
+
+    campoEmpregado.value =
+
+        registro["Empregado"]
+
+        || "";
+   
+
+    campoMatricula.value =
+
+        registro["Matricula"]
+
+        || "";
+
+  
+
+    campoDiretoria.value =
+
+        registro["Diretoria"]
+
+        || "";
+
+   
+
+    campoSetor.value =
+
+        registro["Setor"]
+
+        || "";
+
+   
+
+    campoCondicao.value =
+
+        registro["COndicao"]
+
+        || "";
+
+   
+
+    campoStatus.value =
+
+        registro["Status"]
+
+        || "";
+
+}
+
+
+// ============================================================================
+// ATUALIZAR TÍTULO
+// ============================================================================
+
+function atualizarTitulo(
+
+    texto
+
+) {
+
+    const titulo =
+
+        document.querySelector(
+
+            "#tituloFormulario"
+
+        );
+
+
+    if (titulo) {
+
+        titulo.textContent =
+
+            texto;
+
+    }
+
+}
+
+
 // ================= ERROS =================
 
 function tratarErro(erro) {
 
-    console.error(erro);
+   console.error(
 
-    alert(
-
-        "Erro ao processar a solicitação."
+        erro
 
     );
 
+
+    alert(
+
+        "Erro ao processar empregado."
+
+    );
+
+}
+}
 }
