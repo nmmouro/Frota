@@ -11,6 +11,11 @@
 // ============================================================================
 
 import {
+    COLUNAS_VEICULOS
+} from "../config/tabelas/veiculos.js";
+
+
+import {
 
     obterVeiculos,
     obterVeiculo,
