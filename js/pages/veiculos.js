@@ -46,7 +46,7 @@ import {
     dataInput,
     dataParaInput,
     horaInput,
-    horaParaInput,
+    horaParaInput
     
 
 } from "../utils/datas.js";
