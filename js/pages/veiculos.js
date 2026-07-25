@@ -576,36 +576,6 @@ function atualizarTitulo(
 
 }
 
-// ============================================================================
-// DATA / HORA AUTOMÁTICA
-// ============================================================================
-
-function preencherDataHoraAtual(){
-
-    const data =
-        document.querySelector("#data");
-
-    const hora =
-        document.querySelector("#hora");
-
-
-    if(data){
-
-        data.value =
-
-            dataInput();
-
-    }
-
-
-    if(hora){
-
-        hora.value =
-
-            horaInput();
-    }
-
-}
 
 
 
