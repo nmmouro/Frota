@@ -44,10 +44,17 @@ import {
 import {
 
     dataInput,
-    dataParaInput
+    dataParaInput,
+    horaInput,
+    horaParaInput
 
 } from "../utils/datas.js";
 
+import {
+
+    preencherSelect
+
+} from "../utils/formulario.js";
 
 
 // ============================================================================
@@ -62,6 +69,9 @@ document.querySelector("#tabelaVeiculos");
 
 const btnNovo =
 document.querySelector("#btnNovo");
+
+const campoData =
+document.querySelector("#data");
 
 const campoPlaca =
 document.querySelector("#placa");
@@ -109,6 +119,7 @@ async function init() {
     try {
 
         mostrarLoading();
+        preencherDataHoraAtual();
         registrarEventos();
         await carregarTabela();
         esconderLoading();
@@ -177,7 +188,7 @@ function renderizarTabela() {
     renderTable(
 
         tabela,
-        COLUNAS,
+        COLUNAS_VEICULOS,
         registros,
 
         [
@@ -564,6 +575,38 @@ function atualizarTitulo(
     }
 
 }
+
+// ============================================================================
+// DATA / HORA AUTOMÁTICA
+// ============================================================================
+
+function preencherDataHoraAtual(){
+
+    const data =
+        document.querySelector("#data");
+
+    const hora =
+        document.querySelector("#hora");
+
+
+    if(data){
+
+        data.value =
+
+            dataInput();
+
+    }
+
+
+    if(hora){
+
+        hora.value =
+
+            horaInput();
+    }
+
+}
+
 
 
 
