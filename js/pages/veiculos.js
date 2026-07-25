@@ -411,7 +411,7 @@ async function remover(id) {
     try {
 
         mostrarLoading();
-        await removerVeiculo(id);
+        await excluirVeiculo(id);
         await carregarTabela();
 
     }
@@ -438,6 +438,9 @@ function obterDadosFormulario() {
 
     return {
 
+        Data:
+            campoData?.value,
+        
         Placa:
             campoPlaca?.value,
 
