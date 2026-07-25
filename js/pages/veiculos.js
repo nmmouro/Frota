@@ -120,7 +120,7 @@ async function init() {
     try {
 
         mostrarLoading();
-        preencherDataHoraAtual();
+        
         registrarEventos();
         await carregarTabela();
         esconderLoading();
