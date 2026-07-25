@@ -47,6 +47,7 @@ import {
     dataParaInput,
     horaInput,
     horaParaInput
+    preencherDataAtual
 
 } from "../utils/datas.js";
 
