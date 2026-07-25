@@ -472,13 +472,11 @@ function obterDadosFormulario() {
 
 function preencherFormulario(registro) {
 
-    console.log(
+    campoData.value =
+        
+         registro["Data"]
 
-        "Registro recebido para edição:",
-
-        registro
-
-    );
+        || "";      
 
     // ------------------------------------------------------------------------
     // PLACA
