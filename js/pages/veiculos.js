@@ -577,6 +577,25 @@ function atualizarTitulo(
 
 }
 
+// ============================================================================
+// DATA / HORA AUTOMÁTICA
+// ============================================================================
+
+function preencherDataAtual(){
+
+    const data =
+        document.querySelector("#data");
+
+    
+    if(data){
+
+        data.value =
+
+            dataInput();
+
+   }
+
+}
 
 
 
