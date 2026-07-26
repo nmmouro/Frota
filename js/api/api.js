@@ -34,10 +34,16 @@ async function request(url, options = {}) {
         url
     );
 
-    const resposta = await fetch(
-        url,
+    console.log(
+        "API Options:",
         options
     );
+
+    const resposta =
+        await fetch(
+            url,
+            options
+        );
 
     if (!resposta.ok) {
 
@@ -47,19 +53,8 @@ async function request(url, options = {}) {
 
     }
 
-    let json;
-
-    try {
-
-        json = await resposta.json();
-
-    } catch (erro) {
-
-        throw new Error(
-            "A API retornou uma resposta inválida."
-        );
-
-    }
+    const json =
+        await resposta.json();
 
     console.log(
         "Resposta bruta da API:",
@@ -77,22 +72,22 @@ async function request(url, options = {}) {
 
     }
 
-    // PADRÃO DA SUA API
     if (
+        json.success === false ||
         json.sucesso === false
     ) {
 
         throw new Error(
 
+            json.message ||
             json.erro ||
-
             "Erro desconhecido na API."
 
         );
 
     }
 
-    return json.data ?? [];
+    return json.data;
 
 }
 
