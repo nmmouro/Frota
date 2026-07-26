@@ -26,10 +26,6 @@ import {
 async function request(url, options = {}) {
 
     console.log(
-        "🔥 API.JS NOVA VERSÃO EXECUTADA"
-    );
-
-    console.log(
         "API Request:",
         url
     );
