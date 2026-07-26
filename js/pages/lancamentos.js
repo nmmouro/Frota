@@ -606,15 +606,10 @@ function preencherFormulario(registro) {
 
 async function carregarVeiculos() {
 
-    console.log(
-        "INICIANDO CARREGAMENTO DE VEÍCULOS"
-    );
-
-    const resposta =
-        await obterVeiculos();
+    const resposta = await obterVeiculos();
 
     console.log(
-        "RESPOSTA OBTIDA VEÍCULOS:",
+        "RESPOSTA VEÍCULOS:",
         resposta
     );
 
@@ -624,7 +619,7 @@ async function carregarVeiculos() {
         resposta;
 
     console.log(
-        "LISTA FINAL VEÍCULOS:",
+        "LISTA VEÍCULOS:",
         lista
     );
 
@@ -636,19 +631,11 @@ async function carregarVeiculos() {
 
     }
 
-    selectVeiculo.innerHTML = "";
-
-    const opcaoInicial =
-        document.createElement("option");
-
-    opcaoInicial.value = "";
-
-    opcaoInicial.textContent =
-        "Selecione o veículo";
-
-    selectVeiculo.appendChild(
-        opcaoInicial
-    );
+    selectVeiculo.innerHTML = `
+        <option value="">
+            Selecione o veículo
+        </option>
+    `;
 
     lista.forEach(item => {
 
@@ -663,27 +650,17 @@ async function carregarVeiculos() {
         const modelo =
             item["Modelo"] ?? "";
 
-        const valor =
-            placa;
-
         const option =
             document.createElement("option");
 
-        option.value = valor;
+        option.value = placa;
 
         option.textContent =
             `${placa} - ${modelo}`;
 
-        selectVeiculo.appendChild(
-            option
-        );
+        selectVeiculo.appendChild(option);
 
     });
-
-    console.log(
-        "TOTAL DE VEÍCULOS NO SELECT:",
-        selectVeiculo.options.length
-    );
 
 }
 
@@ -691,45 +668,66 @@ async function carregarVeiculos() {
 // CARREGAR EMPREGADOS
 // ============================================================================
 
-async function carregarVeiculos() {
+async function carregarEmpregados() {
 
-    const lista = await obterVeiculos();
+    const resposta = await obterEmpregados();
+
+    console.log(
+        "RESPOSTA EMPREGADOS:",
+        resposta
+    );
+
+    const lista =
+        resposta?.data ??
+        resposta?.dados ??
+        resposta;
+
+    console.log(
+        "LISTA EMPREGADOS:",
+        lista
+    );
 
     if (!Array.isArray(lista)) {
 
         throw new Error(
-            "Resposta inválida ao carregar veículos."
+            "Resposta inválida ao carregar empregados."
         );
 
     }
 
-    selectVeiculo.innerHTML = `
-
+    selectEmpregado.innerHTML = `
         <option value="">
-            Selecione o veículo
+            Selecione o empregado
         </option>
-
     `;
 
     lista.forEach(item => {
 
+        const empregado =
+            item["Empregado"] ?? "";
+
+        const matricula =
+            item["Matrícula"] ?? "";
+
+        const valor = [
+            empregado,
+            matricula
+        ]
+        .filter(Boolean)
+        .join(" / ");
+
         const option =
             document.createElement("option");
 
-        option.value =
-            item.Placa || "";
+        option.value = valor;
 
-        option.textContent =
-            `${item.Placa || ""} - ${item.Modelo || ""}`;
+        option.textContent = valor;
 
-        selectVeiculo.appendChild(
-            option
-        );
+        selectEmpregado.appendChild(option);
 
     });
 
 }
-
 
 // ============================================================================
 // CARREGAR EMPREGADOS
