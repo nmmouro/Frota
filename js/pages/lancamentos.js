@@ -691,29 +691,53 @@ async function carregarVeiculos() {
 // CARREGAR EMPREGADOS
 // ============================================================================
 
+async function carregarVeiculos() {
+
+    const lista = await obterVeiculos();
+
+    if (!Array.isArray(lista)) {
+
+        throw new Error(
+            "Resposta inválida ao carregar veículos."
+        );
+
+    }
+
+    selectVeiculo.innerHTML = `
+
+        <option value="">
+            Selecione o veículo
+        </option>
+
+    `;
+
+    lista.forEach(item => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            item.Placa || "";
+
+        option.textContent =
+            `${item.Placa || ""} - ${item.Modelo || ""}`;
+
+        selectVeiculo.appendChild(
+            option
+        );
+
+    });
+
+}
+
+
+// ============================================================================
+// CARREGAR EMPREGADOS
+// ============================================================================
+
 async function carregarEmpregados() {
 
-    console.log(
-        "INICIANDO CARREGAMENTO DE EMPREGADOS"
-    );
-
-    const resposta =
-        await obterEmpregados();
-
-    console.log(
-        "RESPOSTA OBTIDA EMPREGADOS:",
-        resposta
-    );
-
-    const lista =
-        resposta?.data ??
-        resposta?.dados ??
-        resposta;
-
-    console.log(
-        "LISTA FINAL EMPREGADOS:",
-        lista
-    );
+    const lista = await obterEmpregados();
 
     if (!Array.isArray(lista)) {
 
@@ -723,26 +747,15 @@ async function carregarEmpregados() {
 
     }
 
-    selectEmpregado.innerHTML = "";
+    selectEmpregado.innerHTML = `
 
-    const opcaoInicial =
-        document.createElement("option");
+        <option value="">
+            Selecione o empregado
+        </option>
 
-    opcaoInicial.value = "";
-
-    opcaoInicial.textContent =
-        "Selecione o empregado";
-
-    selectEmpregado.appendChild(
-        opcaoInicial
-    );
+    `;
 
     lista.forEach(item => {
-
-        console.log(
-            "EMPREGADO:",
-            item
-        );
 
         const empregado =
             item["Empregado"] ?? "";
@@ -762,20 +775,17 @@ async function carregarEmpregados() {
         const option =
             document.createElement("option");
 
-        option.value = valor;
+        option.value =
+            valor;
 
-        option.textContent = valor;
+        option.textContent =
+            valor;
 
         selectEmpregado.appendChild(
             option
         );
 
     });
-
-    console.log(
-        "TOTAL DE EMPREGADOS NO SELECT:",
-        selectEmpregado.options.length
-    );
 
 }
 
