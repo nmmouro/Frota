@@ -606,20 +606,12 @@ function preencherFormulario(registro) {
 
 async function carregarVeiculos() {
 
-    const resposta =
-
-        await obterVeiculos();
-
-    const lista =
-
-        resposta.dados ?? resposta;
+    const lista = await obterVeiculos();
 
     if (!Array.isArray(lista)) {
 
         throw new Error(
-
             "Resposta inválida ao carregar veículos."
-
         );
 
     }
@@ -627,9 +619,7 @@ async function carregarVeiculos() {
     selectVeiculo.innerHTML = `
 
         <option value="">
-
             Selecione o veículo
-
         </option>
 
     `;
@@ -637,27 +627,16 @@ async function carregarVeiculos() {
     lista.forEach(item => {
 
         const option =
-
-            document.createElement(
-
-                "option"
-
-            );
+            document.createElement("option");
 
         option.value =
-
             item.Placa || "";
 
-
         option.textContent =
-
             `${item.Placa || ""} - ${item.Modelo || ""}`;
 
-
         selectVeiculo.appendChild(
-
             option
-
         );
 
     });
@@ -671,92 +650,62 @@ async function carregarVeiculos() {
 
 async function carregarEmpregados() {
 
-    const resposta =
-
-        await obterEmpregados();
-
-
-    const lista =
-
-        resposta?.dados ??
-
-        resposta;
-
+    const lista = await obterEmpregados();
 
     if (!Array.isArray(lista)) {
 
         throw new Error(
-
             "Resposta inválida ao carregar empregados."
-
         );
 
     }
 
-
     selectEmpregado.innerHTML = `
 
         <option value="">
-
             Selecione o empregado
-
         </option>
 
     `;
 
-
     lista.forEach(item => {
 
         const empregado =
-
             item["Empregado"] ?? "";
 
-
         const matricula =
-
             item["Matrícula"] ?? "";
 
+        const valor = [
 
-        const valor =
+            empregado,
 
-            [
+            matricula
 
-                empregado,
-
-                matricula
-
-            ]
-
-            .filter(Boolean)
-
-            .join(" / ");
+        ]
+        .filter(Boolean)
+        .join(" / ");
 
 
         const option =
-
-            document.createElement(
-
-                "option"
-
-            );
+            document.createElement("option");
 
 
-        option.value = valor;
+        option.value =
+            valor;
 
 
-        option.textContent = valor;
+        option.textContent =
+            valor;
 
 
         selectEmpregado.appendChild(
-
             option
-
         );
 
     });
 
 }
-
 // ============================================================================
 // DATA / HORA AUTOMÁTICA
 // ============================================================================
