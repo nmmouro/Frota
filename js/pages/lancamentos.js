@@ -606,7 +606,10 @@ function preencherFormulario(registro) {
 
 async function carregarVeiculos() {
 
-    const lista = await obterVeiculos();
+    const resposta = await obterVeiculos();
+
+    const lista = resposta.data;
+
 
     if (!Array.isArray(lista)) {
 
