@@ -96,11 +96,9 @@ const campoStatus =
 document.querySelector("#status");
 
 
-// ============================================================================
-// ESTADO
-// ============================================================================
+// ================= VARIÁVEIS =================
 
-let registros = [];
+let veiculos = [];
 
 let registroEditando = null;
 
