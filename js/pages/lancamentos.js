@@ -606,7 +606,27 @@ function preencherFormulario(registro) {
 
 async function carregarVeiculos() {
 
-    const lista = await obterVeiculos();
+    console.log(
+        "INICIANDO CARREGAMENTO DE VEÍCULOS"
+    );
+
+    const resposta =
+        await obterVeiculos();
+
+    console.log(
+        "RESPOSTA OBTIDA VEÍCULOS:",
+        resposta
+    );
+
+    const lista =
+        resposta?.data ??
+        resposta?.dados ??
+        resposta;
+
+    console.log(
+        "LISTA FINAL VEÍCULOS:",
+        lista
+    );
 
     if (!Array.isArray(lista)) {
 
@@ -616,24 +636,43 @@ async function carregarVeiculos() {
 
     }
 
-    selectVeiculo.innerHTML = `
+    selectVeiculo.innerHTML = "";
 
-        <option value="">
-            Selecione o veículo
-        </option>
+    const opcaoInicial =
+        document.createElement("option");
 
-    `;
+    opcaoInicial.value = "";
+
+    opcaoInicial.textContent =
+        "Selecione o veículo";
+
+    selectVeiculo.appendChild(
+        opcaoInicial
+    );
 
     lista.forEach(item => {
+
+        console.log(
+            "VEÍCULO:",
+            item
+        );
+
+        const placa =
+            item["Placa"] ?? "";
+
+        const modelo =
+            item["Modelo"] ?? "";
+
+        const valor =
+            placa;
 
         const option =
             document.createElement("option");
 
-        option.value =
-            item.Placa || "";
+        option.value = valor;
 
         option.textContent =
-            `${item.Placa || ""} - ${item.Modelo || ""}`;
+            `${placa} - ${modelo}`;
 
         selectVeiculo.appendChild(
             option
@@ -641,8 +680,12 @@ async function carregarVeiculos() {
 
     });
 
-}
+    console.log(
+        "TOTAL DE VEÍCULOS NO SELECT:",
+        selectVeiculo.options.length
+    );
 
+}
 
 // ============================================================================
 // CARREGAR EMPREGADOS
@@ -650,7 +693,27 @@ async function carregarVeiculos() {
 
 async function carregarEmpregados() {
 
-    const lista = await obterEmpregados();
+    console.log(
+        "INICIANDO CARREGAMENTO DE EMPREGADOS"
+    );
+
+    const resposta =
+        await obterEmpregados();
+
+    console.log(
+        "RESPOSTA OBTIDA EMPREGADOS:",
+        resposta
+    );
+
+    const lista =
+        resposta?.data ??
+        resposta?.dados ??
+        resposta;
+
+    console.log(
+        "LISTA FINAL EMPREGADOS:",
+        lista
+    );
 
     if (!Array.isArray(lista)) {
 
@@ -660,15 +723,26 @@ async function carregarEmpregados() {
 
     }
 
-    selectEmpregado.innerHTML = `
+    selectEmpregado.innerHTML = "";
 
-        <option value="">
-            Selecione o empregado
-        </option>
+    const opcaoInicial =
+        document.createElement("option");
 
-    `;
+    opcaoInicial.value = "";
+
+    opcaoInicial.textContent =
+        "Selecione o empregado";
+
+    selectEmpregado.appendChild(
+        opcaoInicial
+    );
 
     lista.forEach(item => {
+
+        console.log(
+            "EMPREGADO:",
+            item
+        );
 
         const empregado =
             item["Empregado"] ?? "";
@@ -688,17 +762,20 @@ async function carregarEmpregados() {
         const option =
             document.createElement("option");
 
-        option.value =
-            valor;
+        option.value = valor;
 
-        option.textContent =
-            valor;
+        option.textContent = valor;
 
         selectEmpregado.appendChild(
             option
         );
 
     });
+
+    console.log(
+        "TOTAL DE EMPREGADOS NO SELECT:",
+        selectEmpregado.options.length
+    );
 
 }
 
