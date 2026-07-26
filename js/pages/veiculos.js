@@ -51,12 +51,6 @@ import {
 
 } from "../utils/datas.js";
 
-import {
-
-    preencherSelect
-
-} from "../utils/formulario.js";
-
 
 // ============================================================================
 // ELEMENTOS
