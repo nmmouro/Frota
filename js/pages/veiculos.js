@@ -198,35 +198,30 @@ async function carregarTabela() {
 // RENDERIZAR TABELA
 // ============================================================================
 
+let veiculos = [];
+
+let registroEditando = null;
+
 function renderizarTabela() {
 
     renderTable(
-
         tabela,
         COLUNAS_VEICULOS,
-        veiculos
-       
+        veiculos,
         [
-
             {
                 label: "Editar",
                 className: "btn-edit",
-                onClick:
-                registro => {
-                editarVeiculo(registro.ID);
-                }
+                onClick: (veiculo) =>
+                    editarVeiculo(veiculo.ID)
             },
-
             {
                 label: "Excluir",
                 className: "btn-delete",
-                onClick:
-                registro => {
-                removerVeiculo(registro.ID);
-                }
+                onClick: (veiculo) =>
+                    remover(veiculo.ID)
             }
         ]
-
     );
 
 }
@@ -321,31 +316,24 @@ async function editarVeiculo(id) {
 
             await obterVeiculo(id);
 
-        const registro =
+      const veiculo =
+    resposta?.dados ??
+    resposta;
 
-            resposta?.dados ??
+if (!veiculo) {
 
-            resposta;
+    throw new Error(
+        "Veículo não encontrado."
+    );
 
-        if (!registro) {
+}
 
-            throw new Error(
+registroEditando =
+    veiculo.ID;
 
-                "Veículo não encontrado."
-
-            );
-
-        }
-
-        registroEditando =
-
-            registro.ID;
-
-        preencherFormulario(
-
-            registro
-
-        );
+preencherFormulario(
+    veiculo
+);
 
        const titulo =
 
@@ -483,82 +471,31 @@ function obterDadosFormulario() {
 // PREENCHER FORMULÁRIO
 // ============================================================================
 
-function preencherFormulario(registro) {
+function preencherFormulario(veiculo) {
 
     campoData.value =
-        
-         registro["Data"]
-
-        || "";      
-
-    // ------------------------------------------------------------------------
-    // PLACA
-    // ------------------------------------------------------------------------
+        veiculo["Data"] || "";
 
     campoPlaca.value =
-
-        registro["Placa"]
-
-        || "";
-    // ------------------------------------------------------------------------
-    // MODELO
-    // ------------------------------------------------------------------------
+        veiculo["Placa"] || "";
 
     campoModelo.value =
-
-        registro["Modelo"]
-
-        || "";
-
-    // ------------------------------------------------------------------------
-    // MARCA
-    // ------------------------------------------------------------------------
+        veiculo["Modelo"] || "";
 
     campoMarca.value =
-
-        registro["Marca"]
-
-        || "";
-
-    // ------------------------------------------------------------------------
-    // ANO
-    // ------------------------------------------------------------------------
+        veiculo["Marca"] || "";
 
     campoAno.value =
-
-        registro["Ano"]
-
-        || "";
-
-    // ------------------------------------------------------------------------
-    // COR
-    // ------------------------------------------------------------------------
+        veiculo["Ano"] || "";
 
     campoCor.value =
-
-        registro["Cor"]
-
-        || "";
-
-    // ------------------------------------------------------------------------
-    // COMBUSTÍVEL
-    // ------------------------------------------------------------------------
+        veiculo["Cor"] || "";
 
     campoCombustivel.value =
-
-        registro["Combustivel"]
-
-        || "";
-
-    // ------------------------------------------------------------------------
-    // STATUS
-    // ------------------------------------------------------------------------
+        veiculo["Combustivel"] || "";
 
     campoStatus.value =
-
-        registro["Status"]
-
-        || "";
+        veiculo["Status"] || "";
 
 }
 
