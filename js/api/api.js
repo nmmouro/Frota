@@ -23,53 +23,27 @@ import {
 // REQUEST
 // ============================================================================
 
-async function request(
-
-    url,
-
-    options = {}
-
-) {
+async function request(url, options = {}) {
 
     console.log(
-
         "API Request:",
-
         url
-
     );
 
-
-      const resposta = await fetch(
-
+    const resposta = await fetch(
         url,
-
         options
-
     );
-
-
-    // ------------------------------------------------------------------------
-    // ERRO HTTP
-    // ------------------------------------------------------------------------
 
     if (!resposta.ok) {
 
         throw new Error(
-
             `Erro HTTP ${resposta.status}`
-
         );
 
     }
 
-
-    // ------------------------------------------------------------------------
-    // CONVERTER RESPOSTA
-    // ------------------------------------------------------------------------
-
     let json;
-
 
     try {
 
@@ -78,46 +52,35 @@ async function request(
     } catch (erro) {
 
         throw new Error(
-
             "A API retornou uma resposta inválida."
-
         );
 
     }
-    // ------------------------------------------------------------------------
-    // VALIDAR RESPOSTA
-    // ------------------------------------------------------------------------
+
+    console.log(
+        "Resposta bruta da API:",
+        json
+    );
 
     if (
-
         !json ||
-
         typeof json !== "object"
-
     ) {
 
         throw new Error(
-
             "Resposta inválida da API."
-
         );
 
     }
 
-
-    // ------------------------------------------------------------------------
-    // ERRO DA API
-    // ------------------------------------------------------------------------
-
+    // PADRÃO DA SUA API
     if (
-
-        json.success === false
-
+        json.sucesso === false
     ) {
 
         throw new Error(
 
-            json.message ||
+            json.erro ||
 
             "Erro desconhecido na API."
 
@@ -125,12 +88,7 @@ async function request(
 
     }
 
-
-    // ------------------------------------------------------------------------
-    // RETORNO
-    // ------------------------------------------------------------------------
-
-    return json.data ?? [];
+    return json.dados ?? [];
 
 }
 
