@@ -212,20 +212,19 @@ function renderizarTabela() {
                 label: "Editar",
                 className: "btn-edit",
                 onClick:
-                registro =>
-                editarVeiculo(registro.ID)
-           
+                registro => {
+                editarVeiculo(registro.ID);
+                }
             },
 
             {
                 label: "Excluir",
                 className: "btn-delete",
                 onClick:
-                registro =>
-                removerVeiculo(registro.ID)
-
+                registro => {
+                removerVeiculo(registro.ID);
+                }
             }
-
         ]
 
     );
