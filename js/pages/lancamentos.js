@@ -679,25 +679,20 @@ async function carregarEmpregados() {
         const valor = [
 
             empregado,
-
             matricula
 
         ]
         .filter(Boolean)
         .join(" / ");
 
-
         const option =
             document.createElement("option");
-
 
         option.value =
             valor;
 
-
         option.textContent =
             valor;
-
 
         selectEmpregado.appendChild(
             option
@@ -706,6 +701,7 @@ async function carregarEmpregados() {
     });
 
 }
+
 // ============================================================================
 // DATA / HORA AUTOMÁTICA
 // ============================================================================
