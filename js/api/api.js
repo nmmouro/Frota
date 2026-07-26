@@ -213,57 +213,67 @@ async function get(
 // ============================================================================
 
 async function post(
-
     acao,
-
     aba,
-
     dados = {},
-
     id = null
-
 ) {
 
+    console.log(
+        "========== API POST =========="
+    );
+
+    console.log(
+        "AÇÃO:",
+        acao
+    );
+
+    console.log(
+        "ABA:",
+        aba
+    );
+
+    console.log(
+        "ID:",
+        id
+    );
+
+    console.log(
+        "DADOS:",
+        dados
+    );
+
+    console.log(
+        "=============================="
+    );
+
     return request(
-
         CONFIG.API_URL,
-
         {
-
-            method:
-
-                "POST",
-
+            method: "POST",
 
             headers: {
-
                 "Content-Type":
-
                     "text/plain;charset=utf-8"
-
             },
 
+            body: JSON.stringify({
 
-            body:
+                acao,
 
-                JSON.stringify({
+                aba,
 
-                    acao,
+                id,
 
-                    aba,
+                dados
 
-                    id,
-
-                    dados
-
-                })
+            })
 
         }
 
     );
 
 }
-
 
 
 // ============================================================================
