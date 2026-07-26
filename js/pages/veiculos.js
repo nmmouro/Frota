@@ -209,7 +209,7 @@ function renderizarTabela() {
 
         tabela,
         COLUNAS_VEICULOS,
-        registros,
+        veiculos,
 
         [
 
