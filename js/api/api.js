@@ -131,7 +131,7 @@ async function request(
     // RETORNO
     // ------------------------------------------------------------------------
 
-    return json;
+    return json.data ?? [];
 
 }
 
