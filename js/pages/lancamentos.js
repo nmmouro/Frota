@@ -733,55 +733,61 @@ async function carregarEmpregados() {
 // CARREGAR EMPREGADOS
 // ============================================================================
 
-async function carregarEmpregados() {
+async function carregarVeiculos() {
 
-    const lista = await obterEmpregados();
+    const resposta = await obterVeiculos();
+
+    console.log(
+        "RESPOSTA VEÍCULOS:",
+        resposta
+    );
+
+    const lista =
+        resposta?.data ??
+        resposta?.dados ??
+        resposta;
+
+    console.log(
+        "LISTA VEÍCULOS:",
+        lista
+    );
 
     if (!Array.isArray(lista)) {
 
         throw new Error(
-            "Resposta inválida ao carregar empregados."
+            "Resposta inválida ao carregar veículos."
         );
 
     }
 
-    selectEmpregado.innerHTML = `
-
+    selectVeiculo.innerHTML = `
         <option value="">
-            Selecione o empregado
+            Selecione o veículo
         </option>
-
     `;
 
     lista.forEach(item => {
 
-        const empregado =
-            item["Empregado"] ?? "";
+        console.log(
+            "VEÍCULO:",
+            item
+        );
 
-        const matricula =
-            item["Matrícula"] ?? "";
+        const placa =
+            item["Placa"] ?? "";
 
-        const valor = [
-
-            empregado,
-            matricula
-
-        ]
-        .filter(Boolean)
-        .join(" / ");
+        const modelo =
+            item["Modelo"] ?? "";
 
         const option =
             document.createElement("option");
 
-        option.value =
-            valor;
+        option.value = placa;
 
         option.textContent =
-            valor;
+            `${placa} - ${modelo}`;
 
-        selectEmpregado.appendChild(
-            option
-        );
+        selectVeiculo.appendChild(option);
 
     });
 
