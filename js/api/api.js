@@ -41,50 +41,30 @@ async function request(
 
 
     const resposta = await fetch(
+    url,
+    options
+);
 
-        url,
+const texto = await resposta.text();
 
-        options
+console.log(
+    "Resposta bruta da API:",
+    texto
+);
 
+let json;
+
+try {
+
+    json = JSON.parse(texto);
+
+} catch (erro) {
+
+    throw new Error(
+        "A API retornou uma resposta inválida."
     );
 
-
-    // ------------------------------------------------------------------------
-    // ERRO HTTP
-    // ------------------------------------------------------------------------
-
-    if (!resposta.ok) {
-
-        throw new Error(
-
-            `Erro HTTP ${resposta.status}`
-
-        );
-
-    }
-
-
-    // ------------------------------------------------------------------------
-    // CONVERTER RESPOSTA
-    // ------------------------------------------------------------------------
-
-    let json;
-
-
-    try {
-
-        json = await resposta.json();
-
-    } catch (erro) {
-
-        throw new Error(
-
-            "A API retornou uma resposta inválida."
-
-        );
-
-    }
-
+}
     // ------------------------------------------------------------------------
     // VALIDAR RESPOSTA
     // ------------------------------------------------------------------------
