@@ -204,9 +204,8 @@ function renderizarTabela() {
 
         tabela,
         COLUNAS_VEICULOS,
-        veiculos,
-        acoes
-
+        veiculos
+       
         [
 
             {
