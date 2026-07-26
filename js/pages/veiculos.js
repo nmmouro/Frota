@@ -168,11 +168,6 @@ async function carregarTabela() {
         const resposta =
             await obterVeiculos();
 
-        console.log(
-            "Veículos recebidos:",
-            resposta
-        );
-
         if (!Array.isArray(resposta)) {
 
             throw new Error(
@@ -210,6 +205,7 @@ function renderizarTabela() {
         tabela,
         COLUNAS_VEICULOS,
         veiculos,
+        acoes
 
         [
 
