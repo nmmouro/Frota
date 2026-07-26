@@ -118,20 +118,25 @@ async function init() {
     try {
 
         mostrarLoading();
-        
+
         registrarEventos();
+
         await carregarTabela();
-        esconderLoading();
 
     }
 
     catch (erro) {
 
         tratarErro(erro);
+
     }
-        finally {
+
+    finally {
+
         esconderLoading();
+
     }
+
 }
 
 // ============================================================================
@@ -308,49 +313,30 @@ async function editarVeiculo(id) {
 
         mostrarLoading();
 
-        const resposta =
-
+        const veiculo =
             await obterVeiculo(id);
 
-      const veiculo =
-    resposta?.dados ??
-    resposta;
+        if (!veiculo) {
 
-if (!veiculo) {
-
-    throw new Error(
-        "Veículo não encontrado."
-    );
-
-}
-
-registroEditando =
-    veiculo.ID;
-
-preencherFormulario(
-    veiculo
-);
-
-       const titulo =
-
-            document.querySelector(
-
-                "#tituloFormulario"
-
+            throw new Error(
+                "Veículo não encontrado."
             );
-
-        if (titulo) {
-
-            titulo.textContent =
-
-                "Editar veiculo";
 
         }
 
+        registroEditando =
+            veiculo.ID;
+
+        preencherFormulario(
+            veiculo
+        );
+
+        atualizarTitulo(
+            "Editar veículo"
+        );
+
         document.body.classList.add(
-
             "modo-edicao"
-
         );
 
     }
@@ -358,32 +344,25 @@ preencherFormulario(
     catch (erro) {
 
         console.error(
-
             "Erro ao carregar veículo para edição:",
-
             erro
-
         );
 
-alert(
-
+        alert(
             erro.message ||
-
-            "Não foi possível carregar o lançamento."
-
+            "Não foi possível carregar o veículo."
         );
+
+    }
+
+    finally {
+
+        esconderLoading();
 
     }
 
 }
 
-// ============================================================================
-// DISPONIBILIZAR PARA A INTERFACE
-// ============================================================================
-
-window.editarVeiculo =
-
-    editarVeiculo;
 
 // ============================================================================
 // EXCLUIR VEÍCULO
