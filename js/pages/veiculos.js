@@ -198,10 +198,6 @@ async function carregarTabela() {
 // RENDERIZAR TABELA
 // ============================================================================
 
-let veiculos = [];
-
-let registroEditando = null;
-
 function renderizarTabela() {
 
     renderTable(
