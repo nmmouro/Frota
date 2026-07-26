@@ -88,7 +88,7 @@ async function request(url, options = {}) {
 
     }
 
-    return json.dados ?? [];
+    return json.data ?? [];
 
 }
 
