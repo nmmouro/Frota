@@ -14,7 +14,7 @@ import {
 
 } from "../config/config.js";
 
-const ABA = ABAS.VEICULOS;
+const veiculos = criarCrud(ABAS.VEICULOS);
 
 
 // ============================================================================
