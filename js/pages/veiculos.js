@@ -60,13 +60,9 @@ let formulario;
 let tabela;
 let btnNovo;
 let campoData;
-let campoFoto;
+
 let campoPlaca;
-let campoModelo;
-let campoMarca;
-let campoAno;
-let campoCor;
-let campoCombustivel;
+
 let campoStatus;
 
 
@@ -107,26 +103,8 @@ async function init() {
         campoData =
             document.querySelector("#data");
         
-        campoFoto =
-            document.querySelector("#foto");
-
         campoPlaca =
             document.querySelector("#placa");
-
-        campoModelo =
-            document.querySelector("#modelo");
-
-                campoMarca =
-            document.querySelector("#marca");
-
-        campoAno =
-            document.querySelector("#ano");
-
-        campoCor =
-            document.querySelector("#cor");
-
-        campoCombustivel =
-            document.querySelector("#combustivel");
 
         campoStatus =
             document.querySelector("#status");
@@ -441,28 +419,10 @@ function obterDadosFormulario() {
         Data:
             campoData.value,
 
-        Foto:
-            campoFoto.value,
-
-        Placa:
+       Placa:
             campoPlaca.value.trim(),
-
-        Modelo:
-            campoModelo.value.trim(),
-
-        Marca:
-            campoMarca.value.trim(),
-
-        Ano:
-            campoAno.value.trim(),
-
-        Cor:
-            campoCor.value.trim(),
-
-        Combustivel:
-            campoCombustivel.value.trim(),
-
-        Status:
+    
+       Status:
             campoStatus.value.trim()
 
     };
@@ -480,26 +440,11 @@ function preencherFormulario(veiculo) {
     campoData.value =
         veiculo["Data"] || "";
 
-    campoFoto.value =
-        veiculo["Foto"] || "";
-
+   
     campoPlaca.value =
         veiculo["Placa"] || "";
 
-    campoModelo.value =
-        veiculo["Modelo"] || "";
-
-    campoMarca.value =
-        veiculo["Marca"] || "";
-
-    campoAno.value =
-        veiculo["Ano"] || "";
-
-    campoCor.value =
-        veiculo["Cor"] || "";
-
-    campoCombustivel.value =
-        veiculo["Combustivel"] || "";
+   
 
     campoStatus.value =
         veiculo["Status"] || "";
