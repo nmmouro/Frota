@@ -1,118 +1,228 @@
-// ============================================================================
-// VALIDATOR
-// Arquivo: js/validators/validator.js
-//
-// Validações genéricas utilizadas pela API
-// ============================================================================
+const Validator = (() => {
+
+    // ========================================================================
+    // VALIDAR INCLUSÃO
+    // ========================================================================
+
+    function validarInclusao(schema, dados) {
+
+        if (!schema) {
+
+            throw new Error(
+                "Schema não informado."
+            );
+
+        }
+
+        if (!dados) {
+
+            throw new Error(
+                "Dados não informados."
+            );
+
+        }
+
+        if (!Array.isArray(schema.campos)) {
+
+            throw new Error(
+                "Schema inválido: 'campos' não encontrado."
+            );
+
+        }
+
+        const erros = [];
 
 
-// ============================================================================
-// LISTAR
-// ============================================================================
+        // ====================================================================
+        // PERCORRER CAMPOS DO SCHEMA
+        // ====================================================================
 
-function validarListagem(aba) {
+        schema.campos.forEach(campo => {
 
-    if (!aba) {
-        throw new Error("Aba não informada para listagem.");
+            const nome = campo.campo;
+
+            const valor = dados[nome];
+
+            Logger.log(
+                `VALIDANDO INCLUSÃO: ${nome} = ${valor}`
+            );
+
+
+            // ================================================================
+            // OBRIGATÓRIO
+            // ================================================================
+
+            if (
+                campo.obrigatorio === true &&
+                (
+                    valor === undefined ||
+                    valor === null ||
+                    String(valor).trim() === ""
+                )
+            ) {
+
+                erros.push(
+                    `${nome} é obrigatório.`
+                );
+
+            }
+
+        });
+
+
+        // ====================================================================
+        // RETORNAR ERROS
+        // ====================================================================
+
+        if (erros.length > 0) {
+
+            throw new Error(
+                erros.join(" | ")
+            );
+
+        }
+
+
+        return true;
+
     }
 
-    return true;
-}
+
+    // ========================================================================
+    // VALIDAR EDIÇÃO
+    // ========================================================================
+
+    function validarEdicao(schema, id, dados) {
+
+        if (!schema) {
+
+            throw new Error(
+                "Schema não informado."
+            );
+
+        }
+
+        if (!id) {
+
+            throw new Error(
+                "ID não informado para edição."
+            );
+
+        }
+
+        if (!dados) {
+
+            throw new Error(
+                "Dados não informados para edição."
+            );
+
+        }
+
+        if (!Array.isArray(schema.campos)) {
+
+            throw new Error(
+                "Schema inválido: 'campos' não encontrado."
+            );
+
+        }
+
+        const erros = [];
 
 
-// ============================================================================
-// BUSCAR
-// ============================================================================
+        // ====================================================================
+        // PERCORRER CAMPOS DO SCHEMA
+        // ====================================================================
 
-function validarBusca(aba, id) {
+        schema.campos.forEach(campo => {
 
-    if (!aba) {
-        throw new Error("Aba não informada para busca.");
+            const nome = campo.campo;
+
+            const valor = dados[nome];
+
+            Logger.log(
+                `VALIDANDO EDIÇÃO: ${nome} = ${valor}`
+            );
+
+
+            // ================================================================
+            // OBRIGATÓRIO
+            // ================================================================
+
+            if (
+                campo.obrigatorio === true &&
+                (
+                    valor === undefined ||
+                    valor === null ||
+                    String(valor).trim() === ""
+                )
+            ) {
+
+                erros.push(
+                    `${nome} é obrigatório.`
+                );
+
+            }
+
+        });
+
+
+        // ====================================================================
+        // RETORNAR ERROS
+        // ====================================================================
+
+        if (erros.length > 0) {
+
+            throw new Error(
+                erros.join(" | ")
+            );
+
+        }
+
+
+        return true;
+
     }
 
-    if (!id) {
-        throw new Error("ID não informado para busca.");
+
+    // ========================================================================
+    // VALIDAR EXCLUSÃO
+    // ========================================================================
+
+    function validarExclusao(schema, id) {
+
+        if (!schema) {
+
+            throw new Error(
+                "Schema não informado."
+            );
+
+        }
+
+        if (!id) {
+
+            throw new Error(
+                "ID não informado para exclusão."
+            );
+
+        }
+
+        return true;
+
     }
 
-    return true;
-}
 
+    // ========================================================================
+    // API PÚBLICA
+    // ========================================================================
 
-// ============================================================================
-// SALVAR
-// ============================================================================
+    return {
 
-function validarCadastro(aba, dados) {
+        validarInclusao,
 
-    if (!aba) {
-        throw new Error("Aba não informada para cadastro.");
-    }
+        validarEdicao,
 
-    if (!dados || typeof dados !== "object") {
-        throw new Error("Dados inválidos para cadastro.");
-    }
+        validarExclusao
 
-    return true;
-}
+    };
 
-
-// ============================================================================
-// EDITAR
-// ============================================================================
-
-function validarEdicao(aba, id, dados) {
-
-    if (!aba) {
-        throw new Error("Aba não informada para edição.");
-    }
-
-    if (!id) {
-        throw new Error("ID não informado para edição.");
-    }
-
-    if (!dados || typeof dados !== "object") {
-        throw new Error("Dados inválidos para edição.");
-    }
-
-    return true;
-}
-
-
-// ============================================================================
-// EXCLUIR
-// ============================================================================
-
-function validarExclusao(aba, id) {
-
-    if (!aba) {
-        throw new Error("Aba não informada para exclusão.");
-    }
-
-    if (!id) {
-        throw new Error("ID não informado para exclusão.");
-    }
-
-    return true;
-}
-
-
-// ============================================================================
-// OBJETO VALIDATOR
-// ============================================================================
-
-const Validator = {
-
-    validarListagem,
-    validarBusca,
-    validarCadastro,
-    validarEdicao,
-    validarExclusao
-
-};
-
-
-// ============================================================================
-// EXPORT
-// ============================================================================
-
-export default Validator;
+})();
