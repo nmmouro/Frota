@@ -1,10 +1,4 @@
-import {
-
-    listar,
-    buscar,
-    salvar,
-    editar,
-    excluir
+import { criarCrud } from "./crudService.js";
 
 } from "../api/api.js";
 
