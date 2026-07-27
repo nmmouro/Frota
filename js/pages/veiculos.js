@@ -56,38 +56,18 @@ import {
 // ELEMENTOS
 // ============================================================================
 
-const formulario =
-document.querySelector("#formVeiculo");
+let formulario;
+let tabela;
+let btnNovo;
 
-const tabela =
-document.querySelector("#tabelaVeiculos");
-
-const btnNovo =
-document.querySelector("#btnNovo");
-
-const campoData =
-document.querySelector("#data");
-
-const campoPlaca =
-document.querySelector("#placa");
-
-const campoModelo =
-document.querySelector("#modelo");
-
-const campoMarca =
-document.querySelector("#marca");
-
-const campoAno =
-document.querySelector("#ano");
-
-const campoCor =
-document.querySelector("#cor");
-
-const campoCombustivel =
-document.querySelector("#combustivel");
-
-const campoStatus =
-document.querySelector("#status");
+let campoData;
+let campoPlaca;
+let campoModelo;
+let campoMarca;
+let campoAno;
+let campoCor;
+let campoCombustivel;
+let campoStatus;
 
 
 // ================= VARIÁVEIS =================
@@ -110,6 +90,48 @@ document.addEventListener(
 async function init() {
 
     try {
+
+        // ================================================================
+        // ELEMENTOS DO DOM
+        // ================================================================
+
+        formulario =
+            document.querySelector("#formVeiculo");
+
+        tabela =
+            document.querySelector("#tabelaVeiculos");
+
+        btnNovo =
+            document.querySelector("#btnNovo");
+
+        campoData =
+            document.querySelector("#data");
+
+        campoPlaca =
+            document.querySelector("#placa");
+
+        campoModelo =
+            document.querySelector("#modelo");
+
+        campoMarca =
+            document.querySelector("#marca");
+
+        campoAno =
+            document.querySelector("#ano");
+
+        campoCor =
+            document.querySelector("#cor");
+
+        campoCombustivel =
+            document.querySelector("#combustivel");
+
+        campoStatus =
+            document.querySelector("#status");
+
+
+        // ================================================================
+        // INICIALIZAÇÃO
+        // ================================================================
 
         mostrarLoading();
 
