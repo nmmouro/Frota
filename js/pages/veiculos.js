@@ -409,28 +409,62 @@ function obterDadosFormulario() {
     return {
 
         Data:
-            campoData?.value,
-        
+            campoData.value,
+
         Placa:
-            campoPlaca?.value,
+            campoPlaca.value.trim(),
 
         Modelo:
-            campoModelo?.value,
+            campoModelo.value.trim(),
 
         Marca:
-            campoMarca?.value,
+            campoMarca.value.trim(),
 
         Ano:
-            campoAno?.value,
+            campoAno.value.trim(),
 
         Cor:
-            campoCor?.value,
+            campoCor.value.trim(),
 
         Combustivel:
-            campoCombustivel?.value,
+            campoCombustivel.value.trim(),
 
         Status:
-            campoStatus?.value
+            campoStatus.value.trim()
+
+    };
+
+}// ============================================================================
+// OBTER DADOS DO FORMULÁRIO
+// ============================================================================
+
+function obterDadosFormulario() {
+
+    return {
+
+        Data:
+            campoData.value,
+
+        Placa:
+            campoPlaca.value.trim(),
+
+        Modelo:
+            campoModelo.value.trim(),
+
+        Marca:
+            campoMarca.value.trim(),
+
+        Ano:
+            campoAno.value.trim(),
+
+        Cor:
+            campoCor.value.trim(),
+
+        Combustivel:
+            campoCombustivel.value.trim(),
+
+        Status:
+            campoStatus.value.trim()
 
     };
 
