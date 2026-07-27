@@ -416,6 +416,9 @@ function obterDadosFormulario() {
         Data:
             campoData.value,
 
+        Foto:
+            campoFoto.value,
+
         Placa:
             campoPlaca.value.trim(),
 
