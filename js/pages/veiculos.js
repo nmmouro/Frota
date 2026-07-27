@@ -68,9 +68,6 @@ document.querySelector("#btnNovo");
 const campoData =
 document.querySelector("#data");
 
-const campoFoto =
-document.querySelector("#foto");
-
 const campoPlaca =
 document.querySelector("#placa");
 
