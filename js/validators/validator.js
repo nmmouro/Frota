@@ -2,12 +2,12 @@
 // VALIDATOR
 // Arquivo: js/validators/validator.js
 //
-// Responsável pelas validações genéricas das operações da API
+// Validações genéricas utilizadas pela API
 // ============================================================================
 
 
 // ============================================================================
-// VALIDAR LISTAGEM
+// LISTAR
 // ============================================================================
 
 function validarListagem(aba) {
@@ -21,7 +21,7 @@ function validarListagem(aba) {
 
 
 // ============================================================================
-// VALIDAR BUSCA
+// BUSCAR
 // ============================================================================
 
 function validarBusca(aba, id) {
@@ -39,7 +39,7 @@ function validarBusca(aba, id) {
 
 
 // ============================================================================
-// VALIDAR CADASTRO
+// SALVAR
 // ============================================================================
 
 function validarCadastro(aba, dados) {
@@ -57,7 +57,7 @@ function validarCadastro(aba, dados) {
 
 
 // ============================================================================
-// VALIDAR EDIÇÃO
+// EDITAR
 // ============================================================================
 
 function validarEdicao(aba, id, dados) {
@@ -79,7 +79,7 @@ function validarEdicao(aba, id, dados) {
 
 
 // ============================================================================
-// VALIDAR EXCLUSÃO
+// EXCLUIR
 // ============================================================================
 
 function validarExclusao(aba, id) {
@@ -97,10 +97,10 @@ function validarExclusao(aba, id) {
 
 
 // ============================================================================
-// EXPORT
+// OBJETO VALIDATOR
 // ============================================================================
 
-export const Validator = {
+const Validator = {
 
     validarListagem,
     validarBusca,
@@ -109,3 +109,10 @@ export const Validator = {
     validarExclusao
 
 };
+
+
+// ============================================================================
+// EXPORT
+// ============================================================================
+
+export default Validator;
