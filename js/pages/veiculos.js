@@ -59,8 +59,8 @@ import {
 let formulario;
 let tabela;
 let btnNovo;
-
 let campoData;
+let campoFoto;
 let campoPlaca;
 let campoModelo;
 let campoMarca;
@@ -106,6 +106,9 @@ async function init() {
 
         campoData =
             document.querySelector("#data");
+        
+        campoFoto =
+            document.querySelector("#foto");
 
         campoPlaca =
             document.querySelector("#placa");
@@ -113,7 +116,7 @@ async function init() {
         campoModelo =
             document.querySelector("#modelo");
 
-        campoMarca =
+                campoMarca =
             document.querySelector("#marca");
 
         campoAno =
@@ -476,6 +479,9 @@ function preencherFormulario(veiculo) {
 
     campoData.value =
         veiculo["Data"] || "";
+
+    campoFoto.value =
+        veiculo["Foto"] || "";
 
     campoPlaca.value =
         veiculo["Placa"] || "";
