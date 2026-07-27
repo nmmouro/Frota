@@ -251,6 +251,11 @@ async function salvar(evento) {
 
             obterDadosFormulario();
 
+console.log(
+            "DADOS VEÍCULO:",
+            dados
+        );
+
         if (registroEditando) {
 
             await atualizarVeiculo(
