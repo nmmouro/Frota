@@ -61,7 +61,6 @@ let tabela;
 let btnNovo;
 let campoData;
 
-let campoPlaca;
 
 let campoStatus;
 
