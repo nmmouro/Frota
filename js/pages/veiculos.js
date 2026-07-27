@@ -412,23 +412,97 @@ async function remover(id) {
 // OBTER DADOS DO FORMULÁRIO
 // ============================================================================
 
+// ============================================================================
+// OBTER DADOS DO FORMULÁRIO
+// ============================================================================
+
 function obterDadosFormulario() {
 
-    return {
+    const form = document.getElementById("formVeiculo");
+
+    if (!form) {
+
+        throw new Error(
+            "Formulário #formVeiculo não encontrado."
+        );
+
+    }
+
+
+    const elementoData =
+        form.elements.namedItem("data");
+
+    const elementoPlaca =
+        form.elements.namedItem("placa");
+
+    const elementoStatus =
+        form.elements.namedItem("status");
+
+
+    // ========================================================================
+    // VALIDAR ELEMENTOS
+    // ========================================================================
+
+    if (!elementoData) {
+        throw new Error("Campo name=\"data\" não encontrado.");
+    }
+
+    if (!elementoPlaca) {
+        throw new Error("Campo name=\"placa\" não encontrado.");
+    }
+
+    if (!elementoModelo) {
+        throw new Error("Campo name=\"modelo\" não encontrado.");
+    }
+
+    if (!elementoMarca) {
+        throw new Error("Campo name=\"marca\" não encontrado.");
+    }
+
+    if (!elementoAno) {
+        throw new Error("Campo name=\"ano\" não encontrado.");
+    }
+
+    if (!elementoCor) {
+        throw new Error("Campo name=\"cor\" não encontrado.");
+    }
+
+    if (!elementoCombustivel) {
+        throw new Error("Campo name=\"combustivel\" não encontrado.");
+    }
+
+    if (!elementoStatus) {
+        throw new Error("Campo name=\"status\" não encontrado.");
+    }
+
+
+    // ========================================================================
+    // MONTAR DADOS
+    // ========================================================================
+
+    const dados = {
 
         Data:
-            campoData.value,
+            elementoData.value,
 
-       Placa:
-            campoPlaca.value.trim(),
-    
+        Placa:
+            elementoPlaca.value.trim(),
+
        Status:
-            campoStatus.value.trim()
+            elementoStatus.value.trim()
 
     };
 
-}
 
+    console.log(
+        "DADOS VEÍCULO:",
+        dados
+    );
+
+
+    return dados;
+
+}
 
 
 // ============================================================================
