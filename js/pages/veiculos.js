@@ -102,8 +102,7 @@ async function init() {
         campoData =
             document.querySelector("#data");
         
-        campoPlaca =
-            document.querySelector("#placa");
+       
 
         campoStatus =
             document.querySelector("#status");
@@ -514,8 +513,7 @@ function preencherFormulario(veiculo) {
         veiculo["Data"] || "";
 
    
-    campoPlaca.value =
-        veiculo["Placa"] || "";
+    
 
    
 
