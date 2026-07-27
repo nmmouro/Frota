@@ -15,7 +15,7 @@ export const CONFIG = {
 
     API_URL:
 
-        "https://script.google.com/macros/s/AKfycbyUZuruzg8AiUN2LD9kIfZS4QXX78BJvO-SuML35-Qm94gFBaripl2T7UqxGRlDQWE_1A/exec",
+        "https://script.google.com/macros/s/AKfycbyKSrWUdNRg_PTpJSDYn3jV6sWX5zwZpWwVE0ikqIVDlkIe2pMKpFeHkWIr4ens2nXV1A/exec",
 
     UPDATE_INTERVAL: 30000,
 
