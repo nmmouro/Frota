@@ -439,41 +439,9 @@ function obterDadosFormulario() {
 
     };
 
-}// ============================================================================
-// OBTER DADOS DO FORMULÁRIO
-// ============================================================================
-
-function obterDadosFormulario() {
-
-    return {
-
-        Data:
-            campoData.value,
-
-        Placa:
-            campoPlaca.value.trim(),
-
-        Modelo:
-            campoModelo.value.trim(),
-
-        Marca:
-            campoMarca.value.trim(),
-
-        Ano:
-            campoAno.value.trim(),
-
-        Cor:
-            campoCor.value.trim(),
-
-        Combustivel:
-            campoCombustivel.value.trim(),
-
-        Status:
-            campoStatus.value.trim()
-
-    };
-
 }
+
+
 
 // ============================================================================
 // PREENCHER FORMULÁRIO
