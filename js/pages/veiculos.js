@@ -1,4 +1,3 @@
-```javascript
 // ============================================================================
 // VEÍCULOS
 // Arquivo: js/pages/veiculos.js
@@ -683,4 +682,3 @@ function tratarErro(
     );
 
 }
-```
