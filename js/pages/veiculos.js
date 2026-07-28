@@ -88,11 +88,11 @@ const campoData =
     );
 
 
-const campoVeiculo =
+const campoPlaca =
 
     document.querySelector(
 
-        "#veiculo"
+        "#placa"
 
     );
 
@@ -615,7 +615,7 @@ function obterDadosFormulario() {
     }
 
 
-    if (!campoPlaca) {
+    if (!campoVeiculo) {
 
         throw new Error(
             "Campo #veiculo não encontrado."
