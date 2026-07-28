@@ -1,10 +1,7 @@
 // ============================================================================
 // VEÍCULOS
 // Arquivo: js/pages/veiculos.js
-//
-// Responsável pela interface, formulário e tabela de veículos
 // ============================================================================
-
 
 // ============================================================================
 // IMPORTS
@@ -24,7 +21,6 @@ import {
     excluirVeiculo
 
 } from "../services/veiculos.js";
-
 
 import {
 
@@ -51,23 +47,41 @@ import {
 
 } from "../utils/datas.js";
 
+import {
+
+    preencherSelect
+
+} from "../utils/formulario.js";
+
 
 // ============================================================================
 // ELEMENTOS
 // ============================================================================
 
-let formulario;
-let tabela;
-let btnNovo;
-let campoData;
+const formulario =
+document.querySelector("#formveiculo");
+
+const tabela =
+document.querySelector("#tabelaveiculos");
+
+const btnNovo =
+document.querySelector("#btnNovo");
+
+const campoData =
+document.querySelector("#data");
+
+const campoveiculo =
+document.querySelector("#veiculo");
+
+const selectStatus =
+document.querySelector("#status");
 
 
-let campoStatus;
+// ============================================================================
+// CONFIGURAÇÃO DA TABELA
+// ============================================================================
 
-
-// ================= VARIÁVEIS =================
-
-let veiculos = [];
+let registros = [];
 
 let registroEditando = null;
 
@@ -86,47 +100,18 @@ async function init() {
 
     try {
 
-        // ================================================================
-        // ELEMENTOS DO DOM
-        // ================================================================
-
-        formulario =
-            document.querySelector("#formVeiculo");
-
-        tabela =
-            document.querySelector("#tabelaVeiculos");
-
-        btnNovo =
-            document.querySelector("#btnNovo");
-
-        campoData =
-            document.querySelector("#data");
-        
-       
-
-        campoStatus =
-            document.querySelector("#status");
-
-
-        // ================================================================
-        // INICIALIZAÇÃO
-        // ================================================================
-
         mostrarLoading();
-
+        preencherDataAtual();
         registrarEventos();
-
         await carregarTabela();
+        esconderLoading();
 
     }
-
-    catch (erro) {
+    catch(erro){
 
         tratarErro(erro);
-
     }
-
-    finally {
+    finally{
 
         esconderLoading();
 
@@ -163,39 +148,18 @@ function registrarEventos() {
 
 async function carregarTabela() {
 
-    try {
+    const resposta = await obterVeiculos();
 
-        const resposta =
-            await obterVeiculos();
+    registros =
+        resposta?.dados ??
+        resposta;
 
-        if (!Array.isArray(resposta)) {
-
-            throw new Error(
-                "Resposta inválida ao carregar veículos."
-            );
-
-        }
-
-        veiculos =
-            resposta;
-
-        renderizarTabela();
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar veículos:",
-            erro
-        );
-
-        throw erro;
-
-    }
+    renderizarTabela();
 
 }
 
 // ============================================================================
-// RENDERIZAR TABELA
+// RENDER
 // ============================================================================
 
 function renderizarTabela() {
@@ -203,19 +167,19 @@ function renderizarTabela() {
     renderTable(
         tabela,
         COLUNAS_VEICULOS,
-        veiculos,
+        registros,
         [
             {
                 label: "Editar",
                 className: "btn-edit",
-                onClick: (veiculo) =>
-                    editarVeiculo(veiculo.ID)
+                onClick:  registro =>
+                    editarVeiculo(registro.ID)
             },
             {
                 label: "Excluir",
                 className: "btn-delete",
-                onClick: (veiculo) =>
-                    remover(veiculo.ID)
+                onClick: registro =>
+                    remover(registro.ID)
             }
         ]
     );
@@ -223,18 +187,85 @@ function renderizarTabela() {
 }
 
 // ============================================================================
-// NOVO VEÍCULO
+// EDITAR VEÍCULO
 // ============================================================================
 
-function novo() {
+async function editarVeiculo(id) {
 
-    registroEditando = null;
+    try {
 
-    formulario.reset();
+        const resposta =
+            await obterVeiculo(id);
 
-    preencherDataAtual();
+       const registro =
+
+            resposta?.dados ??
+
+            resposta;
+
+        if (!registro) {
+
+            throw new Error(
+
+                "Veículo não encontrado."
+
+            );
+
+        }
+
+
+        registroEditando =
+            registro.ID;
+
+        preencherFormulario(
+            registro
+        );
+
+        const titulo =
+
+            document.querySelector(
+
+                "#tituloFormulario"
+
+            );
+        
+        if (titulo) {
+
+            titulo.textContent =
+
+                "Editar veículo";
+
+        }
+
+
+        document.body.classList.add(
+
+            "modo-edicao"
+
+        );
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "Erro ao carregar veículo para edição:",
+            erro
+        );
+
+        alert(
+            erro.message ||
+            "Não foi possível carregar o veículo."
+        );
+
+    }
+}
 
 }
+
+window.editarVeiculo =
+
+    editarVeiculo;
 
 // ============================================================================
 // SALVAR / ATUALIZAR VEÍCULO
@@ -252,11 +283,6 @@ async function salvar(evento) {
 
             obterDadosFormulario();
 
-console.log(
-            "DADOS VEÍCULO:",
-            dados
-        );
-
         if (registroEditando) {
 
             await atualizarVeiculo(
@@ -264,9 +290,7 @@ console.log(
                 registroEditando,
 
                 dados
-
             );
-
         }
 
         else {
@@ -304,67 +328,6 @@ console.log(
 }
 
 // ============================================================================
-// EDITAR VEÍCULO
-// ============================================================================
-
-async function editarVeiculo(id) {
-
-    try {
-
-        mostrarLoading();
-
-        const veiculo =
-            await obterVeiculo(id);
-
-        if (!veiculo) {
-
-            throw new Error(
-                "Veículo não encontrado."
-            );
-
-        }
-
-        registroEditando =
-            veiculo.ID;
-
-        preencherFormulario(
-            veiculo
-        );
-
-        atualizarTitulo(
-            "Editar veículo"
-        );
-
-        document.body.classList.add(
-            "modo-edicao"
-        );
-
-    }
-
-    catch (erro) {
-
-        console.error(
-            "Erro ao carregar veículo para edição:",
-            erro
-        );
-
-        alert(
-            erro.message ||
-            "Não foi possível carregar o veículo."
-        );
-
-    }
-
-    finally {
-
-        esconderLoading();
-
-    }
-
-}
-
-
-// ============================================================================
 // EXCLUIR VEÍCULO
 // ============================================================================
 
@@ -374,14 +337,8 @@ async function remover(id) {
 
         !confirm(
 
-            "Excluir veículo?"
-
-        )
-
-    ) {
-
+            "Excluir veículo?")) {
         return;
-
     }
 
     try {
@@ -407,101 +364,39 @@ async function remover(id) {
 }
 
 // ============================================================================
-// OBTER DADOS DO FORMULÁRIO
+// NOVO VEÍCULO
 // ============================================================================
 
+function novo() {
+
+    registroEditando = null;
+
+    formulario.reset();
+
+    preencherDataAtual();
+
+}
+
 // ============================================================================
-// OBTER DADOS DO FORMULÁRIO
+// FORMULÁRIO
 // ============================================================================
 
 function obterDadosFormulario() {
 
-    const form = document.getElementById("formVeiculo");
-
-    if (!form) {
-
-        throw new Error(
-            "Formulário #formVeiculo não encontrado."
-        );
-
-    }
-
-
-    const elementoData =
-        form.elements.namedItem("data");
-
-    const elementoPlaca =
-        form.elements.namedItem("placa");
-
-    const elementoStatus =
-        form.elements.namedItem("status");
-
-
-    // ========================================================================
-    // VALIDAR ELEMENTOS
-    // ========================================================================
-
-    if (!elementoData) {
-        throw new Error("Campo name=\"data\" não encontrado.");
-    }
-
-    if (!elementoPlaca) {
-        throw new Error("Campo name=\"placa\" não encontrado.");
-    }
-
-    if (!elementoModelo) {
-        throw new Error("Campo name=\"modelo\" não encontrado.");
-    }
-
-    if (!elementoMarca) {
-        throw new Error("Campo name=\"marca\" não encontrado.");
-    }
-
-    if (!elementoAno) {
-        throw new Error("Campo name=\"ano\" não encontrado.");
-    }
-
-    if (!elementoCor) {
-        throw new Error("Campo name=\"cor\" não encontrado.");
-    }
-
-    if (!elementoCombustivel) {
-        throw new Error("Campo name=\"combustivel\" não encontrado.");
-    }
-
-    if (!elementoStatus) {
-        throw new Error("Campo name=\"status\" não encontrado.");
-    }
-
-
-    // ========================================================================
-    // MONTAR DADOS
-    // ========================================================================
-
-    const dados = {
+    return {
 
         Data:
-            elementoData.value,
+            campoData.value,
 
-        Placa:
-            elementoPlaca.value.trim(),
+        Veículo:
+            selectVeiculo.value,
 
-       Status:
-            elementoStatus.value.trim()
+        Status:
+            formulario.status.value
 
     };
 
-
-    console.log(
-        "DADOS VEÍCULO:",
-        dados
-    );
-
-
-    return dados;
-
 }
-
 
 // ============================================================================
 // PREENCHER FORMULÁRIO
@@ -510,44 +405,14 @@ function obterDadosFormulario() {
 function preencherFormulario(veiculo) {
 
     campoData.value =
-        veiculo["Data"] || "";
+        dataParaInput
+        registro["Data"] || "";
 
-   
-    
-
-   
+    campoVeiculo.value =
+        registro["Veiculo"] || "";
 
     campoStatus.value =
-        veiculo["Status"] || "";
-
-}
-
-// ============================================================================
-// ATUALIZAR TÍTULO
-// ============================================================================
-
-function atualizarTitulo(
-
-    texto
-
-) {
-
-    const titulo =
-
-        document.querySelector(
-
-            "#tituloFormulario"
-
-        );
-
-
-    if (titulo) {
-
-        titulo.textContent =
-
-            texto;
-
-    }
+        registro["Status"] || "";
 
 }
 
@@ -571,9 +436,6 @@ function preencherDataAtual(){
 
 }
 
-
-
-
 // ============================================================================
 // TRATAMENTO DE ERROS
 // ============================================================================
@@ -584,19 +446,12 @@ function tratarErro(
 
 ) {
 
-    console.error(
-
-        erro
-
-    );
-
+    console.error(erro);
 
     alert(
 
         erro?.message ||
 
         "Erro ao processar veículo."
-
     );
-
 }
