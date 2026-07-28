@@ -171,17 +171,91 @@ function registrarEventos(){
 // LISTAGEM
 // ============================================================================
 
+//async function carregarTabela() {
+
+//    const resposta = await obterLancamentos();
+
+//    registros =
+//        resposta?.dados ??
+//        resposta;
+
+//    renderizarTabela();
+
+//}
+
+
+// ============================================================================
+// LISTAGEM
+// ============================================================================
+
 async function carregarTabela() {
 
-    const resposta = await obterLancamentos();
+    const resposta =
+
+        await obterLancamentos();
+
+
+    // ========================================================================
+    // MOSTRAR RESPOSTA COMPLETA
+    // ========================================================================
+
+    console.log(
+
+        "RESPOSTA LANÇAMENTOS:",
+
+        resposta
+
+    );
+
+
+    // ========================================================================
+    // MOSTRAR PRIMEIRO REGISTRO
+    // ========================================================================
+
+    console.log(
+
+        "PRIMEIRO LANÇAMENTO:",
+
+        resposta?.[0]
+
+    );
+
+
+    // ========================================================================
+    // MOSTRAR DATA DO PRIMEIRO REGISTRO
+    // ========================================================================
+
+    console.log(
+
+        "DATA DO PRIMEIRO LANÇAMENTO:",
+
+        resposta?.[0]?.["Data"]
+
+    );
+
+
+    // ========================================================================
+    // NORMALIZAR RESPOSTA
+    // ========================================================================
 
     registros =
+
         resposta?.dados ??
+
+        resposta?.data ??
+
         resposta;
+
+
+    // ========================================================================
+    // RENDERIZAR
+    // ========================================================================
 
     renderizarTabela();
 
 }
+
+
 
 
 
