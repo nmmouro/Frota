@@ -276,10 +276,8 @@ async function salvar(evento) {
     try {
 
         mostrarLoading();
-        
         const dados =
-
-            obterDadosFormulario();
+        obterDadosFormulario();
 
         if (registroEditando) {
 
@@ -302,11 +300,8 @@ async function salvar(evento) {
         }
 
         formulario.reset();
-
-        preencherDataAtual();
-
+        preencherDataHoraAtual();
         registroEditando = null;
-
         await carregarTabela();
 
     }
