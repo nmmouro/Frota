@@ -25,22 +25,22 @@ const ABA = ABAS.EMPREGADOS;
 
 
 export function obterEmpregados() {
-    return listar(ABA);
+    return empregados.listar();
 }
 
 export function obterEmpregado(id) {
-    return buscar(ABA, id);
+    return empregados.buscar(id);
 }
 
 export function salvarEmpregado(dados) {
-    return salvar(ABA, dados);
+    return empregados.salvar(dados);
 }
 
 export function atualizarEmpregado(id, dados) {
-    return editar(ABA, id, dados);
+    return empregados.editar(id, dados);
 }
 
 export function excluirEmpregado(id) {
 
-    return excluir(ABA, id);
+    return empregados.excluir(id);
 }
