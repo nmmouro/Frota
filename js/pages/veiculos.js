@@ -1,3 +1,4 @@
+```javascript
 // ============================================================================
 // VEÍCULOS
 // Arquivo: js/pages/veiculos.js
@@ -8,7 +9,9 @@
 // ============================================================================
 
 import {
+
     COLUNAS_VEICULOS
+
 } from "../config/tabelas/veiculos.js";
 
 
@@ -21,6 +24,7 @@ import {
     excluirVeiculo
 
 } from "../services/veiculos.js";
+
 
 import {
 
@@ -40,18 +44,9 @@ import {
 import {
 
     dataInput,
-    dataParaInput,
-    horaInput,
-    horaParaInput
-    
+    dataParaInput
 
 } from "../utils/datas.js";
-
-import {
-
-    preencherSelect
-
-} from "../utils/formulario.js";
 
 
 // ============================================================================
@@ -59,22 +54,57 @@ import {
 // ============================================================================
 
 const formulario =
-document.querySelector("#formveiculo");
+
+    document.querySelector(
+
+        "#formveiculo"
+
+    );
+
 
 const tabela =
-document.querySelector("#tabelaveiculos");
+
+    document.querySelector(
+
+        "#tabelaveiculos"
+
+    );
+
 
 const btnNovo =
-document.querySelector("#btnNovo");
+
+    document.querySelector(
+
+        "#btnNovo"
+
+    );
+
 
 const campoData =
-document.querySelector("#data");
 
-const campoveiculo =
-document.querySelector("#veiculo");
+    document.querySelector(
 
-const selectStatus =
-document.querySelector("#status");
+        "#data"
+
+    );
+
+
+const campoVeiculo =
+
+    document.querySelector(
+
+        "#veiculo"
+
+    );
+
+
+const campoStatus =
+
+    document.querySelector(
+
+        "#status"
+
+    );
 
 
 // ============================================================================
@@ -85,6 +115,7 @@ let registros = [];
 
 let registroEditando = null;
 
+
 // ============================================================================
 // INICIALIZAÇÃO
 // ============================================================================
@@ -94,30 +125,38 @@ document.addEventListener(
     "DOMContentLoaded",
 
     init
+
 );
+
 
 async function init() {
 
     try {
 
         mostrarLoading();
+
         preencherDataAtual();
+
         registrarEventos();
+
         await carregarTabela();
-        esconderLoading();
 
     }
-    catch(erro){
+
+    catch (erro) {
 
         tratarErro(erro);
+
     }
-    finally{
+
+    finally {
 
         esconderLoading();
 
     }
 
 }
+
 
 // ============================================================================
 // EVENTOS
@@ -139,8 +178,11 @@ function registrarEventos() {
         "click",
 
         novo
+
     );
+
 }
+
 
 // ============================================================================
 // LISTAGEM
@@ -148,15 +190,22 @@ function registrarEventos() {
 
 async function carregarTabela() {
 
-    const resposta = await obterVeiculos();
+    const resposta =
+
+        await obterVeiculos();
+
 
     registros =
+
         resposta?.dados ??
+
         resposta;
+
 
     renderizarTabela();
 
 }
+
 
 // ============================================================================
 // RENDER
@@ -165,26 +214,58 @@ async function carregarTabela() {
 function renderizarTabela() {
 
     renderTable(
+
         tabela,
+
         COLUNAS_VEICULOS,
+
         registros,
+
         [
+
             {
+
                 label: "Editar",
+
                 className: "btn-edit",
-                onClick:  registro =>
-                    editarVeiculo(registro.ID)
+
+                onClick:
+
+                    registro =>
+
+                        editarVeiculo(
+
+                            registro.ID
+
+                        )
+
             },
+
+
             {
+
                 label: "Excluir",
+
                 className: "btn-delete",
-                onClick: registro =>
-                    remover(registro.ID)
+
+                onClick:
+
+                    registro =>
+
+                        remover(
+
+                            registro.ID
+
+                        )
+
             }
+
         ]
+
     );
 
 }
+
 
 // ============================================================================
 // EDITAR VEÍCULO
@@ -195,13 +276,16 @@ async function editarVeiculo(id) {
     try {
 
         const resposta =
+
             await obterVeiculo(id);
 
-       const registro =
+
+        const registro =
 
             resposta?.dados ??
 
             resposta;
+
 
         if (!registro) {
 
@@ -214,12 +298,29 @@ async function editarVeiculo(id) {
         }
 
 
+        // ====================================================================
+        // DEFINIR REGISTRO EM EDIÇÃO
+        // ====================================================================
+
         registroEditando =
+
             registro.ID;
 
+
+        // ====================================================================
+        // PREENCHER FORMULÁRIO
+        // ====================================================================
+
         preencherFormulario(
+
             registro
+
         );
+
+
+        // ====================================================================
+        // ATUALIZAR TÍTULO
+        // ====================================================================
 
         const titulo =
 
@@ -228,7 +329,8 @@ async function editarVeiculo(id) {
                 "#tituloFormulario"
 
             );
-        
+
+
         if (titulo) {
 
             titulo.textContent =
@@ -237,6 +339,10 @@ async function editarVeiculo(id) {
 
         }
 
+
+        // ====================================================================
+        // ATIVAR MODO EDIÇÃO
+        // ====================================================================
 
         document.body.classList.add(
 
@@ -249,21 +355,31 @@ async function editarVeiculo(id) {
     catch (erro) {
 
         console.error(
+
             "Erro ao carregar veículo para edição:",
+
             erro
+
         );
 
+
         alert(
+
             erro.message ||
+
             "Não foi possível carregar o veículo."
+
         );
 
     }
+
 }
+
 
 window.editarVeiculo =
 
     editarVeiculo;
+
 
 // ============================================================================
 // SALVAR / ATUALIZAR VEÍCULO
@@ -273,11 +389,20 @@ async function salvar(evento) {
 
     evento.preventDefault();
 
+
     try {
 
         mostrarLoading();
+
+
         const dados =
-        obterDadosFormulario();
+
+            obterDadosFormulario();
+
+
+        // ====================================================================
+        // ATUALIZAR
+        // ====================================================================
 
         if (registroEditando) {
 
@@ -286,8 +411,15 @@ async function salvar(evento) {
                 registroEditando,
 
                 dados
+
             );
+
         }
+
+
+        // ====================================================================
+        // NOVO
+        // ====================================================================
 
         else {
 
@@ -299,16 +431,44 @@ async function salvar(evento) {
 
         }
 
+
+        // ====================================================================
+        // LIMPAR FORMULÁRIO
+        // ====================================================================
+
         formulario.reset();
-        preencherDataHoraAtual();
-        registroEditando = null;
+
+
+        preencherDataAtual();
+
+
+        registroEditando =
+
+            null;
+
+
+        document.body.classList.remove(
+
+            "modo-edicao"
+
+        );
+
+
+        // ====================================================================
+        // RECARREGAR TABELA
+        // ====================================================================
+
         await carregarTabela();
 
     }
 
     catch (erro) {
 
-        tratarErro(erro);
+        tratarErro(
+
+            erro
+
+        );
 
     }
 
@@ -319,6 +479,7 @@ async function salvar(evento) {
     }
 
 }
+
 
 // ============================================================================
 // EXCLUIR VEÍCULO
@@ -330,21 +491,40 @@ async function remover(id) {
 
         !confirm(
 
-            "Excluir veículo?")) {
+            "Excluir veículo?"
+
+        )
+
+    ) {
+
         return;
+
     }
+
 
     try {
 
         mostrarLoading();
-        await excluirVeiculo(id);
+
+
+        await excluirVeiculo(
+
+            id
+
+        );
+
+
         await carregarTabela();
 
     }
 
     catch (erro) {
 
-        tratarErro(erro);
+        tratarErro(
+
+            erro
+
+        );
 
     }
 
@@ -356,19 +536,32 @@ async function remover(id) {
 
 }
 
+
 // ============================================================================
 // NOVO VEÍCULO
 // ============================================================================
 
 function novo() {
 
-    registroEditando = null;
+    registroEditando =
+
+        null;
+
 
     formulario.reset();
 
+
     preencherDataAtual();
 
+
+    document.body.classList.remove(
+
+        "modo-edicao"
+
+    );
+
 }
+
 
 // ============================================================================
 // FORMULÁRIO
@@ -379,55 +572,90 @@ function obterDadosFormulario() {
     return {
 
         Data:
+
             campoData.value,
 
+
         Veículo:
-            selectVeiculo.value,
+
+            campoVeiculo.value,
+
 
         Status:
-            formulario.status.value
+
+            campoStatus.value
 
     };
 
 }
 
+
 // ============================================================================
 // PREENCHER FORMULÁRIO
 // ============================================================================
 
-function preencherFormulario(veiculo) {
+function preencherFormulario(
+
+    veiculo
+
+) {
+
+    // ========================================================================
+    // DATA
+    // ========================================================================
 
     campoData.value =
-        dataParaInput
-        registro["Data"] || "";
+
+        dataParaInput(
+
+            veiculo["Data"]
+
+        ) || "";
+
+
+    // ========================================================================
+    // VEÍCULO
+    // ========================================================================
 
     campoVeiculo.value =
-        registro["Veiculo"] || "";
+
+        veiculo["Veículo"]
+
+        || "";
+
+
+    // ========================================================================
+    // STATUS
+    // ========================================================================
 
     campoStatus.value =
-        registro["Status"] || "";
+
+        veiculo["Status"]
+
+        || "";
 
 }
 
+
 // ============================================================================
-// DATA / HORA AUTOMÁTICA
+// DATA AUTOMÁTICA
 // ============================================================================
 
-function preencherDataAtual(){
+function preencherDataAtual() {
 
-    const data =
-        document.querySelector("#data");
+    if (!campoData) {
 
-    
-    if(data){
+        return;
 
-        data.value =
+    }
 
-            dataInput();
 
-   }
+    campoData.value =
+
+        dataInput();
 
 }
+
 
 // ============================================================================
 // TRATAMENTO DE ERROS
@@ -439,12 +667,20 @@ function tratarErro(
 
 ) {
 
-    console.error(erro);
+    console.error(
+
+        erro
+
+    );
+
 
     alert(
 
         erro?.message ||
 
         "Erro ao processar veículo."
+
     );
+
 }
+```
