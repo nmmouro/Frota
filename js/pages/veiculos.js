@@ -571,19 +571,30 @@ function obterDadosFormulario() {
     return {
 
         Data:
+            formulario.elements["data"].value,
 
-            campoData.value,
+        Placa:
+            formulario.elements["placa"].value.trim(),
 
+        Modelo:
+            formulario.elements["modelo"].value.trim(),
 
-        Veículo:
+        Marca:
+            formulario.elements["marca"].value.trim(),
 
-            campoPlaca.value,
+        Ano:
+            formulario.elements["ano"].value,
 
+        Cor:
+            formulario.elements["cor"].value.trim(),
 
-       Status:
+        Combustível:
+            formulario.elements["combustivel"].value,
+
+        Status:
             formulario.elements["status"].value
 
-   };
+    };
 
 }
 
