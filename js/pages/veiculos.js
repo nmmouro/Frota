@@ -597,7 +597,7 @@ function obterDadosFormulario() {
 
     console.log(
         "campoVeiculo:",
-        campoVeiculo
+        campoPlaca
     );
 
     console.log(
