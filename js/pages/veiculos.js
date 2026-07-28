@@ -577,7 +577,7 @@ function obterDadosFormulario() {
 
         Veículo:
 
-            campoVeiculo.value,
+            campoPlaca.value,
 
 
        Status:
