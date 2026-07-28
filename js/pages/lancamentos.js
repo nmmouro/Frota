@@ -171,51 +171,19 @@ function registrarEventos(){
 // LISTAGEM
 // ============================================================================
 
-//async function carregarTabela() {
-
-//    const resposta = await obterLancamentos();
-
-//    registros =
-//        resposta?.dados ??
-//        resposta;
-
-//    renderizarTabela();
-
-//}
-
 async function carregarTabela() {
 
-    const resposta =
-
-        await obterLancamentos();
-
-
-    console.log(
-        "RESPOSTA COMPLETA:",
-        resposta
-    );
-
-
-    console.log(
-        "PRIMEIRO REGISTRO:",
-        resposta?.data?.[0] ??
-        resposta?.dados?.[0] ??
-        resposta?.[0]
-    );
-
+    const resposta = await obterLancamentos();
 
     registros =
-
         resposta?.dados ??
-
-        resposta?.data ??
-
         resposta;
-
 
     renderizarTabela();
 
 }
+
+
 
 // ============================================================================
 // RENDER
