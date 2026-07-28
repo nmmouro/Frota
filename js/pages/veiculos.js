@@ -615,7 +615,7 @@ function obterDadosFormulario() {
     }
 
 
-    if (!campoVeiculo) {
+    if (!campoveiculo) {
 
         throw new Error(
             "Campo #veiculo não encontrado."
