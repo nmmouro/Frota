@@ -164,16 +164,16 @@ required
       <div class="form-group">
 
 <label>
-Veículo
+Placa
 </label>
 
 <input
 
 type="text"
 
-id="veiculo"
+id="placa"
 
-name="veiculo"
+name="placa"
 
 >
 
@@ -266,31 +266,238 @@ id="btnNovo"
 
 class="btn-secondary">
 
-NOVO
+<section class="card">
 
-</button>
+    <h2>
+        CADASTRO DE VEÍCULO
+    </h2>
 
+    <form
+        id="formVeiculo"
+        class="form-grid"
+    >
 
-            <button
+        <!-- DATA -->
 
-                type="reset"
+        <div class="form-group">
 
-                class="btn-secondary"
+            <label for="data">
+                Data
+            </label>
 
+            <input
+                type="date"
+                id="data"
+                name="data"
+                required
             >
-
-                LIMPAR
-
-            </button>
-
-
 
         </div>
 
 
+        <!-- PLACA -->
+
+        <div class="form-group">
+
+            <label for="placa">
+                Placa
+            </label>
+
+            <input
+                type="text"
+                id="placa"
+                name="placa"
+                placeholder="Ex: ABC1D23"
+                required
+            >
+
+        </div>
+
+
+        <!-- MODELO -->
+
+        <div class="form-group">
+
+            <label for="modelo">
+                Modelo
+            </label>
+
+            <input
+                type="text"
+                id="modelo"
+                name="modelo"
+                required
+            >
+
+        </div>
+
+
+        <!-- MARCA -->
+
+        <div class="form-group">
+
+            <label for="marca">
+                Marca
+            </label>
+
+            <input
+                type="text"
+                id="marca"
+                name="marca"
+                required
+            >
+
+        </div>
+
+
+        <!-- ANO -->
+
+        <div class="form-group">
+
+            <label for="ano">
+                Ano
+            </label>
+
+            <input
+                type="number"
+                id="ano"
+                name="ano"
+                min="1900"
+                required
+            >
+
+        </div>
+
+
+        <!-- COR -->
+
+        <div class="form-group">
+
+            <label for="cor">
+                Cor
+            </label>
+
+            <input
+                type="text"
+                id="cor"
+                name="cor"
+            >
+
+        </div>
+
+
+        <!-- COMBUSTÍVEL -->
+
+        <div class="form-group">
+
+            <label for="combustivel">
+                Combustível
+            </label>
+
+            <select
+                id="combustivel"
+                name="combustivel"
+            >
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="GASOLINA">
+                    GASOLINA
+                </option>
+
+                <option value="ETANOL">
+                    ETANOL
+                </option>
+
+                <option value="DIESEL">
+                    DIESEL
+                </option>
+
+                <option value="FLEX">
+                    FLEX
+                </option>
+
+                <option value="ELÉTRICO">
+                    ELÉTRICO
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label for="status">
+                Status
+            </label>
+
+            <select
+                id="status"
+                name="status"
+            >
+
+                <option value="">
+                    Selecione
+                </option>
+
+                <option value="LIVRE">
+                    LIVRE
+                </option>
+
+                <option value="OCUPADO">
+                    OCUPADO
+                </option>
+
+                <option value="MANUTENÇÃO">
+                    MANUTENÇÃO
+                </option>
+
+                <option value="INATIVO">
+                    INATIVO
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- BOTÕES -->
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                id="btnSalvar"
+                class="btn-primary"
+            >
+                SALVAR
+            </button>
+
+
+            <button
+                type="button"
+                id="btnNovo"
+                class="btn-secondary"
+            >
+                NOVO
+            </button>
+
+
+            <button
+                type="reset"
+                class="btn-secondary"
+            >
+                LIMPAR
+            </button>
+
+        </div>
 
     </form>
-
 
 </section>
 
