@@ -164,6 +164,29 @@ function createRow(
 
             item[col.field];
 
+
+        
+
+
+console.log(
+
+    "TABELA:",
+
+    col.field,
+
+    "VALOR:",
+
+    value
+
+);
+
+
+
+
+
+
+        
+
         if (col.type === "status") {
 
             td.innerHTML =
