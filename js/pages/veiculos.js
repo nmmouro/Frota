@@ -566,27 +566,89 @@ function novo() {
 // FORMULÁRIO
 // ============================================================================
 
+//function obterDadosFormulario() {
+
+//    return {
+
+//        Data:
+
+//            campoData.value,
+
+
+//        Veículo:
+
+//            campoVeiculo.value,
+
+
+ //       Status:
+
+ //           campoStatus.value
+
+ //   };
+
+//}
+
 function obterDadosFormulario() {
+
+    console.log(
+        "campoData:",
+        campoData
+    );
+
+    console.log(
+        "campoVeiculo:",
+        campoVeiculo
+    );
+
+    console.log(
+        "campoStatus:",
+        campoStatus
+    );
+
+
+    if (!campoData) {
+
+        throw new Error(
+            "Campo #data não encontrado."
+        );
+
+    }
+
+
+    if (!campoVeiculo) {
+
+        throw new Error(
+            "Campo #veiculo não encontrado."
+        );
+
+    }
+
+
+    if (!campoStatus) {
+
+        throw new Error(
+            "Campo #status não encontrado."
+        );
+
+    }
+
 
     return {
 
         Data:
-
             campoData.value,
 
-
         Veículo:
-
             campoVeiculo.value,
 
-
         Status:
-
             campoStatus.value
 
     };
 
 }
+
+
 
 
 // ============================================================================
