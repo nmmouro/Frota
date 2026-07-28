@@ -615,10 +615,10 @@ function obterDadosFormulario() {
     }
 
 
-    if (!campoVeiculo) {
+    if (!campoPlaca) {
 
         throw new Error(
-            "Campo #veiculo não encontrado."
+            "Campo #placa não encontrado."
         );
 
     }
@@ -639,7 +639,7 @@ function obterDadosFormulario() {
             campoData.value,
 
         Veículo:
-            campoVeiculo.value,
+            campoPlaca.value,
 
         Status:
             campoStatus.value
