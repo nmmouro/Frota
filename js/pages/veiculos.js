@@ -622,12 +622,12 @@ function preencherFormulario(
 
 
     // ========================================================================
-    // VEÍCULO
+    // PLACA
     // ========================================================================
 
-    campoVeiculo.value =
+    campoplaca.value =
 
-        veiculo["Veículo"]
+        veiculo["Placa"]
 
         || "";
 
