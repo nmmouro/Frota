@@ -566,90 +566,27 @@ function novo() {
 // FORMULÁRIO
 // ============================================================================
 
-//function obterDadosFormulario() {
-
-//    return {
-
-//        Data:
-
-//            campoData.value,
-
-
-//        Veículo:
-
-//            campoVeiculo.value,
-
-
- //       Status:
-
- //           campoStatus.value
-
- //   };
-
-//}
-
 function obterDadosFormulario() {
-
-    console.log(
-        "campoData:",
-        campoData
-    );
-
-    console.log(
-        "campoVeiculo:",
-        campoPlaca
-    );
-
-    console.log(
-        "campoStatus:",
-        campoStatus
-    );
-
-
-    if (!campoData) {
-
-        throw new Error(
-            "Campo #data não encontrado."
-        );
-
-    }
-
-
-    if (!campoPlaca) {
-
-        throw new Error(
-            "Campo #placa não encontrado."
-        );
-
-    }
-
-
-    if (!campoStatus) {
-
-        throw new Error(
-            "Campo #status não encontrado."
-        );
-
-    }
-
 
     return {
 
         Data:
+
             campoData.value,
 
+
         Veículo:
-            campoPlaca.value,
 
-        Status:
-            campoStatus.value
+            campoVeiculo.value,
 
-    };
+
+       Status:
+
+           campoStatus.value
+
+   };
 
 }
-
-
-
 
 // ============================================================================
 // PREENCHER FORMULÁRIO
