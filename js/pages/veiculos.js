@@ -581,8 +581,7 @@ function obterDadosFormulario() {
 
 
        Status:
-
-           campoStatus.value
+            formulario.elements["status"].value
 
    };
 
