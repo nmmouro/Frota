@@ -625,7 +625,7 @@ function preencherFormulario(
     // PLACA
     // ========================================================================
 
-    campoplaca.value =
+    campoPlaca.value =
 
         veiculo["Placa"]
 
