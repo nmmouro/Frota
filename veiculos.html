@@ -431,75 +431,19 @@ class="btn-secondary">
         <!-- STATUS -->
 
         <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required></select>
+                </div>
 
-            <label for="status">
-                Status
-            </label>
+                <div class="form-actions">
+                    <button type="submit"  id="btnSalvar" class="btn-primary">SALVAR</button>
+                    <button type="button"  id="btnNovo"   class="btn-secondary">NOVO</button>
+                    <button type="reset"                  class="btn-secondary">LIMPAR</button>
+                </div>
 
-            <select
-                id="status"
-                name="status"
-            >
+            </form>
 
-                <option value="">
-                    Selecione
-                </option>
-
-                <option value="LIVRE">
-                    LIVRE
-                </option>
-
-                <option value="OCUPADO">
-                    OCUPADO
-                </option>
-
-                <option value="MANUTENÇÃO">
-                    MANUTENÇÃO
-                </option>
-
-                <option value="INATIVO">
-                    INATIVO
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- BOTÕES -->
-
-        <div class="form-actions">
-
-            <button
-                type="submit"
-                id="btnSalvar"
-                class="btn-primary"
-            >
-                SALVAR
-            </button>
-
-
-            <button
-                type="button"
-                id="btnNovo"
-                class="btn-secondary"
-            >
-                NOVO
-            </button>
-
-
-            <button
-                type="reset"
-                class="btn-secondary"
-            >
-                LIMPAR
-            </button>
-
-        </div>
-
-    </form>
-
-</section>
+        </section>
 
 
 
