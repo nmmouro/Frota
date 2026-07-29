@@ -164,10 +164,6 @@ function createRow(
 
             item[col.field];
 
-
-        
-
-
 console.log(
 
     "TABELA:",
@@ -179,13 +175,6 @@ console.log(
     value
 
 );
-
-
-
-
-
-
-        
 
         if (col.type === "status") {
 
