@@ -96,6 +96,32 @@ const campoPlaca =
 
     );
 
+const campoModelo =
+    
+    document.querySelector(
+        "#modelo"
+    );
+
+const campoMarca =
+    document.querySelector(
+        "#marca"
+    );
+
+const campoAno =
+    document.querySelector(
+        "#ano"
+    );
+
+const campoCor =
+    document.querySelector(
+        "#cor"
+    );
+
+const campoCombustivel =
+    document.querySelector(
+        "#combustivel"
+    );
+
 
 const campoStatus =
 
