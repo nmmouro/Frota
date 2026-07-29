@@ -73,10 +73,10 @@ import {
 // ============================================================================
 
 const formulario =
-document.querySelector("#formLancamento");
+document.querySelector("#formlancamento");
 
 const tabela =
-document.querySelector("#tabelaLancamentos");
+document.querySelector("#tabelalancamentos");
 
 const btnNovo =
 document.querySelector("#btnNovo");
