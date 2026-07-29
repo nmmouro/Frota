@@ -125,32 +125,18 @@ required
 >
 
 </div>
+        
 
         <!-- PLACA -->
 
         <div class="form-group">
 
-            <label for="placa">
+            <label for="placa">            Placa            </label>
 
-                Placa
-
-            </label>
-
-            <input
-
-                type="text"
-                
-                id="placa"
-
-                name="placa"
-
-                placeholder="Ex: ABC1D23"
-
-                required
-
-            >
+            <input    type="text"    id="placa"    name="placa"    placeholder="Ex: ABC1D23"    required>
 
         </div>
+        
 
         <!-- MODELO -->
 
@@ -173,163 +159,79 @@ required
             >
 
         </div>
+        
 
         <!-- MARCA -->
 
         <div class="form-group">
 
-             <label for="marca">
+             <label for="marca">            Marca            </label>
 
-                Marca
-
-            </label>
-
-            <input
-
-                type="text"
-                id="marca"
-                name="marca"
-
-            >
+            <input    type="text"    id="marca"    name="marca">
 
         </div>
+        
 
         <!-- ANO -->
 
         <div class="form-group">
 
-            <label for="ano">
+            <label for="ano">            Ano            </label>
 
-                Ano
-
-            </label>
-
-            <input
-
-                type="number"
-                id="ano"
-                name="ano"
-
-                min="1900"
-
-            >
+            <input    type="number"    id="ano"    name="ano"    min="1900">
 
         </div>
+        
 
         <!-- COR -->
 
         <div class="form-group">
 
-            <label for="cor">
+            <label for="cor">            Cor            </label>
 
-                Cor
-
-            </label>
-
-            <input
-
-                type="text"
-                id="cor"
-                name="cor"
-
-            >
+            <input    type="text"    id="cor"    name="cor">
 
         </div>
+        
 
         <!-- COMBUSTÍVEL -->
 
         <div class="form-group">
 
-            <label for="combustivel">
+            <label for="combustivel">        Combustível        </label>
 
-                Combustível
+                <select                         id="combustivel"    name="combustivel">
 
-            </label>
+                <option>             GASOLINA            </option>
 
-            <select
+                <option>            ETANOL               </option>
 
-                id="combustivel"
-                name="combustivel"
+                <option>            DIESEL              </option>
 
-            >
+                <option>            FLEX               </option>
 
-                <option>
+                <option>            ELÉTRICO           </option>
 
-                    GASOLINA
-
-                </option>
-
-                <option>
-
-                    ETANOL
-
-                </option>
-
-                <option>
-
-                    DIESEL
-
-                </option>
-
-
-                <option>
-
-                    FLEX
-
-                </option>
-
-                <option>
-
-                    ELÉTRICO
-
-                </option>
-
-            </select>
+                </select>
 
         </div>
+        
 
         <!-- STATUS -->
 
         <div class="form-group">
 
-            <label for="status">
+            <label for="status">       Status          </label>
 
-                Status
+                <select                id="status"     name="status">
 
-            </label>
+                <option>               LIVRE            </option>
 
-            <select
+                <option>               OCUPADO          </option>
 
-                id="status"
-                
-                name="status"
+                <option>               MANUTENÇÃO       </option>
 
-            >
-
-                <option>
-
-                    LIVRE
-
-                </option>
-
-                <option>
-
-                    OCUPADO
-
-                </option>
-
-
-                <option>
-
-                    MANUTENÇÃO
-
-                </option>
-
-                <option>
-
-                    INATIVO
-
-                </option>
+                <option>               INATIVO          </option>
 
             </select>
 
@@ -339,53 +241,18 @@ required
 
         <div class="form-actions">
 
-            <button
-
-                type="submit"
-
-                id="btnSalvar"
-
-                class="btn-primary"
-
-            >
-
-                SALVAR
-
-            </button>
-
-<button
-
-type="button"
-
-id="btnNovo"
-
-class="btn-secondary">
-
-NOVO
-
-</button>
-
-            <button
-
-                type="reset"
-
-                class="btn-secondary"
-
-            >
-
-                LIMPAR
-
-            </button>
-
+            <button  type="submit"  id="btnSalvar"   class="btn-primary">      SALVAR     </button>
+            <button  type="button"  id="btnNovo"     class="btn-secondary">    NOVO       </button>
+            <button  type="reset"                    class="btn-secondary">    LIMPAR     </button>
         </div>
 
     </form>
 
 </section>
 
-<!-- ======================================================================
-     LISTAGEM
-====================================================================== -->
+// ======================================================================
+     TABELA
+// ======================================================================
 
 <section class="card">
 
@@ -397,7 +264,7 @@ NOVO
 
     <div class="table-container">
 
-      <div
+    <div
 
         id="tabelaveiculos">
 
@@ -411,7 +278,7 @@ NOVO
 
 <!-- ======================================================================
      LOADING
-====================================================================== -->
+==========================================================================
 
 <div
 
@@ -419,13 +286,13 @@ NOVO
 
     class="loading-overlay"
 
->
+hidden>
 
 </div>
 
-<!-- ======================================================================
+//======================================================================
      JAVASCRIPT
-====================================================================== -->
+//======================================================================
 
 <script
 
