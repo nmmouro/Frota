@@ -657,7 +657,7 @@ function preencherFormulario(
 
         || "";
 
-   campoMarca.value = veiculo["Modelo"] || "";
+   campoModelo.value = veiculo["Modelo"] || "";
     
     campoMarca.value = veiculo["Marca"] || "";
 
