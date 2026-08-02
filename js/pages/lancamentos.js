@@ -608,21 +608,11 @@ function preencherFormulario(registro) {
 async function carregarEmpregados() {
 
     const resposta = await obterEmpregados();
-
-    console.log(
-        "RESPOSTA EMPREGADOS:",
-        resposta
-    );
-
+    
     const lista =
         resposta?.data ??
         resposta?.dados ??
         resposta;
-
-    console.log(
-        "LISTA EMPREGADOS:",
-        lista
-    );
 
     if (!Array.isArray(lista)) {
 
@@ -674,20 +664,10 @@ async function carregarVeiculos() {
 
     const resposta = await obterVeiculos();
 
-    console.log(
-        "RESPOSTA VEÍCULOS:",
-        resposta
-    );
-
     const lista =
         resposta?.data ??
         resposta?.dados ??
         resposta;
-
-    console.log(
-        "LISTA VEÍCULOS:",
-        lista
-    );
 
     if (!Array.isArray(lista)) {
 
@@ -704,11 +684,6 @@ async function carregarVeiculos() {
     `;
 
     lista.forEach(item => {
-
-        console.log(
-            "VEÍCULO:",
-            item
-        );
 
         const placa =
             item["Placa"] ?? "";
