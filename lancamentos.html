@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Frota - Lançamentos</title>
+    
+    <title> Painel Frota - Lançamentos </title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components.css">
@@ -21,11 +22,11 @@ HEADER
 
 <header class="header">
 
-            <div class="header-logo">
+<div class="header-logo">
                 
-            <img src="assets/img/logo.png" alt="Logo Frota">
+<img src="assets/img/logo.png" alt="Logo Frota">
           
-            </div>
+</div>
 
             <div class="header-title">
                 
@@ -35,163 +36,118 @@ HEADER
 
             <div class="header-info">
                 
-                        <div id="clock" class="clock">
+            <div id="clock" class="clock" aria-label="Relógio">
                             
             </div>
                 
-                        <button id="btnFullscreen" class="btn-icon">⛶</button>
+            <button id="btnFullscreen" class="btn-icon" aria-label="Tela cheia">
                 
-            </div>
-
-                         <button id="btnFullscreen" class="btn-icon" aria-label="Tela cheia">
-
-                        ⛶
-
+            ⛶
+           
             </button>
-
+                
+</div>
+    
 </header>
 
 <!-- =====================================================================
 MAIN
 ===================================================================== -->
 
-        <main class="page-container">
+<main class="page-container">
 
 <!-- =====================================================================
 FORMULÁRIO
 ===================================================================== -->
 
-              <section class="card">
+<section class="card">
 
-                  <h2>NOVO LANÇAMENTO</h2>
+            <h2> NOVO LANÇAMENTO </h2>
 
-                  <form id="formlancamento" class="form-grid">
+<form id="formlancamento" class="form-grid">
 
 <!-- DATA -->
-                        <div class="form-group">
 
+<div class="form-group">
 
-<label>
-Data
-</label>
+            <label>
+                
+                        Data
+                
+            </label>
 
+            <input      type="date"
 
-<input
+                        id="data"
 
-type="date"
+                        name="data"
 
-id="data"
-
-name="data"
-
-required
-
->
-
+                        required >
 
 </div>
-
-
-
 
 
 <!-- HORA -->
 
-
 <div class="form-group">
 
+            <label>
+            
+                        Hora
+                
+            </label>
 
-<label>
-Hora
-</label>
+            <input      type="time"
 
+                        id="hora"
 
-<input
+                        name="hora"
 
-type="time"
-
-id="hora"
-
-name="hora"
-
-required
-
->
-
+                        required >
 
 </div>
-
-
-
-
 
 
 <!-- EMPREGADO -->
 
-
 <div class="form-group">
 
+            <label>
+                
+                        EMPREGADO
+                
+            </label>
 
-<label>
-EMPREGADO
-</label>
+<select id="empregado" name="empregado" required>
 
+            <option value="">
 
-<select
+                        Selecione o empregado
 
-id="empregado"
-
-name="empregado"
-
-required
-
->
-
-
-<option value="">
-
-Selecione o empregado
-
-</option>
-
+            </option>
 
 </select>
 
-
 </div>
-
-
-
-
-
+    
 
 <!-- VEÍCULO -->
 
-
 <div class="form-group">
 
+            <label>
+                
+                        Veículo
+                
+            </label>
 
-<label>
-Veículo
-</label>
+<select id="veiculo" name="veiculo" required>
 
+            <option value="">
 
-<select
+                        Selecione o veículo
 
-id="veiculo"
-
-name="veiculo"
-
-required
-
->
-
-
-<option value="">
-
-Selecione o veículo
-
-</option>
+            </option>
 
 </select>
 
@@ -201,19 +157,17 @@ Selecione o veículo
 
 <div class="form-group">
 
-<label>
-Passageiro
-</label>
+            <label>
+                
+                        Passageiro
 
-<input
+            </label>
 
-type="text"
+            <input       type="text"
 
-id="passageiro"
+                        id="passageiro"
 
-name="passageiro"
-
->
+                        name="passageiro" >
 
 </div>
 
@@ -221,19 +175,17 @@ name="passageiro"
 
 <div class="form-group">
 
-<label>
-Setor
-</label>
+            <label>
+                
+                        Setor
+                
+            </label>
 
-<input
+            <input       type="text"
 
-type="text"
+                        id="setor"
 
-id="setor"
-
-name="setor"
-
->
+                        name="setor" >
 
 </div>
 
@@ -241,18 +193,17 @@ name="setor"
 
 <div class="form-group">
 
-<label>
-Motivo
-</label>
+            <label>
+                
+                        Motivo
+        
+            </label>
 
-<input
+            <input       type="text"
 
-type="text"
+                        id="motivo"
 
-id="motivo"
-
-name="motivo"
->
+                        name="motivo" >
 
 </div>
 
@@ -260,63 +211,67 @@ name="motivo"
 
 <div class="form-group">
 
-<label>
-Itinerário
-</label>
+            <label>
+                
+                        Itinerário
+                
+            </label>
 
-<input
+            <input      type="text"
 
-type="text"
+                        id="itinerario"
 
-id="itinerario"
-
-name="itinerario"
-
->
+                        name="itinerario" >
 
 </div>
 
 <!-- STATUS -->
 
-                <div class="form-group">
-                    <label> Status</label>
-                    <select id="status" name="status">
+<div class="form-group">
+    
+                    <label>
+                        
+                                Status
+                    
+                    </label>
+    
+<select id="status" name="status">
 
-<option>
+            <option>
 
-AGENDADO
+                        AGENDADO
 
-</option>
+            </option>
 
-<option>
+            <option>
 
-EM ANDAMENTO
+                        EM ANDAMENTO
 
-</option>
+            </option>
 
-<option>
+            <option>
 
-VIAGEM
+                        VIAGEM
 
-</option>
+            </option>
 
-<option>
+            <option>
 
-MANUTENÇÃO
+                        MANUTENÇÃO
 
-</option>
+            </option>
 
-<option>
+            <option>
 
-FINALIZADO
+                        FINALIZADO
 
-</option>
+            </option>
 
-<option>
+            <option>
 
-CANCELADO
+                        CANCELADO
 
-</option>
+            </option>
 
 </select>
 
@@ -324,11 +279,15 @@ CANCELADO
 
 <!-- AÇÕES -->
 
-                <div class="form-actions">
-                    <button type="submit"  id="btnSalvar" class="btn-primary">SALVAR</button>
-                    <button type="button"  id="btnNovo"   class="btn-secondary">NOVO</button>
-                    <button type="reset"                  class="btn-secondary">LIMPAR</button>
-                </div>
+<div class="form-actions">
+    
+            <button type="submit"  id="btnSalvar" class="btn-primary"> SALVAR </button>
+    
+            <button type="button"  id="btnNovo"   class="btn-secondary"> NOVO </button>
+    
+            <button type="reset"                  class="btn-secondary">LIMPAR</button>
+    
+</div>
 
 </form>
 
@@ -340,19 +299,14 @@ TABELA
 
 <section class="card">
 
-<h2>
-
-LANÇAMENTOS REALIZADOS
-
-</h2>
+            <h2>
+                        LANÇAMENTOS REALIZADOS
+            
+            </h2>
 
 <div class="table-container">
 
-<div
-
-id="tabelalancamentos">
-
-</div>
+<div id="tabelalancamentos">
 
 </div>
 
