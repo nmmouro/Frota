@@ -1,369 +1,168 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Frota - Dashboard</title>
+    <title>
 
+        Painel Frota - Dashboard
 
-    <!-- ================= CSS ================= -->
+    </title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- =============================================================== -->
+    <!-- CSS -->
+    <!-- =============================================================== -->
 
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css">
 
-    <link rel="stylesheet" href="css/components.css">
+    <link
+        rel="stylesheet"
+        href="css/table.css">
 
+    <link
+        rel="stylesheet"
+        href="css/forms.css">
+
+    <link
+        rel="stylesheet"
+        href="css/loading.css">
 
 </head>
 
-
 <body>
 
+    <!-- =============================================================== -->
+    <!-- CABEÇALHO -->
+    <!-- =============================================================== -->
 
-<!-- ======================================================================
-     HEADER
-====================================================================== -->
+    <header class="header">
 
-<header class="header">
+        <div class="header-logo">
 
-
-    <div class="header-logo">
-
-        <img 
-            src="assets/img/logo.png"
-            alt="Logo Frota"
-        >
-
-    </div>
-
-
-    <div class="header-title">
-
-        <h1>
-
-            MOVIMENTAÇÃO DIÁRIA
-
-        </h1>
-
-    </div>
-
-
-    <div class="header-info">
-
-
-        <div 
-            id="clock"
-            class="clock"
-        >
+            <img
+                src="assets/img/logo.png"
+                alt="Painel Frota">
 
         </div>
 
+        <div class="header-title">
 
-        <button 
-            id="btnAudio"
-            class="btn-icon"
-        >
+            <h1>
 
-            🔊
+                DASHBOARD
 
-        </button>
-
-
-        <button 
-            id="btnFullscreen"
-            class="btn-icon"
-        >
-
-            ⛶
-
-        </button>
-
-
-    </div>
-
-
-</header>
-
-
-
-<!-- ======================================================================
-     MAIN
-====================================================================== -->
-
-
-<main class="dashboard">
-
-
-<!-- ================= RESUMO ================= -->
-
-
-<section class="resumo-grid">
-
-
-    <div class="card">
-
-        <h2>
-
-            VEÍCULOS
-
-        </h2>
-
-
-        <div 
-            id="veiculosData"
-            class="cards-container"
-        >
+            </h1>
 
         </div>
 
+        <div class="header-info">
 
-    </div>
+            <div
+                id="clock"
+                class="clock">
 
+            </div>
 
+            <button
+                id="btnFullscreen"
+                class="btn-icon">
 
-    <div class="card">
+                ⛶
 
-        <h2>
-
-            MOTORISTAS
-
-        </h2>
-
-
-        <div 
-            id="motoristasData"
-            class="cards-container"
-        >
+            </button>
 
         </div>
 
+    </header>
 
-    </div>
+    <!-- =============================================================== -->
+    <!-- CONTEÚDO -->
+    <!-- =============================================================== -->
 
+    <main class="container">
 
-</section>
+        <!-- =========================================================== -->
+        <!-- LINHA SUPERIOR -->
+        <!-- =========================================================== -->
 
+        <section class="dashboard-grid">
 
+            <!-- ======================================================= -->
+            <!-- VEÍCULOS -->
+            <!-- ======================================================= -->
 
-<!-- ================= PAINEL ================= -->
+            <div class="card">
 
+                <h2>
 
-<section class="card painel-card">
+                    Veículos
 
+                </h2>
 
-    <h2>
+                <div id="tabelaVeiculos">
 
-        PAINEL
+                </div>
 
-    </h2>
+            </div>
 
+            <!-- ======================================================= -->
+            <!-- EMPREGADOS -->
+            <!-- ======================================================= -->
 
-    <div class="table-container">
+            <div class="card">
 
+                <h2>
 
-        <table>
+                    Empregados
 
+                </h2>
 
-            <thead>
+                <div id="tabelaEmpregados">
 
+                </div>
 
-                <tr>
+            </div>
 
-                    <th>Data</th>
+        </section>
 
-                    <th>Hora</th>
+        <!-- =========================================================== -->
+        <!-- OCORRÊNCIAS -->
+        <!-- =========================================================== -->
 
-                    <th>Motorista</th>
+        <section class="card">
 
-                    <th>Veículo</th>
+            <h2>
 
-                    <th>Passageiro / Setor</th>
+                Ocorrências em Andamento
 
-                    <th>Itinerário</th>
+            </h2>
 
-                    <th>Status</th>
+            <div id="tabelaOcorrencias">
 
+            </div>
 
-                </tr>
+        </section>
 
+    </main>
 
-            </thead>
+    <!-- =============================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- =============================================================== -->
 
+    <script
+        type="module"
+        src="js/pages/dashboard.js">
 
-            <tbody 
-                id="painelData"
-            >
-
-            </tbody>
-
-
-        </table>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- ================= AGENDA ================= -->
-
-
-<section class="grid-agendas">
-
-
-    <div class="card">
-
-
-        <h2>
-
-            AGENDA DO DIA
-
-        </h2>
-
-
-        <div class="table-container">
-
-
-            <table>
-
-
-                <thead>
-
-
-                    <tr>
-
-                        <th>Hora</th>
-
-                        <th>Passageiro</th>
-
-                        <th>Setor</th>
-
-                        <th>Motivo</th>
-
-                        <th>Itinerário</th>
-
-                        <th>Status</th>
-
-
-                    </tr>
-
-
-                </thead>
-
-
-                <tbody 
-                    id="agendaData"
-                >
-
-                </tbody>
-
-
-            </table>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-    <div class="card">
-
-
-        <h2>
-
-            AGENDA SERVIÇO SOCIAL
-
-        </h2>
-
-
-        <div class="table-container">
-
-
-            <table>
-
-
-                <thead>
-
-
-                    <tr>
-
-
-                        <th>Período</th>
-
-                        <th>Passageiro</th>
-
-                        <th>Motivo</th>
-
-                        <th>Itinerário</th>
-
-                        <th>Status</th>
-
-
-                    </tr>
-
-
-                </thead>
-
-
-                <tbody 
-                    id="socialData"
-                >
-
-                </tbody>
-
-
-            </table>
-
-
-        </div>
-
-
-    </div>
-
-
-
-</section>
-
-
-</main>
-
-
-
-<!-- ======================================================================
-     LOADING
-====================================================================== -->
-
-
-<div 
-    id="loading"
-    class="loading-overlay"
->
-
-</div>
-
-
-
-<!-- ======================================================================
-     JAVASCRIPT
-====================================================================== -->
-
-
-<script 
-    type="module"
-    src="js/pages/dashboard.js"
-></script>
-
-
+    </script>
 
 </body>
 
